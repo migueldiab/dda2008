@@ -1,15 +1,27 @@
 package dominio;
 
-import java.util.ArrayList;
-
-public class Grupo {
+public class Permiso
+{
   private int id;
   private String nombre;
-  private ArrayList<Permiso> permisos;
-  
+  private boolean acceso;
   /*
    * Get's & Sets
    */
+  /**
+   * @return the acceso
+   */
+  public boolean isAcceso()
+  {
+    return acceso;
+  }
+  /**
+   * @param acceso the acceso to set
+   */
+  public void setAcceso(boolean acceso)
+  {
+    this.acceso = acceso;
+  }
   /**
    * @return the id
    */
@@ -38,20 +50,4 @@ public class Grupo {
   {
     this.nombre = nombre;
   }
-  /**
-   * @return the permisos
-   */
-  public ArrayList<Permiso> getPermisos()
-  {
-    return permisos;
-  }
-  /**
-   * @param permisos the permisos to set
-   */
-  public void setPermisos(ArrayList<Permiso> permisos)
-  {
-    this.permisos = permisos;
-  }
-  
-
 }
