@@ -81,6 +81,13 @@ public class Item {
     this.nombre = nombre;
   }
   
+  public Item(String nombre, int cantidad, double costo, Medida medida){
+	setNombre(nombre);
+	setCantidad(cantidad);
+	setCosto(costo);
+	setMedida(medida);
+  }
+  
   
   
 }
