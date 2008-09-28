@@ -1,0 +1,95 @@
+class Consola
+!!!139138.java!!!	print(in s : String) : void
+
+		System.out.print(s);
+		
+!!!139266.java!!!	println(in s : String) : void
+
+		
+		System.out.println(s);
+		
+!!!139394.java!!!	print(in i : int) : void
+
+    System.out.print(i);
+    
+!!!139522.java!!!	println(in i : int) : void
+
+    System.out.println(i);
+!!!139650.java!!!	print(in d : double) : void
+
+    System.out.print(d);
+    
+!!!139778.java!!!	println(in d : double) : void
+
+    System.out.println(d);
+!!!139906.java!!!	print(in c : char) : void
+
+    System.out.print(c);
+    
+!!!140034.java!!!	println(in c : char) : void
+
+    System.out.println(c);
+!!!140162.java!!!	leer() : String
+
+		
+		try{
+			return in.readLine();
+		}catch(Exception e){return null;}
+		
+!!!140290.java!!!	leer(in s : String) : String
+
+		print(s);
+		return leer();
+!!!140418.java!!!	leerInt() : int
+
+		return leerInt(null);
+!!!140546.java!!!	leerInt(in msg : String) : int
+
+		int num = -1;
+		boolean ok = false;
+		while(!ok){
+			try{
+				if (msg!=null){print(msg);}
+				num = Integer.parseInt(leer());
+				ok = true;
+			}catch(Exception e){}
+		}
+		return num;
+!!!140674.java!!!	setFormato(in mascara : String) : void
+
+    sdf = new SimpleDateFormat(mascara);
+!!!140802.java!!!	leerFecha(in msg : String) : Calendar
+
+    Date d=null;
+    boolean ok=false;
+    do {
+      try {
+        d = sdf.parse(leer(msg));
+        ok = true;
+      } catch (ParseException e) {
+        println(I18n.ERROR);
+      }
+      
+    } while (!ok);
+    Calendar calendario = new GregorianCalendar();
+    calendario.setTime(d);
+    return calendario;
+!!!140930.java!!!	menu(inout opciones : ArrayList) : int
+
+	
+		for(int x=0;x<opciones.size();x++){
+			println( (x+1) + "-" + opciones.get(x).toString());
+		}
+		int opcion;
+		do{
+      println(I18n.SEPARADOR);
+      opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+			
+		}while(opcion < 0 || opcion >= opciones.size());
+		return opcion;
+!!!141058.java!!!	menu(inout opciones : ArrayList, in titulo : String) : int
+
+    println(I18n.SEPARADOR);
+    println("|   "+titulo);
+    println(I18n.SEPARADOR);
+    return menu(opciones);

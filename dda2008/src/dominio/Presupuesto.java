@@ -11,7 +11,7 @@ public class Presupuesto {
   private Date fechaModificacion;
   private Usuario duenio;
   private String estado;
-  private ArrayList<Item> items;
+  private ArrayList items;
 
   /*
    * Get's & Sets

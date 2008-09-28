@@ -1,6 +1,8 @@
-package uiConsola;
+package utils;
 
 import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -13,6 +15,7 @@ import java.util.*;
 public class Consola {
 	
 	protected static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+  private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	/**
 	 * ...
@@ -191,6 +194,29 @@ public class Consola {
 		}
 		return num;
 	}
+  
+  public static void setFormato(String mascara)
+  {
+    sdf = new SimpleDateFormat(mascara);
+  }
+  
+  
+  public static Calendar leerFecha(String msg) {
+    Date d=null;
+    boolean ok=false;
+    do {
+      try {
+        d = sdf.parse(leer(msg));
+        ok = true;
+      } catch (ParseException e) {
+        println(I18n.ERROR);
+      }
+      
+    } while (!ok);
+    Calendar calendario = new GregorianCalendar();
+    calendario.setTime(d);
+    return calendario;
+  }
 	/**
 	 * ...
 	 * 
@@ -208,11 +234,18 @@ public class Consola {
 		}
 		int opcion;
 		do{
-			opcion = leerInt("opcion:") - 1;
+      println(I18n.SEPARADOR);
+      opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
 			
 		}while(opcion < 0 || opcion >= opciones.size());
 		return opcion;
 	}
 	
-	
+  public static int menu(ArrayList opciones, String titulo){
+    println(I18n.SEPARADOR);
+    println("|   "+titulo);
+    println(I18n.SEPARADOR);
+    return menu(opciones);
+  }
+  
 }

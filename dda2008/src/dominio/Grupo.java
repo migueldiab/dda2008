@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Grupo {
   private int id;
   private String nombre;
-  private ArrayList<Permiso> permisos;
+  private ArrayList permisos;
   
   /*
    * Get's & Sets
@@ -41,14 +41,14 @@ public class Grupo {
   /**
    * @return the permisos
    */
-  public ArrayList<Permiso> getPermisos()
+  public ArrayList getPermisos()
   {
     return permisos;
   }
   /**
    * @param permisos the permisos to set
    */
-  public void setPermisos(ArrayList<Permiso> permisos)
+  public void setPermisos(ArrayList permisos)
   {
     this.permisos = permisos;
   }

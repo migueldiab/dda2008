@@ -1,0 +1,19 @@
+class Grupo
+!!!128002.java!!!	getId() : int
+
+    return id;
+!!!128130.java!!!	setId(in id : int) : void
+
+    this.id = id;
+!!!128258.java!!!	getNombre() : String
+
+    return nombre;
+!!!128386.java!!!	setNombre(in nombre : String) : void
+
+    this.nombre = nombre;
+!!!128514.java!!!	getPermisos() : Permiso
+
+    return permisos;
+!!!128642.java!!!	setPermisos(inout permisos : ArrayList<Permiso>) : void
+
+    this.permisos = permisos;

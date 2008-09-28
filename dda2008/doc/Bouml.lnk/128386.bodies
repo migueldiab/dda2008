@@ -1,0 +1,19 @@
+class Medida
+!!!130050.java!!!	getCodigo() : String
+
+  return codigo;
+!!!130178.java!!!	setCodigo(in codigo : String) : void
+
+  this.codigo = codigo;
+!!!130306.java!!!	getDescripcion() : String
+
+  return descripcion;
+!!!130434.java!!!	setDescripcion(in descripcion : String) : void
+
+  this.descripcion = descripcion;
+!!!130562.java!!!	getId() : int
+
+  return id;
+!!!130690.java!!!	setId(in id : int) : void
+
+  this.id = id;
