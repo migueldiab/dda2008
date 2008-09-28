@@ -1,0 +1,11 @@
+class Usuarios
+!!!138370.java!!!	login(in usuario : String, in clave : String) : boolean
+
+    // if index of usuarios != -1
+    // if clave es correcta
+    // usuarioactual = usuario
+    return false;
+!!!138498.java!!!	logout() : boolean
+
+    usuarioActual = null;
+    return true;

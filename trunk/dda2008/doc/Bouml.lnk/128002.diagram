@@ -1,0 +1,52 @@
+format 59
+
+classcanvas 128002 class_ref 128642 // Usuario
+  draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 306 262 2000
+end
+classcanvas 128130 class_ref 128514 // Presupuesto
+  draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 104 245 2004
+end
+classcanvas 128386 class_ref 128386 // Medida
+  draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 479 48 2000
+end
+classcanvas 128514 class_ref 128258 // Item
+  draw_all_relations default hide_attributes no hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 129 41 3005
+end
+classcanvas 128898 class_ref 128130 // Permiso
+  draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 613 270 2000
+end
+classcanvas 129026 class_ref 128002 // Grupo
+  draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  xyz 448 280 2004
+end
+relationcanvas 128258 relation_ref 128258 // <unidirectional association>
+  from ref 128130 z 1999 to ref 128002
+  role_a_pos 257 292 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128642 relation_ref 128130 // <unidirectional association>
+  from ref 128514 z 1999 to ref 128386
+  role_a_pos 426 70 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128770 relation_ref 128386 // <unidirectional association>
+  from ref 128130 z 1999 stereotype "<<ArrayList>>" xyz 160 164 3000 to ref 128514
+  role_a_pos 168 148 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129154 relation_ref 128002 // <unidirectional association>
+  from ref 129026 z 1999 stereotype "<<ArrayList>>" xyz 519 311 3000 to ref 128898
+  role_a_pos 549 292 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129282 relation_ref 128514 // <unidirectional association>
+  from ref 128002 z 1999 to ref 129026
+  role_a_pos 405 292 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

@@ -1,0 +1,19 @@
+class Permiso
+!!!130818.java!!!	isAcceso() : boolean
+
+    return acceso;
+!!!130946.java!!!	setAcceso(inout acceso : boolean) : void
+
+    this.acceso = acceso;
+!!!131074.java!!!	getId() : int
+
+    return id;
+!!!131202.java!!!	setId(in id : int) : void
+
+    this.id = id;
+!!!131330.java!!!	getNombre() : String
+
+    return nombre;
+!!!131458.java!!!	setNombre(in nombre : String) : void
+
+    this.nombre = nombre;
