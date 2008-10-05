@@ -247,5 +247,23 @@ public class Consola {
     println(I18n.SEPARADOR);
     return menu(opciones);
   }
+  public static double leerDouble(String msg)
+  {
+    double doble = 0;    
+    
+    boolean ok = false;
+    while(!ok){
+      try
+      {
+        doble = Double.parseDouble(leer(msg));
+        ok = true;
+      }
+      catch (NumberFormatException e)
+      {
+        e.printStackTrace();
+      }    
+    }
+    return doble;
+  }
   
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Permiso;
 
-public class Permisos
+public class ServiciosPermisos
 {
   ArrayList permisos = new ArrayList();
 

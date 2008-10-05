@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Usuario;
 
-public class Usuarios
+public class ServicioUsuarios
 {
   private static ArrayList usuarios = new ArrayList();
   private static Usuario usuarioActual = new Usuario();

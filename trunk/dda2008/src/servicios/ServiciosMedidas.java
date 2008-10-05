@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Medida;
 
-public class Medidas
+public class ServiciosMedidas
 {
   ArrayList medidas = new ArrayList();
 

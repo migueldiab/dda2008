@@ -8,6 +8,59 @@ public class Articulo
   private Medida medida;
   private double costo;
   
+  public Articulo(String nombre, Medida unaMedida)
+  {
+    try {
+      if (nombre == "") 
+        throw new Exception("Nombre de articulo no puede ser vacío");
+      if (nombre == null)
+        throw new Exception("Articulo debe recibir nombre como parametro");
+      if (unaMedida == null) 
+        throw new Exception("Articulo debe recibir Medida como parametro");
+      
+      this.setNombre(nombre);
+      this.setMedida(unaMedida);
+    }
+    catch (Exception e){
+      System.out.println(e);
+    }
+  }
+  public Articulo(String nombre, Medida unaMedida, int cantidad, double costo)
+  {
+    this(nombre, unaMedida);
+    this.setCantidad(cantidad);
+    this.setCosto(costo);    
+  }
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  public boolean equals(Object arg0)
+  {
+    // TODO Auto-generated method stub
+    try
+    {
+      Articulo articulo = (Articulo)arg0;
+      if (articulo.nombre.equals(this.nombre)) {
+        if (articulo.medida.equals(this.medida)) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
+  }
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  public String toString()
+  {
+    // TODO Auto-generated method stub
+    return this.getNombre()+"-"+this.getMedida();
+  }
   /*
    * Get's & Sets
    */
