@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Grupo;
 
-public class Grupos
+public class ServiciosGrupos
 {
   ArrayList grupos = new ArrayList();
 }

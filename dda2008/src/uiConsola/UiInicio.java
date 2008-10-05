@@ -6,7 +6,7 @@ import servicios.Fachada;
 import utils.I18n;
 import utils.Consola;
 
-public class MenuInicio
+public class UiInicio
 {
   public static void MenuPrincipal() {
     int opcion = 0;
@@ -33,16 +33,16 @@ public class MenuInicio
             opcion = Consola.menu(items, I18n.ARTICULOS);
             switch (opcion) {
               case 0:
-                Fachada.agregarArticulo();
+                UiArticulo.agregarArticulo();
                 break;
               case 1:
-                Fachada.borrarArticulo();
+                UiArticulo.borrarArticulo();
                 break;
               case 2:
-                Fachada.modificarArticulo();
+                UiArticulo.modificarArticulo();
                 break;
               case 3:
-                Fachada.listadoArticulos();
+                UiArticulo.listadoArticulos();
                 break;
               case 4:
                 menu_anterior = true;
@@ -65,16 +65,16 @@ public class MenuInicio
             opcion = Consola.menu(items, I18n.PRESUPUESTOS);
             switch (opcion) {
               case 0:
-                Fachada.agregarPresupuesto();
+                UiPresupuesto.agregarPresupuesto();
                 break;
               case 1:
-                Fachada.borrarPresupuesto();
+                UiPresupuesto.borrarPresupuesto();
                 break;
               case 2:
-                Fachada.modificarPresupuesto();
+                UiPresupuesto.modificarPresupuesto();
                 break;
               case 3:
-                Fachada.listadoPresupuestos();
+                UiPresupuesto.listadoPresupuestos();
                 break;
               case 4:
                 menu_anterior = true;
@@ -129,16 +129,16 @@ public class MenuInicio
             opcion = Consola.menu(items, I18n.USUARIOS);
             switch (opcion) {
               case 0:
-                Fachada.agregarUsuario();
+                UiUsuario.agregarUsuario();
                 break;
               case 1:
-                Fachada.borrarUsuario();
+                UiUsuario.borrarUsuario();
                 break;
               case 2:
-                Fachada.modificarUsuario();
+                UiUsuario.modificarUsuario();
                 break;
               case 3:
-                Fachada.listadoUsuarios();
+                UiUsuario.listadoUsuarios();
                 break;
               case 4:
                 menu_anterior = true;
