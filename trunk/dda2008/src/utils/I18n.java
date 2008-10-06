@@ -43,7 +43,9 @@ public class I18n
 
   public static final String MODIFICADO_OK = "Objeto modificado correctamente";
 
-  public static final String INGRESO_CORRECTO = "Objeto ingresado correctamente";
+  public static final String INGRESO_OK = "Objeto ingresado correctamente";
+
+  public static final String BORRADO_OK = "Objeto eliminado correctamente";
 
   
   

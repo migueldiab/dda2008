@@ -8,6 +8,9 @@ public class Articulo
   private Medida medida;
   private double costo;
   
+  /*
+   * Constructores
+   */
   public Articulo(String nombre, Medida unaMedida)
   {
     try {
@@ -31,6 +34,7 @@ public class Articulo
     this.setCantidad(cantidad);
     this.setCosto(costo);    
   }
+  
   /* (non-Javadoc)
    * @see java.lang.Object#equals(java.lang.Object)
    */
@@ -53,6 +57,7 @@ public class Articulo
     }
     return false;
   }
+  
   /* (non-Javadoc)
    * @see java.lang.Object#toString()
    */
@@ -61,6 +66,7 @@ public class Articulo
     // TODO Auto-generated method stub
     return this.getNombre()+"-"+this.getMedida();
   }
+  
   /*
    * Get's & Sets
    */
