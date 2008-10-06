@@ -17,15 +17,19 @@ public class UiArticulo
     String nombre = "";
     int cantidad = 0;
     double costo = 0;
-    int idMedida = 0;
-    Medida medida = new Medida();
+    int posMedida = 0;
+    Medida medida = null;
     nombre = Consola.leer(I18n.NOMBRE + ": ");
+    ArrayList medidas = Fachada.listaMedidas();
+    posMedida = Consola.menu(medidas);
+    medida = (Medida) medidas.get(posMedida);
     cantidad = Consola.leerInt(I18n.CANTIDAD + " : ");
     costo = Consola.leerDouble(I18n.COSTO + " : ");
-    //idMedida = Consola.menu(Fachada.listaMedidas());
     Articulo unArticulo = new Articulo(nombre, medida, cantidad, costo);
     if (Fachada.agregarArticulo(unArticulo))
-      Consola.println(I18n.INGRESO_CORRECTO);
+      Consola.println(I18n.INGRESO_OK);
+    else
+      Consola.println(I18n.ERROR);
   }
 
   public static void borrarArticulo()
@@ -39,7 +43,10 @@ public class UiArticulo
      int posArticulo = Consola.menu(articulos);
      String confirma = Consola.leer(I18n.CONFIRMA_ELIMINAR);
      if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
-       Fachada.borrarArticulo((Articulo) articulos.get(posArticulo));
+       if (Fachada.borrarArticulo((Articulo) articulos.get(posArticulo)))
+         Consola.println(I18n.BORRADO_OK);
+       else
+         Consola.println(I18n.ERROR);
    }
   }
 
@@ -56,12 +63,15 @@ public class UiArticulo
       String nombre = "";
       int cantidad = 0;
       double costo = 0;
-      int idMedida = 0;
-      Medida medida = new Medida();
+      int posMedida = 0;
+      Medida medida = null;
+      
       nombre = Consola.modificar(I18n.NOMBRE, original.getNombre());
+      ArrayList medidas = Fachada.listaMedidas();
+      posMedida = Consola.menu(medidas);
+      medida = (Medida) medidas.get(posMedida);
       cantidad = Consola.modificarInt(I18n.CANTIDAD, original.getCantidad());
       costo = Consola.modificarDouble(I18n.COSTO, original.getCosto());
-      //idMedida = Consola.menu(Fachada.listaMedidas());
       String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
       if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
       {
@@ -72,16 +82,13 @@ public class UiArticulo
         }
         else
           Consola.println(I18n.ERROR);
-      }
-    }
-  
+      }      
+    }  
   }
 
   public static void listadoArticulos()
   {
     // TODO Auto-generated method stub
-   Consola.listado(Fachada.listadoArticulos());
-   
+   Consola.listado(Fachada.listadoArticulos());   
   }
-
 }

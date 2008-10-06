@@ -9,7 +9,7 @@ public class TestArticulo extends TestCase
   private Articulo unArticulo;
   
   public void setUp() {
-    unaMedida = new Medida();
+    unaMedida = new Medida("kg", "Kilogramo");
     unArticulo = new Articulo("art1", unaMedida, 10, 105.30);
     servicios.ServiciosArticulos.agregarArticulo(unArticulo);
   }
