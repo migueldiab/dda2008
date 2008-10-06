@@ -1,9 +1,26 @@
 package dominio;
 
 public class Medida {
- private int id;
- private String codigo;
- private String descripcion;
+  private int id;
+  private String codigo;
+  private String descripcion;
+  
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  public boolean equals(Object arg0)
+  {
+    // TODO Auto-generated method stub
+    return super.equals(arg0);
+  }
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  public String toString()
+  {
+    // TODO Auto-generated method stub
+    return this.descripcion;
+  }
  
  /*
   * Get's & Sets

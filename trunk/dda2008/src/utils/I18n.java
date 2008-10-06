@@ -39,6 +39,12 @@ public class I18n
   public static final String CANTIDAD = "Cantidad";
   public static final String COSTO = "Costo";
 
+  public static final String CONFIRMA_MODIFICAR = "Confirma que desea modifcar ("+SI+"/"+NO+") : ";
+
+  public static final String MODIFICADO_OK = "Objeto modificado correctamente";
+
+  public static final String INGRESO_CORRECTO = "Objeto ingresado correctamente";
+
   
   
 

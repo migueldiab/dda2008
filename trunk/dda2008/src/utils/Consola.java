@@ -158,7 +158,53 @@ public class Consola {
 		print(s);
 		return leer();
 	}
-	
+
+  public static String modificar(String s, String actual){
+    
+    try{
+      print(s + "[" + actual + "] : ");
+      String nuevo = leer();
+      if (nuevo.equals(""))
+        return actual;
+      else if (nuevo.equals(" "))
+        return "";
+      else
+        return nuevo;
+    }catch(Exception e){return null;}
+    
+  }  
+  public static int modificarInt(String msg, int actual)
+  {
+    int num = -1;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          num = Integer.parseInt(nuevo);
+          return num;
+        }        
+      }catch(Exception e){}
+    }
+  }
+  public static double modificarDouble(String msg, double actual)
+  {
+    double num = 0.0;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          num = Double.parseDouble(nuevo);
+          return num;
+        }        
+      }catch(Exception e){}
+    }
+  }  
 	/**
 	 * ...
 	 * 
@@ -265,5 +311,10 @@ public class Consola {
     }
     return doble;
   }
-  
+  public static void listado(ArrayList lista){    
+    for(int x=0;x<lista.size();x++){
+      println(lista.get(x).toString());
+    }
+  }
+
 }

@@ -2,6 +2,7 @@ package servicios;
 
 import java.util.ArrayList;
 
+import dominio.Articulo;
 import dominio.Medida;
 
 import uiConsola.UiArticulo;
@@ -9,17 +10,17 @@ import utils.Consola;
 
 public class Fachada {
   public static boolean agregarArticulo(dominio.Articulo unArticulo) {
-    return servicios.ServiciosArticulos.agregarArticulo(unArticulo);
+    return ServiciosArticulos.agregarArticulo(unArticulo);
   }
 
   public static boolean borrarArticulo(dominio.Articulo unArticulo) {
-    return servicios.ServiciosArticulos.borrarArticulo(unArticulo); 
+    return ServiciosArticulos.borrarArticulo(unArticulo); 
   }
 
-  public static boolean modificarArticulo()
+  public static boolean modificarArticulo(Articulo original, Articulo nuevo)
   {
-    Consola.println("Modificar un articulo");
-    return true;
+    
+    return ServiciosArticulos.modificarArticulo(original, nuevo);
   }
 
   public static ArrayList listadoArticulos() {
