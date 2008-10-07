@@ -8,12 +8,15 @@ public class Usuario {
   private Grupo grupo;
   
 
-  public Usuario() {
-
-  }
-  public Usuario(String id) {
+  public Usuario(String id, String clave, Grupo grupo) {
     this.setId(id);
-    this.setId(this.getId());
+    this.setClave(clave);
+    this.setGrupo(grupo);
+  }
+  public Usuario(String id, String clave, Grupo grupo, String nombre, String apellido) {
+    this(id, clave, grupo);
+    this.setApellido(apellido);
+    this.setNombre(nombre);
   }
 
   /*
