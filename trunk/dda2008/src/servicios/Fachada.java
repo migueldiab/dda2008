@@ -10,19 +10,19 @@ import utils.Consola;
 
 public class Fachada {
   public static boolean agregarArticulo(dominio.Articulo unArticulo) {
-    return ServiciosArticulos.agregarArticulo(unArticulo);
+    return ServiciosArticulos.agregar(unArticulo);
   }
 
   public static boolean borrarArticulo(dominio.Articulo unArticulo) {
-    return ServiciosArticulos.borrarArticulo(unArticulo); 
+    return ServiciosArticulos.borrar(unArticulo); 
   }
 
   public static boolean modificarArticulo(Articulo original, Articulo nuevo) {    
-    return ServiciosArticulos.modificarArticulo(original, nuevo);
+    return ServiciosArticulos.modificar(original, nuevo);
   }
 
   public static ArrayList listadoArticulos() {
-    return ServiciosArticulos.listadoArticulos();
+    return ServiciosArticulos.listado();
   }
 
   public static boolean agregarPresupuesto() {
