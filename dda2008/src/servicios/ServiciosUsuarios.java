@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Usuario;
 
-public class ServicioUsuarios
+public class ServiciosUsuarios
 {
   private static ArrayList usuarios = new ArrayList();
   private static Usuario usuarioActual = null;
@@ -21,7 +21,7 @@ public class ServicioUsuarios
     return true;
   }
 
-  public static boolean agregarUsuario(Usuario unUsuario)
+  public static boolean agregar(Usuario unUsuario)
   {
     // TODO Auto-generated method stub
     if (usuarios.indexOf(unUsuario)==-1) {
@@ -32,7 +32,7 @@ public class ServicioUsuarios
       return false;
     }        
   }
-  public static boolean borrarUsuario(Usuario unUsuario) {
+  public static boolean borrar(Usuario unUsuario) {
     if (usuarios.indexOf(unUsuario)!=-1) {
       usuarios.remove(unUsuario);
       return true;
@@ -42,7 +42,7 @@ public class ServicioUsuarios
     }      
   }
 
-  public static boolean modificarUsuario(Usuario original, Usuario nuevo) {
+  public static boolean modificar(Usuario original, Usuario nuevo) {
     if ((original == null) || (nuevo == null)) return false;
     int posOriginal = usuarios.indexOf(original);
     if (posOriginal == -1) return false;
@@ -57,7 +57,7 @@ public class ServicioUsuarios
     return usuarios.size();
   }
 
-  public static Object obtenerUsuario(Usuario unUsuario)
+  public static Object obtener(Usuario unUsuario)
   {
     // TODO Auto-generated method stub
     int pos = usuarios.indexOf(unUsuario);
@@ -69,7 +69,7 @@ public class ServicioUsuarios
     }  
   }
 
-  public static ArrayList listadoUsuarios()
+  public static ArrayList listado()
   {
     // TODO Auto-generated method stub
     if (cantidad() == 0)
