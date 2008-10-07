@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Articulo;
 import dominio.Medida;
+import dominio.Usuario;
 
 import uiConsola.UiArticulo;
 import utils.Consola;
@@ -45,24 +46,24 @@ public class Fachada {
     return true;
   }
 
-  public static boolean agregarUsuario() {
-    Consola.println("Agrega un usuario");
-    return true;
+  public static boolean agregarUsuario(Usuario unUsuario) {
+    return ServiciosUsuarios.agregar(unUsuario);
+    
   }
 
-  public static boolean borrarUsuario() {
+  public static boolean borrarUsuario(Usuario usuario) {
     Consola.println("Borra un Usuario");
     return true;
   }
 
-  public static boolean modificarUsuario() {
+  public static boolean modificarUsuario(Usuario original, Usuario usuario) {
     Consola.println("Modifica un Usuario");
     return true;
   }
 
-  public static boolean listadoUsuarios() {
+  public static ArrayList listadoUsuarios() {
     Consola.println("Lista un Usuario");
-    return true;
+    return null;
   }
 
   public static boolean cerrarSesion() {
@@ -76,5 +77,11 @@ public class Fachada {
 
   public static boolean agregarMedida(Medida medida) {
     return ServiciosMedidas.agregarMedida(medida);    
+  }
+
+  public static ArrayList listaGrupos()
+  {
+    // TODO Auto-generated method stub
+    return null;
   }  
 }
