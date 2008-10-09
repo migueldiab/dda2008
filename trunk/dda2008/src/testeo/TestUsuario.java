@@ -11,7 +11,7 @@ public class TestUsuario extends TestCase {
   
 
   public void setUp() {
-    unGrupo = new Grupo();
+    unGrupo = new Grupo("Administrador");
     unUsuario = new Usuario("usuario1", "clave", unGrupo, "El Usuario", "Ramirez");
     ServiciosUsuarios.agregar(unUsuario);
   }
@@ -27,7 +27,7 @@ public class TestUsuario extends TestCase {
     assertFalse(ServiciosUsuarios.agregar(unUsuario));
   }  
   public void testUsuarioDuplicadoConDatos()  {
-    Usuario unUsuario = new Usuario("usuario1", "clave", new Grupo(), "Otro Usuario", "Mismo ID");
+    Usuario unUsuario = new Usuario("usuario1", "clave", new Grupo("Usuario"), "Otro Usuario", "Mismo ID");
     assertFalse(ServiciosUsuarios.agregar(unUsuario));
   }  
   public void testObtenerUsuario() {

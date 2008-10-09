@@ -3,27 +3,59 @@ package dominio;
 import java.util.ArrayList;
 
 public class Grupo {
-  private int id;
-  private String nombre;
-  private ArrayList permisos;
   
+
+  public static final String ADMIN = "Admin";
+  public static final String ALTA_USUARIO = "ALTA_USUARIO";
+  public static final String BAJA_USUARIO = "BAJA_USUARIO";
+  public static final String MODI_USUARIO = "MODI_USUARIO";
+  public static final String LIST_USUARIO = "LIST_USUARIO";
+  private String nombre;
+  private ArrayList permisos = new ArrayList();
+  
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  public boolean equals(Object arg0)
+  {
+    // TODO Auto-generated method stub
+    try
+    {
+      Grupo grupo = (Grupo)arg0;
+      if (grupo.nombre.equals(this.nombre)) {
+        return true;
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
+
+  }
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  public String toString()
+  {
+    // TODO Auto-generated method stub
+    return this.getNombre();
+  }
+  public Grupo(String nombre)
+  {
+    // TODO Auto-generated constructor stub
+    this.setNombre(nombre);
+  }
+  public Grupo(String nombre, ArrayList permisos)
+  {
+    // TODO Auto-generated constructor stub
+    this.setNombre(nombre);
+    this.setPermisos(permisos);
+  }
   /*
    * Get's & Sets
    */
-  /**
-   * @return the id
-   */
-  public int getId()
-  {
-    return id;
-  }
-  /**
-   * @param id the id to set
-   */
-  public void setId(int id)
-  {
-    this.id = id;
-  }
   /**
    * @return the nombre
    */
@@ -52,6 +84,19 @@ public class Grupo {
   {
     this.permisos = permisos;
   }
-  
+  public boolean agregarPermiso(String permiso) {
+    permisos.add(permiso);
+    return true;
+  }
+  public boolean tienePermiso(String permiso)
+  {
+    // TODO Auto-generated method stub
+    // if (permisos != null)
+      return permisos.contains(permiso);
+    /*
+      else
+      return false;
+    */
+  }
 
 }

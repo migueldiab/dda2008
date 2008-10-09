@@ -1,5 +1,7 @@
 package sistema;
 
+import java.util.ArrayList;
+
 import dominio.*;
 import servicios.Fachada;
 import uiConsola.*;
@@ -19,6 +21,10 @@ public class Inicio {
     Fachada.agregarArticulo(new Articulo("Pintura", new Medida("ud", "Unidad"), 12, 105.34));
     Fachada.agregarArticulo(new Articulo("Portland", new Medida("kg", "Kilogramo"), 12, 105.34));
     Fachada.agregarArticulo(new Articulo("Ceramica", new Medida("da", "Docena"), 12, 105.34));
+    
+    ArrayList permisos = new ArrayList();
+    permisos.add(Grupo.ADMIN);
+    Fachada.agregarGrupo(new Grupo("Administradores", permisos));
     
     UiInicio.MenuPrincipal();   
 

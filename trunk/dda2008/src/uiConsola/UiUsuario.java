@@ -3,6 +3,7 @@ package uiConsola;
 import java.util.ArrayList;
 
 import dominio.Grupo;
+import dominio.Medida;
 import dominio.Usuario;
 
 import servicios.Fachada;
@@ -19,14 +20,30 @@ public class UiUsuario
     String nombre = "";
     String apellido = "";
     String clave = "";
+    String repetir = "";
+    int posGrupo = 0;
     Grupo grupo = null;
+    id = Consola.leer(I18n.ID + ": ");
     nombre = Consola.leer(I18n.NOMBRE + ": ");
+    apellido = Consola.leer(I18n.APELLIDO + ": ");
+    do {
+      clave = Consola.leer(I18n.CLAVE + ": ");
+      repetir = Consola.leer(I18n.CLAVE_REPETIR + ": ");
+    } while (!clave.equals(repetir));   
     ArrayList grupos = Fachada.listaGrupos();
-    Usuario unUsuario = new Usuario(id, clave, grupo, nombre, apellido);
-    if (Fachada.agregarUsuario(unUsuario))
-      Consola.println(I18n.INGRESO_OK);
-    else
+    if (grupos == null) {
+      Consola.println(I18n.LISTA_VACIA);
       Consola.println(I18n.ERROR);
+    }
+    else {
+      posGrupo = Consola.menu(grupos);
+      grupo = (Grupo) grupos.get(posGrupo);
+      Usuario unUsuario = new Usuario(id, clave, grupo, nombre, apellido);
+      if (Fachada.agregarUsuario(unUsuario))
+        Consola.println(I18n.INGRESO_OK);
+      else
+        Consola.println(I18n.ERROR);
+    }
   }
 
   public static void borrarUsuario()
@@ -62,31 +79,52 @@ public class UiUsuario
       String nombre = "";
       String apellido = "";
       String clave = "";
+      String repetir = "";
       Grupo grupo = null;
+      int posGrupo = 0;
+      id = Consola.modificar(I18n.ID, original.getId());
       nombre = Consola.modificar(I18n.NOMBRE, original.getNombre());
+      apellido = Consola.modificar(I18n.APELLIDO, original.getApellido());
+      do {
+        clave = Consola.leer(I18n.CLAVE + ": ");
+        repetir = Consola.leer(I18n.CLAVE_REPETIR + ": ");
+      } while (!clave.equals(repetir));   
       ArrayList grupos = Fachada.listaGrupos();
-      Usuario unUsuario = new Usuario(id, clave, grupo, nombre, apellido);
-      
-      int posGrupo = Consola.menu(grupos);
-      grupo = (Grupo) grupos.get(posGrupo);
-      String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
-      if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
-      {
-        if (Fachada.modificarUsuario(
-             original,
-             new Usuario(id, clave, grupo))) {
-          Consola.println(I18n.MODIFICADO_OK);
+      if (grupos == null) {
+        Consola.println(I18n.LISTA_VACIA);
+        Consola.println(I18n.ERROR);
+      }
+      else {
+        posGrupo = Consola.menu(grupos);
+        grupo = (Grupo) grupos.get(posGrupo);
+        String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
+        if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
+        {
+          if (Fachada.modificarUsuario(
+               original,
+               new Usuario(id, clave, grupo, nombre, apellido))) {
+            Consola.println(I18n.MODIFICADO_OK);
+          }
+          else
+            Consola.println(I18n.ERROR);
         }
-        else
-          Consola.println(I18n.ERROR);
-      }      
+        else {
+          Consola.println(I18n.CANCELADA);
+        }
+      }
     }  
   }
 
   public static void listadoUsuarios()
   {
     // TODO Auto-generated method stub
-   Consola.listado(Fachada.listadoUsuarios());   
+    ArrayList usuarios = Fachada.listadoUsuarios();
+    if (usuarios == null) {
+      Consola.println(I18n.LISTA_VACIA);
+    }
+    else {
+      Consola.listado(usuarios);
+    }   
   }
 
 }

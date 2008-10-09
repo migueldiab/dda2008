@@ -3,6 +3,7 @@ package servicios;
 import java.util.ArrayList;
 
 import dominio.Articulo;
+import dominio.Grupo;
 import dominio.Medida;
 import dominio.Usuario;
 
@@ -52,18 +53,15 @@ public class Fachada {
   }
 
   public static boolean borrarUsuario(Usuario usuario) {
-    Consola.println("Borra un Usuario");
-    return true;
+     return ServiciosUsuarios.borrar(usuario);
   }
 
   public static boolean modificarUsuario(Usuario original, Usuario usuario) {
-    Consola.println("Modifica un Usuario");
-    return true;
+    return ServiciosUsuarios.modificar(original, usuario);
   }
 
   public static ArrayList listadoUsuarios() {
-    Consola.println("Lista un Usuario");
-    return null;
+    return ServiciosUsuarios.listado();
   }
 
   public static boolean cerrarSesion() {
@@ -72,16 +70,20 @@ public class Fachada {
   }
 
   public static ArrayList listaMedidas() {
-    return ServiciosMedidas.listadoMedidas();
+    return ServiciosMedidas.listado();
   }
 
   public static boolean agregarMedida(Medida medida) {
-    return ServiciosMedidas.agregarMedida(medida);    
+    return ServiciosMedidas.agregar(medida);    
   }
 
   public static ArrayList listaGrupos()
   {
-    // TODO Auto-generated method stub
-    return null;
+    return ServiciosGrupos.listado();
+  }
+
+  public static boolean agregarGrupo(Grupo grupo)
+  {
+    return ServiciosGrupos.agregar(grupo);
   }  
 }
