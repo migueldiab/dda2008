@@ -9,7 +9,7 @@ public class Usuario {
   
 
   public Usuario(String id, String clave, Grupo grupo) {
-    this.setId(id);
+    this(id);
     this.setClave(clave);
     this.setGrupo(grupo);
   }
@@ -19,6 +19,11 @@ public class Usuario {
     this.setNombre(nombre);
   }
 
+  public Usuario(String id)
+  {
+    // TODO Auto-generated constructor stub
+    this.setId(id);
+  }
   /*
    * Get's & Sets
    */
@@ -91,7 +96,19 @@ public class Usuario {
    */
   public boolean equals(Object arg0) {
     // TODO Auto-generated method stub
-    return super.equals(arg0);
+    try
+    {
+      Usuario usuario = (Usuario)arg0;
+      if (usuario.id.equals(this.id)) {
+        return true;
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
   }
   /* (non-Javadoc)
    * @see java.lang.Object#toString()
