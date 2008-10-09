@@ -47,6 +47,16 @@ public class I18n
 
   public static final String BORRADO_OK = "Objeto eliminado correctamente";
 
+  public static final String APELLIDO = "Apellido";
+
+  public static final String CLAVE = "Clave";
+
+  public static final String ID = "Id";
+
+  public static final String CLAVE_REPETIR = "Repetir " + CLAVE;
+
+  public static final String CANCELADA = "Operacion Cancelada";
+
   
   
 

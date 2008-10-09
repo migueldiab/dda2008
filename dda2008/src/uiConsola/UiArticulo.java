@@ -21,6 +21,7 @@ public class UiArticulo
     Medida medida = null;
     nombre = Consola.leer(I18n.NOMBRE + ": ");
     ArrayList medidas = Fachada.listaMedidas();
+    
     posMedida = Consola.menu(medidas);
     medida = (Medida) medidas.get(posMedida);
     cantidad = Consola.leerInt(I18n.CANTIDAD + " : ");
@@ -89,6 +90,12 @@ public class UiArticulo
   public static void listadoArticulos()
   {
     // TODO Auto-generated method stub
-   Consola.listado(Fachada.listadoArticulos());   
+    ArrayList articulos = Fachada.listadoArticulos();
+    if (articulos == null) {
+      Consola.println(I18n.LISTA_VACIA);
+    }
+    else {
+      Consola.listado(articulos);
+    }
   }
 }

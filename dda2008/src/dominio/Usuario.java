@@ -115,7 +115,7 @@ public class Usuario {
    */
   public String toString() {
     // TODO Auto-generated method stub
-    return super.toString();
+    return this.getId() + "(" + this.getGrupo().toString() + ")";
   }
 
 }

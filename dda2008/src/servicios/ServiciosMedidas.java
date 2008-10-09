@@ -9,7 +9,7 @@ public class ServiciosMedidas
 {
   static ArrayList medidas = new ArrayList();
 
-  public static boolean agregarMedida(Medida unMedida)
+  public static boolean agregar(Medida unMedida)
   {
     // TODO Auto-generated method stub
     if (medidas.indexOf(unMedida)==-1) {
@@ -20,7 +20,7 @@ public class ServiciosMedidas
       return false;
     }        
   }
-  public static boolean borrarMedida(Medida unMedida) {
+  public static boolean borrar(Medida unMedida) {
     if (medidas.indexOf(unMedida)!=-1) {
       medidas.remove(unMedida);
       return true;
@@ -30,7 +30,7 @@ public class ServiciosMedidas
     }      
   }
 
-  public static boolean modificarMedida(Medida original, Medida nuevo) {
+  public static boolean modificar(Medida original, Medida nuevo) {
     if ((original == null) || (nuevo == null)) return false;
     int posOriginal = medidas.indexOf(original);
     if (posOriginal == -1) return false;
@@ -45,7 +45,7 @@ public class ServiciosMedidas
     return medidas.size();
   }
 
-  public static Object obtenerMedida(Medida unMedida)
+  public static Object obtener(Medida unMedida)
   {
     // TODO Auto-generated method stub
     int pos = medidas.indexOf(unMedida);
@@ -57,7 +57,7 @@ public class ServiciosMedidas
     }  
   }
 
-  public static ArrayList listadoMedidas()
+  public static ArrayList listado()
   {
     // TODO Auto-generated method stub
     if (cantidad() == 0)
