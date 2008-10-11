@@ -1,13 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
-
-import dominio.Articulo;
-import dominio.Grupo;
-import dominio.Medida;
-import dominio.Usuario;
-
-import uiConsola.UiArticulo;
+import dominio.*;
 import utils.Consola;
 
 public class Fachada {
@@ -26,12 +20,20 @@ public class Fachada {
   public static ArrayList listadoArticulos() {
     return ServiciosArticulos.listado();
   }
-
+  public static void calcularCosto(Presupuesto unPresupuesto){
+		ServiciosPresupuestos.calcularCosto(unPresupuesto);
+  }
   public static boolean agregarPresupuesto() {
     Consola.println("Agrega un presupuesto");
     return true;
   }
-
+  public static boolean agregarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
+	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unItem);
+  }
+  public static boolean borrarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
+	  return ServiciosPresupuestos.borrarItem(unPresupuesto, unItem);
+  }
+  
   public static boolean borrarPresupuesto() {
     Consola.println("Borra un articulo");
     return true;

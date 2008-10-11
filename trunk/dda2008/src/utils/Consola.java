@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 /**
  * ...
  * @author Marcos Tusso - Miguel Diab
@@ -286,7 +287,23 @@ public class Consola {
 		}while(opcion < 0 || opcion >= opciones.size());
 		return opcion;
 	}
-	
+  public static Object listadoArrayList(ArrayList opciones,String titulo){
+	  	println(I18n.SEPARADOR);
+	    println("|   "+titulo);
+	    println(I18n.SEPARADOR);
+		for(int x=0;x<opciones.size();x++){
+			println( (x+1) + "-" + opciones.get(x).toString());
+		}
+		int opcion;
+		do{
+    println(I18n.SEPARADOR);
+    opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+			
+		}while(opcion < 0 || opcion >= opciones.size());
+		
+		return opciones.get(opcion);   //probar esto
+	}
+  
   public static int menu(ArrayList opciones, String titulo){
     println(I18n.SEPARADOR);
     println("|   "+titulo);

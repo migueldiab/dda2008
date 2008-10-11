@@ -7,7 +7,7 @@ import dominio.Usuario;
 public class ServiciosUsuarios
 {
   private static ArrayList usuarios = new ArrayList();
-  private static Usuario usuarioActual = null;
+  public static Usuario usuarioActual = null;
   
   public static boolean login(String usuario, String clave) {
     // if index of usuarios != -1

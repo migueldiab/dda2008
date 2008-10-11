@@ -2,33 +2,50 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.Date;
-
+import servicios.ServiciosArticulos;
+/**
+ * @author Marcos
+ *
+ */
 public class Presupuesto {
   private int id;
   private String descripcion;
   private Date fechaEjecucion;
-  private Double costo;
+  private double costo;
   private Date fechaModificacion;
   private Usuario duenio;
   private String estado;
-  private ArrayList items;
+  private ArrayList items=(ArrayList)ServiciosArticulos.articulos.clone();
+  private static int ultimoId;
 
+/*
+ *  Contructores
+ */
+  
+  public Presupuesto (String descripcion, Date fechaEjecucion){
+	  this.descripcion=descripcion;
+	  this.fechaEjecucion=fechaEjecucion;
+	  this.id=nuevoId();
+	  this.estado="En Construccion";
+	  
+  }
+    
   /*
    * Get's & Sets
    */
   /**
    * @return the costo
    */
-  public Double getCosto()
+  public double getCosto()
   {
     return costo;
   }
   /**
-   * @param costo the costo to set
+   * @param costo2 the costo to set
    */
-  public void setCosto(Double costo)
+  public void setCosto(double costo2)
   {
-    this.costo = costo;
+    this.costo = costo2;
   }
   /**
    * @return the descripcion
@@ -56,7 +73,7 @@ public class Presupuesto {
    */
   public void setDuenio(Usuario duenio)
   {
-    duenio = duenio;
+    this.duenio = duenio;
   }
   /**
    * @return the estado
@@ -110,10 +127,11 @@ public class Presupuesto {
   /**
    * @param id the id to set
    */
-  public void setId(int id)
-  {
-    this.id = id;
+  public static int nuevoId(){
+	  return ++ultimoId;
+	  	  
   }
+  
   /**
    * @return the items
    */
@@ -121,6 +139,13 @@ public class Presupuesto {
   {
     return items;
   }
-
+public boolean agregarItem(Articulo art){
+	return items.add(art);
+}
+public boolean borrarItem(Articulo art){
+	return items.remove(art);
+}
+  
+  
   
 }
