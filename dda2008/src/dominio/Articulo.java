@@ -1,6 +1,6 @@
 package dominio;
 
-public class Articulo
+public class Articulo 
 {
   private int id;
   private String nombre;
@@ -30,7 +30,7 @@ public class Articulo
   }
   public Articulo(String nombre, Medida unaMedida, int cantidad, double costo)
   {
-    this(nombre, unaMedida);
+	this(nombre, unaMedida);
     this.setCantidad(cantidad);
     this.setCosto(costo);    
   }
@@ -140,6 +140,7 @@ public class Articulo
   {
     this.nombre = nombre;
   }
+  
   
 
 }

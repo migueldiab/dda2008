@@ -81,6 +81,7 @@ public class Fecha {
 		return t;
 	}
 
+	
   public static Calendar toDate(String fecha) {
     Date d;
     SimpleDateFormat fSimple = new SimpleDateFormat(I18n.FORMATO_FECHA);
