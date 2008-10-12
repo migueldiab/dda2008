@@ -288,21 +288,26 @@ public class Consola {
 		return opcion;
 	}
   public static Object listadoArrayList(ArrayList opciones,String titulo){
+	  	int salida=opciones.size();
 	  	println(I18n.SEPARADOR);
 	    println("|   "+titulo);
 	    println(I18n.SEPARADOR);
-		for(int x=0;x<opciones.size();x++){
+	    
+	    for(int x=0;x<opciones.size();x++){
 			println( (x+1) + "-" + opciones.get(x).toString());
 		}
+		println((opciones.size()+1)+ " Salir ");
 		int opcion;
 		do{
     println(I18n.SEPARADOR);
     opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
 			
-		}while(opcion < 0 || opcion >= opciones.size());
-		
-		return opciones.get(opcion);   //probar esto
-	}
+		}while(opcion > opciones.size()||opcion <0);
+		if (opcion!=salida){
+			return opciones.get(opcion);   //probar esto
+		}
+		return null;
+	  }
   
   public static int menu(ArrayList opciones, String titulo){
     println(I18n.SEPARADOR);
