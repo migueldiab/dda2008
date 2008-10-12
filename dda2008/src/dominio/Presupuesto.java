@@ -2,7 +2,7 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.Date;
-import servicios.ServiciosArticulos;
+
 /**
  * @author Marcos
  *
@@ -15,7 +15,7 @@ public class Presupuesto {
   private Date fechaModificacion;
   private Usuario duenio;
   private String estado;
-  private ArrayList items=(ArrayList)ServiciosArticulos.articulos.clone();
+  private ArrayList items=new ArrayList();
   private static int ultimoId;
 
 /*
@@ -139,8 +139,8 @@ public class Presupuesto {
   {
     return items;
   }
-public boolean agregarItem(Articulo art){
-	return items.add(art);
+public boolean agregarItem(Object object){
+	return items.add(object);
 }
 public boolean borrarItem(Articulo art){
 	return items.remove(art);

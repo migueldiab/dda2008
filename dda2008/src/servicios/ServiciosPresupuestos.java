@@ -11,17 +11,16 @@ public class ServiciosPresupuestos
 {
  private static ArrayList presupuestos = new ArrayList();
 
- public static boolean agregar(Object o){
-Presupuesto unPresupuesto;
+ public static boolean agregar(Presupuesto unPresupuesto){
 Date now=new Date();
-	 if (presupuestos.indexOf((Presupuesto)o)==-1){
-		 unPresupuesto=(Presupuesto) o;
+	 if (presupuestos.indexOf(unPresupuesto)==-1){
+		 
 		 unPresupuesto.setFechaModificacion(now);
 		 unPresupuesto.setDuenio(ServiciosUsuarios.usuarioActual);
 		 
 
 
-		 presupuestos.add((Presupuesto) o);
+		 presupuestos.add(unPresupuesto);
 	 return true;
 	 }
 	 else
@@ -68,7 +67,9 @@ Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 			 return false;
 			 }
 		 else{
-			unPresupuesto.agregarItem((Articulo)unItem); 
+			Articulo newItem=(Articulo)unItem;
+			unPresupuesto.agregarItem(newItem.clone());
+			unPresupuesto.getItems().set(indice,ServiciosArticulos.articulos.get(indice));
 			return true;
 		 }
 	 }
