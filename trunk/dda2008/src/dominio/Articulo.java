@@ -1,6 +1,6 @@
 package dominio;
 
-public class Articulo 
+public class Articulo implements Cloneable
 {
   private int id;
   private String nombre;
@@ -140,7 +140,18 @@ public class Articulo
   {
     this.nombre = nombre;
   }
-  
+  public Object clone(){
+	  Object o=null;
+	  try{
+		  o=super.clone();
+	  }catch(CloneNotSupportedException e){
+			  System.err.println("No puede Clonar Articulo");
+	  }
+	  
+
+	  return o;
+	  
+  }
   
 
 }

@@ -28,7 +28,7 @@ public class UiPresupuesto
 	  }
 	  		  
 	  Presupuesto unPresupuesto=new Presupuesto(descripcion,fechaEjecucion);
-	  Fachada.agregarPresupuesto();
+	  Fachada.agregarPresupuesto(unPresupuesto);
 	  agregarItems(unPresupuesto);
 	  
   }

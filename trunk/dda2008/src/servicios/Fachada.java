@@ -23,9 +23,8 @@ public class Fachada {
   public static void calcularCosto(Presupuesto unPresupuesto){
 		ServiciosPresupuestos.calcularCosto(unPresupuesto);
   }
-  public static boolean agregarPresupuesto() {
-    Consola.println("Agrega un presupuesto");
-    return true;
+  public static boolean agregarPresupuesto(Presupuesto unPresupuesto) {
+    return ServiciosPresupuestos.agregar(unPresupuesto);
   }
   public static boolean agregarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
 	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unItem);

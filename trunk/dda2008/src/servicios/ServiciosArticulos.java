@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import dominio.Articulo;
 
-public class ServiciosArticulos implements Cloneable
+public class ServiciosArticulos 
 {
   public static ArrayList articulos = new ArrayList();
 
@@ -66,16 +66,5 @@ public class ServiciosArticulos implements Cloneable
       return null;
     }  
   }
-  public Object clone(){
-	  Object o=null;
-	  try{
-		  o=super.clone();
-	  }catch(CloneNotSupportedException e){
-			  System.err.println("No puede Clonar Articulo");
-	  }
-	  
 
-	  return o;
-	  
-  }
 }
