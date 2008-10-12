@@ -43,9 +43,10 @@ int x = 0;
 double costo=0;
 Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 	 for(x=0;x<unPresupuesto.getItems().size();x++){
-			costo+=item.getCosto();
+			costo+=item.getCosto()*item.getCantidad();
 		}
 		unPresupuesto.setCosto(costo);
+		System.out.println("Tostring con Costo "+unPresupuesto.toString());
  }
  
  public static ArrayList listado(){
@@ -57,22 +58,14 @@ Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 	 }
  }
  public static boolean agregarItem(Presupuesto unPresupuesto,Object unItem){
-	 int indice=presupuestos.indexOf(unPresupuesto);
-	 if (indice==-1){
-		 return false;
-	 }
-	 else{
-		 
 		 if(unPresupuesto.getItems().contains(unItem)){
 			 return false;
 			 }
 		 else{
-			Articulo newItem=(Articulo)unItem;
-			unPresupuesto.agregarItem(newItem.clone());
-			unPresupuesto.getItems().set(indice,ServiciosArticulos.articulos.get(indice));
+			unPresupuesto.agregarItem(unItem);
 			return true;
 		 }
-	 }
+	 
  }
  
  public static boolean borrarItem(Presupuesto unPresupuesto,Object unItem){

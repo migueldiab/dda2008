@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 
+
+
 /**
  * ...
  * @author Marcos Tusso - Miguel Diab
@@ -287,8 +289,9 @@ public class Consola {
 		}while(opcion < 0 || opcion >= opciones.size());
 		return opcion;
 	}
-  public static Object listadoArrayList(ArrayList opciones,String titulo){
+  public static Object agregoItems(ArrayList opciones,String titulo){
 	  	int salida=opciones.size();
+	  
 	  	println(I18n.SEPARADOR);
 	    println("|   "+titulo);
 	    println(I18n.SEPARADOR);
@@ -304,10 +307,12 @@ public class Consola {
 			
 		}while(opcion > opciones.size()||opcion <0);
 		if (opcion!=salida){
-			return opciones.get(opcion);   //probar esto
-		}
+			return opciones.get(opcion);
+			}
+		
+		
 		return null;
-	  }
+  }
   
   public static int menu(ArrayList opciones, String titulo){
     println(I18n.SEPARADOR);

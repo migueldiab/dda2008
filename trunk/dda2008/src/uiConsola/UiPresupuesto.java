@@ -3,6 +3,7 @@ package uiConsola;
 import java.util.Calendar;
 import java.util.Date;
 
+import dominio.Articulo;
 import dominio.Presupuesto;
 
 import servicios.Fachada;
@@ -32,19 +33,28 @@ public class UiPresupuesto
 	  agregarItems(unPresupuesto);
 	  
   }
-public static void agregarItems(Presupuesto unPresupuesto){
-	Object item=null;
+  public static void agregarItems(Presupuesto unPresupuesto){
+		int cant=0;
+	  Object item=null;
 	do{
-		  item=Consola.listadoArrayList(ServiciosArticulos.listado(), "Seleccione item para agregar");
-		if(!(item==null)){
-		  Fachada.agregarItemPresupuesto(unPresupuesto,	item);
-		}
-		} while (!(item==null));
-	Fachada.calcularCosto(unPresupuesto);
-	
+		  item=Consola.agregoItems(ServiciosArticulos.listado(), "Seleccione item para agregar");
+		if(item!=null){
+			Consola.println(((Articulo)item).toString());
+			cant=Consola.leerInt("|  "+I18n.SELECCIONE_CANTIDAD+" : ");
+			if (cant<=((Articulo)item).getCantidad()&& cant>0){
+				Articulo itemClone =(Articulo) ((Articulo)item).clone();
+				itemClone.setCantidad(cant);
+				Fachada.agregarItemPresupuesto(unPresupuesto, itemClone);
+			}else{
+				Consola.println("|  "+I18n.CANTIDAD_MAL+" ");
+				break;
+			}
+			Fachada.calcularCosto(unPresupuesto);
+			Consola.println("ToString unPresupuesto" + unPresupuesto.toString()); //quitar despues
+		} 
+	}while (item!=null);
 }
-
-
+  
   public static void borrarPresupuesto()
   {
     // TODO Auto-generated method stub
