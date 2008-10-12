@@ -28,8 +28,8 @@ public class I18n
   public static final String MENU_ANTERIOR = "Menu Anterior";
   public static final String SELECCIONE_OPCION = "Seleccione Opción";
   public static final String SEPARADOR = "------------------------------";
-  
-  
+  public static final String SELECCIONE_CANTIDAD = "Seleccione Cantidad del Item";
+  public static final String CANTIDAD_MAL="Debe seleccionar una cantidad inferior o igual al total y al menos 1, operacion cancelada";
   public static final String SALIR = "Salir";
   public static final Object CANCELAR = "Cancelar";
   public static final String SI = "S";

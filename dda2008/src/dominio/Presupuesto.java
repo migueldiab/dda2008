@@ -146,6 +146,12 @@ public boolean borrarItem(Articulo art){
 	return items.remove(art);
 }
   
+public String toString(){
+	String retorno=this.descripcion + " Id: "+this.id + " Estado: "+this.estado;
+retorno+=" Costo: " +this.costo + " Dueño: "+this.duenio + " FechaEjecucion : " ;
+retorno+=this.fechaEjecucion.toString() + " Fechamodificacion: "+this.fechaModificacion + this.items;
+return retorno;
+}
   
   
 }
