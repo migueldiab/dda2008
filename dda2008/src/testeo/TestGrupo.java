@@ -14,7 +14,7 @@ public class TestGrupo extends TestCase
   
 
   public void setUp() {
-    permisos.add(Grupo.ALTA_USUARIO);
+    permisos.add(Grupo.USUARIOS);
     unGrupo = new Grupo("Administradores", permisos);
     ServiciosGrupos.agregar(unGrupo);
   }
@@ -31,7 +31,7 @@ public class TestGrupo extends TestCase
   }  
   public void testGrupoDuplicadoConDatos()  {
     ArrayList otroPermisos = new ArrayList();
-    otroPermisos.add(Grupo.BAJA_USUARIO);
+    otroPermisos.add(Grupo.ARTICULOS);
     Grupo unGrupo = new Grupo("Administradores", otroPermisos);
     assertFalse(ServiciosGrupos.agregar(unGrupo));
   }  
@@ -39,7 +39,7 @@ public class TestGrupo extends TestCase
     public void testObtenerGrupo() {
     Grupo otroGrupo = new Grupo("Administradores");
     otroGrupo = (Grupo)ServiciosGrupos.obtener(otroGrupo);
-    assertTrue(otroGrupo.tienePermiso(Grupo.ALTA_USUARIO));
+    assertTrue(otroGrupo.tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO));
   }
   public void testBorrarGrupo()  {
     Grupo otroGrupo = new Grupo("Administradores");
@@ -52,25 +52,25 @@ public class TestGrupo extends TestCase
     ServiciosGrupos.modificar(unGrupo, otroGrupo);
     Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
                                       (new Grupo("DBA"));  
-    assertFalse(ultimoGrupo.tienePermiso(Grupo.ALTA_USUARIO));
+    assertFalse(ultimoGrupo.tienePermiso(Grupo.ADMIN));
   }
   public void testModificarGrupoSet() {
     Grupo otroGrupo = new Grupo("UE");
-    otroGrupo.agregarPermiso(Grupo.MODI_USUARIO);
+    otroGrupo.agregarPermiso(Grupo.PRESUPUESTOS);
     assertTrue(ServiciosGrupos.modificar(unGrupo, otroGrupo));
     Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
                                       (new Grupo("UE"));  
-    assertTrue(ultimoGrupo.tienePermiso(Grupo.MODI_USUARIO));    
+    assertTrue(ultimoGrupo.tienePermiso(Grupo.PRESUPUESTOS));    
   }
   public void testModificarGrupoPorDuplicado() {
     Grupo otroGrupo = new Grupo("grupo4");
-    otroGrupo.agregarPermiso(Grupo.LIST_USUARIO);
+    otroGrupo.agregarPermiso(Grupo.CONSULTAS);
     assertTrue(ServiciosGrupos.agregar(otroGrupo));    
     Grupo dupGrupo = new Grupo("grupo4");
     assertFalse(ServiciosGrupos.modificar(unGrupo, dupGrupo));
     Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
                                       (new Grupo("grupo4"));  
-    assertTrue(ultimoGrupo.tienePermiso(Grupo.LIST_USUARIO));
+    assertTrue(ultimoGrupo.tienePermiso(Grupo.CONSULTAS));
   }   
   
 
