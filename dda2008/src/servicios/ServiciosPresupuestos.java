@@ -41,9 +41,9 @@ Date now=new Date();
  public static void calcularCosto(Presupuesto unPresupuesto){
 int x = 0;
 double costo=0;
-Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 	 for(x=0;x<unPresupuesto.getItems().size();x++){
-			costo+=item.getCosto()*item.getCantidad();
+		 Articulo item=(Articulo) unPresupuesto.getItems().get(x);
+		 costo+=item.getCosto()*item.getCantidad();
 		}
 		unPresupuesto.setCosto(costo);
 		System.out.println("Tostring con Costo "+unPresupuesto.toString());
@@ -57,6 +57,7 @@ Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 	 return presupuestos;
 	 }
  }
+ 
  public static boolean agregarItem(Presupuesto unPresupuesto,Object unItem){
 		 if(unPresupuesto.getItems().contains(unItem)){
 			 return false;
@@ -84,5 +85,8 @@ Articulo item=(Articulo) unPresupuesto.getItems().get(x);
 	 }
  }
  
- 
+ public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,int cantItem){
+	return false;
+	 
+ }
 }

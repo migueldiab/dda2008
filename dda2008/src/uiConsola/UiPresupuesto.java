@@ -1,9 +1,11 @@
 package uiConsola;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 import dominio.Articulo;
+import dominio.Medida;
 import dominio.Presupuesto;
 
 import servicios.Fachada;
@@ -63,10 +65,55 @@ public class UiPresupuesto
 
   public static void modificarPresupuesto()
   {
-    // TODO Auto-generated method stub
-   Fachada.modificarPresupuesto(); 
-  }
-
+   ArrayList presupuestos =Fachada.listadoPresupuestos();
+     if (presupuestos == null) {
+     Consola.println(I18n.LISTA_VACIA);
+   }
+   else {
+     int posPresupuesto = Consola.menu(presupuestos);
+     Presupuesto original = (Presupuesto) presupuestos.get(posPresupuesto);
+     String descripcion = "";
+     Date fechaEjecucion = null;
+     Consola.println(original.toString());
+     descripcion = Consola.modificar(I18n.DESCRIPCION, original.getDescripcion());
+     fechaEjecucion = Consola.modificarFecha(I18n.FECHAEJECUCION, original.getFechaEjecucion());
+     String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
+     if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
+     {
+       if (Fachada.modificarPresupuesto(original,descripcion,fechaEjecucion)){
+    	   Consola.println(I18n.MODIFICADO_OK);  
+       }
+         String confirma2 = Consola.leer(I18n.MODIFICA_ITEMS);
+         if (confirma2.toUpperCase().equals(I18n.SI.toUpperCase())){
+         modificarItems(original);
+         }
+       }
+       else
+         Consola.println(I18n.ERROR);
+     }      
+   }  
+  
+  public static void modificarItems(Presupuesto unPresupuesto){
+	
+	Articulo item=null;
+	int posItem=0;
+    int cantItem=0;
+	ArrayList items = unPresupuesto.getItems();
+    posItem = Consola.menu(items);
+    item = (Articulo) items.get(posItem);
+    cantItem=Consola.leerInt(I18n.CANTIDAD);
+    String confirma = Consola.leer(I18n.MODIFICA_ITEMS);
+    if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+    	Fachada.modificarItemPresupuesto(unPresupuesto,cantItem);
+    }
+	
+	
+	
+}
+	
+	
+	
+	
   public static void listadoPresupuestos()
   {
     // TODO Auto-generated method stub
