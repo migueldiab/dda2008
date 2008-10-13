@@ -1,15 +1,6 @@
-package servicios;
+class ServiciosMedidas
+!!!149890.java!!!	agregar(inout unMedida : Medida) : boolean
 
-import java.util.ArrayList;
-
-import dominio.Medida;
-
-public class ServiciosMedidas
-{
-  private static ArrayList medidas = new ArrayList();
-
-  public static boolean agregar(Medida unMedida)
-  {
     // TODO Auto-generated method stub
     if (medidas.indexOf(unMedida)==-1) {
       medidas.add(unMedida);
@@ -18,8 +9,8 @@ public class ServiciosMedidas
     else {
       return false;
     }        
-  }
-  public static boolean borrar(Medida unMedida) {
+!!!150018.java!!!	borrar(inout unMedida : Medida) : boolean
+
     if (medidas.indexOf(unMedida)!=-1) {
       medidas.remove(unMedida);
       return true;
@@ -27,9 +18,8 @@ public class ServiciosMedidas
     else {
       return false;
     }      
-  }
+!!!150146.java!!!	modificar(inout original : Medida, inout nuevo : Medida) : boolean
 
-  public static boolean modificar(Medida original, Medida nuevo) {
     if ((original == null) || (nuevo == null)) return false;
     int posOriginal = medidas.indexOf(original);
     if (posOriginal == -1) return false;
@@ -37,15 +27,12 @@ public class ServiciosMedidas
     if (posNuevo > -1 && posNuevo != posOriginal) return false;
     medidas.set(posOriginal, nuevo);
     return true;
-  }
-  public static int cantidad()
-  {
+!!!150274.java!!!	cantidad() : int
+
     // TODO Auto-generated method stub
     return medidas.size();
-  }
+!!!150402.java!!!	obtener(inout unMedida : Medida) : Object
 
-  public static Object obtener(Medida unMedida)
-  {
     // TODO Auto-generated method stub
     int pos = medidas.indexOf(unMedida);
     if (pos!=-1) { 
@@ -54,15 +41,10 @@ public class ServiciosMedidas
     else {
       return null;
     }  
-  }
+!!!150530.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     // TODO Auto-generated method stub
     if (cantidad() == 0)
       return null;
     else
       return medidas;
-  }
-
-}

@@ -42,7 +42,7 @@ public class Inicio {
     boolean salir = false;
     while (!salir) {
       UiInicio.login();
-      if (ServiciosUsuarios.usuarioActual != null) {
+      if (ServiciosUsuarios.getUsuarioActual() != null) {
         salir = UiInicio.MenuPrincipal();                 
       }
       else {

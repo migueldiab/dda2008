@@ -1,6 +1,6 @@
 format 59
 "dominio" // src::dominio
-  revision 1
+  revision 2
   modified_by 2 "sg0894180"
   // class settings
   //class diagram settings
@@ -180,6 +180,35 @@ Get's & Sets
 @param permisos the permisos to set
 "
       end
+
+      classrelation 133506 // <aggregation>
+	relation_ref 132866 // <aggregation>
+      end
+
+      classrelation 133634 // <aggregation>
+	relation 132994 o---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133634 // <aggregation>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133762 // <aggregation>
+      end
+
+      classrelation 134274 // <aggregation>
+	relation_ref 133250 // <aggregation>
+      end
+
+      classrelation 135298 // <directional aggregation>
+	relation 134146 o-->
+	  a role_name "" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135298 // <directional aggregation>
+	  b parent class_ref 128130 // Permiso
+      end
     end
 
     class 128130 "Permiso"
@@ -318,9 +347,13 @@ Get's & Sets
 @param nombre the nombre to set
 "
       end
+
+      classrelation 133762 // <aggregation>
+	relation_ref 132994 // <aggregation>
+      end
     end
 
-    class 128258 "Item"
+    class 128258 "Articulo"
       visibility public 
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
@@ -363,7 +396,7 @@ ${members}}
 
       classrelation 128130 // medida (<unidirectional association>)
 	relation 128130 --->
-	  a role_name "medida" private
+	  a role_name "medida" multiplicity "1" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128130 // medida (<unidirectional association>)
@@ -537,6 +570,10 @@ Get's & Sets
 @param nombre the nombre to set
 "
       end
+
+      classrelation 132482 // <aggregation>
+	relation_ref 132354 // <aggregation>
+      end
     end
 
     class 128386 "Medida"
@@ -675,6 +712,10 @@ Get's & Sets
 @param id the id to set
 "
       end
+
+      classrelation 132738 // <aggregation>
+	relation_ref 132482 // <aggregation>
+      end
     end
 
     class 128514 "Presupuesto"
@@ -740,7 +781,7 @@ ${members}}
 
       classrelation 128258 // duenio (<unidirectional association>)
 	relation 128258 --->
-	  a role_name "duenio" private
+	  a role_name "duenio" multiplicity "1" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128258 // duenio (<unidirectional association>)
@@ -755,16 +796,6 @@ ${members}}
 	php_decl ""
 	python_decl ""
 	idl_decl ""
-      end
-
-      classrelation 128386 // items (<unidirectional association>)
-	relation 128386 --->
-	  stereotype "ArrayList"
-	  a role_name "items" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
-"
-	    classrelation_ref 128386 // items (<unidirectional association>)
-	  b parent class_ref 128258 // Item
       end
 
       operation 131586 "getCosto"
@@ -1001,6 +1032,19 @@ Get's & Sets
 @return the items
 "
       end
+
+      classrelation 132994 // <aggregation>
+	relation_ref 132610 // <aggregation>
+      end
+
+      classrelation 136322 // articulos (<directional composition>)
+	relation 135170 *-->
+	  a role_name "articulos" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 136322 // articulos (<directional composition>)
+	  b parent class_ref 128258 // Articulo
+      end
     end
 
     class 128642 "Usuario"
@@ -1056,7 +1100,7 @@ ${members}}
 
       classrelation 128514 // grupo (<unidirectional association>)
 	relation 128514 --->
-	  a role_name "grupo" private
+	  a role_name "grupo" multiplicity "1" private
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128514 // grupo (<unidirectional association>)
@@ -1279,6 +1323,10 @@ Overrides
 @see java.lang.Object#toString()
 "
       end
+
+      classrelation 133250 // <aggregation>
+	relation_ref 132738 // <aggregation>
+      end
     end
   end
 
@@ -1305,7 +1353,7 @@ ${package}
 ${imports}
 ${definition}"
       associated_classes
-	class_ref 128258 // Item
+	class_ref 128258 // Articulo
       end
     end
 

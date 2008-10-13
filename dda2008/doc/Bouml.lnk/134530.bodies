@@ -1,30 +1,19 @@
-package uiConsola;
+class UiInicio
+!!!156290.java!!!	MenuPrincipal() : boolean
 
-import java.util.ArrayList;
-
-import dominio.Grupo;
-
-import servicios.Fachada;
-import servicios.ServiciosUsuarios;
-import utils.I18n;
-import utils.Consola;
-
-public class UiInicio
-{
-  public static boolean MenuPrincipal() {
     String opcion = "";
     boolean salir = false;
     do {
-      Consola.println("Bienvenido " + ServiciosUsuarios.getUsuarioActual().getNombre());
+      Consola.println("Bienvenido " + ServiciosUsuarios.usuarioActual.getNombre());
       ArrayList items = new ArrayList();
-      if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.ARTICULOS))
+      if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.ARTICULOS))
         items.add(I18n.ARTICULOS);
-      if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS) ||
-          ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
+      if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.PRESUPUESTOS) ||
+          ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
         items.add(I18n.PRESUPUESTOS);
-      if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.CONSULTAS))
+      if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.CONSULTAS))
         items.add(I18n.CONSULTAS);
-      if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.USUARIOS))
+      if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.USUARIOS))
         items.add(I18n.USUARIOS);
       items.add(I18n.CERRAR_SESION);
       items.add(I18n.SALIR);
@@ -35,12 +24,10 @@ public class UiInicio
       if (opcion.equals(I18n.USUARIOS)) MenuUsuarios();
       if (opcion.equals(I18n.CERRAR_SESION)) Fachada.cerrarSesion();
       if (opcion.equals(I18n.SALIR)) salir=true;
-    } while (!salir && ServiciosUsuarios.getUsuarioActual() != null);
+    } while (!salir && ServiciosUsuarios.usuarioActual != null);
     return salir;
-  }
+!!!156418.java!!!	MenuArticulos() : void
 
-  private static void MenuArticulos()
-  {
       boolean menu_anterior = false;
       // TODO Auto-generated method stub
       do {
@@ -58,10 +45,8 @@ public class UiInicio
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
       
-  }
+!!!156546.java!!!	MenuUsuarios() : void
 
-  private static void MenuUsuarios()
-  {
     // TODO Auto-generated method stub
       boolean menu_anterior = false;   
 
@@ -80,10 +65,8 @@ public class UiInicio
         if (opcion.equals(I18n.LISTADOS)) UiUsuario.listadoUsuarios();
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
-  }
+!!!156674.java!!!	MenuConsultas() : void
 
-  private static void MenuConsultas()
-  {
     // TODO Auto-generated method stub
       boolean menu_anterior = false;   
       do {
@@ -95,22 +78,20 @@ public class UiInicio
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
         
-}
+!!!156802.java!!!	MenuPresupuestos() : void
 
-    private static void MenuPresupuestos()
-  {
       boolean menu_anterior = false;
       do {
         ArrayList items = new ArrayList();
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
+        if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
           items.add(I18n.ALTA);
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
+        if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
           items.add(I18n.BAJA);
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
+        if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
           items.add(I18n.MODIFICACIONES);
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
+        if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
           items.add(I18n.LISTADOS);
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
+        if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
           items.add(I18n.CAMBIAR_DUENIO);
         items.add(I18n.MENU_ANTERIOR);
         String opcion = (String) items.get(Consola.menu(items, I18n.PRESUPUESTOS));
@@ -121,20 +102,17 @@ public class UiInicio
         if (opcion.equals(I18n.CAMBIAR_DUENIO)) UiPresupuesto.listadoPresupuestos();        
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
-  }
+!!!156930.java!!!	login() : void
 
-  public static void login()
-  {
     int intentos = ServiciosUsuarios.MAX_LOGIN;
     String id = "";
     String clave = "";
     do {
       id = Consola.leer(I18n.ID + ": ");
       clave = Consola.leer(I18n.CLAVE + ": ");
-      if (!Fachada.login(id, clave)) {
+      ServiciosUsuarios.usuarioActual =  Fachada.login(id, clave);
+      if (ServiciosUsuarios.usuarioActual == null) {
         Consola.println(I18n.NUMERO_INTENTOS + intentos);
         intentos--;
       }      
-    } while (intentos >= 0 && ServiciosUsuarios.getUsuarioActual() == null);
-  }
-}
+    } while (intentos >= 0 && ServiciosUsuarios.usuarioActual == null);

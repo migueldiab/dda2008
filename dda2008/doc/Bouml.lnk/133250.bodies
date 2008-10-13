@@ -1,15 +1,6 @@
-package servicios;
+class ServiciosGrupos
+!!!149122.java!!!	agregar(inout o : Object) : boolean
 
-import java.util.ArrayList;
-
-import dominio.Grupo;
-
-public class ServiciosGrupos
-{  
-  private static ArrayList grupos = new ArrayList();
-
-  public static boolean agregar(Object o)
-  {
     // TODO Auto-generated method stub
     if (grupos.indexOf((Grupo) o)==-1) {
       grupos.add((Grupo) o);
@@ -18,10 +9,8 @@ public class ServiciosGrupos
     else {
       return false;
     }    
-  }
+!!!149250.java!!!	borrar(inout o : Object) : boolean
 
-  public static boolean borrar(Object o)
-  {
     if (grupos.indexOf((Grupo) o)!=-1) {
       grupos.remove((Grupo) o);
       return true;
@@ -29,18 +18,14 @@ public class ServiciosGrupos
     else {
       return false;
     }      
-  }
+!!!149378.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     if (cantidad() == 0)
       return null;
     else
       return grupos;
-  }
+!!!149506.java!!!	modificar(inout original : Object, inout nuevo : Object) : boolean
 
-  public static boolean modificar(Object original, Object nuevo)
-  {
     if (((Grupo) original == null) || ((Grupo) nuevo == null)) return false;
     int posOriginal = grupos.indexOf((Grupo) original);
     if (posOriginal == -1) return false;
@@ -48,15 +33,11 @@ public class ServiciosGrupos
     if (posNuevo > -1 && posNuevo != posOriginal) return false;
     grupos.set(posOriginal, (Grupo) nuevo);
     return true;
-  }
+!!!149634.java!!!	cantidad() : int
 
-  public static int cantidad()
-  {
     return grupos.size();
-  }
+!!!149762.java!!!	obtener(inout o : Object) : Object
 
-  public static Object obtener(Object o)
-  {
     // TODO Auto-generated method stub
     int pos = grupos.indexOf((Grupo) o);
     if (pos!=-1) { 
@@ -65,6 +46,3 @@ public class ServiciosGrupos
     else {
       return null;
     }  
-  }
-  
-}

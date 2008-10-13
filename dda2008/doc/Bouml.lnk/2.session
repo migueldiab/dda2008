@@ -1,20 +1,26 @@
-window_sizes 1280 952 300 900 533 82
+window_sizes 1280 753 300 900 533 82
 diagrams
   classdiagram_ref 128002 // Conceptual
     974 796 100 4 0 0
-  classdiagram_ref 129154 // El Otro
-    775 636 100 4 360 0
-  active  sequencediagram_ref 130306 // test1
-    974 796 100 4 0 0
+  active  classdiagram_ref 130306 // Diseño
+    974 597 80 14 83 24
 end
 show_stereotypes
-selected sequencediagram_ref 130306 // test1
+selected 
+  package_ref 128002 // src
 open
+  classview_ref 128130 // servicios
+  classview_ref 128258 // sistema
+  deploymentview_ref 128258 // sistema
   
-package_ref 128002 // src
+  package_ref 128514 // testeo
+  
+  package_ref 128770 // uiConsola
+  
+  package_ref 129922 // utils
   classview_ref 128770 // Diagrama de Clases
   
-package_ref 130050 // unknown
+  package_ref 130050 // unknown
 end
 end
 verbose

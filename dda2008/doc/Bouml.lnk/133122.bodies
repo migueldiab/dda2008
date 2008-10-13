@@ -1,15 +1,6 @@
-package servicios;
+class ServiciosArticulos
+!!!148354.java!!!	agregar(inout o : Object) : boolean
 
-import java.util.ArrayList;
-
-import dominio.Articulo;
-
-public class ServiciosArticulos 
-{
-  private static ArrayList articulos = new ArrayList();
-
-  public static boolean agregar(Object o)
-  {
     // TODO Auto-generated method stub
     if (articulos.indexOf((Articulo) o)==-1) {
       articulos.add((Articulo) o);
@@ -18,10 +9,8 @@ public class ServiciosArticulos
     else {
       return false;
     }    
-  }
+!!!148482.java!!!	borrar(inout unArticulo : Articulo) : boolean
 
-  public static boolean borrar(Articulo unArticulo)
-  {
     if (articulos.indexOf(unArticulo)!=-1) {
       ArrayList presupuestos = null;
       presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
@@ -36,18 +25,14 @@ public class ServiciosArticulos
     else {
       return false;
     }      
-  }
+!!!148610.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     if (cantidad() == 0)
       return null;
     else
       return articulos;
-  }
+!!!148738.java!!!	modificar(inout original : Articulo, inout nuevo : Articulo) : boolean
 
-  public static boolean modificar(Articulo original, Articulo nuevo)
-  {
     if (( original == null) || ( nuevo == null)) return false;
     int posOriginal = articulos.indexOf( original);
     if (posOriginal == -1) return false;
@@ -62,15 +47,11 @@ public class ServiciosArticulos
     }
     articulos.set(posOriginal, nuevo);
     return true;
-  }
+!!!148866.java!!!	cantidad() : int
 
-  public static int cantidad()
-  {
     return articulos.size();
-  }
+!!!148994.java!!!	obtener(inout o : Object) : Object
 
-  public static Object obtener(Object o)
-  {
     // TODO Auto-generated method stub
     int pos = articulos.indexOf((Articulo) o);
     if (pos!=-1) { 
@@ -79,6 +60,3 @@ public class ServiciosArticulos
     else {
       return null;
     }  
-  }
-
-}

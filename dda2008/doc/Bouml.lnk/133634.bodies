@@ -1,42 +1,25 @@
-package servicios;
+class ServiciosUsuarios
+!!!152066.java!!!	login(in usuario : String, in clave : String) : Usuario
 
-import java.util.ArrayList;
-
-import dominio.Usuario;
-
-public class ServiciosUsuarios
-{
-  public  static final int MAX_LOGIN = 3;
-  private static ArrayList usuarios = new ArrayList();
-  private  static Usuario usuarioActual = null;
-  
-  public static boolean login(String usuario, String clave) {
     Usuario unUsuario = new Usuario(usuario);
     unUsuario = (Usuario) ServiciosUsuarios.obtener(unUsuario);
     if (unUsuario != null) { 
       if (unUsuario.getClave().equals(clave)) {
-        usuarioActual = unUsuario;
-        return true;
+        return unUsuario;
       }
       else {
-        return false;
+        return null;
       }
     }
     else {
-      return false;
+      return null;
     }      
-  }
-  
-  public static Usuario getUsuarioActual() {
-    return usuarioActual;
-  }
-  public static boolean logout() {
+!!!152194.java!!!	logout() : boolean
+
     usuarioActual = null;
     return true;
-  }
+!!!152322.java!!!	agregar(inout unUsuario : Usuario) : boolean
 
-  public static boolean agregar(Usuario unUsuario)
-  {
     // TODO Auto-generated method stub
     if (usuarios.indexOf(unUsuario)==-1) {
       usuarios.add(unUsuario);
@@ -45,8 +28,8 @@ public class ServiciosUsuarios
     else {
       return false;
     }        
-  }
-  public static boolean borrar(Usuario unUsuario) {
+!!!152450.java!!!	borrar(inout unUsuario : Usuario) : boolean
+
     if (usuarios.indexOf(unUsuario)!=-1) {
       usuarios.remove(unUsuario);
       return true;
@@ -54,9 +37,8 @@ public class ServiciosUsuarios
     else {
       return false;
     }      
-  }
+!!!152578.java!!!	modificar(inout original : Usuario, inout nuevo : Usuario) : boolean
 
-  public static boolean modificar(Usuario original, Usuario nuevo) {
     if ((original == null) || (nuevo == null)) return false;
     int posOriginal = usuarios.indexOf(original);
     if (posOriginal == -1) return false;
@@ -73,15 +55,12 @@ public class ServiciosUsuarios
     }
     usuarios.set(posOriginal, nuevo);
     return true;
-  }
-  public static int cantidad()
-  {
+!!!152706.java!!!	cantidad() : int
+
     // TODO Auto-generated method stub
     return usuarios.size();
-  }
+!!!152834.java!!!	obtener(inout unUsuario : Usuario) : Object
 
-  public static Object obtener(Usuario unUsuario)
-  {
     // TODO Auto-generated method stub
     int pos = usuarios.indexOf(unUsuario);
     if (pos!=-1) { 
@@ -90,14 +69,10 @@ public class ServiciosUsuarios
     else {
       return null;
     }  
-  }
+!!!152962.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     // TODO Auto-generated method stub
     if (cantidad() == 0)
       return null;
     else
       return usuarios;
-  }  
-}

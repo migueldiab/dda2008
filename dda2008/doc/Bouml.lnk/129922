@@ -1,6 +1,6 @@
 format 59
 "utils" // src::utils
-  revision 1
+  revision 2
   modified_by 2 "sg0894180"
   // class settings
   //class diagram settings
@@ -704,7 +704,7 @@ ${members}}
 	
 	
 	
-	comment "gets and sets"
+	comment "gets and sets"
       end
 
       operation 142850 "set_Dia"
@@ -755,7 +755,7 @@ ${members}}
 	
 	
 	
-	comment "constructors"
+	comment "constructors"
       end
 
       operation 143362 "Horario"
@@ -795,7 +795,7 @@ ${members}}
 	
 	
 	
-	comment "methods"
+	comment "methods"
       end
 
       operation 143746 "equals"
