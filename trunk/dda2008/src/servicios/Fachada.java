@@ -97,7 +97,7 @@ public class Fachada {
     
   }
 
-  public static Usuario login(String id, String clave)
+  public static boolean login(String id, String clave)
   {
     return ServiciosUsuarios.login(id, clave);
   }

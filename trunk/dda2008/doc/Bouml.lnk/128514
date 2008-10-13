@@ -1,6 +1,6 @@
 format 59
 "testeo" // src::testeo
-  revision 1
+  revision 2
   modified_by 2 "sg0894180"
   // class settings
   //class diagram settings
@@ -79,6 +79,371 @@ ${members}}
 	
       end
     end
+
+    class 133762 "TestArticulo"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131202 // <generalisation>
+	relation 131202 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131202 // <generalisation>
+	  b parent class_ref 133890 // TestCase
+      end
+
+      classrelation 131330 // unaMedida (<unidirectional association>)
+	relation 131330 --->
+	  a role_name "unaMedida" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131330 // unaMedida (<unidirectional association>)
+	  b parent class_ref 128386 // Medida
+      end
+
+      classrelation 131458 // unArticulo (<unidirectional association>)
+	relation 131458 --->
+	  a role_name "unArticulo" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131458 // unArticulo (<unidirectional association>)
+	  b parent class_ref 128258 // Articulo
+      end
+
+      operation 153090 "setUp"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153218 "testAgregarArticulo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153346 "testArticuloDuplicado"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153474 "testArticuloDuplicadoConDatos"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153602 "testObtenerArticulo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153730 "testBorrarArticulo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153858 "testModificarArticulo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153986 "testModificarArticuloSet"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154114 "testModificarArticuloPorDuplicado"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 134018 "TestGrupo"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131586 // <generalisation>
+	relation 131586 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131586 // <generalisation>
+	  b parent class_ref 133890 // TestCase
+      end
+
+      classrelation 131714 // unGrupo (<unidirectional association>)
+	relation 131714 --->
+	  a role_name "unGrupo" init_value "=  null" package
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131714 // unGrupo (<unidirectional association>)
+	  b parent class_ref 128002 // Grupo
+      end
+
+      attribute 138114 "permisos"
+	package explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 154242 "setUp"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154370 "testAgregarGrupo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154498 "testGrupoDuplicado"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154626 "testGrupoDuplicadoConDatos"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154754 "testObtenerGrupo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154882 "testBorrarGrupo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155010 "testModificarGrupo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155138 "testModificarGrupoSet"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155266 "testModificarGrupoPorDuplicado"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 134146 "TestPresupuesto"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131842 // <generalisation>
+	relation 131842 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131842 // <generalisation>
+	  b parent class_ref 133890 // TestCase
+      end
+
+      classrelation 131970 // unaMedida (<unidirectional association>)
+	relation 131970 --->
+	  a role_name "unaMedida" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131970 // unaMedida (<unidirectional association>)
+	  b parent class_ref 128386 // Medida
+      end
+
+      classrelation 132098 // unArticulo (<unidirectional association>)
+	relation 132098 --->
+	  a role_name "unArticulo" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132098 // unArticulo (<unidirectional association>)
+	  b parent class_ref 128258 // Articulo
+      end
+
+      classrelation 132226 // unPresupuesto (<unidirectional association>)
+	relation 132226 --->
+	  a role_name "unPresupuesto" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132226 // unPresupuesto (<unidirectional association>)
+	  b parent class_ref 128514 // Presupuesto
+      end
+
+      operation 155394 "setUp"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155522 "testAgregarPresupuesto"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
   end
 
   deploymentview 128386 "testeo"
@@ -95,6 +460,51 @@ import junit.framework.TestCase;
 ${definition}"
       associated_classes
 	class_ref 129026 // TestUsuario
+      end
+    end
+
+    artifact 133506 "TestArticulo"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import servicios.ServiciosArticulos;
+import dominio.*;
+import junit.framework.TestCase;
+${definition}"
+      associated_classes
+	class_ref 133762 // TestArticulo
+      end
+    end
+
+    artifact 133634 "TestGrupo"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import servicios.ServiciosGrupos;
+import dominio.Grupo;
+import junit.framework.TestCase;
+${definition}"
+      associated_classes
+	class_ref 134018 // TestGrupo
+      end
+    end
+
+    artifact 133762 "TestPresupuesto"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Date;
+import junit.framework.TestCase;
+import dominio.*;
+import servicios.ServiciosArticulos;
+import servicios.ServiciosPresupuestos;
+${definition}"
+      associated_classes
+	class_ref 134146 // TestPresupuesto
       end
     end
   end

@@ -1,0 +1,58 @@
+class TestGrupo
+!!!154242.java!!!	setUp() : void
+
+    permisos.add(Grupo.USUARIOS);
+    unGrupo = new Grupo("Administradores", permisos);
+    ServiciosGrupos.agregar(unGrupo);
+!!!154370.java!!!	testAgregarGrupo() : void
+
+    int cantidad = ServiciosGrupos.cantidad();    
+    Grupo otroGrupo = new Grupo("Reportes", permisos);
+    ServiciosGrupos.agregar(otroGrupo);    
+    assertEquals(cantidad + 1, ServiciosGrupos.cantidad());  
+!!!154498.java!!!	testGrupoDuplicado() : void
+
+    Grupo unGrupo = new Grupo("Administradores");
+    assertFalse(ServiciosGrupos.agregar(unGrupo));
+!!!154626.java!!!	testGrupoDuplicadoConDatos() : void
+
+    ArrayList otroPermisos = new ArrayList();
+    otroPermisos.add(Grupo.ARTICULOS);
+    Grupo unGrupo = new Grupo("Administradores", otroPermisos);
+    assertFalse(ServiciosGrupos.agregar(unGrupo));
+!!!154754.java!!!	testObtenerGrupo() : void
+
+    Grupo otroGrupo = new Grupo("Administradores");
+    otroGrupo = (Grupo)ServiciosGrupos.obtener(otroGrupo);
+    assertTrue(otroGrupo.tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO));
+!!!154882.java!!!	testBorrarGrupo() : void
+
+    Grupo otroGrupo = new Grupo("Administradores");
+    otroGrupo = (Grupo)ServiciosGrupos.obtener(otroGrupo);    
+    ServiciosGrupos.borrar(otroGrupo);
+    assertEquals(null, ServiciosGrupos.obtener(otroGrupo));
+!!!155010.java!!!	testModificarGrupo() : void
+
+    Grupo otroGrupo = new Grupo("DBA");
+    ServiciosGrupos.modificar(unGrupo, otroGrupo);
+    Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
+                                      (new Grupo("DBA"));  
+    assertFalse(ultimoGrupo.tienePermiso(Grupo.ADMIN));
+!!!155138.java!!!	testModificarGrupoSet() : void
+
+    Grupo otroGrupo = new Grupo("UE");
+    otroGrupo.agregarPermiso(Grupo.PRESUPUESTOS);
+    assertTrue(ServiciosGrupos.modificar(unGrupo, otroGrupo));
+    Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
+                                      (new Grupo("UE"));  
+    assertTrue(ultimoGrupo.tienePermiso(Grupo.PRESUPUESTOS));    
+!!!155266.java!!!	testModificarGrupoPorDuplicado() : void
+
+    Grupo otroGrupo = new Grupo("grupo4");
+    otroGrupo.agregarPermiso(Grupo.CONSULTAS);
+    assertTrue(ServiciosGrupos.agregar(otroGrupo));    
+    Grupo dupGrupo = new Grupo("grupo4");
+    assertFalse(ServiciosGrupos.modificar(unGrupo, dupGrupo));
+    Grupo ultimoGrupo = (Grupo)ServiciosGrupos.obtener
+                                      (new Grupo("grupo4"));  
+    assertTrue(ultimoGrupo.tienePermiso(Grupo.CONSULTAS));

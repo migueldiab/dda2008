@@ -1,0 +1,93 @@
+class UiPresupuesto
+!!!157058.java!!!	agregarPresupuesto() : void
+
+      String descripcion ="";
+	  Calendar cal=null;
+	  
+	  descripcion=Consola.leer(I18n.DESCRIPCION +" : ");
+	  Consola.setFormato("dd/MM/yyyy");
+	  cal=Consola.leerFecha(I18n.FECHAEJECUCION);
+	  Date fechaEjecucion=null;
+	
+	  if (!(cal==null)){			//validar esto si anda
+	  fechaEjecucion=cal.getTime();
+	  }
+	  		  
+	  Presupuesto unPresupuesto=new Presupuesto(descripcion,fechaEjecucion);
+	  Fachada.agregarPresupuesto(unPresupuesto);
+	  agregarItems(unPresupuesto);
+	  
+!!!157186.java!!!	agregarItems(inout unPresupuesto : Presupuesto) : void
+
+		int cant=0;
+	  Object item=null;
+	do{
+		  item=Consola.agregoItems(ServiciosArticulos.listado(), "Seleccione item para agregar");
+		if(item!=null){
+			Consola.println(((Articulo)item).toString());
+			cant=Consola.leerInt("|  "+I18n.SELECCIONE_CANTIDAD+" : ");
+			if (cant<=((Articulo)item).getCantidad()&& cant>0){
+				Articulo itemClone =(Articulo) ((Articulo)item).clone();
+				itemClone.setCantidad(cant);
+				Fachada.agregarItemPresupuesto(unPresupuesto, itemClone);
+			}else{
+				Consola.println("|  "+I18n.CANTIDAD_MAL+" ");
+				break;
+			}
+			Fachada.calcularCosto(unPresupuesto);
+			Consola.println("ToString unPresupuesto" + unPresupuesto.toString()); //quitar despues
+		} 
+	}while (item!=null);
+!!!157314.java!!!	borrarPresupuesto() : void
+
+    // TODO Auto-generated method stub
+   Fachada.borrarPresupuesto(); 
+!!!157442.java!!!	modificarPresupuesto() : void
+
+   ArrayList presupuestos =Fachada.listadoPresupuestos();
+     if (presupuestos == null) {
+     Consola.println(I18n.LISTA_VACIA);
+   }
+   else {
+     int posPresupuesto = Consola.menu(presupuestos);
+     Presupuesto original = (Presupuesto) presupuestos.get(posPresupuesto);
+     String descripcion = "";
+     Date fechaEjecucion = null;
+     Consola.println(original.toString());
+     descripcion = Consola.modificar(I18n.DESCRIPCION, original.getDescripcion());
+     fechaEjecucion = Consola.modificarFecha(I18n.FECHAEJECUCION, original.getFechaEjecucion());
+     String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
+     if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
+     {
+       if (Fachada.modificarPresupuesto(original,descripcion,fechaEjecucion)){
+    	   Consola.println(I18n.MODIFICADO_OK);  
+       }
+         String confirma2 = Consola.leer(I18n.MODIFICA_ITEMS);
+         if (confirma2.toUpperCase().equals(I18n.SI.toUpperCase())){
+         modificarItems(original);
+         }
+       }
+       else
+         Consola.println(I18n.ERROR);
+     }      
+!!!157570.java!!!	modificarItems(inout unPresupuesto : Presupuesto) : void
+
+	
+	Articulo item=null;
+	int posItem=0;
+    int cantItem=0;
+	ArrayList items = unPresupuesto.getItems();
+    posItem = Consola.menu(items);
+    item = (Articulo) items.get(posItem);
+    cantItem=Consola.leerInt(I18n.CANTIDAD);
+    String confirma = Consola.leer(I18n.MODIFICA_ITEMS);
+    if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+    	Fachada.modificarItemPresupuesto(unPresupuesto,cantItem);
+    }
+	
+	
+	
+!!!157698.java!!!	listadoPresupuestos() : void
+
+    // TODO Auto-generated method stub
+Fachada.listadoPresupuestos();    

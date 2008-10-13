@@ -1,19 +1,7 @@
-package uiConsola;
+class UiConsultas
+!!!156162.java!!!	presupuestos() : void
 
-import java.util.ArrayList;
-
-import servicios.Fachada;
-import servicios.ServiciosUsuarios;
-import utils.Consola;
-import utils.I18n;
-import dominio.Presupuesto;
-
-public class UiConsultas
-{
-
-  public static void presupuestos()
-  {
-    ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFecha(ServiciosUsuarios.getUsuarioActual());
+    ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFecha(ServiciosUsuarios.usuarioActual);
     if (losPresupuestos.size() > 0) {
       int opcion = Consola.menu(losPresupuestos);
       Presupuesto unPresupuesto = (Presupuesto) losPresupuestos.get(opcion);
@@ -25,5 +13,3 @@ public class UiConsultas
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }
-  }
-}
