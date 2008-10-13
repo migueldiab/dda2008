@@ -89,4 +89,22 @@ double costo=0;
 	return false;
 	 
  }
+public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
+{
+  // TODO Auto-generated method stub
+  ArrayList losPresupuestos = new ArrayList();
+  
+  for (int i = 0; i < presupuestos.size(); i++) {
+    Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+    ArrayList items = new ArrayList();
+    items = unPresupuesto.getItems();
+    for (int j = 0; j < presupuestos.size(); j++) {
+      Articulo unItem = (Articulo) items.get(j);
+      if (unItem.equals(unArticulo)) {
+        losPresupuestos.add(unItem);
+      }      
+    }
+  }
+  return losPresupuestos;
+}
 }

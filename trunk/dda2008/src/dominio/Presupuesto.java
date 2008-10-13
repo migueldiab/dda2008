@@ -8,6 +8,8 @@ import java.util.Date;
  *
  */
 public class Presupuesto {
+  public static final String EN_CONSTRUCCION = "En Construccion";
+  
   private int id;
   private String descripcion;
   private Date fechaEjecucion;
@@ -26,7 +28,7 @@ public class Presupuesto {
 	  this.descripcion=descripcion;
 	  this.fechaEjecucion=fechaEjecucion;
 	  this.id=nuevoId();
-	  this.estado="En Construccion";
+	  this.estado=EN_CONSTRUCCION;
 	  
   }
     
