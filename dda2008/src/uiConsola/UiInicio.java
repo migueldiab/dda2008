@@ -15,7 +15,7 @@ public class UiInicio
     String opcion = "";
     boolean salir = false;
     do {
-      Consola.print("Bienvenido " + ServiciosUsuarios.usuarioActual.getNombre());
+      Consola.println("Bienvenido " + ServiciosUsuarios.usuarioActual.getNombre());
       ArrayList items = new ArrayList();
       if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.ARTICULOS))
         items.add(I18n.ARTICULOS);
@@ -50,7 +50,6 @@ public class UiInicio
         items.add(I18n.MODIFICACIONES);
         items.add(I18n.LISTADOS);
         items.add(I18n.MENU_ANTERIOR);
-        items.add(I18n.SALIR);
         String opcion = (String) items.get(Consola.menu(items, I18n.ARTICULOS));
         if (opcion.equals(I18n.ALTA)) UiArticulo.agregarArticulo();
         if (opcion.equals(I18n.BAJA)) UiArticulo.borrarArticulo();
@@ -74,8 +73,6 @@ public class UiInicio
         items.add(I18n.MODIFICACIONES);
         items.add(I18n.LISTADOS);
         items.add(I18n.MENU_ANTERIOR);
-        items.add(I18n.SALIR);
-        
         String opcion = (String) items.get(Consola.menu(items, I18n.USUARIOS));
         if (opcion.equals(I18n.ALTA)) UiUsuario.agregarUsuario();
         if (opcion.equals(I18n.BAJA)) UiUsuario.borrarUsuario();
@@ -93,7 +90,6 @@ public class UiInicio
         ArrayList items = new ArrayList();
         items.add(I18n.PRESUPUESTOS);
         items.add(I18n.MENU_ANTERIOR);
-        items.add(I18n.SALIR);
         String opcion = (String) items.get(Consola.menu(items, I18n.CONSULTAS));
         if (opcion.equals(I18n.PRESUPUESTOS)) UiConsultas.presupuestos();
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
@@ -117,7 +113,6 @@ public class UiInicio
         if (ServiciosUsuarios.usuarioActual.getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
           items.add(I18n.CAMBIAR_DUENIO);
         items.add(I18n.MENU_ANTERIOR);
-        items.add(I18n.SALIR);
         String opcion = (String) items.get(Consola.menu(items, I18n.PRESUPUESTOS));
         if (opcion.equals(I18n.ALTA)) UiPresupuesto.agregarPresupuesto();
         if (opcion.equals(I18n.BAJA)) UiPresupuesto.borrarPresupuesto();

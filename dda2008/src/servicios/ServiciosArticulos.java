@@ -2,7 +2,11 @@ package servicios;
 
 import java.util.ArrayList;
 
+import utils.Consola;
+import utils.I18n;
+
 import dominio.Articulo;
+import dominio.Presupuesto;
 
 public class ServiciosArticulos 
 {
@@ -20,11 +24,18 @@ public class ServiciosArticulos
     }    
   }
 
-  public static boolean borrar(Object o)
+  public static boolean borrar(Articulo unArticulo)
   {
-    if (articulos.indexOf((Articulo) o)!=-1) {
-      articulos.remove((Articulo) o);
-      return true;
+    if (articulos.indexOf(unArticulo)!=-1) {
+      ArrayList presupuestos = null;
+      presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
+      if (presupuestos.size() > 0) {
+        return false;
+      }
+      else {
+        articulos.remove(unArticulo);
+        return true;        
+      }     
     }
     else {
       return false;
@@ -39,14 +50,42 @@ public class ServiciosArticulos
       return articulos;
   }
 
-  public static boolean modificar(Object original, Object nuevo)
+  public static boolean modificar(Articulo original, Articulo nuevo)
   {
-    if (((Articulo) original == null) || ((Articulo) nuevo == null)) return false;
-    int posOriginal = articulos.indexOf((Articulo) original);
+    if (( original == null) || ( nuevo == null)) return false;
+    int posOriginal = articulos.indexOf( original);
     if (posOriginal == -1) return false;
-    int posNuevo = articulos.indexOf((Articulo) nuevo);
+    int posNuevo = articulos.indexOf( nuevo);
     if (posNuevo > -1 && posNuevo != posOriginal) return false;
-    articulos.set(posOriginal, (Articulo) nuevo);
+    
+    // Medida : No se puede modificar si el articulo esta involucrado en algun presupuesto
+    ArrayList presupuestos = null;
+    presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(original);
+    if (presupuestos.size() > 0) {
+      if (!original.getMedida().equals(nuevo.getMedida())) {
+          return false;
+      }
+      else if (original.getCosto() != nuevo.getCosto()) {
+        ArrayList losPresupuestos = new ArrayList();
+        for (int i=0; i < presupuestos.size(); i++) {
+          Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+          if (unPresupuesto.getEstado().equals(Presupuesto.EN_CONSTRUCCION)) {
+            if (unPresupuesto.getFechaEjecucion() != null) {
+              losPresupuestos.add(unPresupuesto);
+            }
+          }
+        }
+        if (losPresupuestos.size() > 0) {
+          Consola.println("El articulo se encuentra en los siguientes presupuestos : ");
+          Consola.listado(losPresupuestos);
+          String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
+          if (confirma.equals(I18n.NO)) {
+            return false;
+          }          
+        }
+      }
+    }
+    articulos.set(posOriginal, nuevo);
     return true;
   }
 
