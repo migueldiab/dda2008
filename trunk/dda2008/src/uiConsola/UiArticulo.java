@@ -6,7 +6,6 @@ import dominio.Articulo;
 import dominio.Medida;
 import dominio.Presupuesto;
 import servicios.Fachada;
-import servicios.ServiciosPresupuestos;
 import utils.Consola;
 import utils.I18n;
 
@@ -29,10 +28,14 @@ public class UiArticulo
     cantidad = Consola.leerInt(I18n.CANTIDAD + " : ");
     costo = Consola.leerDouble(I18n.COSTO + " : ");
     Articulo unArticulo = new Articulo(nombre, medida, cantidad, costo);
-    if (Fachada.agregarArticulo(unArticulo))
+    if (Fachada.agregarArticulo(unArticulo)) {
       Consola.println(I18n.INGRESO_OK);
-    else
+      Consola.leer(I18n.PRESIONE_ENTER);
+    }
+    else {
       Consola.println(I18n.ERROR);
+      Consola.leer(I18n.PRESIONE_ENTER);
+    }
   }
 
   public static void borrarArticulo()
@@ -41,15 +44,20 @@ public class UiArticulo
    ArrayList articulos = Fachada.listadoArticulos();
    if (articulos == null) {
      Consola.println(I18n.LISTA_VACIA);
+     Consola.leer(I18n.PRESIONE_ENTER);
    }
    else {
      int posArticulo = Consola.menu(articulos);
      String confirma = Consola.leer(I18n.CONFIRMA_ELIMINAR);
      if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
-       if (Fachada.borrarArticulo((Articulo) articulos.get(posArticulo)))
+       if (Fachada.borrarArticulo((Articulo) articulos.get(posArticulo))) {
          Consola.println(I18n.BORRADO_OK);
-       else
+         Consola.leer(I18n.PRESIONE_ENTER);
+       }
+       else {
          Consola.println(I18n.ERROR);
+         Consola.leer(I18n.PRESIONE_ENTER);
+       }
    }
   }
 
@@ -59,6 +67,7 @@ public class UiArticulo
     ArrayList articulos = Fachada.listadoArticulos();
     if (articulos == null) {
       Consola.println(I18n.LISTA_VACIA);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
     else {
       int posArticulo = Consola.menu(articulos);
@@ -91,9 +100,12 @@ public class UiArticulo
              original,
              new Articulo(nombre, medida, cantidad, costo))) {
           Consola.println(I18n.MODIFICADO_OK);
-        }
-        else
+          Consola.leer(I18n.PRESIONE_ENTER);
+       }
+        else {
           Consola.println(I18n.ERROR);
+          Consola.leer(I18n.PRESIONE_ENTER);
+        }
       }      
     }  
   }
@@ -104,9 +116,11 @@ public class UiArticulo
     ArrayList articulos = Fachada.listadoArticulos();
     if (articulos == null) {
       Consola.println(I18n.LISTA_VACIA);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
     else {
       Consola.listado(articulos);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
   }
 }

@@ -2,11 +2,7 @@ package servicios;
 
 import java.util.ArrayList;
 
-import utils.Consola;
-import utils.I18n;
-
 import dominio.Articulo;
-import dominio.Presupuesto;
 
 public class ServiciosArticulos 
 {

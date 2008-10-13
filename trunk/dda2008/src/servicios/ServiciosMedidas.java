@@ -2,7 +2,6 @@ package servicios;
 
 import java.util.ArrayList;
 
-import dominio.Articulo;
 import dominio.Medida;
 
 public class ServiciosMedidas
