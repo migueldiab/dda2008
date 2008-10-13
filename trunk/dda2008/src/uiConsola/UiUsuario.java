@@ -3,7 +3,6 @@ package uiConsola;
 import java.util.ArrayList;
 
 import dominio.Grupo;
-import dominio.Medida;
 import dominio.Usuario;
 
 import servicios.Fachada;
