@@ -1,6 +1,8 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Date;
+
 import dominio.*;
 import utils.Consola;
 
@@ -38,14 +40,16 @@ public class Fachada {
     return true;
   }
 
-  public static boolean modificarPresupuesto() {
-    Consola.println("Modifica un Presupeusto");
+  public static boolean modificarPresupuesto(Presupuesto unPresupuesto,String descripcion, Date fechaEjecucion) {
+    Consola.println("Modifica un Presupuesto");
     return true;
   }
+  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,int cantItem){
+	  return ServiciosPresupuestos.modificarItemPresupuesto(unPresupuesto, cantItem);
+  }
 
-  public static boolean listadoPresupuestos() {
-    Consola.println("Lista un Presupuesto");
-    return true;
+  public static ArrayList listadoPresupuestos() {
+    return ServiciosPresupuestos.listado();
   }
 
   public static boolean agregarUsuario(Usuario unUsuario) {

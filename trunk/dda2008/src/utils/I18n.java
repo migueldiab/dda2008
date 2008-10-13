@@ -40,7 +40,7 @@ public class I18n
   public static final String COSTO = "Costo";
   public static final String DESCRIPCION= "Descripcion";
   public static final String FECHAEJECUCION="Fecha de Ejecucion (Opcional) dd/mm/aaaa : ";
-  
+  public static final String MODIFICA_ITEMS="Desea modificar los items?";
   public static final String CONFIRMA_MODIFICAR = "Confirma que desea modifcar ("+SI+"/"+NO+") : ";
 
   public static final String MODIFICADO_OK = "Objeto modificado correctamente";

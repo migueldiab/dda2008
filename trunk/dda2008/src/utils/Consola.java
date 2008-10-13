@@ -192,6 +192,24 @@ public class Consola {
       }catch(Exception e){}
     }
   }
+  
+  public static Date modificarFecha(String msg, Date actual)
+  {
+    Date fecha = null;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          fecha = sdf.parse(nuevo);
+          return fecha;
+        }        
+      }catch(Exception e){}
+    }
+  }
+  
   public static double modificarDouble(String msg, double actual)
   {
     double num = 0.0;
