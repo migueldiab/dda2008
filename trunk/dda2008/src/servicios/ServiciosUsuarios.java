@@ -2,6 +2,10 @@ package servicios;
 
 import java.util.ArrayList;
 
+import utils.Consola;
+import utils.I18n;
+
+import dominio.Presupuesto;
 import dominio.Usuario;
 
 public class ServiciosUsuarios
@@ -58,6 +62,15 @@ public class ServiciosUsuarios
     if (posOriginal == -1) return false;
     int posNuevo = usuarios.indexOf(nuevo);
     if (posNuevo > -1 && posNuevo != posOriginal) return false;
+    
+    // No se puede modificar el rol de un usuario gestor que sea dueño de algun presupuesto
+    if (!original.getGrupo().equals(nuevo.getGrupo())) {
+      ArrayList presupuestos = null;
+      presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorUsuario(original);
+      if (presupuestos.size() > 0) {
+        return false;
+      }
+    }
     usuarios.set(posOriginal, nuevo);
     return true;
   }

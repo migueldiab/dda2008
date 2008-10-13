@@ -100,5 +100,15 @@ public class Fachada {
   public static Usuario login(String id, String clave)
   {
     return ServiciosUsuarios.login(id, clave);
+  }
+
+  public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
+  {
+    return ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
+  }
+
+  public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
+  {
+    return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }  
 }
