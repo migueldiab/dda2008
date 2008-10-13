@@ -6,10 +6,15 @@ public class Grupo {
   
 
   public static final String ADMIN = "Admin";
-  public static final String ALTA_USUARIO = "ALTA_USUARIO";
-  public static final String BAJA_USUARIO = "BAJA_USUARIO";
-  public static final String MODI_USUARIO = "MODI_USUARIO";
-  public static final String LIST_USUARIO = "LIST_USUARIO";
+//  public static final String ALTA_USUARIO = "ALTA_USUARIO";
+//  public static final String BAJA_USUARIO = "BAJA_USUARIO";
+//  public static final String MODI_USUARIO = "MODI_USUARIO";
+//  public static final String LIST_USUARIO = "LIST_USUARIO";
+  public static final String USUARIOS = "USUARIOS";
+  public static final String ARTICULOS = "ARTICULOS";
+  public static final String CAMBIO_DUENIO_PRESUPUESTO = "CAMBIO_DUENIO_PRESUPUESTO";
+  public static final String CONSULTAS = "CONSULTAS";
+  public static final String PRESUPUESTOS = "PRESUPUESTOS";
   private String nombre;
   private ArrayList permisos = new ArrayList();
   

@@ -6,14 +6,24 @@ import dominio.Usuario;
 
 public class ServiciosUsuarios
 {
+  public  static final int MAX_LOGIN = 3;
   private static ArrayList usuarios = new ArrayList();
-  public static Usuario usuarioActual = null;
+  public  static Usuario usuarioActual = null;
   
-  public static boolean login(String usuario, String clave) {
-    // if index of usuarios != -1
-    // if clave es correcta
-    // usuarioactual = usuario
-    return false;
+  public static Usuario login(String usuario, String clave) {
+    Usuario unUsuario = new Usuario(usuario);
+    unUsuario = (Usuario) ServiciosUsuarios.obtener(unUsuario);
+    if (unUsuario != null) { 
+      if (unUsuario.getClave().equals(clave)) {
+        return unUsuario;
+      }
+      else {
+        return null;
+      }
+    }
+    else {
+      return null;
+    }      
   }
   
   public static boolean logout() {

@@ -70,8 +70,7 @@ public class Fachada {
   }
 
   public static boolean cerrarSesion() {
-    Consola.println("Cierra Sesion");
-    return true;
+    return ServiciosUsuarios.logout();
   }
 
   public static ArrayList listaMedidas() {
@@ -90,5 +89,16 @@ public class Fachada {
   public static boolean agregarGrupo(Grupo grupo)
   {
     return ServiciosGrupos.agregar(grupo);
+  }
+
+  public static void unlistado()
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  public static Usuario login(String id, String clave)
+  {
+    return ServiciosUsuarios.login(id, clave);
   }  
 }

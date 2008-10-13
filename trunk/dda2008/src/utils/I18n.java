@@ -59,6 +59,13 @@ public class I18n
 
   public static final String CANCELADA = "Operacion Cancelada";
 
+  public static final String NUMERO_INTENTOS = "Error al validar credenciales, # de intentos restante : ";
+
+  public static final String CONSULTAS = "Consultas";
+
+  public static final String CAMBIAR_DUENIO = "Cambiar Dueño";
+
+
   
   
 
