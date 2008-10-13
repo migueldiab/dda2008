@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import dominio.Articulo;
-import dominio.Medida;
 import dominio.Presupuesto;
 
 import servicios.Fachada;

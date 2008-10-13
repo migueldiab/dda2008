@@ -65,6 +65,8 @@ public class I18n
 
   public static final String CAMBIAR_DUENIO = "Cambiar Dueño";
 
+  public static final String PRESIONE_ENTER = "Presione enter para Continuar";
+
 
   
   

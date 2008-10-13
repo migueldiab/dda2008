@@ -32,16 +32,20 @@ public class UiUsuario
     ArrayList grupos = Fachada.listaGrupos();
     if (grupos == null) {
       Consola.println(I18n.LISTA_VACIA);
-      Consola.println(I18n.ERROR);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
     else {
       posGrupo = Consola.menu(grupos);
       grupo = (Grupo) grupos.get(posGrupo);
       Usuario unUsuario = new Usuario(id, clave, grupo, nombre, apellido);
-      if (Fachada.agregarUsuario(unUsuario))
+      if (Fachada.agregarUsuario(unUsuario)) {
         Consola.println(I18n.INGRESO_OK);
-      else
+        Consola.leer(I18n.PRESIONE_ENTER);
+      }
+      else {
         Consola.println(I18n.ERROR);
+        Consola.leer(I18n.PRESIONE_ENTER);
+      }
     }
   }
 
@@ -51,15 +55,20 @@ public class UiUsuario
    ArrayList usuarios = Fachada.listadoUsuarios();
    if (usuarios == null) {
      Consola.println(I18n.LISTA_VACIA);
+     Consola.leer(I18n.PRESIONE_ENTER);
    }
    else {
      int posUsuario = Consola.menu(usuarios);
      String confirma = Consola.leer(I18n.CONFIRMA_ELIMINAR);
      if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
-       if (Fachada.borrarUsuario((Usuario) usuarios.get(posUsuario)))
+       if (Fachada.borrarUsuario((Usuario) usuarios.get(posUsuario))) {
          Consola.println(I18n.BORRADO_OK);
-       else
+         Consola.leer(I18n.PRESIONE_ENTER);
+       }
+       else {
          Consola.println(I18n.ERROR);
+         Consola.leer(I18n.PRESIONE_ENTER);
+       }
    }
   }
 
@@ -69,6 +78,7 @@ public class UiUsuario
     ArrayList usuarios = Fachada.listadoUsuarios();
     if (usuarios == null) {
       Consola.println(I18n.LISTA_VACIA);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
     else {
       int posUsuario = Consola.menu(usuarios);
@@ -91,7 +101,7 @@ public class UiUsuario
       ArrayList grupos = Fachada.listaGrupos();
       if (grupos == null) {
         Consola.println(I18n.LISTA_VACIA);
-        Consola.println(I18n.ERROR);
+        Consola.leer(I18n.PRESIONE_ENTER);
       }
       else {
         posGrupo = Consola.menu(grupos);
@@ -103,12 +113,15 @@ public class UiUsuario
                original,
                new Usuario(id, clave, grupo, nombre, apellido))) {
             Consola.println(I18n.MODIFICADO_OK);
+            Consola.leer(I18n.PRESIONE_ENTER);
           }
           else
             Consola.println(I18n.ERROR);
+          Consola.leer(I18n.PRESIONE_ENTER);
         }
         else {
           Consola.println(I18n.CANCELADA);
+          Consola.leer(I18n.PRESIONE_ENTER);
         }
       }
     }  
@@ -120,9 +133,11 @@ public class UiUsuario
     ArrayList usuarios = Fachada.listadoUsuarios();
     if (usuarios == null) {
       Consola.println(I18n.LISTA_VACIA);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }
     else {
       Consola.listado(usuarios);
+      Consola.leer(I18n.PRESIONE_ENTER);
     }   
   }
 

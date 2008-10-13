@@ -140,4 +140,16 @@ public class ServiciosPresupuestos
     }
     return losPresupuestos;
   }
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFecha(Usuario unUsuario)
+  {
+    ArrayList losPresupuestos = new ArrayList();
+    for (int i = 0; i < presupuestos.size(); i++) {
+      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals("Gestor")) {
+        losPresupuestos.add(unPresupuesto);
+      }
+    }    
+    // Falta ordenar por Fecha descendiente
+    return losPresupuestos;
+  }
 }

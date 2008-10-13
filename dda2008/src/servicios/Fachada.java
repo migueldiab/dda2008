@@ -110,5 +110,10 @@ public class Fachada {
   public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
+  }
+
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFecha(Usuario unUsuario)
+  {
+    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFecha(unUsuario);
   }  
 }
