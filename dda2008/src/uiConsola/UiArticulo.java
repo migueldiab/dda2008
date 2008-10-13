@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import dominio.Articulo;
 import dominio.Medida;
+import dominio.Presupuesto;
 import servicios.Fachada;
+import servicios.ServiciosPresupuestos;
 import utils.Consola;
 import utils.I18n;
 
@@ -73,6 +75,15 @@ public class UiArticulo
       medida = (Medida) medidas.get(posMedida);
       cantidad = Consola.modificarInt(I18n.CANTIDAD, original.getCantidad());
       costo = Consola.modificarDouble(I18n.COSTO, original.getCosto());
+
+      if (original.getCosto() != costo) {
+        ArrayList presupuestos = null;
+        presupuestos = Fachada.obtenerPresupuestoPorArticuloEstadoConFecha(original, Presupuesto.EN_CONSTRUCCION);
+        if (presupuestos.size() > 0) {
+          Consola.println("El articulo se encuentra en los siguientes presupuestos "+Presupuesto.EN_CONSTRUCCION+" : ");
+          Consola.listado(presupuestos);
+        }
+      }
       String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
       if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
       {

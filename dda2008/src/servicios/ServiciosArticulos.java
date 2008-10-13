@@ -61,29 +61,8 @@ public class ServiciosArticulos
     // Medida : No se puede modificar si el articulo esta involucrado en algun presupuesto
     ArrayList presupuestos = null;
     presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(original);
-    if (presupuestos.size() > 0) {
-      if (!original.getMedida().equals(nuevo.getMedida())) {
+    if (presupuestos.size() > 0 && !original.getMedida().equals(nuevo.getMedida())) {
           return false;
-      }
-      else if (original.getCosto() != nuevo.getCosto()) {
-        ArrayList losPresupuestos = new ArrayList();
-        for (int i=0; i < presupuestos.size(); i++) {
-          Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-          if (unPresupuesto.getEstado().equals(Presupuesto.EN_CONSTRUCCION)) {
-            if (unPresupuesto.getFechaEjecucion() != null) {
-              losPresupuestos.add(unPresupuesto);
-            }
-          }
-        }
-        if (losPresupuestos.size() > 0) {
-          Consola.println("El articulo se encuentra en los siguientes presupuestos : ");
-          Consola.listado(losPresupuestos);
-          String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
-          if (confirma.equals(I18n.NO)) {
-            return false;
-          }          
-        }
-      }
     }
     articulos.set(posOriginal, nuevo);
     return true;
