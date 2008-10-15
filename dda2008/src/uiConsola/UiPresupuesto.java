@@ -21,7 +21,7 @@ public class UiPresupuesto
 	  Calendar cal=null;
 	  
 	  descripcion=Consola.leer(I18n.DESCRIPCION +" : ");
-	  Consola.setFormato("dd/MM/yyyy");
+	  I18n.setFormato("dd/MM/yyyy");
 	  cal=Consola.leerFecha(I18n.FECHAEJECUCION);
 	  Date fechaEjecucion=null;
 	
@@ -105,18 +105,19 @@ public class UiPresupuesto
     if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
     	Fachada.modificarItemPresupuesto(unPresupuesto,cantItem);
     }
-	
-	
-	
-}
-	
-	
-	
+  }
 	
   public static void listadoPresupuestos()
   {
     // TODO Auto-generated method stub
-Fachada.listadoPresupuestos();    
+    ArrayList presupuestos = Fachada.listadoPresupuestos();;
+    if (presupuestos == null) {
+      Consola.println(I18n.LISTA_VACIA);
+      Consola.leer(I18n.PRESIONE_ENTER);
+    }
+    else {
+      Consola.listado(presupuestos);
+      Consola.leer(I18n.PRESIONE_ENTER);
+    }   
   }
-
 }

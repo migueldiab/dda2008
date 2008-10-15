@@ -1,14 +1,21 @@
 package dominio;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import utils.I18n;
 
 /**
  * @author Marcos
  *
  */
-public class Presupuesto {
+public class Presupuesto implements Comparable {
+  
+
   public static final String EN_CONSTRUCCION = "En Construccion";
+  private static SimpleDateFormat sdf = new SimpleDateFormat(I18n.FORMATO_FECHA);
+
   
   private int id;
   private String descripcion;
@@ -25,11 +32,18 @@ public class Presupuesto {
  */
   
   public Presupuesto (String descripcion, Date fechaEjecucion){
-	  this.descripcion=descripcion;
-	  this.fechaEjecucion=fechaEjecucion;
-	  this.id=nuevoId();
-	  this.estado=EN_CONSTRUCCION;
-	  
+    this.descripcion=descripcion;
+    this.fechaEjecucion=fechaEjecucion;
+    this.id=nuevoId();
+    this.estado=EN_CONSTRUCCION; 
+  }
+  public Presupuesto (String descripcion, Date fechaEjecucion, Usuario duenio, String estado, ArrayList items){
+    this(descripcion, fechaEjecucion);
+    this.setDuenio(duenio);
+    this.setEstado(estado);
+    for (int i=0; i<items.size(); i++) {
+      this.agregarItem(items.get(i));
+    }
   }
     
   /*
@@ -98,6 +112,10 @@ public class Presupuesto {
   {
     return fechaEjecucion;
   }
+  public String getFechaEjecucionString()
+  {
+    return I18n.sdf.format(this.getFechaEjecucion());
+  }
   /**
    * @param fechaEjecucion the fechaEjecucion to set
    */
@@ -111,6 +129,10 @@ public class Presupuesto {
   public Date getFechaModificacion()
   {
     return fechaModificacion;
+  }
+  public String getFechaModificacionString()
+  {
+    return I18n.sdf.format(this.getFechaModificacion());
   }
   /**
    * @param fechaModificacion the fechaModificacion to set
@@ -141,19 +163,62 @@ public class Presupuesto {
   {
     return items;
   }
-public boolean agregarItem(Object object){
-	return items.add(object);
-}
-public boolean borrarItem(Articulo art){
-	return items.remove(art);
-}
+  public boolean agregarItem(Object object){
+  	return items.add(object);
+  }
+  public boolean borrarItem(Articulo art){
+  	return items.remove(art);
+  }
+    
+/*
+ * Overrides
+ */
   
-public String toString(){
-	String retorno=this.descripcion + " Id: "+this.id + " Estado: "+this.estado;
-retorno+=" Costo: " +this.costo + " Dueño: "+this.duenio + " FechaEjecucion : " ;
-retorno+=this.fechaEjecucion.toString() + " Fechamodificacion: "+this.fechaModificacion + this.items;
-return retorno;
-}
+  /* (non-Javadoc)
+   * @see java.lang.Object#equals(java.lang.Object)
+   */
+  
+
+  public String toString(){
+    String retorno=this.getDescripcion() + " Id: "+this.getId() + " Estado: "+this.getEstado();
+  retorno+=" Costo: " +this.getCosto() + " Dueño: "+this.getDuenio()+ " FechaEjecucion : " ;
+  retorno+=this.getFechaEjecucionString() + " Fechamodificacion: "+this.getFechaModificacionString() + this.getItems();
+  return retorno;
+  }
+
+  public boolean equals(Object arg0)
+  {
+    // TODO Auto-generated method stub
+    try
+    {
+      Presupuesto presupuesto = (Presupuesto)arg0;
+      if (presupuesto.getDescripcion().equals(this.getDescripcion())) {
+        if (presupuesto.getDuenio().equals(this.getDuenio())) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
+  }
+  public int compareTo(Object arg0)
+  {
+    try
+    {
+      Presupuesto presupuesto = (Presupuesto)arg0;
+      return presupuesto.getFechaEjecucion().compareTo(this.getFechaEjecucion());      
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return 0;
+  }
   
   
 }
