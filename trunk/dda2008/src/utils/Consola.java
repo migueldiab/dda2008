@@ -18,7 +18,6 @@ import java.util.*;
 public class Consola {
 	
 	protected static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-  private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	/**
 	 * ...
@@ -203,7 +202,7 @@ public class Consola {
         if (nuevo.equals(""))
           return actual;
         else {
-          fecha = sdf.parse(nuevo);
+          fecha = I18n.sdf.parse(nuevo);
           return fecha;
         }        
       }catch(Exception e){}
@@ -261,19 +260,15 @@ public class Consola {
 		}
 		return num;
 	}
-  
-  public static void setFormato(String mascara)
-  {
-    sdf = new SimpleDateFormat(mascara);
-  }
-  
+    
   
   public static Calendar leerFecha(String msg) {
     Date d=null;
     boolean ok=false;
     do {
       try {
-        d = sdf.parse(leer(msg));
+        d = I18n.sdf.parse(leer(msg));
+        
         ok = true;
       } catch (ParseException e) {
         println(I18n.ERROR);
@@ -283,6 +278,10 @@ public class Consola {
     Calendar calendario = new GregorianCalendar();
     calendario.setTime(d);
     return calendario;
+  }
+  
+  public static void printFecha(Date fecha) {
+    System.out.println(I18n.sdf.format(fecha));
   }
 	/**
 	 * ...

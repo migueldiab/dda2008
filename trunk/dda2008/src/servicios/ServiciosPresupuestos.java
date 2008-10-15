@@ -1,10 +1,11 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
-
 import dominio.Articulo;
+import dominio.Grupo;
 import dominio.Presupuesto;
 import dominio.Usuario;
 
@@ -13,21 +14,19 @@ public class ServiciosPresupuestos
   private static ArrayList presupuestos = new ArrayList();
   
   public static boolean agregar(Presupuesto unPresupuesto){
-  Date now=new Date();
-  	 if (presupuestos.indexOf(unPresupuesto)==-1){
-  		 
-  		 unPresupuesto.setFechaModificacion(now);
-  		 unPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
-  		 
-  
-  
-  		 presupuestos.add(unPresupuesto);
-  	 return true;
-  	 }
-  	 else
-  	 {
-  		 return false;
-  	 }
+    Date now=new Date();
+  	if (presupuestos.indexOf(unPresupuesto)==-1){
+    	unPresupuesto.setFechaModificacion(now);
+      // FIXME
+      if (ServiciosUsuarios.getUsuarioActual()!=null)
+        unPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
+    	presupuestos.add(unPresupuesto);
+    	return true;
+  	}
+  	else
+  	{
+  	  return false;
+  	}
   }
   public static boolean borrar(Object o){
   	 if(presupuestos.indexOf((Presupuesto)o)==-1){
@@ -55,7 +54,7 @@ public class ServiciosPresupuestos
   		 return null;
   	 }
   	 else{
-  	 return presupuestos;
+  	   return presupuestos;
   	 }
   }
   
@@ -143,9 +142,11 @@ public class ServiciosPresupuestos
   public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFecha(Usuario unUsuario)
   {
     ArrayList losPresupuestos = new ArrayList();
+    Collections.sort(presupuestos);
+    
     for (int i = 0; i < presupuestos.size(); i++) {
       Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals("Gestor")) {
+      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
         losPresupuestos.add(unPresupuesto);
       }
     }    

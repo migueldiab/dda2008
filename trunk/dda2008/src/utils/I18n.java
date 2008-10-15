@@ -1,10 +1,14 @@
 package utils;
 
+import java.text.SimpleDateFormat;
+
 public class I18n
 {
   public static final String LISTA_VACIA = "No existen elementos en la lista";
 
   public static final String FORMATO_FECHA = "dd/MM/yyyy";
+  public static SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_FECHA);
+
   
   public static final String ERROR = "Error";
   
@@ -68,7 +72,11 @@ public class I18n
   public static final String PRESIONE_ENTER = "Presione enter para Continuar";
 
 
-  
+  public static void setFormato(String mascara)
+  {
+    sdf = new SimpleDateFormat(mascara);
+  }
+
   
 
 }

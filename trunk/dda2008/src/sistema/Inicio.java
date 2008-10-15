@@ -1,11 +1,16 @@
 package sistema;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import dominio.*;
 import servicios.Fachada;
 import servicios.ServiciosUsuarios;
 import uiConsola.*;
+import utils.Consola;
+import utils.I18n;
 
 public class Inicio {
 
@@ -13,14 +18,26 @@ public class Inicio {
    * @param args
    */
   public static void main(String[] args) {
+    
+    ArrayList losItems = new ArrayList();
+
     Fachada.agregarMedida(new Medida("kg", "Kilogramo"));
     Fachada.agregarMedida(new Medida("ud", "Unidad"));
     Fachada.agregarMedida(new Medida("da", "Docena"));
     Fachada.agregarMedida(new Medida("co", "Ciento"));
     Fachada.agregarMedida(new Medida("c1", "Caja de 100"));
-    Fachada.agregarArticulo(new Articulo("Pintura", new Medida("ud", "Unidad"), 12, 105.34));
-    Fachada.agregarArticulo(new Articulo("Portland", new Medida("kg", "Kilogramo"), 12, 105.34));
-    Fachada.agregarArticulo(new Articulo("Ceramica", new Medida("da", "Docena"), 12, 105.34));
+    
+    Articulo unArticulo = new Articulo("Pintura", new Medida("ud", "Unidad"), 12, 105.34);
+    Fachada.agregarArticulo(unArticulo);
+    losItems.add(unArticulo);
+    
+    unArticulo = new Articulo("Portland", new Medida("kg", "Kilogramo"), 12, 105.34);
+    Fachada.agregarArticulo(unArticulo);
+    losItems.add(unArticulo);
+    
+    unArticulo = new Articulo("Ceramica", new Medida("da", "Docena"), 12, 105.34);
+    Fachada.agregarArticulo(unArticulo);
+    losItems.add(unArticulo);
     
     ArrayList permisos = new ArrayList();
     //permisos.add(Grupo.ADMIN);
@@ -28,6 +45,7 @@ public class Inicio {
     permisos.add(Grupo.ARTICULOS);
     permisos.add(Grupo.CAMBIO_DUENIO_PRESUPUESTO);
     permisos.add(Grupo.CONSULTAS);
+    
     Grupo unGrupo = new Grupo("Administradores", permisos);
     Fachada.agregarGrupo(unGrupo);
     Fachada.agregarUsuario(new Usuario("admin", "admin", unGrupo, "Administrador", "Por Defecto"));
@@ -36,9 +54,49 @@ public class Inicio {
     permisos.add(Grupo.PRESUPUESTOS);
     permisos.add(Grupo.CONSULTAS);
     unGrupo = new Grupo("Gestor", permisos);
-    Fachada.agregarGrupo(unGrupo);
-    Fachada.agregarUsuario(new Usuario("gestor", "gestor", unGrupo, "Gestor", "Por Defecto"));
     
+    Fachada.agregarGrupo(unGrupo);
+    Usuario unUsuario = new Usuario("gestor", "gestor", unGrupo, "Gestor", "Por Defecto");
+    Fachada.agregarUsuario(unUsuario);
+    Usuario otroUsuario = new Usuario("otroGestor", "gestor", unGrupo, "Gestor", "Secundario");
+    Fachada.agregarUsuario(unUsuario);
+    
+    try
+    {
+      
+      Fachada.agregarPresupuesto(new Presupuesto("Prueba1", 
+          I18n.sdf.parse("27/01/2008"),
+          unUsuario,
+          Presupuesto.EN_CONSTRUCCION,
+          losItems));
+      Fachada.agregarPresupuesto(new Presupuesto("Prueba2", 
+          I18n.sdf.parse("12/01/2008"),
+          unUsuario,
+          Presupuesto.EN_CONSTRUCCION,
+          losItems));
+      Fachada.agregarPresupuesto(new Presupuesto("Prueba4", 
+          I18n.sdf.parse("10/01/2008"),
+          otroUsuario,
+          Presupuesto.EN_CONSTRUCCION,
+          losItems));
+      Fachada.agregarPresupuesto(new Presupuesto("Prueba3", 
+          I18n.sdf.parse("15/11/2008"),
+          unUsuario,
+          Presupuesto.EN_CONSTRUCCION,
+          losItems));
+      Fachada.agregarPresupuesto(new Presupuesto("Prueba4", 
+          I18n.sdf.parse("31/12/2008"),
+          unUsuario,
+          Presupuesto.EN_CONSTRUCCION,
+          losItems));
+    }
+    catch (ParseException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+
     boolean salir = false;
     while (!salir) {
       UiInicio.login();
