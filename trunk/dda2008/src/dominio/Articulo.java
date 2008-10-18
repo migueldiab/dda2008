@@ -64,7 +64,7 @@ public class Articulo implements Cloneable
   public String toString()
   {
     // TODO Auto-generated method stub
-    return " Articulo: "+this.getNombre()+" Medida: "+this.getMedida()+" Cantidad: "+this.cantidad+" Costo: "+this.costo;
+    return " Articulo: "+this.getNombre()+"- Medida: "+this.getMedida()+"- Cantidad: "+this.cantidad+"- Costo: "+this.costo +"\r";
   }
   
   /*

@@ -7,7 +7,16 @@ import dominio.*;
 import utils.Consola;
 
 public class Fachada {
-  public static boolean agregarArticulo(dominio.Articulo unArticulo) {
+	
+  
+
+
+public static Usuario getUsuarioActual(){
+	return ServiciosUsuarios.getUsuarioActual();  
+  }
+  
+
+public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosArticulos.agregar(unArticulo);
   }
 
@@ -111,8 +120,23 @@ public class Fachada {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }
 
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFecha(Usuario unUsuario)
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
   {
-    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFecha(unUsuario);
+    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(unUsuario);
   }  
+  
+  public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario){
+	  return ServiciosPresupuestos.obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(unUsuario);
+  }
+
+
+public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
+	return ServiciosPresupuestos.finalizarPresupuestos(unPresupuesto);
+}
+
+public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
+	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
+}
+
+
 }

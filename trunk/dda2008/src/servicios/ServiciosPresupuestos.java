@@ -101,7 +101,6 @@ public class ServiciosPresupuestos
 			 return true;
 		 }
   }
-	
   
   public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Articulo item,int cantItem){
 	  int indice=presupuestos.indexOf(unPresupuesto);
@@ -124,7 +123,6 @@ public class ServiciosPresupuestos
   
   public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
   {
-   // TODO Auto-generated method stub
    ArrayList losPresupuestos = new ArrayList();
    
    for (int i = 0; i < presupuestos.size(); i++) {
@@ -172,7 +170,7 @@ public class ServiciosPresupuestos
     }
     return losPresupuestos;
   }
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFecha(Usuario unUsuario)
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
   {
     ArrayList losPresupuestos = new ArrayList();
     Collections.sort(presupuestos);
@@ -183,8 +181,72 @@ public class ServiciosPresupuestos
         losPresupuestos.add(unPresupuesto);
       }
     }    
-    // Falta ordenar por Fecha descendiente
+        
     return losPresupuestos;
   }
 
+  public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
+  {
+    ArrayList losPresupuestos = new ArrayList();
+    Collections.sort(presupuestos);
+    
+    for (int i = 0; i < presupuestos.size(); i++) {
+      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
+       if(unPresupuesto.getEstado().equals("En Construccion")){
+    	  losPresupuestos.add(unPresupuesto);
+       }
+      }
+    }    
+        
+    return losPresupuestos;
+  }
+public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
+	ArrayList items=unPresupuesto.getItems();
+	for(int i=0;i<items.size();i++){
+		Articulo item=(Articulo)items.get(i);
+		Articulo articulo=null;
+		ArrayList articulos=ServiciosArticulos.listado();
+		for (int j=0;j<articulos.size();j++){
+			articulo=(Articulo)articulos.get(j);
+			if (articulo.equals(item)){
+				articulo.setCantidad(articulo.getCantidad()-item.getCantidad());
+			}
+		}
+	}
+	return true;
+}
+
+public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
+	ArrayList items=unPresupuesto.getItems();
+	int count=0;
+	int j=0;
+	for(int i=0;i<items.size();i++){
+		j=0;
+		Articulo item=(Articulo)items.get(i);
+		Articulo articulo=null;
+		ArrayList articulos=ServiciosArticulos.listado();
+		while(j<articulos.size()){
+			articulo=(Articulo)articulos.get(j);
+			if (articulo.equals(item)){
+				if(articulo.getCantidad()<item.getCantidad()){
+					return false;
+				}
+				else{
+					count++;
+				}
+			}
+			j++;
+		}
+		}
+	if (count<unPresupuesto.getItems().size()){
+		return false;
+	}
+	return true;
+}
+
+
+  
+  
+ 
 }

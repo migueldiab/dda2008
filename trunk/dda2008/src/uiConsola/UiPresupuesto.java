@@ -132,4 +132,51 @@ public static void cambiarDuenio() {
 	// TODO Auto-generated method stub
 	
 }
+public static void finalizarPresupuesto() {
+ArrayList losPresupuestos=Fachada.obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Fachada.getUsuarioActual());
+	if (losPresupuestos == null) {
+	     Consola.println(I18n.LISTA_VACIA);
+	     }
+	     else {
+	    		int posPresupuesto= Consola.menuPresupuestos(losPresupuestos);
+	    		Presupuesto unPresupuesto = (Presupuesto) losPresupuestos.get(posPresupuesto);
+	    		Consola.println(unPresupuesto.toString());
+	    		String confirma=Consola.leer(I18n.CONFIRMA_FINALIZACION);
+	    		if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+	    			if(Fachada.validoCantidadesFinalizacion(unPresupuesto)){
+	    				Fachada.finalizarPresupuesto(unPresupuesto);
+	    				Consola.println(I18n.FINALIZADO_OK);
+	    				Consola.leer(I18n.PRESIONE_ENTER);
+	    			}
+	    			else{
+	    				Consola.println(I18n.ARTICULOS_SIN_STOCK);
+	    				Consola.leer(I18n.PRESIONE_ENTER);
+	    			}
+	    		}
+	    		else{
+	    			Consola.println(I18n.CANCELADA);
+	    			Consola.leer(I18n.PRESIONE_ENTER);
+	    		}
+	     }
+	
 }
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

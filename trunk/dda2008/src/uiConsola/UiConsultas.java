@@ -13,7 +13,7 @@ public class UiConsultas
 
   public static void presupuestos()
   {
-    ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFecha(ServiciosUsuarios.getUsuarioActual());
+    ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(ServiciosUsuarios.getUsuarioActual());
     if (losPresupuestos.size() > 0) {
       int opcion = Consola.menu(losPresupuestos);
       Presupuesto unPresupuesto = (Presupuesto) losPresupuestos.get(opcion);
