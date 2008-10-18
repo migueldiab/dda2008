@@ -118,7 +118,7 @@ public class UiInicio
         if (opcion.equals(I18n.BAJA)) UiPresupuesto.borrarPresupuesto();
         if (opcion.equals(I18n.MODIFICACIONES)) UiPresupuesto.modificarPresupuesto();
         if (opcion.equals(I18n.LISTADOS)) UiPresupuesto.listadoPresupuestos();
-        if (opcion.equals(I18n.CAMBIAR_DUENIO)) UiPresupuesto.listadoPresupuestos();        
+        if (opcion.equals(I18n.CAMBIAR_DUENIO)) UiPresupuesto.cambiarDuenio();        
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
   }

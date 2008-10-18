@@ -41,11 +41,10 @@ public class Fachada {
   }
 
   public static boolean modificarPresupuesto(Presupuesto unPresupuesto,String descripcion, Date fechaEjecucion) {
-    Consola.println("Modifica un Presupuesto");
-    return true;
+    return ServiciosPresupuestos.modificarPresupuesto(unPresupuesto, descripcion, fechaEjecucion);
   }
-  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,int cantItem){
-	  return ServiciosPresupuestos.modificarItemPresupuesto(unPresupuesto, cantItem);
+  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Articulo item, int cantItem){
+	  return ServiciosPresupuestos.modificarItemPresupuesto(unPresupuesto,item, cantItem);
   }
 
   public static ArrayList listadoPresupuestos() {
