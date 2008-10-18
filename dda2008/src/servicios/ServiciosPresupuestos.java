@@ -85,10 +85,43 @@ public class ServiciosPresupuestos
   	 }
   }
   
-  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,int cantItem){
-  	return false;
-  	 
+  public static boolean modificarPresupuesto(Presupuesto unPresupuesto,
+			String descripcion, Date fechaEjecucion) {
+	  int indice=presupuestos.indexOf(unPresupuesto);
+		 if (indice==-1){
+	  		 return false;
+	  	 }
+		 else{
+			 if (!(unPresupuesto.getDescripcion().equals(descripcion))){
+				 unPresupuesto.setDescripcion(descripcion);
+			 }
+			 if (!(unPresupuesto.getFechaEjecucion().equals(fechaEjecucion))){
+				 unPresupuesto.setFechaEjecucion(fechaEjecucion);
+			 }
+			 return true;
+		 }
   }
+	
+  
+  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Articulo item,int cantItem){
+	  int indice=presupuestos.indexOf(unPresupuesto);
+	  	 if (indice==-1){
+	  		 return false;
+	  	 }
+	  	 else{
+	  		 if(!unPresupuesto.getItems().contains(item)){
+	  			 return false;
+	  		 }
+	  		 else{
+	  			 item.setCantidad(cantItem);
+	  			 calcularCosto(unPresupuesto);
+	  			 Date now=new Date();
+	  			 unPresupuesto.setFechaModificacion(now);
+	  			 return true;
+	  		 }
+	  	 }
+  }
+  
   public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
   {
    // TODO Auto-generated method stub
@@ -98,10 +131,10 @@ public class ServiciosPresupuestos
     Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
     ArrayList items = new ArrayList();
     items = unPresupuesto.getItems();
-    for (int j = 0; j < presupuestos.size(); j++) {
+    for (int j = 0; j < presupuestos.size(); j++) { //item?
       Articulo unItem = (Articulo) items.get(j);
       if (unItem.equals(unArticulo)) {
-       losPresupuestos.add(unItem);
+       losPresupuestos.add(unItem);//devuelve item no presupuesto
       }    
     }
    }
@@ -132,7 +165,7 @@ public class ServiciosPresupuestos
         for (int j = 0; j < presupuestos.size(); j++) {
           Articulo unItem = (Articulo) items.get(j);
           if (unItem.equals(unArticulo)) {
-            losPresupuestos.add(unItem);
+            losPresupuestos.add(unItem); //devuelve los articulos
           }    
         }
       }
@@ -153,4 +186,5 @@ public class ServiciosPresupuestos
     // Falta ordenar por Fecha descendiente
     return losPresupuestos;
   }
+
 }
