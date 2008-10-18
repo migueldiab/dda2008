@@ -1,15 +1,11 @@
 package sistema;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
 import dominio.*;
 import servicios.Fachada;
 import servicios.ServiciosUsuarios;
 import uiConsola.*;
-import utils.Consola;
 import utils.I18n;
 
 public class Inicio {

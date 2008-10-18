@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import dominio.Presupuesto;
+
 
 
 
@@ -337,6 +339,22 @@ public class Consola {
     println(I18n.SEPARADOR);
     return menu(opciones);
   }
+  
+  public static int menuPresupuestos(ArrayList opciones){
+
+	  for(int x=0;x<opciones.size();x++){
+			println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringIdDescFechaMod());
+		}
+		int opcion;
+		do{
+    println(I18n.SEPARADOR);
+    opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+			
+		}while(opcion < 0 || opcion >= opciones.size());
+		return opcion;
+	
+  }
+  
   public static double leerDouble(String msg)
   {
     double doble = 0;    

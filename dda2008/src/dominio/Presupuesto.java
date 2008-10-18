@@ -2,6 +2,7 @@ package dominio;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
 import utils.I18n;
@@ -46,7 +47,10 @@ public class Presupuesto implements Comparable {
     }
   }
     
-  /*
+  public Presupuesto() {
+	
+}
+/*
    * Get's & Sets
    */
   /**
@@ -180,15 +184,20 @@ public class Presupuesto implements Comparable {
   
 
   public String toString(){
-    String retorno=this.getDescripcion() + " Id: "+this.getId() + " Estado: "+this.getEstado();
-  retorno+=" Costo: " +this.getCosto() + " Dueño: "+this.getDuenio()+ " FechaEjecucion : " ;
-  retorno+=this.getFechaEjecucionString() + " Fechamodificacion: "+this.getFechaModificacionString() + this.getItems();
+    String retorno=this.getDescripcion() + " - Id: "+this.getId() + " - Estado: "+this.getEstado();
+  retorno+=" - Costo: " +this.getCosto() + " - Dueño: "+this.getDuenio()+ " - FechaEjecucion : " ;
+  retorno+=this.getFechaEjecucionString() + " - Fechamodificacion: "+this.getFechaModificacionString() +"\r" +this.getItems();
   return retorno;
   }
 
+  public String toStringIdDescFechaMod(){
+	  return "Id: "+this.getId() + "- Descripcion: "+this.getDescripcion() + " - Fecha Modificacion: "+ this.getFechaModificacionString();
+  }
+  
+  
   public boolean equals(Object arg0)
   {
-    // TODO Auto-generated method stub
+    
     try
     {
       Presupuesto presupuesto = (Presupuesto)arg0;
@@ -200,7 +209,7 @@ public class Presupuesto implements Comparable {
     }
     catch (RuntimeException e)
     {
-      // TODO Auto-generated catch block
+     
       e.printStackTrace();
     }
     return false;
@@ -210,7 +219,7 @@ public class Presupuesto implements Comparable {
     try
     {
       Presupuesto presupuesto = (Presupuesto)arg0;
-      return presupuesto.getFechaEjecucion().compareTo(this.getFechaEjecucion());      
+      return presupuesto.getFechaModificacion().compareTo(this.getFechaModificacion());      
     }
     catch (RuntimeException e)
     {
@@ -219,6 +228,12 @@ public class Presupuesto implements Comparable {
     }
     return 0;
   }
-  
-  
+  public class CriterioComparacionPorFechaModificacion implements Comparator{
+
+		public int compare(Object unPresupuesto1, Object unPresupuesto2) {
+			Presupuesto p1=(Presupuesto)unPresupuesto1;
+			Presupuesto p2=(Presupuesto)unPresupuesto2;
+			return p1.getFechaModificacion().compareTo(p2.getFechaModificacion());
+		}
+}
 }

@@ -112,6 +112,8 @@ public class UiInicio
           items.add(I18n.LISTADOS);
         if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
           items.add(I18n.CAMBIAR_DUENIO);
+        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS) )
+            items.add(I18n.FINALIZAR_PRESUPUESTO);
         items.add(I18n.MENU_ANTERIOR);
         String opcion = (String) items.get(Consola.menu(items, I18n.PRESUPUESTOS));
         if (opcion.equals(I18n.ALTA)) UiPresupuesto.agregarPresupuesto();
@@ -119,6 +121,7 @@ public class UiInicio
         if (opcion.equals(I18n.MODIFICACIONES)) UiPresupuesto.modificarPresupuesto();
         if (opcion.equals(I18n.LISTADOS)) UiPresupuesto.listadoPresupuestos();
         if (opcion.equals(I18n.CAMBIAR_DUENIO)) UiPresupuesto.cambiarDuenio();        
+        if (opcion.equals(I18n.FINALIZAR_PRESUPUESTO)) UiPresupuesto.finalizarPresupuesto();
         if (opcion.equals(I18n.MENU_ANTERIOR)) menu_anterior = true;
       } while (!menu_anterior);
   }

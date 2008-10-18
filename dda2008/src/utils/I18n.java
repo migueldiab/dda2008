@@ -9,6 +9,8 @@ public class I18n
   public static final String FORMATO_FECHA = "dd/MM/yyyy";
   public static SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_FECHA);
 
+  public static String FINALIZAR_PRESUPUESTO="Finalizar Presupuesto";
+
   
   public static final String ERROR = "Error";
   
@@ -70,6 +72,12 @@ public class I18n
   public static final String CAMBIAR_DUENIO = "Cambiar Dueño";
 
   public static final String PRESIONE_ENTER = "Presione enter para Continuar";
+
+  public static final String CONFIRMA_FINALIZACION = "Esta seguro que desea Finalizar el presupuesto (esta operacion es irreversible) ("+SI+"/"+NO+"):  ";
+
+  public static final String ARTICULOS_SIN_STOCK = "No hay Stock suficiente de articulos en alguno de los items del presupuesto o no existe e Articulo";
+
+public static final String FINALIZADO_OK = "Se ha Finalizado correctamente";
 
 
   public static void setFormato(String mascara)
