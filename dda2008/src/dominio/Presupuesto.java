@@ -203,7 +203,6 @@ public class Presupuesto implements Comparable {
   
   public boolean equals(Object arg0)
   {
-    
     try
     {
       Presupuesto presupuesto = (Presupuesto)arg0;
@@ -215,7 +214,6 @@ public class Presupuesto implements Comparable {
     }
     catch (RuntimeException e)
     {
-     
       e.printStackTrace();
     }
     return false;
@@ -229,17 +227,10 @@ public class Presupuesto implements Comparable {
     }
     catch (RuntimeException e)
     {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return 0;
   }
-  public class CriterioComparacionPorFechaModificacionAsc implements Comparator{
 
-		public int compare(Object unPresupuesto1, Object unPresupuesto2) {
-			Presupuesto p1=(Presupuesto)unPresupuesto1;
-			Presupuesto p2=(Presupuesto)unPresupuesto2;
-			return p1.getFechaModificacion().compareTo(p2.getFechaModificacion())*-1;
-		}
-}
+ 
 }

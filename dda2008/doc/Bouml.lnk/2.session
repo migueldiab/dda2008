@@ -6,21 +6,20 @@ diagrams
     974 597 80 14 83 24
 end
 show_stereotypes
-selected 
-  package_ref 128002 // src
+selected classdiagram_ref 128002 // Conceptual
 open
   classview_ref 128130 // servicios
   classview_ref 128258 // sistema
   deploymentview_ref 128258 // sistema
   
-  package_ref 128514 // testeo
+package_ref 128514 // testeo
   
-  package_ref 128770 // uiConsola
+package_ref 128770 // uiConsola
   
-  package_ref 129922 // utils
+package_ref 129922 // utils
   classview_ref 128770 // Diagrama de Clases
   
-  package_ref 130050 // unknown
+package_ref 130050 // unknown
 end
 end
 verbose
