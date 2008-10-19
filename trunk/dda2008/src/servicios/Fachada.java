@@ -120,9 +120,9 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }
 
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
   {
-    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(unUsuario);
+    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(unUsuario);
   }  
   
   public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario){
@@ -136,6 +136,16 @@ public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
 
 public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
 	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
+}
+
+
+public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
+	return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(unUsuario);
+}
+
+
+public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
+	return ServiciosPresupuestos.copiarPresupuesto(unPresupuesto,descripcion);
 }
 
 

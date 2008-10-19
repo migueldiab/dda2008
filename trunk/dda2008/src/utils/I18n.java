@@ -79,6 +79,12 @@ public class I18n
 
 public static final String FINALIZADO_OK = "Se ha Finalizado correctamente";
 
+public static final String COPIAR_PRESUPUESTO = "Copiar Presupuesto";
+
+public static final String CONFIRMA_COPIA = "Desea crear una copiar del Presupuesto?("+SI+"/"+NO+"): ";
+
+public static final String INGRESE_DESCRIPCION = "Ingrese descripcion de la Copia : ";
+
 
   public static void setFormato(String mascara)
   {
