@@ -16,7 +16,7 @@ Los usuarios tienen un sistema de permisos dependiendo del grupo al que pertenez
 
 = Diagrama de Clase de Diseño =
 
-[]
+[http://dda2008.googlecode.com/svn/trunk/dda2008/doc/Diagrama%20de%20Clases%20de%20Dise%C3%B1o.png]
  
 = Pruebas funcionales =
 Una prueba funcional es una prueba basada en la ejecución, revisión y retroalimentación de las funcionalides (previamente) diseñadas para el software. Las pruebas funcionales se hacen mediante el diseño de modelos de prueba que buscan evaluar cada una de las opciones con las que cuenta el paquete informático.
