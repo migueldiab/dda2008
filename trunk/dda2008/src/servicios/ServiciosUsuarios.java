@@ -1,6 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import dominio.Usuario;
 
@@ -37,7 +38,7 @@ public class ServiciosUsuarios
 
   public static boolean agregar(Usuario unUsuario)
   {
-    // TODO Auto-generated method stub
+    
     if (usuarios.indexOf(unUsuario)==-1) {
       usuarios.add(unUsuario);
       return true;
@@ -76,13 +77,13 @@ public class ServiciosUsuarios
   }
   public static int cantidad()
   {
-    // TODO Auto-generated method stub
+    
     return usuarios.size();
   }
 
   public static Object obtener(Usuario unUsuario)
   {
-    // TODO Auto-generated method stub
+    
     int pos = usuarios.indexOf(unUsuario);
     if (pos!=-1) { 
       return usuarios.get(pos);
@@ -92,12 +93,48 @@ public class ServiciosUsuarios
     }  
   }
 
+  public static ArrayList listadoGestores(){
+	if (cantidad() == 0)
+	return null;
+	else{
+		ArrayList gestores=new ArrayList();
+		for (int i = 0; i < usuarios.size(); i++) {
+		      Usuario unUsuario = (Usuario) usuarios.get(i);
+		      if (unUsuario.getGrupo().equals("Gestor")) {
+		    	  gestores.add(unUsuario);
+		      }
+		}		
+		return gestores;
+	}
+	
+  }
+
   public static ArrayList listado()
   {
-    // TODO Auto-generated method stub
     if (cantidad() == 0)
       return null;
     else
+    	
       return usuarios;
-  }  
+  }
+
+public static ArrayList listadoGestoresPorNombreUsuario() {
+	if (cantidad() == 0)
+		return null;
+		else{
+			ArrayList gestores=listadoGestores();
+		Collections.sort(gestores,(new Usuario()).new CriterioComparacionPorNombreUsuarioAsc());
+		return gestores;
+		}
+}
+
+public static ArrayList listadoGestoresPorApellido() {
+	if (cantidad() == 0)
+		return null;
+		else{
+			ArrayList gestores=listadoGestores();
+			Collections.sort(gestores);
+			return gestores;
+	        }
+}
 }
