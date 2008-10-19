@@ -1,6 +1,8 @@
 package dominio;
 
-public class Usuario {
+import java.util.Comparator;
+
+public class Usuario implements Comparable { 
   private String id;
   private String nombre;
   private String apellido;
@@ -17,6 +19,9 @@ public class Usuario {
     this(id, clave, grupo);
     this.setApellido(apellido);
     this.setNombre(nombre);
+  }
+  public Usuario(){
+	
   }
 
   public Usuario(String id)
@@ -117,5 +122,32 @@ public class Usuario {
     // TODO Auto-generated method stub
     return this.getId() + "(" + this.getGrupo().toString() + ")";
   }
+public int compareTo(Object o) {
+	try
+    {
+      Usuario usuario = (Usuario)o;
+      int retorno=usuario.getApellido().compareTo(this.getApellido());
+      if (retorno==0){
+    	  retorno=usuario.getNombre().compareTo(this.getNombre());
+      }
+      return retorno;
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return 0;
+}
+public class CriterioComparacionPorNombreUsuarioAsc implements Comparator{
+
+	public int compare(Object unUsuario1, Object unUsuario2) {
+		Usuario u1=(Usuario)unUsuario1;
+		Usuario u2=(Usuario)unUsuario2;
+		return u1.getId().compareTo(u2.getId());
+	}
+}
+
+
 
 }

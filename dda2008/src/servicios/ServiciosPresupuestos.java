@@ -262,10 +262,21 @@ public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String des
 	nuevoPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
 	Date now=new Date();
 	nuevoPresupuesto.setFechaModificacion(now);
+	nuevoPresupuesto.setCosto(unPresupuesto.getCosto());
 	presupuestos.add(nuevoPresupuesto);
-	calcularCosto(nuevoPresupuesto);
 	return nuevoPresupuesto;
 		
+}
+public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
+	int indice=presupuestos.indexOf(unPresupuesto);
+	 if (indice==-1){
+ 		 return false;
+ 	 }
+	 else{
+		 unPresupuesto.setDuenio(nuevoDuenio);
+		 return true;
+	 }
+	
 }
 
   

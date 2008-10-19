@@ -149,4 +149,23 @@ public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String des
 }
 
 
+public static ArrayList listadoGestores() {
+	return ServiciosUsuarios.listadoGestores();
+}
+public static ArrayList listadoGestoresPorApellido() {
+	return ServiciosUsuarios.listadoGestoresPorApellido();
+}
+
+
+public static ArrayList listadoGestoresPorNombreUsuario() {
+	return ServiciosUsuarios.listadoGestoresPorNombreUsuario();
+}
+
+
+public static boolean cambiarDuenio(Presupuesto unPresupuesto, Usuario nuevoDuenio) {
+return ServiciosPresupuestos.cambiarDuenio(unPresupuesto,nuevoDuenio);
+	
+}
+
+
 }

@@ -85,8 +85,13 @@ public static final String CONFIRMA_COPIA = "Desea crear una copiar del Presupue
 
 public static final String INGRESE_DESCRIPCION = "Ingrese descripcion de la Copia : ";
 
+public static final String SELECCIONE_GESTOR = "Seleccione un Dueño : ";
 
-  public static void setFormato(String mascara)
+public static final String SELECCIONE_PRESUPUESTO = "Seleccione un Presupuesto : ";
+
+public static final String SELECCIONE_NUEVO_DUENIO = "Seleccione un nuevo dueño para el Presupuesto : ";  
+
+public static void setFormato(String mascara)
   {
     sdf = new SimpleDateFormat(mascara);
   }
