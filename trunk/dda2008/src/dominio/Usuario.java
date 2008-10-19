@@ -20,9 +20,6 @@ public class Usuario implements Comparable {
     this.setApellido(apellido);
     this.setNombre(nombre);
   }
-  public Usuario(){
-    // No me gusta ese usuario vacío...
-  }
 
   public Usuario(String id)
   {
@@ -139,14 +136,7 @@ public int compareTo(Object o) {
     }
     return 0;
 }
-public class CriterioComparacionPorNombreUsuarioAsc implements Comparator{
 
-	public int compare(Object unUsuario1, Object unUsuario2) {
-		Usuario u1=(Usuario)unUsuario1;
-		Usuario u2=(Usuario)unUsuario2;
-		return u1.getId().compareTo(u2.getId());
-	}
-}
 
 
 

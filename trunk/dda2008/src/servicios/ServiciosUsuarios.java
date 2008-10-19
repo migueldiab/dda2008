@@ -3,6 +3,7 @@ package servicios;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import dominio.CriterioComparacionPorNombreUsuarioAsc;
 import dominio.Usuario;
 
 public class ServiciosUsuarios
@@ -123,7 +124,7 @@ public static ArrayList listadoGestoresPorNombreUsuario() {
 		return null;
 		else{
 			ArrayList gestores=listadoGestores();
-		Collections.sort(gestores,(new Usuario()).new CriterioComparacionPorNombreUsuarioAsc());
+		Collections.sort(gestores,(new CriterioComparacionPorNombreUsuarioAsc()));
 		return gestores;
 		}
 }
