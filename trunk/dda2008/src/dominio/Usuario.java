@@ -21,7 +21,7 @@ public class Usuario implements Comparable {
     this.setNombre(nombre);
   }
   public Usuario(){
-	
+    // No me gusta ese usuario vacío...
   }
 
   public Usuario(String id)

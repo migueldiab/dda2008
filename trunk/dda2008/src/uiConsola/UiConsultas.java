@@ -13,6 +13,7 @@ public class UiConsultas
 
   public static void presupuestos()
   {
+    // FIXME Hay que fijarse si esto va ordenado por Fecha de Modificacion o por Fecha de Ejecución...
     ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(ServiciosUsuarios.getUsuarioActual());
     if (losPresupuestos.size() > 0) {
       int opcion = Consola.menu(losPresupuestos);

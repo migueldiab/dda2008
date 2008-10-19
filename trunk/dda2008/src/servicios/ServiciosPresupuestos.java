@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import dominio.Articulo;
+import dominio.CriterioComparacionPorFechaModificacionAsc;
 import dominio.Grupo;
 import dominio.Presupuesto;
 import dominio.Usuario;
@@ -245,7 +246,7 @@ public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
 }
 public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
 	ArrayList losPresupuestos = new ArrayList();
-    Collections.sort(presupuestos,(new Presupuesto()).new CriterioComparacionPorFechaModificacionAsc());
+    Collections.sort(presupuestos,new CriterioComparacionPorFechaModificacionAsc());
     
     for (int i = 0; i < presupuestos.size(); i++) {
       Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
