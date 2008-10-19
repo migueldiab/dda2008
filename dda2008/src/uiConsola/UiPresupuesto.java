@@ -67,6 +67,7 @@ public class UiPresupuesto
    ArrayList presupuestos =Fachada.listadoPresupuestos();
      if (presupuestos == null) {
      Consola.println(I18n.LISTA_VACIA);
+     Consola.leer(I18n.PRESIONE_ENTER);
      }
      else {
     	 int posPresupuesto = Consola.menu(presupuestos);
@@ -80,7 +81,7 @@ public class UiPresupuesto
     	 	if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
     	 	{
     	 		if (Fachada.modificarPresupuesto(original,descripcion,fechaEjecucion)){
-    	 			Consola.println(I18n.MODIFICADO_OK);  
+    	 			Consola.println(I18n.MODIFICADO_OK); 
     	 		}
     	 	}
     	 	String confirma2 = Consola.leer(I18n.MODIFICA_ITEMS);
@@ -89,8 +90,8 @@ public class UiPresupuesto
     	 	}
     	 	else{
     	 		Consola.println(I18n.CANCELADA);
-    	 	}  
-       
+    	 		Consola.leer(I18n.PRESIONE_ENTER);
+       	 	}  
   }
   }
   
@@ -160,6 +161,26 @@ ArrayList losPresupuestos=Fachada.obtenerPresupuestoEnConstruccionPorUsuarioOrde
 	     }
 	
 }
+public static void copiarPresupuesto() {
+	ArrayList losPresupuestos=Fachada.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Fachada.getUsuarioActual());
+	if (losPresupuestos == null) {
+	     Consola.println(I18n.LISTA_VACIA);
+	     }
+	     else {
+	    	 int posPresupuesto=Consola.menuPresupuestos(losPresupuestos);
+	    	 Presupuesto unPresupuesto=(Presupuesto) losPresupuestos.get(posPresupuesto);
+	    	 Consola.println(unPresupuesto.toString());
+	    	 String confirma=Consola.leer(I18n.CONFIRMA_COPIA);
+	    	 if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+	    		 String descripcion=Consola.leer(I18n.INGRESE_DESCRIPCION);
+	    		 Consola.println(Fachada.copiarPresupuesto(unPresupuesto,descripcion).toString());
+	    		 Consola.println(I18n.PRESIONE_ENTER);
+	    	 }
+	    	 else{
+	    		 Consola.println(I18n.CANCELADA);
+	    		 Consola.println(I18n.PRESIONE_ENTER);
+	    	 }
+	     }
 
 
 
@@ -167,7 +188,7 @@ ArrayList losPresupuestos=Fachada.obtenerPresupuestoEnConstruccionPorUsuarioOrde
 }
 
 
-
+}
 
 
 

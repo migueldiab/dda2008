@@ -46,8 +46,7 @@ public class ServiciosPresupuestos
   		 costo+=item.getCosto()*item.getCantidad();
   		}
   		unPresupuesto.setCosto(costo);
-  		System.out.println("Tostring con Costo "+unPresupuesto.toString());
-  }
+  	 }
   
   public static ArrayList listado(){
   	 if(presupuestos.size()==0){
@@ -140,8 +139,7 @@ public class ServiciosPresupuestos
   }
   public static ArrayList obtenerPresupuestoPorUsuario(Usuario unUsuario)
   {
-    // TODO Auto-generated method stub
-    ArrayList losPresupuestos = new ArrayList();
+      ArrayList losPresupuestos = new ArrayList();
      
     for (int i = 0; i < presupuestos.size(); i++) {
       Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
@@ -170,7 +168,7 @@ public class ServiciosPresupuestos
     }
     return losPresupuestos;
   }
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
+  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
   {
     ArrayList losPresupuestos = new ArrayList();
     Collections.sort(presupuestos);
@@ -211,6 +209,7 @@ public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
 			articulo=(Articulo)articulos.get(j);
 			if (articulo.equals(item)){
 				articulo.setCantidad(articulo.getCantidad()-item.getCantidad());
+				item.setCosto(articulo.getCosto());
 			}
 		}
 	}
@@ -244,7 +243,30 @@ public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
 	}
 	return true;
 }
-
+public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
+	ArrayList losPresupuestos = new ArrayList();
+    Collections.sort(presupuestos,(new Presupuesto()).new CriterioComparacionPorFechaModificacionAsc());
+    
+    for (int i = 0; i < presupuestos.size(); i++) {
+      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
+        losPresupuestos.add(unPresupuesto);
+      }
+    }    
+        
+    return losPresupuestos;
+  }
+public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
+	Presupuesto nuevoPresupuesto=new Presupuesto(descripcion,unPresupuesto.getFechaEjecucion());
+	nuevoPresupuesto.setItems(unPresupuesto.getItems());
+	nuevoPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
+	Date now=new Date();
+	nuevoPresupuesto.setFechaModificacion(now);
+	presupuestos.add(nuevoPresupuesto);
+	calcularCosto(nuevoPresupuesto);
+	return nuevoPresupuesto;
+		
+}
 
   
   

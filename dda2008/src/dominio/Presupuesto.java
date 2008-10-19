@@ -167,6 +167,11 @@ public class Presupuesto implements Comparable {
   {
     return items;
   }
+  public void setItems(ArrayList newItems)
+  {
+   this.items=newItems;
+  }
+  
   public boolean agregarItem(Object object){
   	return items.add(object);
   }
@@ -174,6 +179,7 @@ public class Presupuesto implements Comparable {
   	return items.remove(art);
   }
     
+  
 /*
  * Overrides
  */
@@ -228,12 +234,12 @@ public class Presupuesto implements Comparable {
     }
     return 0;
   }
-  public class CriterioComparacionPorFechaModificacion implements Comparator{
+  public class CriterioComparacionPorFechaModificacionAsc implements Comparator{
 
 		public int compare(Object unPresupuesto1, Object unPresupuesto2) {
 			Presupuesto p1=(Presupuesto)unPresupuesto1;
 			Presupuesto p2=(Presupuesto)unPresupuesto2;
-			return p1.getFechaModificacion().compareTo(p2.getFechaModificacion());
+			return p1.getFechaModificacion().compareTo(p2.getFechaModificacion())*-1;
 		}
 }
 }
