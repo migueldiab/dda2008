@@ -1,5 +1,3 @@
-# Presupuestos - Sistema de Administración de Presupuestos
- 
 = Actualizaciones y Versionado =
 El sistema cuenta con un avanzado sistema de versionado para poder utilizar siempre la última versión disponible. Accediendo a http://code.google.com/p/dda2008/ puede ver las últimas versiones del producto, asi como enviar reportes de errores encontrados o solicitar nuevas funcionalidades.
 También puede acceder a la WIKI en línea dónde encontrará la versión mas actualizada de este documento y contribuir a la comunidad con sus experiencias y conocimientos.
@@ -14,28 +12,31 @@ Primer modelo de diseño conceptual de sistema con las clases de especificación
 De la misma manera los Presupuestos están asociados a un usuario (el dueño del mismo).
 Los usuarios tienen un sistema de permisos dependiendo del grupo al que pertenezcan que le permiten acceder a las funcionalidades del sistema.
 
+[http://dda2008.googlecode.com/svn/trunk/dda2008/doc/Diagrama%20de%20Clases%20Conceptual.png]
+
 = Diagrama de Clase de Diseño =
 
+[]
  
 = Pruebas funcionales =
 Una prueba funcional es una prueba basada en la ejecución, revisión y retroalimentación de las funcionalides (previamente) diseñadas para el software. Las pruebas funcionales se hacen mediante el diseño de modelos de prueba que buscan evaluar cada una de las opciones con las que cuenta el paquete informático.
 [Wikipedia].
 
-* TestUsuario
+== TestUsuario ==
 Descripción	Prueba el comportamiento al crear, borrar, modificar y obtener un usuario. Teniendo en cuenta consistencia, duplicados, etc.
 
 
-* TestArticulo
+== TestArticulo ==
 Descripción	Prueba el comportamiento al crear, borrar, modificar y obtener un artículo. Teniendo en cuenta consistencia, duplicados, etc.
 
 
-* TestGrupo
+== TestGrupo ==
 Descripción	Prueba el comportamiento al crear, borrar, modificar y obtener un grupo. Teniendo en cuenta consistencia, duplicados, etc.
 
  
 = Manual de Usuario =
 
-Acceso al Sistema
+== Acceso al Sistema ==
 Al iniciar, el sistema soicitará al usuario las credenciales para acceder al mismo.
 Si es la primera vez que ejecuta el sistema, puede usar los usuarios por defecto
 Id : admin
@@ -46,7 +47,7 @@ Clave : gestor
 Permite acceder como gestor.
 Una vez logueado al sistema, podrá ver el menú principal con las opciones disponibles según su nivel de acceso.
 
-Menu Principal
+== Menu Principal ==
 {{{
 Bienvenido Administrador
 ------------------------------
@@ -77,7 +78,7 @@ Desde el menú principal, seleccionando la opción deseada, se pueden acceder a 
 De querer cerrar la sesión o cambiár el usuario, puede elegir el ítem Cerrar Sesión.
 Para cerrar el sistema completamente, elija Salir
 
-Navegación
+== Navegación ==
 {{{
 ------------------------------
 |   Presupuestos
@@ -95,16 +96,13 @@ Navegación
 
 Desde el cualquier sub-menú, puede elegir la acción deseada, o puede volver con el último ítem del menú, al menú anterior.
 
+= Configuración General =
+
+== Requisitos ==
+# Windows 98 ó superior
+# Java v1.4 ó superior
 
  
-Configuración General
-
-Requisitos
-1.	Windows 98 ó superior
-2.	Java v1.4 ó superior
-
- 
-Glosario
+= Glosario =
 
 Elemento de glosario	Descripción
-
