@@ -1,7 +1,5 @@
 package dominio;
 
-import java.util.Comparator;
-
 public class Usuario implements Comparable { 
   private String id;
   private String nombre;

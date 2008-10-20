@@ -44,8 +44,8 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
 	  return ServiciosPresupuestos.borrarItem(unPresupuesto, unItem);
   }
   
-  public static boolean borrarPresupuesto() {
-    Consola.println("Borra un articulo");
+  public static boolean borrarPresupuesto(Presupuesto unPresupuesto) {
+    ServiciosPresupuestos.borrar(unPresupuesto);
     return true;
   }
 

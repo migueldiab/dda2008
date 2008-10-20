@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+import utils.I18n;
+
 import dominio.*;
 
 
@@ -26,9 +28,9 @@ public class ServiciosPresupuestos
   	  return false;
   	}
   }
-  public static boolean borrar(Object o){
-  	 if(presupuestos.indexOf((Presupuesto)o)==-1){
-  		 presupuestos.remove((Presupuesto)o);
+  public static boolean borrar(Presupuesto o){
+  	 if(presupuestos.indexOf(o)!=-1){
+  		 presupuestos.remove(o);
   		 return true;
   	 }
   	 else{
@@ -208,7 +210,8 @@ public class ServiciosPresupuestos
   }
   
   public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
-	ArrayList items=unPresupuesto.getItems();
+	unPresupuesto.setEstado(I18n.FINALIZADO);
+	  ArrayList items=unPresupuesto.getItems();
 	for(int i=0;i<items.size();i++){
 		Articulo item=(Articulo)items.get(i);
 		Articulo articulo=null;

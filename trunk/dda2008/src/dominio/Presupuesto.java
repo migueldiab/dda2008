@@ -2,7 +2,6 @@ package dominio;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 
 import utils.I18n;
@@ -47,9 +46,7 @@ public class Presupuesto implements Comparable {
     }
   }
     
-  public Presupuesto() {
-	
-}
+
 /*
    * Get's & Sets
    */
