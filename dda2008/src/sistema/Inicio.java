@@ -52,10 +52,16 @@ public class Inicio {
     unGrupo = new Grupo("Gestor", permisos);
     
     Fachada.agregarGrupo(unGrupo);
-    Usuario unUsuario = new Usuario("gestor", "gestor", unGrupo, "Gestor", "Por Defecto");
+    Usuario unUsuario = new Usuario("gestor", "gestor", unGrupo, "Gestor", "gestor");
     Fachada.agregarUsuario(unUsuario);
-    Usuario otroUsuario = new Usuario("otroGestor", "gestor", unGrupo, "Gestor", "Secundario");
-    Fachada.agregarUsuario(unUsuario);
+    Usuario otroUsuario = new Usuario("AlbertoPerez", "gestor", unGrupo, "Alberto", "Perez");
+    Fachada.agregarUsuario(otroUsuario);
+    Usuario otro2Usuario = new Usuario("JuanGonzalez", "gestor", unGrupo, "Juan", "Gonzalez");
+    Fachada.agregarUsuario(otro2Usuario);
+    Usuario otro3Usuario = new Usuario("CarlosGonzalez", "gestor", unGrupo, "Carlos", "Gonzalez");
+    Fachada.agregarUsuario(otro3Usuario);
+    
+    
     
     try
     {
@@ -82,7 +88,7 @@ public class Inicio {
           losItems));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba4", 
           I18n.sdf.parse("31/12/2008"),
-          unUsuario,
+          otro2Usuario,
           Presupuesto.EN_CONSTRUCCION,
           losItems));
     }

@@ -40,7 +40,7 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
   public static boolean agregarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
 	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unItem);
   }
-  public static boolean borrarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
+  public static boolean borrarItemPresupuesto(Presupuesto unPresupuesto,Articulo unItem){
 	  return ServiciosPresupuestos.borrarItem(unPresupuesto, unItem);
   }
   
@@ -110,25 +110,32 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosUsuarios.login(id, clave);
   }
 
-  public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
+ /* public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
   }
-
+*/
   public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }
 
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
+  /* public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(unUsuario);
   }  
   
   public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario){
 	  return ServiciosPresupuestos.obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(unUsuario);
-  }
+  }*/
 
+public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
+	return ServiciosPresupuestos.obtenerPresupuestos(unUsuario, Criterio0Asc1Desc, Criterio0XFechaMod1XFechaEje, Criterio0EnConstr1Todos);
+}
+  
+public static ArrayList obtenerItems(Presupuesto unPresupuesto){
+	return ServiciosPresupuestos.obtenerItems(unPresupuesto);
+}
 
 public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
 	return ServiciosPresupuestos.finalizarPresupuestos(unPresupuesto);
@@ -139,9 +146,9 @@ public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
 }
 
 
-public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
+/*public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
 	return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(unUsuario);
-}
+}*/
 
 
 public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
@@ -165,6 +172,16 @@ public static ArrayList listadoGestoresPorNombreUsuario() {
 public static boolean cambiarDuenio(Presupuesto unPresupuesto, Usuario nuevoDuenio) {
 return ServiciosPresupuestos.cambiarDuenio(unPresupuesto,nuevoDuenio);
 	
+}
+
+
+public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
+	return ServiciosArticulos.obtenerArticulosNotIn(unPresupuesto);
+}
+
+
+public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
+	return ServiciosPresupuestos.validoPresupuesto(descripcion,usuarioActual);
 }
 
 

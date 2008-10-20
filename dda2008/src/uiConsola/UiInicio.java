@@ -84,7 +84,7 @@ public class UiInicio
 
   private static void MenuConsultas()
   {
-    // TODO Auto-generated method stub
+   
       boolean menu_anterior = false;   
       do {
         ArrayList items = new ArrayList();
@@ -108,8 +108,8 @@ public class UiInicio
           items.add(I18n.BAJA);
         if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
           items.add(I18n.MODIFICACIONES);
-        if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
-          items.add(I18n.LISTADOS);
+       // if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS))
+       //   items.add(I18n.LISTADOS);
         if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO) )
           items.add(I18n.CAMBIAR_DUENIO);
         if (ServiciosUsuarios.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS) )
@@ -121,7 +121,7 @@ public class UiInicio
         if (opcion.equals(I18n.ALTA)) UiPresupuesto.agregarPresupuesto();
         if (opcion.equals(I18n.BAJA)) UiPresupuesto.borrarPresupuesto();
         if (opcion.equals(I18n.MODIFICACIONES)) UiPresupuesto.modificarPresupuesto();
-        if (opcion.equals(I18n.LISTADOS)) UiPresupuesto.listadoPresupuestos();
+       // if (opcion.equals(I18n.LISTADOS)) UiPresupuesto.listadoPresupuestos();
         if (opcion.equals(I18n.CAMBIAR_DUENIO)) UiPresupuesto.cambiarDuenio();        
         if (opcion.equals(I18n.FINALIZAR_PRESUPUESTO)) UiPresupuesto.finalizarPresupuesto();
         if (opcion.equals(I18n.COPIAR_PRESUPUESTO)) UiPresupuesto.copiarPresupuesto();
@@ -129,6 +129,9 @@ public class UiInicio
       } while (!menu_anterior);
   }
 
+    	
+    	
+    
   public static void login()
   {
     int intentos = ServiciosUsuarios.MAX_LOGIN;

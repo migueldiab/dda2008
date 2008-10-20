@@ -1,8 +1,10 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import dominio.Articulo;
+import dominio.Presupuesto;
 
 public class ServiciosArticulos 
 {
@@ -10,7 +12,7 @@ public class ServiciosArticulos
 
   public static boolean agregar(Object o)
   {
-    // TODO Auto-generated method stub
+    
     if (articulos.indexOf((Articulo) o)==-1) {
       articulos.add((Articulo) o);
       return true;
@@ -81,4 +83,32 @@ public class ServiciosArticulos
     }  
   }
 
+  public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
+	ArrayList losArticulos=new ArrayList();
+	boolean existe;
+	for (int i = 0; i < articulos.size(); i++) {
+			existe=false;
+			Articulo a= (Articulo) articulos.get(i);
+		    ArrayList items=new ArrayList();
+		    items=unPresupuesto.getItems();
+		    if (items.isEmpty()){
+		    	losArticulos.add(a);
+		    }
+		    else{
+		    	for(int j = 0; j < items.size(); j++) {
+		    		Articulo itemPresupuesto=(Articulo)items.get(j);
+		    		if ((itemPresupuesto.equals(a))){
+		    			existe=true;
+		    		}
+		    	}
+		    	if (existe==false){
+			    	losArticulos.add(a);	
+			    }
+		    }
+		    
+		     
+	}
+	Collections.sort(losArticulos);
+		return losArticulos;
+  }
 }

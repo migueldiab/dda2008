@@ -123,9 +123,9 @@ public int compareTo(Object o) {
 	try
     {
       Usuario usuario = (Usuario)o;
-      int retorno=usuario.getApellido().compareTo(this.getApellido());
+      int retorno=usuario.getApellido().toUpperCase().compareTo(this.getApellido().toUpperCase())*-1;
       if (retorno==0){
-    	  retorno=usuario.getNombre().compareTo(this.getNombre());
+    	  retorno=usuario.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
       }
       return retorno;
     }
@@ -137,7 +137,13 @@ public int compareTo(Object o) {
     return 0;
 }
 
-
-
-
+	public int compare(Object unUsuario1, Object unUsuario2) {
+		Usuario u1=(Usuario)unUsuario1;
+		Usuario u2=(Usuario)unUsuario2;
+		return u1.getId().toUpperCase().compareTo(u2.getId().toUpperCase());
+	}
 }
+
+
+
+

@@ -118,7 +118,12 @@ public class Presupuesto implements Comparable {
   }
   public String getFechaEjecucionString()
   {
-    return I18n.sdf.format(this.getFechaEjecucion());
+	  try{
+		  return I18n.sdf.format(this.getFechaEjecucion());
+	  }
+      catch (RuntimeException e){
+    	  return "empty";
+      }
   }
   /**
    * @param fechaEjecucion the fechaEjecucion to set
@@ -190,15 +195,24 @@ public class Presupuesto implements Comparable {
   
 
   public String toString(){
-    String retorno=this.getDescripcion() + " - Id: "+this.getId() + " - Estado: "+this.getEstado();
-  retorno+=" - Costo: " +this.getCosto() + " - Dueño: "+this.getDuenio()+ " - FechaEjecucion : " ;
-  retorno+=this.getFechaEjecucionString() + " - Fechamodificacion: "+this.getFechaModificacionString() +"\r" +this.getItems();
+    String retorno=this.getDescripcion() + " - Id: "+this.getId()  ;
+  retorno+=" - Costo: " +this.getCosto() +  " - Fecha de Ejecucion : " ;
+  retorno+=this.getFechaEjecucionString() + " - Fecha de modificacion: "+this.getFechaModificacionString() +"\r" +this.getItems();
   return retorno;
   }
 
   public String toStringIdDescFechaMod(){
 	  return "Id: "+this.getId() + "- Descripcion: "+this.getDescripcion() + " - Fecha Modificacion: "+ this.getFechaModificacionString();
   }
+  
+  public String toStringSinItems(){
+	  String retorno=this.getDescripcion() + " - Id: "+this.getId() + " - Estado: "+this.getEstado();
+	  retorno+=" - Costo: " +this.getCosto() + " - Nombre Dueño: "+this.getDuenio().getNombre() + " - Apellido: "+ this.getDuenio().getApellido() + " - Fecha de Ejecucion : " ;
+	  retorno+=this.getFechaEjecucionString() + " - Fecha ultima modificacion: "+this.getFechaModificacionString();
+	  return retorno;
+  }
+
+  
   
   
   public boolean equals(Object arg0)

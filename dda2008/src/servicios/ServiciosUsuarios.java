@@ -101,7 +101,7 @@ public class ServiciosUsuarios
 		ArrayList gestores=new ArrayList();
 		for (int i = 0; i < usuarios.size(); i++) {
 		      Usuario unUsuario = (Usuario) usuarios.get(i);
-		      if (unUsuario.getGrupo().equals("Gestor")) {
+		      if (unUsuario.getGrupo().getNombre().equals("Gestor")) {
 		    	  gestores.add(unUsuario);
 		      }
 		}		
