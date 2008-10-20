@@ -27,7 +27,7 @@ public class Grupo {
     try
     {
       Grupo grupo = (Grupo)arg0;
-      if (grupo.nombre.equals(this.nombre)) {
+      if (grupo.getNombre().equals(this.getNombre())) {
         return true;
       }
     }

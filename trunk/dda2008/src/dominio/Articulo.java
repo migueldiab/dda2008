@@ -1,6 +1,6 @@
 package dominio;
 
-public class Articulo implements Cloneable
+public class Articulo implements Cloneable, Comparable
 {
   private int id;
   private String nombre;
@@ -64,7 +64,11 @@ public class Articulo implements Cloneable
   public String toString()
   {
     // TODO Auto-generated method stub
-    return " Articulo: "+this.getNombre()+"- Medida: "+this.getMedida()+"- Cantidad: "+this.cantidad+"- Costo: "+this.costo +"\r";
+    return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo +"\r";
+  }
+  
+  public String toStringNombreMedida(){
+	  return "Nombre: "+this.getNombre() + " - Medida: "+this.medida.getDescripcion();
   }
   
   /*
@@ -152,5 +156,23 @@ public class Articulo implements Cloneable
 	  return o;
 	  
   }
+public int compareTo(Object o) {
+	{
+	    try
+	    {
+	      Articulo articulo = (Articulo)o;
+	      int retorno= articulo.getNombre().compareTo(this.getNombre())*-1;
+	      if (retorno==0){
+	    	  retorno=articulo.getMedida().getDescripcion().compareTo(this.getMedida().getDescripcion())*-1;
+	      }
+	      return retorno;
+	    }
+	    catch (RuntimeException e)
+	    {
+	      e.printStackTrace();
+	    }
+	    return 0;
+	  }
+}
   
 }

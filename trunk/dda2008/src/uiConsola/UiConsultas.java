@@ -3,7 +3,6 @@ package uiConsola;
 import java.util.ArrayList;
 
 import servicios.Fachada;
-import servicios.ServiciosUsuarios;
 import utils.Consola;
 import utils.I18n;
 import dominio.Presupuesto;
@@ -13,10 +12,15 @@ public class UiConsultas
 
   public static void presupuestos()
   {
-    // FIXME Hay que fijarse si esto va ordenado por Fecha de Modificacion o por Fecha de Ejecución...
-    ArrayList losPresupuestos = Fachada.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(ServiciosUsuarios.getUsuarioActual());
+	  ArrayList losPresupuestos=new ArrayList();
+    if(Fachada.getUsuarioActual().getGrupo().toString().equals("Gestor"))    {
+    	losPresupuestos=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(), 1, 1, 1);
+    }
+    else{
+    losPresupuestos = Fachada.obtenerPresupuestos(null, 1, 1, 1);
+    }
     if (losPresupuestos.size() > 0) {
-      int opcion = Consola.menu(losPresupuestos);
+      int opcion = Consola.menuPresupuestostoStringSinItems(losPresupuestos);
       Presupuesto unPresupuesto = (Presupuesto) losPresupuestos.get(opcion);
       ArrayList losItems = unPresupuesto.getItems();
       Consola.listado(losItems);
@@ -25,6 +29,7 @@ public class UiConsultas
     else {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
+    
     }
   }
 }

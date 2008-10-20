@@ -30,7 +30,7 @@ public class UiUsuario
       repetir = Consola.leer(I18n.CLAVE_REPETIR + ": ");
     } while (!clave.equals(repetir));   
     ArrayList grupos = Fachada.listaGrupos();
-    if (grupos == null) {
+    if (grupos.isEmpty()) {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }
@@ -53,7 +53,7 @@ public class UiUsuario
   {
     // TODO Auto-generated method stub
    ArrayList usuarios = Fachada.listadoUsuarios();
-   if (usuarios == null) {
+   if (usuarios.isEmpty()) {
      Consola.println(I18n.LISTA_VACIA);
      Consola.leer(I18n.PRESIONE_ENTER);
    }
@@ -76,7 +76,7 @@ public class UiUsuario
   {
     // TODO Auto-generated method stub
     ArrayList usuarios = Fachada.listadoUsuarios();
-    if (usuarios == null) {
+    if (usuarios.isEmpty()) {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }
@@ -131,7 +131,7 @@ public class UiUsuario
   {
     // TODO Auto-generated method stub
     ArrayList usuarios = Fachada.listadoUsuarios();
-    if (usuarios == null) {
+    if (usuarios.isEmpty()) {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }

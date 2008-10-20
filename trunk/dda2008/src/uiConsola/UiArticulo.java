@@ -14,7 +14,6 @@ public class UiArticulo
 
   public static void agregarArticulo()
   {
-    // TODO Auto-generated method stub
     String nombre = "";
     int cantidad = 0;
     double costo = 0;
@@ -42,7 +41,7 @@ public class UiArticulo
   {
     // TODO Auto-generated method stub
    ArrayList articulos = Fachada.listadoArticulos();
-   if (articulos == null) {
+   if (articulos.isEmpty()) {
      Consola.println(I18n.LISTA_VACIA);
      Consola.leer(I18n.PRESIONE_ENTER);
    }
@@ -63,9 +62,8 @@ public class UiArticulo
 
   public static void modificarArticulo()
   {
-    // TODO Auto-generated method stub
     ArrayList articulos = Fachada.listadoArticulos();
-    if (articulos == null) {
+    if (articulos.isEmpty()) {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }
@@ -86,7 +84,7 @@ public class UiArticulo
       costo = Consola.modificarDouble(I18n.COSTO, original.getCosto());
 
       if (original.getCosto() != costo) {
-        ArrayList presupuestos = null;
+        ArrayList presupuestos = new ArrayList();
         presupuestos = Fachada.obtenerPresupuestoPorArticuloEstadoConFecha(original, Presupuesto.EN_CONSTRUCCION);
         if (presupuestos.size() > 0) {
           Consola.println("El articulo se encuentra en los siguientes presupuestos "+Presupuesto.EN_CONSTRUCCION+" : ");
@@ -114,7 +112,7 @@ public class UiArticulo
   {
     // TODO Auto-generated method stub
     ArrayList articulos = Fachada.listadoArticulos();
-    if (articulos == null) {
+    if (articulos.isEmpty()) {
       Consola.println(I18n.LISTA_VACIA);
       Consola.leer(I18n.PRESIONE_ENTER);
     }

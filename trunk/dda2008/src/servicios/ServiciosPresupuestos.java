@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
-import dominio.Articulo;
-import dominio.CriterioComparacionPorFechaModificacionAsc;
-import dominio.Grupo;
-import dominio.Presupuesto;
-import dominio.Usuario;
+import dominio.*;
+
 
 public class ServiciosPresupuestos
 {
@@ -69,7 +66,7 @@ public class ServiciosPresupuestos
   	 
   }
   
-  public static boolean borrarItem(Presupuesto unPresupuesto,Object unItem){
+  public static boolean borrarItem(Presupuesto unPresupuesto,Articulo unItem){
   	 int indice=presupuestos.indexOf(unPresupuesto);
   	 if (indice==-1){
   		 return false;
@@ -124,18 +121,17 @@ public class ServiciosPresupuestos
   public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
   {
    ArrayList losPresupuestos = new ArrayList();
-   
-   for (int i = 0; i < presupuestos.size(); i++) {
-    Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-    ArrayList items = new ArrayList();
-    items = unPresupuesto.getItems();
-    for (int j = 0; j < presupuestos.size(); j++) { //item?
-      Articulo unItem = (Articulo) items.get(j);
-      if (unItem.equals(unArticulo)) {
-       losPresupuestos.add(unItem);//devuelve item no presupuesto
-      }    
-    }
-   }
+   	for (int i = 0; i < presupuestos.size(); i++) {
+	   Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+	   ArrayList items = new ArrayList();
+	   items = unPresupuesto.getItems();
+	   	for (int j = 0; j < items.size(); j++) { 
+	   		Articulo unItem = (Articulo) items.get(j);
+	   		if (unItem.equals(unArticulo)) {
+	   			losPresupuestos.add(unPresupuesto);
+	   		}    
+	   	}
+   	}
    return losPresupuestos;
   }
   public static ArrayList obtenerPresupuestoPorUsuario(Usuario unUsuario)
@@ -150,6 +146,7 @@ public class ServiciosPresupuestos
     }
     return losPresupuestos;
   }
+  
   public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
   {
     ArrayList losPresupuestos = new ArrayList();
@@ -159,48 +156,58 @@ public class ServiciosPresupuestos
       if (unPresupuesto.getEstado().equals(unEstado) && unPresupuesto.getFechaEjecucion() != null) {
         ArrayList items = new ArrayList();
         items = unPresupuesto.getItems();
-        for (int j = 0; j < presupuestos.size(); j++) {
+        for (int j = 0; j < items.size(); j++) {
           Articulo unItem = (Articulo) items.get(j);
           if (unItem.equals(unArticulo)) {
-            losPresupuestos.add(unItem); //devuelve los articulos
+            losPresupuestos.add(unPresupuesto);
           }    
         }
       }
     }
     return losPresupuestos;
   }
-  public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
-  {
-    ArrayList losPresupuestos = new ArrayList();
-    Collections.sort(presupuestos);
-    
-    for (int i = 0; i < presupuestos.size(); i++) {
-      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
-        losPresupuestos.add(unPresupuesto);
-      }
-    }    
-        
-    return losPresupuestos;
+ 
+  public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
+	ArrayList losPresupuestos=new ArrayList();
+	 
+	if (unUsuario==null){
+		losPresupuestos=listado();
+	}
+	else{
+		for (int i = 0; i < presupuestos.size(); i++) {
+		      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
+		      	if (unPresupuesto.getDuenio().equals(unUsuario)) {
+		      		if (Criterio0EnConstr1Todos==0){
+		      			if(unPresupuesto.getEstado().equals("En Construccion")){
+		    			  losPresupuestos.add(unPresupuesto);
+		      			}
+		      		}
+		      		else if (Criterio0EnConstr1Todos==1){
+		      			losPresupuestos.add(unPresupuesto);
+		      		}
+		      		else{
+		      			return null;
+		      		}
+		      	}
+		}
+	}
+	if (Criterio0Asc1Desc==0 && Criterio0XFechaMod1XFechaEje==0){
+		Collections.sort(losPresupuestos,new CriterioComparacionPorFechaModificacionAsc());
+	}
+	else if (Criterio0Asc1Desc==1 && Criterio0XFechaMod1XFechaEje==0){
+		Collections.sort(losPresupuestos,new CriterioComparacionPorFechaModificacionDesc());
+	}
+	else if (Criterio0XFechaMod1XFechaEje==1){
+		Collections.sort(losPresupuestos,new CriterioComparacionPorFechaEjecucionYModificacionDesc());
+	}
+	  return losPresupuestos;
   }
 
-  public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario)
-  {
-    ArrayList losPresupuestos = new ArrayList();
-    Collections.sort(presupuestos);
-    
-    for (int i = 0; i < presupuestos.size(); i++) {
-      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
-       if(unPresupuesto.getEstado().equals("En Construccion")){
-    	  losPresupuestos.add(unPresupuesto);
-       }
-      }
-    }    
-        
-    return losPresupuestos;
+  public static ArrayList obtenerItems(Presupuesto unPresupuesto){
+	  return unPresupuesto.getItems();
   }
-public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
+  
+  public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
 	ArrayList items=unPresupuesto.getItems();
 	for(int i=0;i<items.size();i++){
 		Articulo item=(Articulo)items.get(i);
@@ -217,7 +224,7 @@ public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
 	return true;
 }
 
-public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
+  public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
 	ArrayList items=unPresupuesto.getItems();
 	int count=0;
 	int j=0;
@@ -244,20 +251,8 @@ public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
 	}
 	return true;
 }
-public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
-	ArrayList losPresupuestos = new ArrayList();
-    Collections.sort(presupuestos,new CriterioComparacionPorFechaModificacionAsc());
-    
-    for (int i = 0; i < presupuestos.size(); i++) {
-      Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
-      if (unPresupuesto.getDuenio().equals(unUsuario) || !unUsuario.getGrupo().equals(new Grupo("Gestor"))) {
-        losPresupuestos.add(unPresupuesto);
-      }
-    }    
-        
-    return losPresupuestos;
-  }
-public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
+
+  public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
 	Presupuesto nuevoPresupuesto=new Presupuesto(descripcion,unPresupuesto.getFechaEjecucion());
 	nuevoPresupuesto.setItems(unPresupuesto.getItems());
 	nuevoPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
@@ -268,7 +263,8 @@ public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String des
 	return nuevoPresupuesto;
 		
 }
-public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
+  
+  public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
 	int indice=presupuestos.indexOf(unPresupuesto);
 	 if (indice==-1){
  		 return false;
@@ -279,6 +275,20 @@ public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDueni
 	 }
 	
 }
+  
+  public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
+	for(int i=0;i<presupuestos.size();i++){
+		Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
+		if (unPresupuesto.getDescripcion().equals(descripcion)){
+			if (unPresupuesto.getDuenio().equals(usuarioActual)){
+				return false;
+			}
+			
+		}
+	}
+	return true;
+	
+  }
 
   
   
