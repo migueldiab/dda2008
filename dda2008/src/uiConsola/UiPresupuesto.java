@@ -79,8 +79,31 @@ public class UiPresupuesto
 	}
   public static void borrarPresupuesto()
   {
-    // TODO Auto-generated method stub
-   Fachada.borrarPresupuesto(); 
+	  ArrayList presupuestos =Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(), 0, 0, 1);
+      if (presupuestos.isEmpty()) {
+    	  Consola.println(I18n.LISTA_VACIA);
+    	  Consola.leer(I18n.PRESIONE_ENTER);
+	  }
+	  else {
+		  int posPresupuesto = Consola.menuPresupuestos(presupuestos);
+		  Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(posPresupuesto);
+		  Consola.println(unPresupuesto.toString());
+		  String confirma=Consola.leer(I18n.CONFIRMA_ELIMINAR);
+		  if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+			  if(Fachada.borrarPresupuesto(unPresupuesto)){
+				  Consola.println(I18n.BORRADO_OK);
+				  Consola.leer(I18n.PRESIONE_ENTER);
+			  }
+			  else{
+				  Consola.println(I18n.ERROR); 
+				  Consola.leer(I18n.PRESIONE_ENTER);
+			  }
+		  }
+		  else{
+			Consola.println(I18n.CANCELADA);
+  			Consola.leer(I18n.PRESIONE_ENTER); 
+		  }
+	  }
   }
 
   public static void modificarPresupuesto()

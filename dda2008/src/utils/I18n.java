@@ -10,7 +10,7 @@ public class I18n
   public static SimpleDateFormat sdf = new SimpleDateFormat(FORMATO_FECHA);
 
   public static String FINALIZAR_PRESUPUESTO="Finalizar Presupuesto";
-
+  public static String FINALIZADO="Finalizado";
   
   public static final String ERROR = "Error";
   
