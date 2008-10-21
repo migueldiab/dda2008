@@ -21,6 +21,7 @@ public class ServiciosPresupuestos
       if (ServiciosUsuarios.getUsuarioActual()!=null)
         unPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
     	presupuestos.add(unPresupuesto);
+    	calcularCosto(unPresupuesto);
     	return true;
   	}
   	else

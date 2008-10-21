@@ -59,6 +59,10 @@ public class UiPresupuesto
 				break;
 			}
 			Fachada.calcularCosto(unPresupuesto);
+			for(int x=0;x<unPresupuesto.getItems().size();x++){
+				  Consola.println(((Articulo) unPresupuesto.getItems().get(x)).toStringConCosto());
+		   }
+			Consola.println("Costo Total: "+unPresupuesto.getCosto());
 			
 		} 
 	}while (item!=null);
@@ -164,19 +168,28 @@ public static void modificarItems(Presupuesto unPresupuesto){
 	int posItem=0;
     int cantItem=0;
 	ArrayList items = unPresupuesto.getItems();
+	if(items.isEmpty()){
+		Consola.println(I18n.LISTA_VACIA);
+		Consola.leer(I18n.PRESIONE_ENTER);
+	}
+	else{
     posItem = Consola.menu(items);
     item = (Articulo) items.get(posItem);
     cantItem=Consola.modificarInt(I18n.CANTIDAD, item.getCantidad());
-  if (cantItem>item.getCantidad()){
-	  Consola.println(I18n.CANTIDAD_MAYOR);
-  }
-  else{
-	  String confirma = Consola.leer(I18n.MODIFICA_ITEMS);
+    if (cantItem<=((Articulo)item).getCantidad()&& cantItem>0){
+    	String confirma = Consola.leer(I18n.MODIFICA_ITEMS);
 	    if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
 	    	Fachada.modificarItemPresupuesto(unPresupuesto,item,cantItem);
 	    }  
-  }
-  
+	    else{
+	    	Consola.println(I18n.CANCELADA);
+  			Consola.leer(I18n.PRESIONE_ENTER); 
+	    }
+    }else{
+	    	Consola.println("|  "+I18n.CANTIDAD_MAL+" ");
+	        Consola.leer(I18n.PRESIONE_ENTER);
+	    }
+	}
   }
 	
   public static void listadoPresupuestos()
