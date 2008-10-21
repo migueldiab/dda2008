@@ -71,6 +71,10 @@ public class Articulo implements Cloneable, Comparable
 	  return "Nombre: "+this.getNombre() + " - Medida: "+this.medida.getDescripcion();
   }
   
+  public String toStringConCosto(){
+	  return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo + " - Costo total: " + this.cantidad*this.costo +"\r";
+  }
+  
   /*
    * Get's & Sets
    */

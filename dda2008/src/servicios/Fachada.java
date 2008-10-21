@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import dominio.*;
-import utils.Consola;
 
 public class Fachada {
 	
@@ -99,36 +98,17 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosGrupos.agregar(grupo);
   }
 
-  public static void unlistado()
-  {
-    // TODO Auto-generated method stub
-    
-  }
+  
 
   public static boolean login(String id, String clave)
   {
     return ServiciosUsuarios.login(id, clave);
   }
 
- /* public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
-  {
-    return ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
-  }
-*/
   public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }
-
-  /* public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(Usuario unUsuario)
-  {
-    return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionDesc(unUsuario);
-  }  
-  
-  public static ArrayList obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(Usuario unUsuario){
-	  return ServiciosPresupuestos.obtenerPresupuestoEnConstruccionPorUsuarioOrdenadoFechaModificacion(unUsuario);
-  }*/
-
 public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
 	return ServiciosPresupuestos.obtenerPresupuestos(unUsuario, Criterio0Asc1Desc, Criterio0XFechaMod1XFechaEje, Criterio0EnConstr1Todos);
 }
@@ -144,12 +124,6 @@ public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
 public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
 	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
 }
-
-
-/*public static ArrayList obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(Usuario unUsuario) {
-	return ServiciosPresupuestos.obtenerPresupuestoPorUsuarioOrdenadoFechaModificacionAsc(unUsuario);
-}*/
-
 
 public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
 	return ServiciosPresupuestos.copiarPresupuesto(unPresupuesto,descripcion);
