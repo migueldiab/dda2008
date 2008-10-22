@@ -23,8 +23,8 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosArticulos.borrar(unArticulo); 
   }
 
-  public static boolean modificarArticulo(Articulo original, Articulo nuevo) {    
-    return ServiciosArticulos.modificar(original, nuevo);
+  public static boolean modificarArticulo(Articulo original,String nombre,Medida medida,int cantidad,double costo) {    
+    return ServiciosArticulos.modificar(original, nombre, medida, cantidad, costo);
   }
 
   public static ArrayList listadoArticulos() {
@@ -36,10 +36,10 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
   public static boolean agregarPresupuesto(Presupuesto unPresupuesto) {
     return ServiciosPresupuestos.agregar(unPresupuesto);
   }
-  public static boolean agregarItemPresupuesto(Presupuesto unPresupuesto,Object unItem){
-	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unItem);
+  public static boolean agregarItemPresupuesto(Presupuesto unPresupuesto,Object unArticulo, int cant){
+	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unArticulo,cant);
   }
-  public static boolean borrarItemPresupuesto(Presupuesto unPresupuesto,Articulo unItem){
+  public static boolean borrarItemPresupuesto(Presupuesto unPresupuesto,Item unItem){
 	  return ServiciosPresupuestos.borrarItem(unPresupuesto, unItem);
   }
   
@@ -51,7 +51,7 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
   public static boolean modificarPresupuesto(Presupuesto unPresupuesto,String descripcion, Date fechaEjecucion) {
     return ServiciosPresupuestos.modificarPresupuesto(unPresupuesto, descripcion, fechaEjecucion);
   }
-  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Articulo item, int cantItem){
+  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Item item, int cantItem){
 	  return ServiciosPresupuestos.modificarItemPresupuesto(unPresupuesto,item, cantItem);
   }
 

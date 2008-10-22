@@ -1,0 +1,115 @@
+class ServiciosUsuarios
+!!!134367.java!!!	login(in usuario : String, in clave : String) : boolean
+
+    Usuario unUsuario = new Usuario(usuario);
+    unUsuario = (Usuario) ServiciosUsuarios.obtener(unUsuario);
+    if (unUsuario != null) { 
+      if (unUsuario.getClave().equals(clave)) {
+        usuarioActual = unUsuario;
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return false;
+    }      
+!!!134495.java!!!	getUsuarioActual() : Usuario
+
+    return usuarioActual;
+!!!134623.java!!!	logout() : boolean
+
+    usuarioActual = null;
+    return true;
+!!!134751.java!!!	agregar(inout unUsuario : Usuario) : boolean
+
+    
+    if (usuarios.indexOf(unUsuario)==-1) {
+      usuarios.add(unUsuario);
+      return true;
+    }
+    else {
+      return false;
+    }        
+!!!134879.java!!!	borrar(inout unUsuario : Usuario) : boolean
+
+    if (usuarios.indexOf(unUsuario)!=-1) {
+      usuarios.remove(unUsuario);
+      return true;
+    }
+    else {
+      return false;
+    }      
+!!!135007.java!!!	modificar(inout original : Usuario, inout nuevo : Usuario) : boolean
+
+    if ((original == null) || (nuevo == null)) return false;
+    int posOriginal = usuarios.indexOf(original);
+    if (posOriginal == -1) return false;
+    int posNuevo = usuarios.indexOf(nuevo);
+    if (posNuevo > -1 && posNuevo != posOriginal) return false;
+    
+    // No se puede modificar el rol de un usuario gestor que sea dueño de algun presupuesto
+    if (!original.getGrupo().equals(nuevo.getGrupo())) {
+      ArrayList presupuestos = null;
+      presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorUsuario(original);
+      if (presupuestos.size() > 0) {
+        return false;
+      }
+    }
+    usuarios.set(posOriginal, nuevo);
+    return true;
+!!!135135.java!!!	cantidad() : int
+
+    
+    return usuarios.size();
+!!!135263.java!!!	obtener(inout unUsuario : Usuario) : Object
+
+    
+    int pos = usuarios.indexOf(unUsuario);
+    if (pos!=-1) { 
+      return usuarios.get(pos);
+    }
+    else {
+      return null;
+    }  
+!!!135391.java!!!	listadoGestores() : ArrayList
+
+	if (cantidad() == 0)
+	return null;
+	else{
+		ArrayList gestores=new ArrayList();
+		for (int i = 0; i < usuarios.size(); i++) {
+		      Usuario unUsuario = (Usuario) usuarios.get(i);
+		      if (unUsuario.getGrupo().getNombre().equals("Gestor")) {
+		    	  gestores.add(unUsuario);
+		      }
+		}		
+		return gestores;
+	}
+	
+!!!135519.java!!!	listado() : ArrayList
+
+    if (cantidad() == 0)
+      return null;
+    else
+    	
+      return usuarios;
+!!!135647.java!!!	listadoGestoresPorNombreUsuario() : ArrayList
+
+	if (cantidad() == 0)
+		return null;
+		else{
+			ArrayList gestores=listadoGestores();
+		Collections.sort(gestores,(new CriterioComparacionPorNombreUsuarioAsc()));
+		return gestores;
+		}
+!!!135775.java!!!	listadoGestoresPorApellido() : ArrayList
+
+	if (cantidad() == 0)
+		return null;
+		else{
+			ArrayList gestores=listadoGestores();
+			Collections.sort(gestores);
+			return gestores;
+	        }

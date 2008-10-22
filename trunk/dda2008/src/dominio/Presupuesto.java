@@ -14,6 +14,7 @@ public class Presupuesto implements Comparable {
   
 
   public static final String EN_CONSTRUCCION = "En Construccion";
+  public static final String FINALIZADO = "Finalizado";
   private static SimpleDateFormat sdf = new SimpleDateFormat(I18n.FORMATO_FECHA);
 
   
@@ -177,8 +178,8 @@ public class Presupuesto implements Comparable {
   public boolean agregarItem(Object object){
   	return items.add(object);
   }
-  public boolean borrarItem(Articulo art){
-  	return items.remove(art);
+  public boolean borrarItem(Item item){
+  	return items.remove(item);
   }
     
   

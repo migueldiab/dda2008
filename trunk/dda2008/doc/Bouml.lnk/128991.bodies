@@ -1,19 +1,6 @@
-package servicios;
+class ServiciosArticulos
+!!!131935.java!!!	agregar(inout o : Object) : boolean
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import dominio.Articulo;
-import dominio.Item;
-import dominio.Medida;
-import dominio.Presupuesto;
-
-public class ServiciosArticulos 
-{
-  private static ArrayList articulos = new ArrayList();
-
-  public static boolean agregar(Object o)
-  {
     
     if (articulos.indexOf((Articulo) o)==-1) {
       articulos.add((Articulo) o);
@@ -22,10 +9,8 @@ public class ServiciosArticulos
     else {
       return false;
     }    
-  }
+!!!132063.java!!!	borrar(inout unArticulo : Articulo) : boolean
 
-  public static boolean borrar(Articulo unArticulo)
-  {
     if (articulos.indexOf(unArticulo)!=-1) {
       ArrayList presupuestos = null;
       presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
@@ -40,18 +25,14 @@ public class ServiciosArticulos
     else {
       return false;
     }      
-  }
+!!!132191.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     if (cantidad() == 0)
       return null;
     else
       return articulos;
-  }
+!!!132319.java!!!	modificar(inout original : Articulo, in nombre : String, inout medida : Medida, in cantidad : int, in costo : double) : boolean
 
-  public static boolean modificar(Articulo original,String nombre,Medida medida,int cantidad,double costo )
-  {
     if (( original == null))  return false;
     int posOriginal = articulos.indexOf( original);
     if (posOriginal == -1) return false;
@@ -68,15 +49,11 @@ public class ServiciosArticulos
     original.setMedida(medida);
     original.setNombre(nombre);
     return true;
-  }
+!!!132447.java!!!	cantidad() : int
 
-  public static int cantidad()
-  {
     return articulos.size();
-  }
+!!!132575.java!!!	obtener(inout o : Object) : Object
 
-  public static Object obtener(Object o)
-  {
     // TODO Auto-generated method stub
     int pos = articulos.indexOf((Articulo) o);
     if (pos!=-1) { 
@@ -85,9 +62,8 @@ public class ServiciosArticulos
     else {
       return null;
     }  
-  }
+!!!132703.java!!!	obtenerArticulosNotIn(inout unPresupuesto : Presupuesto) : ArrayList
 
-  public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
 	ArrayList losArticulos=new ArrayList();
 	boolean existe;
 	try {
@@ -119,5 +95,3 @@ public class ServiciosArticulos
 	}
 	Collections.sort(losArticulos);
 		return losArticulos;
-  }
-}

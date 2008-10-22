@@ -1,0 +1,32 @@
+class Item
+!!!128607.java!!!	Item(inout unArticulo : Articulo, in cantidadItem : int)
+
+	this.setElArticulo(unArticulo);
+	this.setCantidadItem(cantidadItem);
+!!!128735.java!!!	getElArticulo() : Articulo
+
+	return elArticulo;
+!!!128863.java!!!	setElArticulo(inout elArticulo : Articulo) : void
+
+	this.elArticulo = elArticulo;
+!!!128991.java!!!	getCantidadItem() : int
+
+	return cantidadItem;
+!!!129119.java!!!	setCantidadItem(in cantidadItem : int) : void
+
+	this.cantidadItem = cantidadItem;
+!!!129247.java!!!	setCostoFinalizado(in costoFinalizado : double) : void
+
+	this.costoFinalizado = costoFinalizado;
+!!!129375.java!!!	getCostoFinalizado() : double
+
+	return costoFinalizado;
+!!!129503.java!!!	toString() : String
+
+	if(this.getCostoFinalizado()>0){
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida()+" - Cantidad: "+this.getCantidadItem()+" - Costo Articulo: "+this.getCostoFinalizado() + " - Costo Item: "+ this.getCostoFinalizado()*this.getCantidadItem()+"\r";
+	}else{
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida()+" - Cantidad: "+this.getCantidadItem()+" - Costo Articulo: "+this.getElArticulo().getCosto() + " - Costo Item: "+ this.getElArticulo().getCosto()*this.getCantidadItem()+"\r";	
+	}
+	
+	
