@@ -47,6 +47,7 @@ public class ServiciosArticulos
     if (cantidad() == 0)
       return null;
     else
+    	Collections.sort(articulos);
       return articulos;
   }
 

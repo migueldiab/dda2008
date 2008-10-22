@@ -11,7 +11,7 @@ import dominio.*;
 
 public class ServiciosPresupuestos
 {
-  private static ArrayList presupuestos = new ArrayList();
+	private static ArrayList presupuestos = new ArrayList();
   
   public static boolean agregar(Presupuesto unPresupuesto){
     Date now=new Date();
@@ -298,6 +298,15 @@ public class ServiciosPresupuestos
 	return true;
 	
   }
+public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
+	Date now=new Date();
+	if(unPresupuesto.getFechaEjecucion()==null){
+		return false;
+	}else if(unPresupuesto.getFechaEjecucion().after(now)){
+		return false;
+	}
+	return true;
+}
 
   
   

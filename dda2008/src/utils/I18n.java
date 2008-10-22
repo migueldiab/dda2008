@@ -80,7 +80,11 @@ public static final String DESEA_FECHA_EJECUCION = "Desea ingresar una fecha de 
 
 public static final String SELECCIONE_ARTICULO = " Seleccione Articulo: ";
 
-public static final String PRESUPUESTO_YA_EXSTE = "Ya existe un presupuesto con el mismo dueño y descripcion. ";  
+public static final String PRESUPUESTO_YA_EXSTE = "Ya existe un presupuesto con el mismo dueño y descripcion. ";
+
+public static final String FECHAEJECUCION_MAL = "Fecha de Ejecucion no existe o es mayor a actual.";
+
+
   public static void setFormato(String mascara)
   {
     sdf = new SimpleDateFormat(mascara);

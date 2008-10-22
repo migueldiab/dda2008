@@ -159,4 +159,9 @@ public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual
 }
 
 
+public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
+	return ServiciosPresupuestos.validoFechaEjecucion(unPresupuesto);
+}
+
+
 }
