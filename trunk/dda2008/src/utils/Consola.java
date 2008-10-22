@@ -6,6 +6,7 @@ import java.util.*;
 
 import dominio.Articulo;
 import dominio.Presupuesto;
+import dominio.Item;
 
 
 
@@ -173,7 +174,7 @@ public class Consola {
   }
 	
   public static int menu(ArrayList opciones){
-	
+	  int salida=opciones.size();
 		for(int x=0;x<opciones.size();x++){
 			println( (x+1) + "-" + opciones.get(x).toString());
 		}
@@ -182,72 +183,66 @@ public class Consola {
       println(I18n.SEPARADOR);
       opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
 			
-		}while(opcion < 0 || opcion >= opciones.size());
+		}while(opcion < 0 || opcion > opciones.size());
+		 if (opcion!=salida){
 		return opcion;
+		 }
+		 return -1;
 	}
   
-  public static Object agregoItems(ArrayList opciones,String titulo){
-	  	int salida=opciones.size();
-	  
-	  	println(I18n.SEPARADOR);
-	    println("|   "+titulo);
-	    println(I18n.SEPARADOR);
-	    
-	    for(int x=0;x<opciones.size();x++){
-			println( (x+1) + "-" + ((Articulo) opciones.get(x)).toStringNombreMedida());
-		}
-		println((opciones.size()+1)+ " Salir ");
-		int opcion;
-		do{
-    println(I18n.SEPARADOR);
-    opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
-			
-		}while(opcion > opciones.size()||opcion <0);
-		if (opcion!=salida){
-			return opciones.get(opcion);
-			}
-		
-		
-		return null;
-  }
+
   
-  public static int menu(ArrayList opciones, String titulo){
+  /**
+ * @param ArrayList opciones
+ * @param String titulo
+ * @param 0 Any - 1 Articulo - 2 Item - 3 Presupuesto Id,Descripcion,FechaModificacion - 4 Presupuesto toString sin Items
+ * @return
+ */
+  public static Object menu(ArrayList opciones,String titulo,int tipo){
+	  int salida=opciones.size();
+
+	  println(I18n.SEPARADOR);
+	  println("|   "+titulo);
+	  println(I18n.SEPARADOR);
+
+	  for(int x=0;x<opciones.size();x++){
+		  if(tipo==1){
+			  println( (x+1) + "-" + ((Articulo) opciones.get(x)).toStringNombreMedida());
+		  }
+		  else if(tipo==2){
+			  println( (x+1) + "-" + ((Item) opciones.get(x)).getElArticulo().toStringNombreMedida());
+		  }
+		  else if(tipo==3)	{
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringIdDescFechaMod());
+		  }
+		  else if(tipo==4)	{
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringSinItems());
+		  }
+		  else{
+			  println( (x+1) + "-" + opciones.get(x).toString());
+		  }
+	  }
+	  println((opciones.size()+1)+ " Salir ");
+	  int opcion;
+	  do{
+		  println(I18n.SEPARADOR);
+		  opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+
+	  }while(opcion < 0 || opcion > opciones.size());
+	  if (opcion!=salida){
+		  return opciones.get(opcion);
+	  }
+	  return null;
+  }
+
+public static int menu(ArrayList opciones, String titulo){
     println(I18n.SEPARADOR);
     println("|   "+titulo);
     println(I18n.SEPARADOR);
     return menu(opciones);
   }
   
-  public static int menuPresupuestos(ArrayList opciones){
-	   for(int x=0;x<opciones.size();x++){
-			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringIdDescFechaMod());
-	   }
-	  
-	 	int opcion;
-		do{
-    println(I18n.SEPARADOR);
-    opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
-			
-		}while(opcion < 0 || opcion >= opciones.size());
-		return opcion;
-	
-  }
-
-  public static int menuPresupuestostoStringSinItems(ArrayList opciones){
-	   for(int x=0;x<opciones.size();x++){
-			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringSinItems());
-	   }
-	  
-	 	int opcion;
-		do{
- println(I18n.SEPARADOR);
- opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
-			
-		}while(opcion < 0 || opcion >= opciones.size());
-		return opcion;
-	  
-	  
-  }
+  
   
   public static double leerDouble(String msg)
   {

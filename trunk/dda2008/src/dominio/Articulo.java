@@ -165,9 +165,9 @@ public int compareTo(Object o) {
 	    try
 	    {
 	      Articulo articulo = (Articulo)o;
-	      int retorno= articulo.getNombre().compareTo(this.getNombre())*-1;
+	      int retorno= articulo.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
 	      if (retorno==0){
-	    	  retorno=articulo.getMedida().getDescripcion().compareTo(this.getMedida().getDescripcion())*-1;
+	    	  retorno=articulo.getMedida().getDescripcion().toUpperCase().compareTo(this.getMedida().getDescripcion().toUpperCase())*-1;
 	      }
 	      return retorno;
 	    }
