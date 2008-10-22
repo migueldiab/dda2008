@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import dominio.Articulo;
+import dominio.Item;
 import dominio.Presupuesto;
 import dominio.Usuario;
 
@@ -44,28 +45,26 @@ public class UiPresupuesto
   }
   public static void agregarItems(Presupuesto unPresupuesto){
 		int cant=0;
-	  Object item=null;
+	  Object articulo=null;
 	do{
-		  item=Consola.agregoItems(Fachada.obtenerArticulosNotIn(unPresupuesto),I18n.SELECCIONE_ARTICULO);
-		if(item!=null){
-			Consola.println(((Articulo)item).toString());
+		  articulo=Consola.agregoItems(Fachada.obtenerArticulosNotIn(unPresupuesto),I18n.SELECCIONE_ARTICULO);
+		if(articulo!=null){
+			Consola.println(((Articulo)articulo).toString());
 			cant=Consola.leerInt("|  "+I18n.SELECCIONE_CANTIDAD+" : ");
-			if (cant<=((Articulo)item).getCantidad()&& cant>0){
-				Articulo itemClone =(Articulo) ((Articulo)item).clone();
-				itemClone.setCantidad(cant);
-				Fachada.agregarItemPresupuesto(unPresupuesto, itemClone);
+			if (cant<=((Articulo)articulo).getCantidad()&& cant>0){
+				Fachada.agregarItemPresupuesto(unPresupuesto, articulo,cant);
 			}else{
 				Consola.println("|  "+I18n.CANTIDAD_MAL+" ");
 				break;
 			}
 			Fachada.calcularCosto(unPresupuesto);
 			for(int x=0;x<unPresupuesto.getItems().size();x++){
-				  Consola.println(((Articulo) unPresupuesto.getItems().get(x)).toStringConCosto());
+				  Consola.println(((Item) unPresupuesto.getItems().get(x)).getElArticulo().toStringConCosto());
 		   }
 			Consola.println("Costo Total: "+unPresupuesto.getCosto());
 			
 		} 
-	}while (item!=null);
+	}while (articulo!=null);
 }
   
   private static void borrarItems(Presupuesto unPresupuesto) {
@@ -75,9 +74,16 @@ public class UiPresupuesto
 			     Consola.leer(I18n.PRESIONE_ENTER);
 			     }
 			     else {
-		int posItem = Consola.menu(items, I18n.SELECCIONE_ITEM_BORRAR);
-			Articulo unItem=(Articulo) items.get(posItem);
-			Fachada.borrarItemPresupuesto(unPresupuesto, unItem);
+			    	 int posItem = Consola.menu(items, I18n.SELECCIONE_ITEM_BORRAR);
+			    	 Item unItem=(Item) items.get(posItem);
+			    	 String confirma=Consola.leer(I18n.CONFIRMA_ELIMINAR);
+			    	 if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
+			    		 Fachada.borrarItemPresupuesto(unPresupuesto, unItem);
+			    	 }
+			    	 else{
+			    		 Consola.println(I18n.CANCELADA);
+			    		 Consola.leer(I18n.PRESIONE_ENTER); 
+			    	 }
 			     }
 		
 	}
@@ -164,7 +170,7 @@ public class UiPresupuesto
  
 public static void modificarItems(Presupuesto unPresupuesto){
 	
-	Articulo item=null;
+	Item item=null;
 	int posItem=0;
     int cantItem=0;
 	ArrayList items = unPresupuesto.getItems();
@@ -174,9 +180,9 @@ public static void modificarItems(Presupuesto unPresupuesto){
 	}
 	else{
     posItem = Consola.menu(items);
-    item = (Articulo) items.get(posItem);
-    cantItem=Consola.modificarInt(I18n.CANTIDAD, item.getCantidad());
-    if (cantItem<=((Articulo)item).getCantidad()&& cantItem>0){
+    item = (Item) items.get(posItem);
+    cantItem=Consola.modificarInt(I18n.CANTIDAD, item.getCantidadItem());
+    if (cantItem<=((Articulo)item.getElArticulo()).getCantidad()&& cantItem>0){
     	String confirma = Consola.leer(I18n.MODIFICA_ITEMS);
 	    if (confirma.toUpperCase().equals(I18n.SI.toUpperCase())){
 	    	Fachada.modificarItemPresupuesto(unPresupuesto,item,cantItem);

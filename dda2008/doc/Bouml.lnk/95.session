@@ -1,0 +1,17 @@
+window_sizes 1024 696 161 857 512 82
+diagrams
+  active  classdiagram_ref 128002 // Conceptual
+    857 540 100 4 0 2
+  classdiagram_ref 130306 // Diseño
+    618 432 100 14 123 0
+end
+show_stereotypes
+selected classdiagram_ref 128002 // Conceptual
+open
+  
+package_ref 128002 // src
+  classview_ref 128770 // Diagrama de Clases
+  
+package_ref 130050 // unknown
+end
+end

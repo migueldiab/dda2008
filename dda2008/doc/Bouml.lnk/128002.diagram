@@ -1,12 +1,25 @@
-format 59
+format 61
 
 classcanvas 128002 class_ref 128642 // Usuario
   draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 233 241 2000
+  xyz 232 335 2000
+end
+classcanvas 128095 class_ref 128735 // Item
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
+  hidden_operations
+    operation_ref 128607 // Item
+    operation_ref 128735 // getElArticulo
+    operation_ref 128863 // setElArticulo
+    operation_ref 128991 // getCantidadItem
+    operation_ref 129119 // setCantidadItem
+    operation_ref 129247 // setCostoFinalizado
+    operation_ref 129375 // getCostoFinalizado
+    operation_ref 129503 // toString
+  xyz 35 179 3005
 end
 classcanvas 128130 class_ref 128514 // Presupuesto
   draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 31 224 2004
+  xyz 30 317 2004
 end
 classcanvas 128386 class_ref 128386 // Medida
   draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -14,35 +27,45 @@ classcanvas 128386 class_ref 128386 // Medida
 end
 classcanvas 128514 class_ref 128258 // Articulo
   draw_all_relations default hide_attributes no hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 56 20 3005
+  xyz 55 20 3005
 end
 classcanvas 128898 class_ref 128130 // Permiso
   draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 540 249 2000
+  xyz 539 343 2000
 end
 classcanvas 129026 class_ref 128002 // Grupo
   draw_all_relations default hide_attributes default hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
-  xyz 375 259 2004
+  xyz 374 353 2004
+end
+relationcanvas 128223 relation_ref 128607 // <unidirectional association>
+  from ref 128095 z 1999 to ref 128514
+  role_a_pos 94 127 3000 no_role_b
+  multiplicity_a_pos 67 127 3000 multiplicity_b_pos 67 158 3000
 end
 relationcanvas 128258 relation_ref 128258 // <unidirectional association>
   from ref 128130 z 1999 to ref 128002
-  role_a_pos 184 271 3000 no_role_b
-  multiplicity_a_pos 215 298 3000 no_multiplicity_b
+  role_a_pos 183 364 3000 no_role_b
+  multiplicity_a_pos 214 391 3000 multiplicity_b_pos 150 391 3000
+end
+relationcanvas 128607 relation_ref 128735 // <directional composition>
+  from ref 128130 z 2003 to ref 128095
+  no_role_a no_role_b
+  multiplicity_a_pos 69 252 3000 multiplicity_b_pos 67 296 3000
 end
 relationcanvas 128642 relation_ref 128130 // <unidirectional association>
   from ref 128514 z 1999 to ref 128386
   role_a_pos 353 49 3000 no_role_b
-  multiplicity_a_pos 388 76 3000 no_multiplicity_b
+  multiplicity_a_pos 388 76 3000 multiplicity_b_pos 123 76 3000
 end
 relationcanvas 129154 relation_ref 128002 // <unidirectional association>
-  from ref 129026 z 1999 stereotype "<<ArrayList>>" xyz 446 290 3000 to ref 128898
-  role_a_pos 476 271 3000 no_role_b
+  from ref 129026 z 1999 stereotype "<<ArrayList>>" xyz 445 384 3000 to ref 128898
+  role_a_pos 475 365 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129282 relation_ref 128514 // <unidirectional association>
   from ref 128002 z 1999 to ref 129026
-  role_a_pos 332 271 3000 no_role_b
-  multiplicity_a_pos 357 298 3000 no_multiplicity_b
+  role_a_pos 331 365 3000 no_role_b
+  multiplicity_a_pos 356 392 3000 multiplicity_b_pos 298 392 3000
 end
 relationcanvas 129410 relation_ref 132994 // <aggregation>
   from ref 129026 z 1999 to ref 128898
@@ -52,11 +75,6 @@ end
 relationcanvas 129666 relation_ref 134146 // <directional aggregation>
   from ref 129026 z 1999 to ref 128898
   no_role_a no_role_b
-  multiplicity_a_pos 511 298 3000 no_multiplicity_b
-end
-relationcanvas 129794 relation_ref 135170 // <directional composition>
-  from ref 128130 z 2003 to ref 128514
-  role_a_pos 95 127 3000 no_role_b
-  multiplicity_a_pos 57 127 3000 no_multiplicity_b
+  multiplicity_a_pos 510 392 3000 no_multiplicity_b
 end
 end

@@ -148,7 +148,7 @@ public class Articulo implements Cloneable, Comparable
   {
     this.nombre = nombre;
   }
-  public Object clone(){
+ /*public Object clone(){
 	  Object o=null;
 	  try{
 		  o=super.clone();
@@ -159,7 +159,7 @@ public class Articulo implements Cloneable, Comparable
 
 	  return o;
 	  
-  }
+  }*/
 public int compareTo(Object o) {
 	{
 	    try

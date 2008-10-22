@@ -1,7 +1,7 @@
-format 59
+format 61
 "dominio" // src::dominio
-  revision 2
-  modified_by 2 "sg0894180"
+  revision 3
+  modified_by 95 "Marcos"
   // class settings
   //class diagram settings
   draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default show_stereotype_properties default
@@ -181,10 +181,6 @@ Get's & Sets
 "
       end
 
-      classrelation 133506 // <aggregation>
-	relation_ref 132866 // <aggregation>
-      end
-
       classrelation 133634 // <aggregation>
 	relation 132994 o---
 	  a role_name "" private
@@ -195,10 +191,6 @@ Get's & Sets
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 133762 // <aggregation>
-      end
-
-      classrelation 134274 // <aggregation>
-	relation_ref 133250 // <aggregation>
       end
 
       classrelation 135298 // <directional aggregation>
@@ -400,7 +392,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128130 // medida (<unidirectional association>)
-	  b parent class_ref 128386 // Medida
+	  b multiplicity "*" parent class_ref 128386 // Medida
       end
 
       attribute 128642 "costo"
@@ -571,9 +563,6 @@ Get's & Sets
 "
       end
 
-      classrelation 132482 // <aggregation>
-	relation_ref 132354 // <aggregation>
-      end
     end
 
     class 128386 "Medida"
@@ -713,9 +702,6 @@ Get's & Sets
 "
       end
 
-      classrelation 132738 // <aggregation>
-	relation_ref 132482 // <aggregation>
-      end
     end
 
     class 128514 "Presupuesto"
@@ -785,7 +771,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128258 // duenio (<unidirectional association>)
-	  b parent class_ref 128642 // Usuario
+	  b multiplicity "*" parent class_ref 128642 // Usuario
       end
 
       attribute 130178 "estado"
@@ -1033,10 +1019,6 @@ Get's & Sets
 "
       end
 
-      classrelation 132994 // <aggregation>
-	relation_ref 132610 // <aggregation>
-      end
-
       classrelation 136322 // articulos (<directional composition>)
 	relation 135170 *-->
 	  a role_name "articulos" multiplicity "1..*" private
@@ -1044,6 +1026,15 @@ Get's & Sets
 "
 	    classrelation_ref 136322 // articulos (<directional composition>)
 	  b parent class_ref 128258 // Articulo
+      end
+
+      classrelation 128735 // <directional composition>
+	relation 128735 *-->
+	  a role_name "" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128735 // <directional composition>
+	  b multiplicity "1" parent class_ref 128735 // Item
       end
     end
 
@@ -1104,7 +1095,7 @@ ${members}}
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
 	    classrelation_ref 128514 // grupo (<unidirectional association>)
-	  b parent class_ref 128002 // Grupo
+	  b multiplicity "*" parent class_ref 128002 // Grupo
       end
 
       operation 133506 "Usuario"
@@ -1324,8 +1315,283 @@ Overrides
 "
       end
 
-      classrelation 133250 // <aggregation>
-	relation_ref 132738 // <aggregation>
+    end
+
+    class 128095 "CriterioComparacionPorFechaEjecucionYModificacionDesc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128095 // <realization>
+	relation 128095 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128095 // <realization>
+	  b parent class_ref 128223 // Comparator
+      end
+
+      operation 128095 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128351 "CriterioComparacionPorFechaModificacionAsc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128223 // <realization>
+	relation 128223 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128223 // <realization>
+	  b parent class_ref 128223 // Comparator
+      end
+
+      operation 128223 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128479 "CriterioComparacionPorFechaModificacionDesc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128351 // <realization>
+	relation 128351 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128351 // <realization>
+	  b parent class_ref 128223 // Comparator
+      end
+
+      operation 128351 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128607 "CriterioComparacionPorNombreUsuarioAsc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 128479 // <realization>
+	relation 128479 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 128479 // <realization>
+	  b parent class_ref 128223 // Comparator
+      end
+
+      operation 128479 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unUsuario1" explicit_type "Object"
+	  param inout name "unUsuario2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 128735 "Item"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 128095 "cantidadItem"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 128607 // elArticulo (<unidirectional association>)
+	relation 128607 --->
+	  a role_name "elArticulo" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128607 // elArticulo (<unidirectional association>)
+	  b multiplicity "1" parent class_ref 128258 // Articulo
+      end
+
+      attribute 128223 "costoFinalizado"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 128607 "Item"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "unArticulo" type class_ref 128258 // Articulo
+	  param in name "cantidadItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128735 "getElArticulo"
+	public return_type class_ref 128258 // Articulo
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128863 "setElArticulo"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "elArticulo" type class_ref 128258 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 128991 "getCantidadItem"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129119 "setCantidadItem"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "cantidadItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129247 "setCostoFinalizado"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "costoFinalizado" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129375 "getCostoFinalizado"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129503 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
       end
     end
   end
@@ -1400,6 +1666,54 @@ ${imports}
 ${definition}"
       associated_classes
 	class_ref 128642 // Usuario
+      end
+    end
+
+    artifact 128095 "CriterioComparacionPorFechaEjecucionYModificacionDesc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 128095 // CriterioComparacionPorFechaEjecucionYModificacionDesc
+      end
+    end
+
+    artifact 128223 "CriterioComparacionPorFechaModificacionAsc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 128351 // CriterioComparacionPorFechaModificacionAsc
+      end
+    end
+
+    artifact 128351 "CriterioComparacionPorFechaModificacionDesc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 128479 // CriterioComparacionPorFechaModificacionDesc
+      end
+    end
+
+    artifact 128479 "CriterioComparacionPorNombreUsuarioAsc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 128607 // CriterioComparacionPorNombreUsuarioAsc
       end
     end
   end

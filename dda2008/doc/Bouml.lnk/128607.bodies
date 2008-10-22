@@ -1,0 +1,6 @@
+class CriterioComparacionPorNombreUsuarioAsc
+!!!128479.java!!!	compare(inout unUsuario1 : Object, inout unUsuario2 : Object) : int
+
+    Usuario u1=(Usuario)unUsuario1;
+    Usuario u2=(Usuario)unUsuario2;
+    return u1.getId().compareTo(u2.getId());

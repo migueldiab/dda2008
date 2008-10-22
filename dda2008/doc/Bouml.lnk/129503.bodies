@@ -1,0 +1,109 @@
+class Fachada
+!!!135903.java!!!	getUsuarioActual() : Usuario
+
+	return ServiciosUsuarios.getUsuarioActual();  
+!!!136031.java!!!	agregarArticulo(inout unArticulo : Articulo) : boolean
+
+    return ServiciosArticulos.agregar(unArticulo);
+!!!136159.java!!!	borrarArticulo(inout unArticulo : Articulo) : boolean
+
+    return ServiciosArticulos.borrar(unArticulo); 
+!!!136287.java!!!	modificarArticulo(inout original : Articulo, in nombre : String, inout medida : Medida, in cantidad : int, in costo : double) : boolean
+    
+    return ServiciosArticulos.modificar(original, nombre, medida, cantidad, costo);
+!!!136415.java!!!	listadoArticulos() : ArrayList
+
+    return ServiciosArticulos.listado();
+!!!136543.java!!!	calcularCosto(inout unPresupuesto : Presupuesto) : void
+
+		ServiciosPresupuestos.calcularCosto(unPresupuesto);
+!!!136671.java!!!	agregarPresupuesto(inout unPresupuesto : Presupuesto) : boolean
+
+    return ServiciosPresupuestos.agregar(unPresupuesto);
+!!!136799.java!!!	agregarItemPresupuesto(inout unPresupuesto : Presupuesto, inout unArticulo : Object, in cant : int) : boolean
+
+	  return ServiciosPresupuestos.agregarItem(unPresupuesto, unArticulo,cant);
+!!!136927.java!!!	borrarItemPresupuesto(inout unPresupuesto : Presupuesto, inout unItem : Item) : boolean
+
+	  return ServiciosPresupuestos.borrarItem(unPresupuesto, unItem);
+!!!137055.java!!!	borrarPresupuesto(inout unPresupuesto : Presupuesto) : boolean
+
+    ServiciosPresupuestos.borrar(unPresupuesto);
+    return true;
+!!!137183.java!!!	modificarPresupuesto(inout unPresupuesto : Presupuesto, in descripcion : String, inout fechaEjecucion : Date) : boolean
+
+    return ServiciosPresupuestos.modificarPresupuesto(unPresupuesto, descripcion, fechaEjecucion);
+!!!137311.java!!!	modificarItemPresupuesto(inout unPresupuesto : Presupuesto, inout item : Item, in cantItem : int) : boolean
+
+	  return ServiciosPresupuestos.modificarItemPresupuesto(unPresupuesto,item, cantItem);
+!!!137439.java!!!	listadoPresupuestos() : ArrayList
+
+    return ServiciosPresupuestos.listado();
+!!!137567.java!!!	agregarUsuario(inout unUsuario : Usuario) : boolean
+
+    return ServiciosUsuarios.agregar(unUsuario);
+    
+!!!137695.java!!!	borrarUsuario(inout usuario : Usuario) : boolean
+
+     return ServiciosUsuarios.borrar(usuario);
+!!!137823.java!!!	modificarUsuario(inout original : Usuario, inout usuario : Usuario) : boolean
+
+    return ServiciosUsuarios.modificar(original, usuario);
+!!!137951.java!!!	listadoUsuarios() : ArrayList
+
+    return ServiciosUsuarios.listado();
+!!!138079.java!!!	cerrarSesion() : boolean
+
+    return ServiciosUsuarios.logout();
+!!!138207.java!!!	listaMedidas() : ArrayList
+
+    return ServiciosMedidas.listado();
+!!!138335.java!!!	agregarMedida(inout medida : Medida) : boolean
+
+    return ServiciosMedidas.agregar(medida);    
+!!!138463.java!!!	listaGrupos() : ArrayList
+
+    return ServiciosGrupos.listado();
+!!!138591.java!!!	agregarGrupo(inout grupo : Grupo) : boolean
+
+    return ServiciosGrupos.agregar(grupo);
+!!!138719.java!!!	login(in id : String, in clave : String) : boolean
+
+    return ServiciosUsuarios.login(id, clave);
+!!!138847.java!!!	obtenerPresupuestoPorArticuloEstadoConFecha(inout unArticulo : Articulo, in unEstado : String) : ArrayList
+
+    return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
+!!!138975.java!!!	obtenerPresupuestos(inout unUsuario : Usuario, in Criterio0Asc1Desc : int, in Criterio0XFechaMod1XFechaEje : int, in Criterio0EnConstr1Todos : int) : ArrayList
+
+	return ServiciosPresupuestos.obtenerPresupuestos(unUsuario, Criterio0Asc1Desc, Criterio0XFechaMod1XFechaEje, Criterio0EnConstr1Todos);
+!!!139103.java!!!	obtenerItems(inout unPresupuesto : Presupuesto) : ArrayList
+
+	return ServiciosPresupuestos.obtenerItems(unPresupuesto);
+!!!139231.java!!!	finalizarPresupuesto(inout unPresupuesto : Presupuesto) : boolean
+
+	return ServiciosPresupuestos.finalizarPresupuestos(unPresupuesto);
+!!!139359.java!!!	validoCantidadesFinalizacion(inout unPresupuesto : Presupuesto) : boolean
+
+	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
+!!!139487.java!!!	copiarPresupuesto(inout unPresupuesto : Presupuesto, in descripcion : String) : Presupuesto
+
+	return ServiciosPresupuestos.copiarPresupuesto(unPresupuesto,descripcion);
+!!!139615.java!!!	listadoGestores() : ArrayList
+
+	return ServiciosUsuarios.listadoGestores();
+!!!139743.java!!!	listadoGestoresPorApellido() : ArrayList
+
+	return ServiciosUsuarios.listadoGestoresPorApellido();
+!!!139871.java!!!	listadoGestoresPorNombreUsuario() : ArrayList
+
+	return ServiciosUsuarios.listadoGestoresPorNombreUsuario();
+!!!139999.java!!!	cambiarDuenio(inout unPresupuesto : Presupuesto, inout nuevoDuenio : Usuario) : boolean
+
+return ServiciosPresupuestos.cambiarDuenio(unPresupuesto,nuevoDuenio);
+	
+!!!140127.java!!!	obtenerArticulosNotIn(inout unPresupuesto : Presupuesto) : ArrayList
+
+	return ServiciosArticulos.obtenerArticulosNotIn(unPresupuesto);
+!!!140255.java!!!	validoPresupuesto(in descripcion : String, inout usuarioActual : Usuario) : boolean
+
+	return ServiciosPresupuestos.validoPresupuesto(descripcion,usuarioActual);

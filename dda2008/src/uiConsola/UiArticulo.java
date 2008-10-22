@@ -94,9 +94,7 @@ public class UiArticulo
       String confirma = Consola.leer(I18n.CONFIRMA_MODIFICAR);
       if (confirma.toUpperCase().equals(I18n.SI.toUpperCase()))
       {
-        if (Fachada.modificarArticulo(
-             original,
-             new Articulo(nombre, medida, cantidad, costo))) {
+        if (Fachada.modificarArticulo(original,nombre, medida, cantidad, costo)) {
           Consola.println(I18n.MODIFICADO_OK);
           Consola.leer(I18n.PRESIONE_ENTER);
        }
