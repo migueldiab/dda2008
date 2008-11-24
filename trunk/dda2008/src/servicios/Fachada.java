@@ -164,4 +164,9 @@ public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
 }
 
 
+public static boolean vistaLogin(String id, char[] password) {
+  return ServiciosUsuarios.vistaLogin(id, password);
+  }
+
+
 }

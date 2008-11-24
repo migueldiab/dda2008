@@ -138,4 +138,9 @@ public static ArrayList listadoGestoresPorApellido() {
 			return gestores;
 	        }
 }
+
+public static boolean vistaLogin(String id, char[] password) {
+  String clave = new String(password);
+  return login(id, clave);
+}
 }

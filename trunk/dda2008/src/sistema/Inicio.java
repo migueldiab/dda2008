@@ -7,13 +7,22 @@ import servicios.Fachada;
 import servicios.ServiciosUsuarios;
 import uiConsola.*;
 import utils.I18n;
+import vistas.VistaLogin;
 
 public class Inicio {
 
+  public static VistaLogin ventana = new VistaLogin();
+  
   /**
    * @param args
    */
   public static void main(String[] args) {
+    cargarDatosInicio();
+    ventana.setVisible(true);   
+
+  }
+
+  private static void cargarDatosInicio() {
     
     ArrayList losArticulos = new ArrayList();
 
@@ -128,18 +137,7 @@ public class Inicio {
       e.printStackTrace();
     }
     
-
-    boolean salir = false;
-    while (!salir) {
-      UiInicio.login();
-      if (ServiciosUsuarios.getUsuarioActual() != null) {
-        salir = UiInicio.MenuPrincipal();                 
-      }
-      else {
-        salir = true;
-      }
-    }
-
+    
   }
 
 }
