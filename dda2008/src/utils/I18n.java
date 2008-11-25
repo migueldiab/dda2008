@@ -84,6 +84,8 @@ public static final String PRESUPUESTO_YA_EXSTE = "Ya existe un presupuesto con 
 
 public static final String FECHAEJECUCION_MAL = "Fecha de Ejecucion no existe o es mayor a actual.";
 
+public static final String MEDIDAS = "Medidas";
+
 
   public static void setFormato(String mascara)
   {

@@ -32,7 +32,7 @@ public class VistaLogin extends JDialog {
 	public VistaLogin() {
 		super();
 		initialize();
-    VistaPrincipal.cargar();
+		//VistaPrincipal.cargar();
 	}
 
 	/**
@@ -43,8 +43,8 @@ public class VistaLogin extends JDialog {
 	private void initialize() {
 		this.setSize(250, 180);
 		this.setContentPane(getJContentPane());
-    this.setTitle("Acceso a Sistema de Presupuestos");
-    //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+		this.setTitle("Acceso a Sistema de Presupuestos");
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
 	}
 
   /**
