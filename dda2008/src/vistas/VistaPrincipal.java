@@ -151,14 +151,14 @@ public class VistaPrincipal {
 	        public void actionPerformed(ActionEvent e) {
 	          
 	          if (dUsuario == null) {
-	            /*gUsuarios guiUsuario = new gUsuarios();
+	        	VistaUsuarios guiUsuario = new VistaUsuarios();
 	            dUsuario = guiUsuario.getDAbmUsuarios();
 	            dUsuario.pack();
 	            Point loc = getJFrame().getLocation();
 	            loc.translate(20, 20);
 	            dUsuario.setLocation(loc);
 	            dUsuario.setBounds(10,10,350,300);
-	            dUsuario.setVisible(true);*/            
+	            dUsuario.setVisible(true);            
 	          }
 	          else {
 	            dUsuario.setVisible(true);
