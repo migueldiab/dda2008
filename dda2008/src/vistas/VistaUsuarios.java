@@ -294,12 +294,9 @@ public class VistaUsuarios extends JFrame {
     tNombre.setText("Test2");
   }
   private void guardarUsuario() {
-    /*Usuario unUsuario = Fachada.getUsuarioPorId(tId.getText());    
-    if (unUsuario == null)
-      unUsuario = new Usuario();
-    
-    if ((unUsuario.getId()==null) || (JOptionPane.showConfirmDialog(
-        null,"Desea sobrescribir el usuario "+tId.getText()+"?",
+    Usuario unUsuario = Fachada.getUsuarioPorId(tId.getText());    
+    if ((unUsuario==null) || (JOptionPane.showConfirmDialog(
+        null,"Desea guardar los cambios al usuario "+tId.getText()+"?",
         "Confirma guardar?",
         JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
       )
@@ -310,12 +307,12 @@ public class VistaUsuarios extends JFrame {
           cGrupo.getSelectedIndex()!=-1
         )    
       {      
-        unUsuario.setId(tId.getText());
+        if (unUsuario==null) unUsuario = new Usuario(tId.getText());
         unUsuario.setNombre(tNombre.getText());
         unUsuario.setApellido(tApellido.getText());
         unUsuario.setClave(tClave1.getText());
         unUsuario.setGrupo((Grupo) cGrupo.getSelectedItem());
-        if (Interfaz.agregarUsuario(unUsuario)) {
+        if (Fachada.agregarUsuario(unUsuario)) {
           lInfo.setForeground(new Color(65, 190, 79));
           lInfo.setText("Usuario " + tId.getText() + " guardado");
           cargarListas();
@@ -330,7 +327,7 @@ public class VistaUsuarios extends JFrame {
         lInfo.setForeground(new Color(190, 65, 79));
         lInfo.setText("Complete los datos del usuario antes de guardarlo");        
       }
-    }*/
+    }
   }
 
   /**

@@ -169,4 +169,9 @@ public static boolean vistaLogin(String id, char[] password) {
   }
 
 
+public static Usuario getUsuarioPorId(String id) {
+  return ServiciosUsuarios.getUsuarioPorId(id);
+}
+
+
 }
