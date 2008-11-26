@@ -50,6 +50,7 @@ public class ServiciosUsuarios
   }
   public static boolean borrar(Usuario unUsuario) {
     if (usuarios.indexOf(unUsuario)!=-1) {
+      // FIXME : Tiene que ver que no tenga presupuestos y eso...
       usuarios.remove(unUsuario);
       return true;
     }
