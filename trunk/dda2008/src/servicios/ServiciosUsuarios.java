@@ -144,4 +144,12 @@ public static boolean vistaLogin(String id, char[] password) {
   String clave = new String(password);
   return login(id, clave);
 }
+
+public static Usuario getUsuarioPorId(String id) {
+  for (Object u : usuarios) {
+    if (((Usuario) u).getId().equals(id))
+      return (Usuario) u;
+  }
+  return null;
+}
 }
