@@ -86,6 +86,10 @@ public static final String FECHAEJECUCION_MAL = "Fecha de Ejecucion no existe o 
 
 public static final String MEDIDAS = "Medidas";
 
+public static final String ARTICULOS_COMPUESTOS = "Articulos Compuestos";
+
+public static final String MONITOR_STOCK = "Monitor de Stock";
+
 
   public static void setFormato(String mascara)
   {

@@ -9,10 +9,11 @@ import dominio.Usuario;
 
 import servicios.Fachada;
 import servicios.ServiciosUsuarios;
+import java.awt.Rectangle;
 
 public class VistaUsuarios extends JFrame {
 
-  private JDialog dAbmUsuarios = null;
+  private JDialog dAbmUsuarios = null;  //  @jve:decl-index=0:visual-constraint="132,10"
   private JPanel pAbmUsuarios = null;
   private JLabel lNombre = null;
   private JTextField tNombre = null;
@@ -39,7 +40,7 @@ public class VistaUsuarios extends JFrame {
   public JDialog getDAbmUsuarios() {
     if (dAbmUsuarios == null) {
       dAbmUsuarios = new JDialog();
-      dAbmUsuarios.setBounds(new Rectangle(0, 0, 380, 290));
+      dAbmUsuarios.setBounds(new Rectangle(0, 0, 500, 290));
       dAbmUsuarios.setContentPane(getPAbmUsuarios());
       dAbmUsuarios.setTitle("ABM Usuarios");
     }
@@ -54,7 +55,7 @@ public class VistaUsuarios extends JFrame {
   private JPanel getPAbmUsuarios() {
     if (pAbmUsuarios == null) {
       lInfo = new JLabel();
-      lInfo.setBounds(new Rectangle(0, 240, 370, 30));
+      lInfo.setBounds(new Rectangle(0, 240, 481, 30));
       lInfo.setHorizontalAlignment(SwingConstants.CENTER);
       lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
       
@@ -243,7 +244,7 @@ public class VistaUsuarios extends JFrame {
         });
     if (pUsuarios == null) {
       pUsuarios = new JScrollPane(lUsuarios);     
-      pUsuarios.setBounds(new Rectangle(260, 40, 100, 120));
+      pUsuarios.setBounds(new Rectangle(260, 40, 210, 120));
     }
     return pUsuarios;
   }
@@ -256,7 +257,7 @@ public class VistaUsuarios extends JFrame {
   private JTextField getTBuscar() {
     if (tBuscar == null) {
       tBuscar = new JTextField();
-      tBuscar.setBounds(new Rectangle(260, 20, 80, 20));      
+      tBuscar.setBounds(new Rectangle(260, 20, 186, 20));      
     }
     return tBuscar;
   }
@@ -269,7 +270,7 @@ public class VistaUsuarios extends JFrame {
   private JButton getBBuscar() {
     if (bBuscar == null) {
       bBuscar = new JButton();
-      bBuscar.setBounds(new Rectangle(340, 20, 20, 20));
+      bBuscar.setBounds(new Rectangle(447, 20, 20, 20));
       bBuscar.setText("...");
       bBuscar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -338,7 +339,7 @@ public class VistaUsuarios extends JFrame {
   private JButton getBNuevo() {
     if (bNuevo == null) {
       bNuevo = new JButton();
-      bNuevo.setBounds(new Rectangle(260, 165, 100, 20));
+      bNuevo.setBounds(new Rectangle(366, 163, 100, 20));
       bNuevo.setText("Nuevo");
       bNuevo.addActionListener(new java.awt.event.ActionListener() {   
         public void actionPerformed(java.awt.event.ActionEvent e) {    
