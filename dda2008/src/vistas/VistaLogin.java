@@ -87,7 +87,7 @@ public class VistaLogin extends JDialog {
     if (tUsuario == null) {
       tUsuario = new JTextField();
       tUsuario.setBounds(new Rectangle(90, 42, 110, 20));
-      tUsuario.setText("");
+      tUsuario.setText("admin");
     }
     return tUsuario;
   }
@@ -101,6 +101,7 @@ public class VistaLogin extends JDialog {
     if (tClave == null) {
       tClave = new JPasswordField();
       tClave.setBounds(new Rectangle(90, 72, 110, 20));
+      tClave.setText("admin");
     }
     return tClave;
   }

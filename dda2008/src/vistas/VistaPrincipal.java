@@ -38,12 +38,14 @@ public class VistaPrincipal {
 	  
 
 	  private JMenu operacionesMenu = null;
-	  private JMenuItem articulosMenuItem = null;
+    private JMenuItem articulosMenuItem = null;
+    private JMenuItem articulosCompuestosMenuItem = null;
 	  private JMenuItem medidasMenuItem = null;
-	  private JMenuItem presupuestosMenuItem = null;
+    private JMenuItem presupuestosMenuItem = null;
+    private JMenuItem monitorStockMenuItem = null;
 
 	  private JMenu listadosMenu = null;
-	  private JMenuItem listado1MenuItem = null;
+	  private JMenuItem listadoPresupuestosMenuItem = null;
 	  private JMenuItem listado2MenuItem = null;
 	  private JMenuItem listado3MenuItem = null;
 
@@ -157,7 +159,7 @@ public class VistaPrincipal {
 	            Point loc = getJFrame().getLocation();
 	            loc.translate(20, 20);
 	            dUsuario.setLocation(loc);
-	            dUsuario.setBounds(10,10,350,300);
+	            dUsuario.setBounds(10,10,500,290);
 	            dUsuario.setVisible(true);            
 	          }
 	          else {
@@ -186,9 +188,11 @@ public class VistaPrincipal {
 	    if (operacionesMenu == null) {
 	      operacionesMenu = new JMenu();
 	      operacionesMenu.setText("Operaciones");
-	      operacionesMenu.add(getArticulosMenuItem());
+        operacionesMenu.add(getArticulosMenuItem());
+        operacionesMenu.add(getArticulosCompuestosMenuItem());
 	      operacionesMenu.add(getMedidasMenuItem());
-	      operacionesMenu.add(getPrespuestosMenuItem());
+        operacionesMenu.add(getPrespuestosMenuItem());
+        operacionesMenu.add(getMonitorStockMenuItem());
 	    }
 	    return operacionesMenu;
 	  }
@@ -204,6 +208,18 @@ public class VistaPrincipal {
 	    }
 	    return articulosMenuItem;
 	  }
+    private JMenuItem getArticulosCompuestosMenuItem() {
+      if (articulosCompuestosMenuItem == null) {
+        articulosCompuestosMenuItem = new JMenuItem();
+        articulosCompuestosMenuItem.setText(I18n.ARTICULOS_COMPUESTOS);
+        articulosCompuestosMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            
+          }
+        });
+      }
+      return articulosCompuestosMenuItem;
+    }    
 	  private JMenuItem getMedidasMenuItem() {
 	    if (medidasMenuItem == null) {
 	      medidasMenuItem = new JMenuItem();
@@ -228,27 +244,39 @@ public class VistaPrincipal {
 	    }
 	    return presupuestosMenuItem;
 	  }
+    private JMenuItem getMonitorStockMenuItem() {
+      if (monitorStockMenuItem == null) {
+        monitorStockMenuItem = new JMenuItem();
+        monitorStockMenuItem.setText(I18n.MONITOR_STOCK);
+        monitorStockMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            
+          }
+        });
+      }
+      return monitorStockMenuItem;
+    }    
 	  private JMenu getListadosMenu() {
 	    if (listadosMenu == null) {
 	      listadosMenu = new JMenu();
 	      listadosMenu.setText("Listados");
-	      listadosMenu.add(getListado1MenuItem());
+	      listadosMenu.add(getListadoPresupuestosMenuItem());
 	      listadosMenu.add(getListado2MenuItem());
 	      listadosMenu.add(getListado3MenuItem());
 	    }
 	    return listadosMenu;
 	  }
-	  private JMenuItem getListado1MenuItem() {
-	    if (listado1MenuItem == null) {
-	      listado1MenuItem = new JMenuItem();
-	      listado1MenuItem.setText("L1");
-	      listado1MenuItem.addActionListener(new ActionListener() {
+	  private JMenuItem getListadoPresupuestosMenuItem() {
+	    if (listadoPresupuestosMenuItem == null) {
+        listadoPresupuestosMenuItem = new JMenuItem();
+        listadoPresupuestosMenuItem.setText(I18n.PRESUPUESTOS);
+        listadoPresupuestosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	          
 	        }
 	      });
 	    }
-	    return listado1MenuItem;
+	    return listadoPresupuestosMenuItem;
 	  }
 	  private JMenuItem getListado2MenuItem() {
 	    if (listado2MenuItem == null) {
