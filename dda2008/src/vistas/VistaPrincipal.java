@@ -56,7 +56,13 @@ public class VistaPrincipal {
 	  private JPanel aboutContentPane = null;
 	  private JLabel aboutVersionLabel = null;
 
-	  private JDialog dUsuario = null; 
+    private JDialog dUsuario = null; 
+    private JDialog dGrupo = null; 
+    private JDialog dArticulo = null; 
+    private JDialog dArticuloCompuesto = null; 
+    private JDialog dMedidas = null; 
+    private JDialog dPresupuesto = null; 
+    private JDialog dMontitorStock = null; 
 	  /**
 	   * This method initializes jFrame
 	   * 
@@ -202,7 +208,20 @@ public class VistaPrincipal {
 	      articulosMenuItem.setText(I18n.ARTICULOS);
 	      articulosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	          
+
+            if (dArticulo == null) {
+            VistaArticulos guiArticulo = new VistaArticulos();
+              dArticulo = guiArticulo.getDAbmArticulos();
+              dArticulo.pack();
+              Point loc = getJFrame().getLocation();
+              loc.translate(20, 20);
+              dArticulo.setLocation(loc);
+              dArticulo.setBounds(10,10,500,290);
+              dArticulo.setVisible(true);            
+            }
+            else {
+              dArticulo.setVisible(true);
+            }	          
 	        }
 	      });
 	    }

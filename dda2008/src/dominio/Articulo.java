@@ -2,7 +2,6 @@ package dominio;
 
 public class Articulo implements Cloneable, Comparable
 {
-  private int id;
   private String nombre;
   private int cantidad;
   private Medida medida;
@@ -30,7 +29,7 @@ public class Articulo implements Cloneable, Comparable
   }
   public Articulo(String nombre, Medida unaMedida, int cantidad, double costo)
   {
-	this(nombre, unaMedida);
+    this(nombre, unaMedida);
     this.setCantidad(cantidad);
     this.setCosto(costo);    
   }
@@ -64,15 +63,17 @@ public class Articulo implements Cloneable, Comparable
   public String toString()
   {
     // TODO Auto-generated method stub
-    return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo +"\r";
+    return this.getNombre()+" ("+this.getMedida()+")";
   }
   
   public String toStringNombreMedida(){
+    //FIXME Borrar esto!!!
 	  return "Nombre: "+this.getNombre() + " - Medida: "+this.medida.getDescripcion();
   }
   
   public String toStringConCosto(){
-	  return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo + " - Costo total: " + this.cantidad*this.costo +"\r";
+    //FIXME Borrar esto!!!
+    return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo + " - Costo total: " + this.cantidad*this.costo +"\r";
   }
   
   /*
@@ -105,20 +106,6 @@ public class Articulo implements Cloneable, Comparable
   public void setCosto(double costo)
   {
     this.costo = costo;
-  }
-  /**
-   * @return the id
-   */
-  public int getId()
-  {
-    return id;
-  }
-  /**
-   * @param id the id to set
-   */
-  public void setId(int id)
-  {
-    this.id = id;
   }
   /**
    * @return the medida
