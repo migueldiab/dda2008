@@ -295,7 +295,8 @@ public class VistaUsuarios extends JFrame {
     tNombre.setText("Test2");
   }
   private void guardarUsuario() {
-    Usuario unUsuario = Fachada.getUsuarioPorId(tId.getText());    
+    Usuario unUsuario = new Usuario(tId.getText());
+    unUsuario = Fachada.obtenerUsuario(unUsuario);    
     if ((unUsuario==null) || (JOptionPane.showConfirmDialog(
         null,"Desea guardar los cambios al usuario "+tId.getText()+"?",
         "Confirma guardar?",

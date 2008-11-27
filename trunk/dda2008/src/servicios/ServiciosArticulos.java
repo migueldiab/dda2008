@@ -7,6 +7,7 @@ import dominio.Articulo;
 import dominio.Item;
 import dominio.Medida;
 import dominio.Presupuesto;
+import dominio.Usuario;
 
 public class ServiciosArticulos 
 {
@@ -121,4 +122,5 @@ public class ServiciosArticulos
 	Collections.sort(losArticulos);
 		return losArticulos;
   }
+
 }
