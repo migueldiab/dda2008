@@ -18,6 +18,8 @@ import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import servicios.Fachada;
+import sistema.Inicio;
 import utils.I18n;
 
 public class VistaPrincipal {
@@ -27,7 +29,8 @@ public class VistaPrincipal {
 	  private JPanel jContentPane = null;
 	  private JMenuBar jJMenuBar = null;
 	  private JMenu fileMenu = null;
-	  private JMenuItem exitMenuItem = null;
+    private JMenuItem cambiarUsuarioMenuItem = null;
+    private JMenuItem exitMenuItem = null;
 	  private JMenu editMenu = null;
 	  private JMenuItem cutMenuItem = null;
 	  private JMenuItem copyMenuItem = null;
@@ -120,7 +123,7 @@ public class VistaPrincipal {
 	    if (fileMenu == null) {
 	      fileMenu = new JMenu();
 	      fileMenu.setText("Archivo");
-	      //fileMenu.add(getSaveMenuItem());
+	      fileMenu.add(getCambiarUsuarioMenuItem());
 	      fileMenu.add(getExitMenuItem());
 	    }
 	    return fileMenu;
@@ -334,23 +337,43 @@ public class VistaPrincipal {
 	    }
 	    return helpMenu;
 	  }
-	  /**
-	   * This method initializes jMenuItem	
-	   * 	
-	   * @return javax.swing.JMenuItem	
-	   */
-	  private JMenuItem getExitMenuItem() {
-	    if (exitMenuItem == null) {
-	      exitMenuItem = new JMenuItem();
-	      exitMenuItem.setText("Salir");
-	      exitMenuItem.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e) {
-	          System.exit(0);
-	        }
-	      });
-	    }
-	    return exitMenuItem;
-	  }
+    /**
+     * This method initializes jMenuItem  
+     *  
+     * @return javax.swing.JMenuItem  
+     */
+    private JMenuItem getCambiarUsuarioMenuItem() {
+      if (cambiarUsuarioMenuItem == null) {
+        cambiarUsuarioMenuItem = new JMenuItem();
+        cambiarUsuarioMenuItem.setText("Cambiar Usuario");
+        cambiarUsuarioMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            vistas.VistaPrincipal.cerrar();
+            Inicio.login.setVisible(true);  
+          }
+        });
+      }
+      return cambiarUsuarioMenuItem;
+    }
+
+
+    /**
+     * This method initializes jMenuItem  
+     *  
+     * @return javax.swing.JMenuItem  
+     */
+    private JMenuItem getExitMenuItem() {
+      if (exitMenuItem == null) {
+        exitMenuItem = new JMenuItem();
+        exitMenuItem.setText("Salir");
+        exitMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            System.exit(0);       
+          }
+        });
+      }
+      return exitMenuItem;
+    }    
 	  /**
 	   * This method initializes jMenuItem	
 	   * 	
@@ -479,12 +502,11 @@ public class VistaPrincipal {
 	  */
 
 	  public static void cargar() {
-	    SwingUtilities.invokeLater(new Runnable() {
-	      public void run() {
-	        VistaPrincipal application = new VistaPrincipal();
-	        application.getJFrame().setVisible(true);
-	      }
-	    });
+      // FIXME : Aca que cargue los menúes visibles segun el usuario...
+	    sistema.Inicio.principal.getJFrame().setVisible(true);
+      System.out.println("cargo : "+Fachada.getUsuarioActual());
 	  }
-
+    protected static void cerrar() {
+      sistema.Inicio.principal.jFrame.dispose();
+    }
 }
