@@ -8,17 +8,18 @@ import servicios.ServiciosUsuarios;
 import uiConsola.*;
 import utils.I18n;
 import vistas.VistaLogin;
+import vistas.VistaPrincipal;
 
 public class Inicio {
 
-  public static VistaLogin ventana = new VistaLogin();
-  
+  public static VistaLogin login = new VistaLogin();
+  public static VistaPrincipal principal = new VistaPrincipal();
   /**
    * @param args
    */
   public static void main(String[] args) {
     cargarDatosInicio();
-    ventana.setVisible(true);   
+    login.setVisible(true);   
 
   }
 

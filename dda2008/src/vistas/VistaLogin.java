@@ -126,15 +126,10 @@ public class VistaLogin extends JDialog {
           else {
             VistaPrincipal.cargar();            
             lError.setText("");
-            Inicio.ventana.setVisible(false);
+            Inicio.login.setVisible(false);
           }
           
             
-        }
-      });
-      bLogin.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-          System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
         }
       });
     }
