@@ -6,16 +6,10 @@ import java.util.Date;
 import dominio.*;
 
 public class Fachada {
-	
-  
-
-
-public static Usuario getUsuarioActual(){
-	return ServiciosUsuarios.getUsuarioActual();  
+	public static Usuario getUsuarioActual(){
+	  return ServiciosUsuarios.getUsuarioActual();  
   }
-  
-
-public static boolean agregarArticulo(dominio.Articulo unArticulo) {
+  public static boolean agregarArticulo(dominio.Articulo unArticulo) {
     return ServiciosArticulos.agregar(unArticulo);
   }
 
@@ -109,74 +103,93 @@ public static boolean agregarArticulo(dominio.Articulo unArticulo) {
   {
     return ServiciosPresupuestos.obtenerPresupuestoPorArticuloEstadoConFecha(unArticulo, unEstado);
   }
-public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
-	return ServiciosPresupuestos.obtenerPresupuestos(unUsuario, Criterio0Asc1Desc, Criterio0XFechaMod1XFechaEje, Criterio0EnConstr1Todos);
-}
-  
-public static ArrayList obtenerItems(Presupuesto unPresupuesto){
-	return ServiciosPresupuestos.obtenerItems(unPresupuesto);
-}
-
-public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
-	return ServiciosPresupuestos.finalizarPresupuestos(unPresupuesto);
-}
-
-public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
-	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
-}
-
-public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
-	return ServiciosPresupuestos.copiarPresupuesto(unPresupuesto,descripcion);
-}
-
-
-public static ArrayList listadoGestores() {
-	return ServiciosUsuarios.listadoGestores();
-}
-public static ArrayList listadoGestoresPorApellido() {
-	return ServiciosUsuarios.listadoGestoresPorApellido();
-}
-
-
-public static ArrayList listadoGestoresPorNombreUsuario() {
-	return ServiciosUsuarios.listadoGestoresPorNombreUsuario();
-}
-
-
-public static boolean cambiarDuenio(Presupuesto unPresupuesto, Usuario nuevoDuenio) {
-return ServiciosPresupuestos.cambiarDuenio(unPresupuesto,nuevoDuenio);
-	
-}
-
-
-public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
-	return ServiciosArticulos.obtenerArticulosNotIn(unPresupuesto);
-}
-
-
-public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
-	return ServiciosPresupuestos.validoPresupuesto(descripcion,usuarioActual);
-}
-
-
-public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
-	return ServiciosPresupuestos.validoFechaEjecucion(unPresupuesto);
-}
-
-
-public static boolean vistaLogin(String id, char[] password) {
-  return ServiciosUsuarios.vistaLogin(id, password);
+  public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
+  	return ServiciosPresupuestos.obtenerPresupuestos(unUsuario, Criterio0Asc1Desc, Criterio0XFechaMod1XFechaEje, Criterio0EnConstr1Todos);
   }
-
-
-public static Usuario obtenerUsuario(Usuario u) {
-  return (Usuario) ServiciosUsuarios.obtener(u);
-}
-
-
-public static Articulo obtenerArticulo(Articulo a) {
-  return (Articulo) ServiciosArticulos.obtener(a);
-}
+    
+  public static ArrayList obtenerItems(Presupuesto unPresupuesto){
+  	return ServiciosPresupuestos.obtenerItems(unPresupuesto);
+  }
+  
+  public static boolean finalizarPresupuesto(Presupuesto unPresupuesto) {
+  	return ServiciosPresupuestos.finalizarPresupuestos(unPresupuesto);
+  }
+  
+  public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto){
+  	return ServiciosPresupuestos.validoCantidadesFinalizacion(unPresupuesto);
+  }
+  
+  public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
+  	return ServiciosPresupuestos.copiarPresupuesto(unPresupuesto,descripcion);
+  }
+  
+  
+  public static ArrayList listadoGestores() {
+  	return ServiciosUsuarios.listadoGestores();
+  }
+  public static ArrayList listadoGestoresPorApellido() {
+  	return ServiciosUsuarios.listadoGestoresPorApellido();
+  }
+  
+  
+  public static ArrayList listadoGestoresPorNombreUsuario() {
+  	return ServiciosUsuarios.listadoGestoresPorNombreUsuario();
+  }
+  
+  
+  public static boolean cambiarDuenio(Presupuesto unPresupuesto, Usuario nuevoDuenio) {
+  return ServiciosPresupuestos.cambiarDuenio(unPresupuesto,nuevoDuenio);
+  	
+  }
+  
+  
+  public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
+  	return ServiciosArticulos.obtenerArticulosNotIn(unPresupuesto);
+  }
+  
+  
+  public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
+  	return ServiciosPresupuestos.validoPresupuesto(descripcion,usuarioActual);
+  }
+  
+  
+  public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
+  	return ServiciosPresupuestos.validoFechaEjecucion(unPresupuesto);
+  }
+  
+  
+  public static boolean vistaLogin(String id, char[] password) {
+    return ServiciosUsuarios.vistaLogin(id, password);
+    }
+  
+  
+  public static Usuario obtenerUsuario(Usuario u) {
+    return (Usuario) ServiciosUsuarios.obtener(u);
+  }
+  
+  
+  public static Articulo obtenerArticulo(Articulo a) {
+    return (Articulo) ServiciosArticulos.obtener(a);
+  }
+  
+  
+  public static ArrayList listadoArticulosCompuestos() {
+    return ServiciosArticulosCompuestos.listado();
+  }
+  
+  
+  public static ArticuloCompuesto obtenerArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
+    return (ArticuloCompuesto) ServiciosArticulosCompuestos.obtener(unArticuloCompuesto);
+  }
+  
+  
+  public static boolean agregarArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
+    return ServiciosArticulosCompuestos.agregar(unArticuloCompuesto);
+  }
+  
+  public static boolean borrarArticuloCompuesto(ArticuloCompuesto u) {
+    return ServiciosArticulosCompuestos.borrar(u);
+  }
 
 
 }
