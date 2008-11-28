@@ -61,8 +61,8 @@ public class VistaPrincipal {
 
     private JDialog dUsuario = null; 
     private JDialog dGrupo = null; 
-    private JDialog dArticulo = null; 
-    private JDialog dArticuloCompuesto = null; 
+    private JDialog dArticulos = null; 
+    private JDialog dArticulosCompuestos = null; 
     private JDialog dMedidas = null; 
     private JDialog dPresupuesto = null; 
     private JDialog dMontitorStock = null; 
@@ -162,7 +162,7 @@ public class VistaPrincipal {
 	        public void actionPerformed(ActionEvent e) {
 	          
 	          if (dUsuario == null) {
-	        	VistaUsuarios guiUsuario = new VistaUsuarios();
+	        	  VistaUsuarios guiUsuario = new VistaUsuarios();
 	            dUsuario = guiUsuario.getDAbmUsuarios();
 	            dUsuario.pack();
 	            Point loc = getJFrame().getLocation();
@@ -212,18 +212,18 @@ public class VistaPrincipal {
 	      articulosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 
-            if (dArticulo == null) {
+            if (dArticulos == null) {
             VistaArticulos guiArticulo = new VistaArticulos();
-              dArticulo = guiArticulo.getDAbmArticulos();
-              dArticulo.pack();
+              dArticulos = guiArticulo.getDAbmArticulos();
+              dArticulos.pack();
               Point loc = getJFrame().getLocation();
               loc.translate(20, 20);
-              dArticulo.setLocation(loc);
-              dArticulo.setBounds(10,10,500,290);
-              dArticulo.setVisible(true);            
+              dArticulos.setLocation(loc);
+              dArticulos.setBounds(10,10,500,290);
+              dArticulos.setVisible(true);            
             }
             else {
-              dArticulo.setVisible(true);
+              dArticulos.setVisible(true);
             }	          
 	        }
 	      });
@@ -236,7 +236,19 @@ public class VistaPrincipal {
         articulosCompuestosMenuItem.setText(I18n.ARTICULOS_COMPUESTOS);
         articulosCompuestosMenuItem.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            
+            if (dArticulosCompuestos == null) {
+                VistaArticulosCompuestos guiArticuloCompuesto = new VistaArticulosCompuestos();
+                dArticulosCompuestos = guiArticuloCompuesto.getDAbmArticulosCompuestos();
+                dArticulosCompuestos.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dArticulosCompuestos.setLocation(loc);
+                dArticulosCompuestos.setBounds(10,10,500,290);
+                dArticulosCompuestos.setVisible(true);            
+              }
+              else {
+                dArticulosCompuestos.setVisible(true);
+              }                    
           }
         });
       }

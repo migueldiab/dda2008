@@ -307,6 +307,10 @@ public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
 	}
 	return true;
 }
+public static ArrayList obtenerPresupuestoPorArticuloCompuesto(ArticuloCompuesto original) {
+  // TODO Hacer el metodo
+  return null;
+}
 
   
   
