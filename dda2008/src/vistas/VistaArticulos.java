@@ -66,7 +66,7 @@ public class VistaArticulos extends JFrame {
     if (pAbmArticulos == null) {
       lCosto = new JLabel();
       lCosto.setBounds(new Rectangle(10, 94, 90, 20));
-      lCosto.setText("Cantidad");
+      lCosto.setText("Costo");
       lInfo = new JLabel();
       lInfo.setBounds(new Rectangle(0, 240, 481, 30));
       lInfo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -260,6 +260,7 @@ public class VistaArticulos extends JFrame {
     Articulo u = (Articulo) lArticulos.getSelectedValue();    
     tNombre.setText(u.getNombre());
     tCantidad.setText(Integer.toString(u.getCantidad()));
+    tCosto.setText(Double.toString(u.getCosto()));
     cMedida.setSelectedItem(u.getMedida());
   }
   private void buscarArticulo() {

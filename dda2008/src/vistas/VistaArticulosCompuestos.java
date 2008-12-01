@@ -54,6 +54,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
   private JButton bQuitar = null;
+
   public JDialog getDAbmArticulosCompuestos() {
     if (dAbmArticulosCompuestos == null) {
       dAbmArticulosCompuestos = new JDialog();
@@ -64,31 +65,30 @@ public class VistaArticulosCompuestos extends JFrame {
     return dAbmArticulosCompuestos;
   }
 
-  /**
-   * This method initializes pAbmArticulosCompuestos 
-   *  
-   * @return javax.swing.JPanel 
-   */
   private JPanel getPAbmArticulosCompuestos() {
     if (pAbmArticulosCompuestos == null) {
+      lNombre = new JLabel();
+      lNombre.setBounds(new Rectangle(10, 20, 90, 20));
+      lNombre.setText("Nombre");
+
+      lCantidad = new JLabel();
+      lCantidad.setBounds(new Rectangle(10, 45, 90, 20));
+      lCantidad.setText("Cantidad");
+      
+      lMedida = new JLabel();
+      lMedida.setBounds(new Rectangle(10, 70, 90, 20));
+      lMedida.setText("Medida");
+      
       lCosto = new JLabel();
-      lCosto.setBounds(new Rectangle(10, 100, 90, 20));
+      lCosto.setBounds(new Rectangle(10, 95, 90, 20));
       lCosto.setText("Costo");
+      
       lInfo = new JLabel();
       lInfo.setBounds(new Rectangle(0, 390, 390, 30));
       lInfo.setHorizontalAlignment(SwingConstants.CENTER);
       lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
+      lInfo.setText("");
       
-      lInfo.setText("Esto es una prueba");
-      lCantidad = new JLabel();
-      lCantidad.setBounds(new Rectangle(10, 44, 90, 20));
-      lCantidad.setText("Cantidad");
-      lMedida = new JLabel();
-      lMedida.setBounds(new Rectangle(10, 70, 90, 20));
-      lMedida.setText("Medida");
-      lNombre = new JLabel();
-      lNombre.setBounds(new Rectangle(10, 19, 90, 20));
-      lNombre.setText("Nombre");
       pAbmArticulosCompuestos = new JPanel();
       pAbmArticulosCompuestos.setLayout(null);
       
@@ -105,7 +105,6 @@ public class VistaArticulosCompuestos extends JFrame {
       pAbmArticulosCompuestos.add(getPComponentes());
       pAbmArticulosCompuestos.add(getBAgregar(), null);
       pAbmArticulosCompuestos.add(getBQuitar(), null);
-      //pAbmArticulosCompuestos.add(tComponentes, null);
 
       pAbmArticulosCompuestos.add(getTBuscar());
       pAbmArticulosCompuestos.add(getBBuscar());
@@ -123,19 +122,9 @@ public class VistaArticulosCompuestos extends JFrame {
     return pAbmArticulosCompuestos;
   }
 
-  private JTextField getTNombre() {
-    if (tNombre == null) {
-      tNombre = new JTextField();
-      tNombre.setBounds(new Rectangle(100, 20, 150, 20));
-    }
-    return tNombre;
-  }
-
-  /**
-   * This method initializes bGuardar 
-   *  
-   * @return javax.swing.JButton  
-   */
+/*
+ * Botones
+ */
   private JButton getBGuardar() {
     if (bGuardar == null) {
       bGuardar = new JButton();
@@ -150,13 +139,6 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return bGuardar;
   }
-  
-
-  /**
-   * This method initializes bCancelar  
-   *  
-   * @return javax.swing.JButton  
-   */
   private JButton getBCancelar() {
     if (bCancelar == null) {
       bCancelar = new JButton();
@@ -171,12 +153,6 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return bCancelar;
   }
-
-  /**
-   * This method initializes bEliminar  
-   *  
-   * @return javax.swing.JButton  
-   */
   private JButton getBEliminar() {
     if (bEliminar == null) {
       bEliminar = new JButton();
@@ -196,12 +172,30 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return bEliminar;
   }
+  private JButton getBNuevo() {
+    if (bNuevo == null) {
+      bNuevo = new JButton();
+      bNuevo.setBounds(new Rectangle(260, 100, 100, 30));
+      bNuevo.setText("Nuevo");
+      bNuevo.addActionListener(new java.awt.event.ActionListener() {   
+        public void actionPerformed(java.awt.event.ActionEvent e) {    
+          limpiarCampos();
+        }      
+      });
+    }
+    return bNuevo;
+  }
 
-  /**
-   * This method initializes cMedida 
-   *  
-   * @return javax.swing.JComboBox  
-   */
+/*
+ * Entradas
+ */  
+  private JTextField getTNombre() {
+    if (tNombre == null) {
+      tNombre = new JTextField();
+      tNombre.setBounds(new Rectangle(100, 20, 150, 20));
+    }
+    return tNombre;
+  }
   private JComboBox getCMedida() {
     if (cMedida == null) {
       cMedida = new JComboBox();
@@ -209,11 +203,16 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return cMedida;
   }
+  private JTextField getTCosto() {
+    if (tCosto == null) {
+      tCosto = new JTextField();
+      tCosto.setBounds(new Rectangle(100, 100, 150, 20));
+    }
+    return tCosto;
+  }
 
-  /**
-   * This method initializes lArticulosCompuestos  
-   *  
-   * @return javax.swing.JList  
+  /*
+   * Paneles
    */
   private JScrollPane getPArticulosCompuestos() {
     listaArticulosCompuestos = new DefaultListModel();
@@ -235,7 +234,26 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return pArticulosCompuestos;
   }
-  
+  private JTextField getTBuscar() {
+    if (tBuscar == null) {
+      tBuscar = new JTextField();
+      tBuscar.setBounds(new Rectangle(410, 20, 210, 20));
+    }
+    return tBuscar;
+  }
+  private JButton getBBuscar() {
+    if (bBuscar == null) {
+      bBuscar = new JButton();
+      bBuscar.setBounds(new Rectangle(620, 20, 20, 20));
+      bBuscar.setText("...");
+      bBuscar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          buscarArticuloCompuesto();
+        }
+      });
+    }
+    return bBuscar;
+  }
   private JScrollPane getPArticulos() {
     listaArticulos = new DefaultListModel();
     lArticulos = new JList(listaArticulos);
@@ -251,8 +269,6 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return pArticulos;
   }
-  
-
   private JScrollPane getPComponentes() {
     treeComponentes = new DefaultMutableTreeNode();
     tComponentes = new JTree(treeComponentes);
@@ -267,33 +283,28 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return pComponentes;
   }  
-  private JTextField getTBuscar() {
-    if (tBuscar == null) {
-      tBuscar = new JTextField();
-      tBuscar.setBounds(new Rectangle(410, 20, 210, 20));
+  private JButton getBAgregar() {
+    if (bAgregar == null) {
+      bAgregar = new JButton();
+      bAgregar.setBounds(new Rectangle(180, 180, 45, 20));
+      bAgregar.setText("<");
     }
-    return tBuscar;
+    return bAgregar;
   }
 
-  /**
-   * This method initializes bBuscar  
-   *  
-   * @return javax.swing.JButton  
-   */
-  private JButton getBBuscar() {
-    if (bBuscar == null) {
-      bBuscar = new JButton();
-      bBuscar.setBounds(new Rectangle(620, 20, 20, 20));
-      bBuscar.setText("...");
-      bBuscar.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-          buscarArticuloCompuesto();
-        }
-      });
+  private JButton getBQuitar() {
+    if (bQuitar == null) {
+      bQuitar = new JButton();
+      bQuitar.setBounds(new Rectangle(180, 220, 45, 20));
+      bQuitar.setText(">");
     }
-    return bBuscar;
+    return bQuitar;
   }
+
   
+/*
+ * Métodos
+ */  
   private void cargarArticuloCompuesto() {
     
     ArticuloCompuesto u = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();    
@@ -338,30 +349,10 @@ public class VistaArticulosCompuestos extends JFrame {
         }
       }      
     } catch (Exception e) {
-
-        lInfo.setForeground(new Color(190, 65, 79));
-        lInfo.setText("Verifique que los valores numéricos sean correctos");        
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Verifique que los valores numéricos sean correctos");        
     }
     
-  }
-
-  /**
-   * This method initializes bNuevo 
-   *  
-   * @return javax.swing.JButton  
-   */
-  private JButton getBNuevo() {
-    if (bNuevo == null) {
-      bNuevo = new JButton();
-      bNuevo.setBounds(new Rectangle(260, 100, 100, 30));
-      bNuevo.setText("Nuevo");
-      bNuevo.addActionListener(new java.awt.event.ActionListener() {   
-        public void actionPerformed(java.awt.event.ActionEvent e) {    
-          limpiarCampos();
-        }      
-      });
-    }
-    return bNuevo;
   }
   private void cargarListas() {
     listaArticulosCompuestos.clear();
@@ -378,12 +369,6 @@ public class VistaArticulosCompuestos extends JFrame {
       cMedida.addItem((Medida) g);        
     }    
   }
-
-  /**
-   * This method initializes tCantidad  
-   *  
-   * @return javax.swing.JTextField 
-   */
   private JTextField getTCantidad() {
     if (tCantidad == null) {
       tCantidad = new JTextField();
@@ -420,40 +405,6 @@ public class VistaArticulosCompuestos extends JFrame {
       }      
     }
   }
-
-  /**
-   * This method initializes tCosto 
-   *  
-   * @return javax.swing.JTextField 
-   */
-  private JTextField getTCosto() {
-    if (tCosto == null) {
-      tCosto = new JTextField();
-      tCosto.setBounds(new Rectangle(100, 100, 150, 20));
-    }
-    return tCosto;
-  }
-
-
-  
-  private JButton getBAgregar() {
-    if (bAgregar == null) {
-      bAgregar = new JButton();
-      bAgregar.setBounds(new Rectangle(180, 180, 45, 20));
-      bAgregar.setText("<");
-    }
-    return bAgregar;
-  }
-
-  private JButton getBQuitar() {
-    if (bQuitar == null) {
-      bQuitar = new JButton();
-      bQuitar.setBounds(new Rectangle(180, 220, 45, 20));
-      bQuitar.setText(">");
-    }
-    return bQuitar;
-  }
-
 
 
 }
