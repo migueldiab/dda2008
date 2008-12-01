@@ -22,6 +22,10 @@ import javax.swing.tree.DefaultTreeModel;
 
 public class VistaArticulosCompuestos extends JFrame {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private JDialog dAbmArticulosCompuestos = null;  //  @jve:decl-index=0:visual-constraint="132,10"
   private JPanel pAbmArticulosCompuestos = null;
   private JLabel lNombre = null;
@@ -53,7 +57,7 @@ public class VistaArticulosCompuestos extends JFrame {
   public JDialog getDAbmArticulosCompuestos() {
     if (dAbmArticulosCompuestos == null) {
       dAbmArticulosCompuestos = new JDialog();
-      dAbmArticulosCompuestos.setBounds(new Rectangle(0, 0, 700, 500));
+      dAbmArticulosCompuestos.setBounds(new Rectangle(0,0,660,420));
       dAbmArticulosCompuestos.setContentPane(getPAbmArticulosCompuestos());
       dAbmArticulosCompuestos.setTitle("ABM ArticulosCompuestos");
     }
@@ -68,14 +72,14 @@ public class VistaArticulosCompuestos extends JFrame {
   private JPanel getPAbmArticulosCompuestos() {
     if (pAbmArticulosCompuestos == null) {
       lCosto = new JLabel();
-      lCosto.setBounds(new Rectangle(10, 94, 90, 20));
-      lCosto.setText("Cantidad");
+      lCosto.setBounds(new Rectangle(10, 100, 90, 20));
+      lCosto.setText("Costo");
       lInfo = new JLabel();
-      lInfo.setBounds(new Rectangle(-2, 444, 697, 30));
+      lInfo.setBounds(new Rectangle(0, 390, 390, 30));
       lInfo.setHorizontalAlignment(SwingConstants.CENTER);
       lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
       
-      lInfo.setText("");
+      lInfo.setText("Esto es una prueba");
       lCantidad = new JLabel();
       lCantidad.setBounds(new Rectangle(10, 44, 90, 20));
       lCantidad.setText("Cantidad");
@@ -87,28 +91,32 @@ public class VistaArticulosCompuestos extends JFrame {
       lNombre.setText("Nombre");
       pAbmArticulosCompuestos = new JPanel();
       pAbmArticulosCompuestos.setLayout(null);
+      
       pAbmArticulosCompuestos.add(lNombre);
       pAbmArticulosCompuestos.add(getTNombre());
+      pAbmArticulosCompuestos.add(lCantidad, null);
+      pAbmArticulosCompuestos.add(getTCantidad(), null);
+      pAbmArticulosCompuestos.add(lMedida);
+      pAbmArticulosCompuestos.add(getCMedida());
+      pAbmArticulosCompuestos.add(lCosto, null);
+      pAbmArticulosCompuestos.add(getTCosto(), null);
+      
+      pAbmArticulosCompuestos.add(getPArticulos());
+      pAbmArticulosCompuestos.add(getPComponentes());
+      pAbmArticulosCompuestos.add(getBAgregar(), null);
+      pAbmArticulosCompuestos.add(getBQuitar(), null);
+      //pAbmArticulosCompuestos.add(tComponentes, null);
+
+      pAbmArticulosCompuestos.add(getTBuscar());
+      pAbmArticulosCompuestos.add(getBBuscar());
+      pAbmArticulosCompuestos.add(getPArticulosCompuestos());
+
+      pAbmArticulosCompuestos.add(getBNuevo(), null);
       pAbmArticulosCompuestos.add(getBGuardar());
       pAbmArticulosCompuestos.add(getBCancelar());
       pAbmArticulosCompuestos.add(getBEliminar());
-      pAbmArticulosCompuestos.add(getCMedida());
-      pAbmArticulosCompuestos.add(lMedida);
-      pAbmArticulosCompuestos.add(getPArticulosCompuestos());
-      pAbmArticulosCompuestos.add(getPArticulos());
-      pAbmArticulosCompuestos.add(getPComponentes());
-      pAbmArticulosCompuestos.add(getTBuscar());
-      pAbmArticulosCompuestos.add(getBBuscar());
-      pAbmArticulosCompuestos.add(getBNuevo(), null);
-      pAbmArticulosCompuestos.add(lCantidad, null);
-      pAbmArticulosCompuestos.add(getTCantidad(), null);
+
       pAbmArticulosCompuestos.add(lInfo, null);
-      pAbmArticulosCompuestos.add(lCosto, null);
-      pAbmArticulosCompuestos.add(getTCosto(), null);
-      pAbmArticulosCompuestos.add(getBAgregar(), null);
-      pAbmArticulosCompuestos.add(getBQuitar(), null);
-      pAbmArticulosCompuestos.add(lArticulos, null);
-      pAbmArticulosCompuestos.add(tComponentes, null);
       cargarListas();
       
     }
@@ -118,7 +126,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField getTNombre() {
     if (tNombre == null) {
       tNombre = new JTextField();
-      tNombre.setBounds(new Rectangle(100, 19, 150, 20));
+      tNombre.setBounds(new Rectangle(100, 20, 150, 20));
     }
     return tNombre;
   }
@@ -131,7 +139,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBGuardar() {
     if (bGuardar == null) {
       bGuardar = new JButton();
-      bGuardar.setBounds(new Rectangle(258, 21, 100, 30));
+      bGuardar.setBounds(new Rectangle(260, 20, 100, 30));
       bGuardar.setText("Guardar");
       bGuardar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -152,7 +160,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBCancelar() {
     if (bCancelar == null) {
       bCancelar = new JButton();
-      bCancelar.setBounds(new Rectangle(507, 348, 100, 30));
+      bCancelar.setBounds(new Rectangle(500, 350, 100, 30));
       bCancelar.setText("Cerrar");
       bCancelar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -172,7 +180,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBEliminar() {
     if (bEliminar == null) {
       bEliminar = new JButton();
-      bEliminar.setBounds(new Rectangle(258, 61, 100, 30));
+      bEliminar.setBounds(new Rectangle(260, 60, 100, 30));
       bEliminar.setText("Eliminar");
       bEliminar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -222,8 +230,8 @@ public class VistaArticulosCompuestos extends JFrame {
         });
     if (pArticulosCompuestos == null) {
       pArticulosCompuestos = new JScrollPane(lArticulosCompuestos);     
-      pArticulosCompuestos.setBounds(new Rectangle(400, 40, 210, 301));
-      pArticulosCompuestos.setViewportView(getPArticulos());
+      pArticulosCompuestos.setBounds(new Rectangle(410, 40, 230, 300));
+     
     }
     return pArticulosCompuestos;
   }
@@ -232,7 +240,6 @@ public class VistaArticulosCompuestos extends JFrame {
     listaArticulos = new DefaultListModel();
     lArticulos = new JList(listaArticulos);
     lArticulos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    lArticulos.setBounds(new Rectangle(230, 150, 160, 280));
     lArticulos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
           public void valueChanged(javax.swing.event.ListSelectionEvent e) {
             
@@ -240,18 +247,30 @@ public class VistaArticulosCompuestos extends JFrame {
         });
     if (pArticulos == null) {
       pArticulos = new JScrollPane(lArticulos);     
+      pArticulos.setBounds(new Rectangle(240, 150, 160, 230));
     }
     return pArticulos;
   }
-  /**
-   * This method initializes tBuscar  
-   *  
-   * @return javax.swing.JTextField 
-   */
+  
+
+  private JScrollPane getPComponentes() {
+    treeComponentes = new DefaultMutableTreeNode();
+    tComponentes = new JTree(treeComponentes);
+    //tComponentes.setBounds(new Rectangle(10, 150, 160, 230));
+    tComponentes.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+          public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+          }
+        });
+    if (pComponentes == null) {
+      pComponentes = new JScrollPane(tComponentes);  
+      pComponentes.setBounds(new Rectangle(10, 150, 160, 230));
+    }
+    return pComponentes;
+  }  
   private JTextField getTBuscar() {
     if (tBuscar == null) {
       tBuscar = new JTextField();
-      tBuscar.setBounds(new Rectangle(400, 20, 186, 20));      
+      tBuscar.setBounds(new Rectangle(410, 20, 210, 20));
     }
     return tBuscar;
   }
@@ -264,7 +283,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBBuscar() {
     if (bBuscar == null) {
       bBuscar = new JButton();
-      bBuscar.setBounds(new Rectangle(587, 20, 20, 20));
+      bBuscar.setBounds(new Rectangle(620, 20, 20, 20));
       bBuscar.setText("...");
       bBuscar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -334,7 +353,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBNuevo() {
     if (bNuevo == null) {
       bNuevo = new JButton();
-      bNuevo.setBounds(new Rectangle(259, 99, 100, 30));
+      bNuevo.setBounds(new Rectangle(260, 100, 100, 30));
       bNuevo.setText("Nuevo");
       bNuevo.addActionListener(new java.awt.event.ActionListener() {   
         public void actionPerformed(java.awt.event.ActionEvent e) {    
@@ -349,6 +368,7 @@ public class VistaArticulosCompuestos extends JFrame {
     for (Object u : Fachada.listadoArticulosCompuestos()) {
       listaArticulosCompuestos.addElement((ArticuloCompuesto) u);  
     }
+    
     listaArticulos.clear();
     for (Object u : Fachada.listadoArticulos()) {
       listaArticulos.addElement((Articulo) u);  
@@ -367,7 +387,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField getTCantidad() {
     if (tCantidad == null) {
       tCantidad = new JTextField();
-      tCantidad.setBounds(new Rectangle(100, 44, 150, 20));
+      tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
     }
     return tCantidad;
   }
@@ -409,39 +429,13 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField getTCosto() {
     if (tCosto == null) {
       tCosto = new JTextField();
-      tCosto.setBounds(new Rectangle(100, 94, 150, 20));
+      tCosto.setBounds(new Rectangle(100, 100, 150, 20));
     }
     return tCosto;
   }
 
 
   
-  private JScrollPane getPComponentes() {
-    treeComponentes = new DefaultMutableTreeNode();
-    tComponentes = new JTree(treeComponentes);
-    tComponentes.setBounds(new Rectangle(10, 150, 160, 280));
-    tComponentes.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-          public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
-          }
-        });
-    if (pArticulos == null) {
-      pArticulos = new JScrollPane(lArticulos);     
-    }
-    return pArticulos;
-  }
-  /*private JTree getTArticulosCompuestos() {
-    if (tArticulosCompuestos == null) {
-      tArticulosCompuestos = new JTree();
-      tArticulosCompuestos.setBounds(new Rectangle(10, 150, 160, 280));
-    }
-    return tArticulosCompuestos;
-  }*/
-
-  /**
-   * This method initializes bAgregar 
-   *  
-   * @return javax.swing.JButton  
-   */
   private JButton getBAgregar() {
     if (bAgregar == null) {
       bAgregar = new JButton();
@@ -451,11 +445,6 @@ public class VistaArticulosCompuestos extends JFrame {
     return bAgregar;
   }
 
-  /**
-   * This method initializes bQuitar  
-   *  
-   * @return javax.swing.JButton  
-   */
   private JButton getBQuitar() {
     if (bQuitar == null) {
       bQuitar = new JButton();
