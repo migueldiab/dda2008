@@ -1,6 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import dominio.*;
@@ -190,6 +191,9 @@ public class Fachada {
   public static boolean borrarArticuloCompuesto(ArticuloCompuesto u) {
     return ServiciosArticulosCompuestos.borrar(u);
   }
+public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
+	return ServiciosArticulos.getArticulosStockInsuficiente(cal);
+}
 
 
 }
