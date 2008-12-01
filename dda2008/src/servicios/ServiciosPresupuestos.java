@@ -1,6 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -272,47 +273,58 @@ public class ServiciosPresupuestos
 	return nuevoPresupuesto;
 		
 }
-  
-  public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
-	int indice=presupuestos.indexOf(unPresupuesto);
-	 if (indice==-1){
- 		 return false;
- 	 }
-	 else{
-		 unPresupuesto.setDuenio(nuevoDuenio);
-		 return true;
-	 }
-	
-}
-  
-  public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
-	for(int i=0;i<presupuestos.size();i++){
-		Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
-		if (unPresupuesto.getDescripcion().equals(descripcion)){
-			if (unPresupuesto.getDuenio().equals(usuarioActual)){
-				return false;
-			}
-			
-		}
-	}
-	return true;
-	
-  }
-public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
-	Date now=new Date();
-	if(unPresupuesto.getFechaEjecucion()==null){
-		return false;
-	}else if(unPresupuesto.getFechaEjecucion().after(now)){
-		return false;
-	}
-	return true;
-}
-public static ArrayList obtenerPresupuestoPorArticuloCompuesto(ArticuloCompuesto original) {
-  // TODO Hacer el metodo
-  return null;
-}
 
+  public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
+	  int indice=presupuestos.indexOf(unPresupuesto);
+	  if (indice==-1){
+		  return false;
+	  }
+	  else{
+		  unPresupuesto.setDuenio(nuevoDuenio);
+		  return true;
+	  }
+
+  }
+
+  public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
+	  for(int i=0;i<presupuestos.size();i++){
+		  Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
+		  if (unPresupuesto.getDescripcion().equals(descripcion)){
+			  if (unPresupuesto.getDuenio().equals(usuarioActual)){
+				  return false;
+			  }
+
+		  }
+	  }
+	  return true;
+
+  }
+  public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
+	  Date now=new Date();
+	  if(unPresupuesto.getFechaEjecucion()==null){
+		  return false;
+	  }else if(unPresupuesto.getFechaEjecucion().after(now)){
+		  return false;
+	  }
+	  return true;
+  }
+  public static ArrayList obtenerPresupuestoPorArticuloCompuesto(ArticuloCompuesto original) {
+	  // TODO Hacer el metodo
+	  return null;
+  }
+
+  public static ArrayList obtenerPresupuestosEnConstruccionFechaMenorQue(Calendar cal){
+	  ArrayList losPresupuestos=new ArrayList();
+	  for(int i=0;i<presupuestos.size();i++){
+		  Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
+		  if(unPresupuesto.getEstado()=="En Construccion"){
+			  if(unPresupuesto.getFechaEjecucion().before(cal.getTime())){
+				 losPresupuestos.add(unPresupuesto); 
+			  }
+		  }
+	  }
+	  return losPresupuestos;
+  }
   
-  
- 
+
 }
