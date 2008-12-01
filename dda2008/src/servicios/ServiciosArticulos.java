@@ -1,6 +1,7 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 import dominio.Articulo;
@@ -121,6 +122,11 @@ public class ServiciosArticulos
 	}
 	Collections.sort(losArticulos);
 		return losArticulos;
+  }
+
+  public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
+	
+	  return null;
   }
 
 }
