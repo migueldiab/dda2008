@@ -51,8 +51,13 @@ public class ServiciosUsuarios
   public static boolean borrar(Usuario unUsuario) {
     if (usuarios.indexOf(unUsuario)!=-1) {
       // FIXME : Tiene que ver que no tenga presupuestos y eso...
-      usuarios.remove(unUsuario);
-      return true;
+      if (Fachada.obtenerPresupuestos(unUsuario, 0, 0, 1).size()==0) {
+        usuarios.remove(unUsuario);
+        return true;
+      }
+      else {
+        return false;
+      }
     }
     else {
       return false;

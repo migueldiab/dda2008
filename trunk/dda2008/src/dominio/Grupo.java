@@ -23,7 +23,6 @@ public class Grupo {
    */
   public boolean equals(Object arg0)
   {
-    // TODO Auto-generated method stub
     try
     {
       Grupo grupo = (Grupo)arg0;
@@ -33,8 +32,7 @@ public class Grupo {
     }
     catch (RuntimeException e)
     {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+      // Probablemente es nulo
     }
     return false;
 
