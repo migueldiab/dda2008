@@ -243,7 +243,7 @@ public class VistaPrincipal {
                 Point loc = getJFrame().getLocation();
                 loc.translate(20, 20);
                 dArticulosCompuestos.setLocation(loc);
-                dArticulosCompuestos.setBounds(10,10,500,290);
+                dArticulosCompuestos.setBounds(10,10,660,420);
                 dArticulosCompuestos.setVisible(true);            
               }
               else {

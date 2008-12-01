@@ -102,6 +102,8 @@ public class Inicio {
     Usuario otro3Usuario = new Usuario("CarlosGonzalez", "gestor", unGrupo, "Carlos", "Gonzalez");
     Fachada.agregarUsuario(otro3Usuario);
     
+    ArticuloCompuesto unArticuloCompuesto = new ArticuloCompuesto("El Compuesto", new Medida("ud", "Unidad"));
+    Fachada.agregarArticuloCompuesto(unArticuloCompuesto);
     
     
     try

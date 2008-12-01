@@ -11,7 +11,7 @@ import dominio.Usuario;
 
 public class ServiciosArticulosCompuestos 
 {
-  private static ArrayList articulosCompuestos = new ArrayList();
+  private static ArrayList<ArticuloCompuesto> articulosCompuestos = new ArrayList<ArticuloCompuesto>();
 
   public static boolean agregar(Object o)
   {
@@ -79,7 +79,6 @@ public class ServiciosArticulosCompuestos
 
   public static Object obtener(Object o)
   {
-    // TODO Auto-generated method stub
     int pos = articulosCompuestos.indexOf((ArticuloCompuesto) o);
     if (pos!=-1) { 
       return articulosCompuestos.get(pos);
