@@ -2,6 +2,7 @@ package vistas;
 
 import javax.swing.JPanel;
 import java.awt.*;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,7 +57,7 @@ public class VistaPresupuestos extends JFrame{
 	private JLabel jLabelStatusPresupuesto = null;
 	private JList jListPresupuesto = null;
 	private JScrollPane jScrollPanePresupuesto = null;
-	
+	private JDialog dItemsPresupuesto = null;
 	private static ArrayList colPresup = new ArrayList();
 	DefaultListModel modeloJList;
 	
@@ -181,7 +182,7 @@ public class VistaPresupuestos extends JFrame{
 		if (jContentPanePresupuestos == null) {
 			jLabelStatusPresupuesto = new JLabel();
 			jLabelStatusPresupuesto.setText("JLabel");
-			jLabelStatusPresupuesto.setBounds(new Rectangle(8, 352, 227, 30));
+			jLabelStatusPresupuesto.setBounds(new Rectangle(8, 352, 565, 30));
 			jLabel16 = new JLabel();
 			jLabel16.setText("Año");
 			jLabel16.setBounds(new Rectangle(196, 70, 29, 16));
@@ -392,6 +393,11 @@ public class VistaPresupuestos extends JFrame{
 			jButtonEliminar = new JButton();
 			jButtonEliminar.setText("Eliminar");
 			jButtonEliminar.setBounds(new Rectangle(8, 275, 80, 26));
+			jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+				}
+			});
 		}
 		return jButtonEliminar;
 	}
@@ -425,6 +431,24 @@ public class VistaPresupuestos extends JFrame{
 			jButtonItems = new JButton();
 			jButtonItems.setText("Lista de Items");
 			jButtonItems.setBounds(new Rectangle(99, 277, 120, 26));
+			jButtonItems.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if (dItemsPresupuesto == null) {
+						VistaItemsPresupuesto guiItemsPresupuesto = new VistaItemsPresupuesto();
+						dItemsPresupuesto = guiItemsPresupuesto.getJDialogItems();
+						dItemsPresupuesto.pack();
+						dItemsPresupuesto.setBounds(0,0,530,358);
+						dItemsPresupuesto.setVisible(true); 
+						jDialogPresupuestos.setVisible(false);
+						Object o = jListPresupuesto.getSelectedValue();
+						VistaItemsPresupuesto.setPresupuestoItem(o);
+					}
+					else {
+						dItemsPresupuesto.setVisible(true);
+						jDialogPresupuestos.setVisible(false);
+					}
+				}
+			});
 		}
 		return jButtonItems;
 	}
