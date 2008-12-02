@@ -64,7 +64,7 @@ public class VistaPrincipal {
     private JDialog dArticulos = null; 
     private JDialog dArticulosCompuestos = null; 
     private JDialog dMedidas = null; 
-    private JDialog dPresupuesto = null; 
+    public static JDialog dPresupuesto = null; 
     private JDialog dMontitorStock = null; 
 	  /**
 	   * This method initializes jFrame
