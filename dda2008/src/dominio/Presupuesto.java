@@ -193,9 +193,7 @@ public class Presupuesto implements Comparable {
   
 
   public String toString(){
-    String retorno=this.getDescripcion() + " - Id: "+this.getId()  ;
-  retorno+=" - Costo: " +this.getCosto() +  " - Fecha de Ejecucion : " ;
-  retorno+=this.getFechaEjecucionString() + " - Fecha de modificacion: "+this.getFechaModificacionString() +"\r" +this.getItems();
+    String retorno="Id: "+this.getId() + this.getDescripcion() +" - Fecha de modificacion: "+this.getFechaModificacionString();
   return retorno;
   }
 

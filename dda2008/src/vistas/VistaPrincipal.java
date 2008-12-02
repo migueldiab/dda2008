@@ -272,6 +272,19 @@ public class VistaPrincipal {
 	      presupuestosMenuItem.setText(I18n.PRESUPUESTOS);
 	      presupuestosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
+	        	if (dPresupuesto == null) {
+	                VistaPresupuestos guiPresupuestos = new VistaPresupuestos();
+	                dPresupuesto = guiPresupuestos.getJDialogPresupuestos();
+	                dPresupuesto.pack();
+	                Point loc = getJFrame().getLocation();
+	                loc.translate(20, 20);
+	                dPresupuesto.setLocation(loc);
+	                dPresupuesto.setBounds(10,10,660,420);
+	                dPresupuesto.setVisible(true);            
+	              }
+	              else {
+	            	  dPresupuesto.setVisible(true);
+	              }                    
 	          
 	        }
 	      });
