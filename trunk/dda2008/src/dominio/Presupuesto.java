@@ -176,7 +176,10 @@ public class Presupuesto implements Comparable {
   }
   
   public boolean agregarItem(Object object){
-  	return items.add(object);
+	  if(!items.contains(object)){
+	  return items.add(object);
+	  }
+	  return false;
   }
   public boolean borrarItem(Item item){
   	return items.remove(item);

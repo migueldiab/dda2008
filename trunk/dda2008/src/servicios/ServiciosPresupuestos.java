@@ -101,9 +101,7 @@ public class ServiciosPresupuestos
 			 if (!(unPresupuesto.getDescripcion().equals(descripcion))){
 				 unPresupuesto.setDescripcion(descripcion);
 			 }
-			 if (!(unPresupuesto.getFechaEjecucion().equals(fechaEjecucion))){
-				 unPresupuesto.setFechaEjecucion(fechaEjecucion);
-			 }
+			 	 unPresupuesto.setFechaEjecucion(fechaEjecucion);
 			 return true;
 		 }
   }
@@ -325,6 +323,6 @@ public class ServiciosPresupuestos
 	  }
 	  return losPresupuestos;
   }
-  
+
 
 }

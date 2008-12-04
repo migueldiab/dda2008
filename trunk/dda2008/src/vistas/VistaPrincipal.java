@@ -279,7 +279,7 @@ public class VistaPrincipal {
 	                Point loc = getJFrame().getLocation();
 	                loc.translate(20, 20);
 	                dPresupuesto.setLocation(loc);
-	                dPresupuesto.setBounds(10,10,660,420);
+	                dPresupuesto.setBounds(10,10,704,474);
 	                dPresupuesto.setVisible(true);            
 	              }
 	              else {

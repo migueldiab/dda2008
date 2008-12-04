@@ -14,6 +14,7 @@ import java.util.Observer;
 import javax.swing.SwingConstants;
 import servicios.Fachada;
 import utils.Fecha;
+import dominio.Item;
 import dominio.Presupuesto;
 import javax.swing.JDialog;
 import java.awt.Rectangle;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.JButton;
 
 	 
 public class VistaPresupuestos extends JFrame {
@@ -62,6 +64,9 @@ public class VistaPresupuestos extends JFrame {
 	private static ArrayList colPresup = new ArrayList();
 	DefaultListModel modeloJList;
 	public static Presupuesto presupuestoSeleccionado=null;
+	private JButton jButtonConfirmDeleteYes = null;
+	private JButton jButtonConfirmDeleteNo = null;
+	
 	
 	
 	private void nuevoPresupuesto() {
@@ -75,8 +80,14 @@ public class VistaPresupuestos extends JFrame {
 	
 	private void guardarPresupuesto(){
 		Date fechaEjecucion=new Date();
-		fechaEjecucion=ValidarFecha(Integer.parseInt(this.jTextFechaEjecucionDia.getText()),Integer.parseInt(this.jTextFechaEjecucionMes.getText()),Integer.parseInt(this.jTextFechaEjecucionAnio.getText()));
-		if (this.jTextId.getText().isEmpty()){ //si es nuevo
+		try{
+			fechaEjecucion=ValidarFecha(Integer.parseInt(jTextFechaEjecucionDia.getText()),Integer.parseInt(jTextFechaEjecucionMes.getText()),Integer.parseInt(jTextFechaEjecucionAnio.getText()));	
+		}
+		catch(Exception e){
+			fechaEjecucion=null;
+		}
+
+		if (this.jTextId.getText().isEmpty()){ //si es nuevo y no se apreto en items
 			if(Fachada.validoPresupuesto(this.jTextDescripcion.getText(),Fachada.getUsuarioActual())){
 				Presupuesto tmpPresupuesto=new Presupuesto(this.jTextDescripcion.getText(),fechaEjecucion);
 				Fachada.agregarPresupuesto(tmpPresupuesto);
@@ -88,56 +99,90 @@ public class VistaPresupuestos extends JFrame {
 				this.jLabelStatusPresupuesto.setText("Error");
 			}
 		}
-		else{			//si es una modificacion
+		else{			//si es una modificacion o tiene items
+			Presupuesto tmpPresupuesto=presupuestoSeleccionado;
+			if(Fachada.agregarPresupuesto(tmpPresupuesto)){
+				ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
+				tmpPresupuesto.setItems(items);
+				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
+			}
+			else{
 				if(Fachada.modificarPresupuesto((Presupuesto) jListPresupuesto.getSelectedValue(),this.jTextDescripcion.getText(),fechaEjecucion)){
+					ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
+					tmpPresupuesto= (Presupuesto)jListPresupuesto.getSelectedValue();
+					tmpPresupuesto.setItems(items);
 					this.jLabelStatusPresupuesto.setText("Modificado Correctamente");
 				}
 				else{
 					this.jLabelStatusPresupuesto.setText("Error");
 				}
 			}
-			
 		}
+
+	}
 
 	
 	
 	private void mostrarDatos(Object o) {
-		this.jTextDescripcion.setEditable(true);
-		this.jTextFechaEjecucionDia.setEditable(true);
-		this.jTextFechaEjecucionMes.setEditable(true);
-		this.jTextFechaEjecucionAnio.setEditable(true);
-		Presupuesto i=(Presupuesto) o;
-		this.jTextDescripcion.setText(i.getDescripcion());
-		Calendar cal=new GregorianCalendar();
-		cal.setTime(i.getFechaEjecucion());
-		this.jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-		this.jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-		this.jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
-		this.jTextId.setText(Integer.toString(i.getId()));
-		cal.setTime(i.getFechaModificacion());
-		this.jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-		this.jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-		this.jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
-		this.jTextDuenio.setText(i.getDuenio().getNombre());
-		this.jTextEstado.setText(i.getEstado());
-		this.jTextCosto.setText(Double.toString(i.getCosto()));
-		this.jLabelStatusPresupuesto.setText("");
-		
+		if(o!=null){
+			this.jTextDescripcion.setEditable(true);
+			this.jTextFechaEjecucionDia.setEditable(true);
+			this.jTextFechaEjecucionMes.setEditable(true);
+			this.jTextFechaEjecucionAnio.setEditable(true);
+			Presupuesto i=(Presupuesto) o;
+			this.jTextDescripcion.setText(i.getDescripcion());
+			Calendar cal=new GregorianCalendar();
+			if(i.getFechaEjecucion()!=null){
+				cal.setTime(i.getFechaEjecucion());
+				this.jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+			}
+			else{
+				this.jTextFechaEjecucionDia.setText(null);
+				this.jTextFechaEjecucionMes.setText(null);
+				this.jTextFechaEjecucionAnio.setText(null);
+			}
+			this.jTextId.setText(Integer.toString(i.getId()));
+			if(i.getFechaModificacion()!=null){
+				cal.setTime(i.getFechaModificacion());
+				this.jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				this.jTextDuenio.setText(i.getDuenio().getNombre());
+				this.jTextCosto.setText(Double.toString(i.getCosto()));
+			}
+			else{
+				this.jTextFechaModificacionDia.setText(null);
+				this.jTextFechaModificacionMes.setText(null);
+				this.jTextFechaModificacionAnio.setText(null);
+				this.jTextDuenio.setText(null);
+				this.jTextCosto.setText(null);
+			}
+			this.jTextEstado.setText(i.getEstado());
+			this.jLabelStatusPresupuesto.setText("");
+		}
+		else{
+			borrarCamposPresupuesto();
+		}
 	}
 
 	private Date ValidarFecha(int dia, int mes, int anio) {
 		if (dia >=1 && dia<=31){
 			if(mes>=1 && mes<=12){
-				String anioString=Integer.toString(anio);
-				if (anioString.length()==4){
-					Calendar cal=new GregorianCalendar();
-					cal.set(anio, mes-1, dia);
-					Date fecha=new Date();
-					fecha=cal.getTime();
-					return fecha;
+				if(anio>1000 && anio<9999){
+					String anioString=Integer.toString(anio);
+					if (anioString.length()==4){
+						Calendar cal=new GregorianCalendar();
+						cal.set(anio, mes-1, dia);
+						Date fecha=new Date();
+						fecha=cal.getTime();
+						return fecha;
+					}
 				}
 			}
 		}
+
 		return null;
 	}
 
@@ -166,8 +211,8 @@ public class VistaPresupuestos extends JFrame {
 	public JDialog getJDialogPresupuestos() {
 		if (jDialogPresupuestos == null) {
 			jDialogPresupuestos = new JDialog();
-			jDialogPresupuestos.setBounds(new Rectangle(0, 0, 714, 480));
-			jDialogPresupuestos.setSize(new Dimension(627, 480));
+			jDialogPresupuestos.setBounds(new Rectangle(0, 0, 714, 484));
+			jDialogPresupuestos.setSize(new Dimension(714, 480));
 			jDialogPresupuestos.setTitle("ABM Presupuestos");
 			jDialogPresupuestos.setContentPane(getJContentPanePresupuestos());
 		}
@@ -244,6 +289,8 @@ public class VistaPresupuestos extends JFrame {
 			jContentPanePresupuestos.add(getJButtonItems(), null);
 			jContentPanePresupuestos.add(getJTextId(), null);
 			jContentPanePresupuestos.add(getJScrollPanePresupuesto(), null);
+			jContentPanePresupuestos.add(getJButtonConfirmDeleteYes(), null);
+			jContentPanePresupuestos.add(getJButtonConfirmDeleteNo(), null);
 		}
 		return jContentPanePresupuestos;
 	}
@@ -396,8 +443,13 @@ public class VistaPresupuestos extends JFrame {
 			jButtonEliminar.setBounds(new Rectangle(8, 275, 80, 26));
 			jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+					if(jListPresupuesto.getSelectedValue()!=null){
+						jButtonConfirmDeleteYes.setVisible(true);
+						jButtonConfirmDeleteNo.setVisible(true);
+						jLabelStatusPresupuesto.setText("Aprete en \"Si\" si desea eliminar o en \"No\" para cancelar");
+					}	
 				}
+				
 			});
 		}
 		return jButtonEliminar;
@@ -413,10 +465,11 @@ public class VistaPresupuestos extends JFrame {
 			jButtonCancelar = new JButton();
 			jButtonCancelar.setText("Cancelar");
 			jButtonCancelar.setBounds(new Rectangle(6, 313, 85, 26));
-			jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
-				public void actionPerformed(java.awt.event.ActionEvent e) {
-					
+			jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {   
+				public void actionPerformed(java.awt.event.ActionEvent e) {    
+					jDialogPresupuestos.dispose();
 				}
+			
 			});
 		}
 		return jButtonCancelar;
@@ -434,20 +487,46 @@ public class VistaPresupuestos extends JFrame {
 			jButtonItems.setBounds(new Rectangle(99, 277, 120, 26));
 			jButtonItems.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					if (dItemsPresupuesto == null) {
-						VistaItemsPresupuesto guiItemsPresupuesto = new VistaItemsPresupuesto();
-						dItemsPresupuesto = guiItemsPresupuesto.getJDialogItems();
-						dItemsPresupuesto.pack();
-						dItemsPresupuesto.setBounds(0,0,530,358);
-						dItemsPresupuesto.setVisible(true); 
-						jDialogPresupuestos.setVisible(false);
-						VistaItemsPresupuesto.setPresupuestoItem(jListPresupuesto.getSelectedValue());
-						presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+					//if (dItemsPresupuesto == null) {
+					//	VistaItemsPresupuesto guiItemsPresupuesto = VistaItemsPresupuesto.getInstancia();
+						//dItemsPresupuesto = VistaItemsPresupuesto.getInstancia().getJDialogItems();
+					//	dItemsPresupuesto.pack();
+					//	dItemsPresupuesto.setBounds(0,0,530,358);
+						
+						if(jTextDescripcion.isEditable()){
+							if(jTextId.getText().isEmpty()){
+								if(jTextDescripcion.getText().isEmpty()){
+									jLabelStatusPresupuesto.setText("Debe ingresar una descripcion");
+								}
+								else{
+									Date fechaEjecucion=null;
+									try{
+										fechaEjecucion=ValidarFecha(Integer.parseInt(jTextFechaEjecucionDia.getText()),Integer.parseInt(jTextFechaEjecucionMes.getText()),Integer.parseInt(jTextFechaEjecucionAnio.getText()));
+									}
+									catch( Exception z) {
+										{
+										
+									   }
+									}
+									Presupuesto tmpNuevoPresupuesto=new Presupuesto(jTextDescripcion.getText(),fechaEjecucion);
+									mostrarDatos(tmpNuevoPresupuesto);
+									VistaItemsPresupuesto.getInstancia().setPresupuestoItem(tmpNuevoPresupuesto);
+									presupuestoSeleccionado=tmpNuevoPresupuesto;
+									VistaItemsPresupuesto.getInstancia().getJDialogItems().setVisible(true);
+									//dItemsPresupuesto.setVisible(true); 
+									jDialogPresupuestos.setVisible(false);	
+								}
+							}
+							else{
+								VistaItemsPresupuesto.getInstancia().getJDialogItems().setVisible(true);
+								//dItemsPresupuesto.setVisible(true); 
+								jDialogPresupuestos.setVisible(false);
+								VistaItemsPresupuesto.getInstancia().setPresupuestoItem(jListPresupuesto.getSelectedValue());
+								presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+							}
+						//}
 					}
-					dItemsPresupuesto.setVisible(true); 
-					jDialogPresupuestos.setVisible(false);
-					VistaItemsPresupuesto.setPresupuestoItem(jListPresupuesto.getSelectedValue());
-					presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+					
 				}
 			});
 		}
@@ -531,8 +610,10 @@ public class VistaPresupuestos extends JFrame {
 			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
 					mostrarDatos(jListPresupuesto.getSelectedValue());
-					
-					
+					presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+					VistaItemsPresupuesto.getInstancia().setPresupuestoItem(jListPresupuesto.getSelectedValue());
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
 				}
 			});
 		}
@@ -551,6 +632,56 @@ public class VistaPresupuestos extends JFrame {
 			jScrollPanePresupuesto.setViewportView(getJListPresupuesto());
 		}
 		return jScrollPanePresupuesto;
+	}
+
+	/**
+	 * This method initializes jButtonConfirmDeleteYes	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButtonConfirmDeleteYes() {
+		if (jButtonConfirmDeleteYes == null) {
+			jButtonConfirmDeleteYes = new JButton();
+			jButtonConfirmDeleteYes.setBounds(new Rectangle(199, 389, 77, 30));
+			jButtonConfirmDeleteYes.setText("Yes");
+			jButtonConfirmDeleteYes.setVisible(false);
+			jButtonConfirmDeleteYes.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(Fachada.borrarPresupuesto((Presupuesto)jListPresupuesto.getSelectedValue())){
+						modeloJList.removeElement(jListPresupuesto.getSelectedValue());
+						jLabelStatusPresupuesto.setText("Presupuesto Eliminado");
+					}
+					else{
+						jLabelStatusPresupuesto.setText("Presupuesto Nuevo Eliminado");
+					}
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
+				}
+			});
+		}
+		return jButtonConfirmDeleteYes;
+	}
+
+	/**
+	 * This method initializes jButtonConfirmDeleteNo	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButtonConfirmDeleteNo() {
+		if (jButtonConfirmDeleteNo == null) {
+			jButtonConfirmDeleteNo = new JButton();
+			jButtonConfirmDeleteNo.setBounds(new Rectangle(309, 389, 77, 30));
+			jButtonConfirmDeleteNo.setText("No");
+			jButtonConfirmDeleteNo.setVisible(false);
+			jButtonConfirmDeleteNo.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					jLabelStatusPresupuesto.setText("Operacion Cancelada");
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
+				}
+			});
+		}
+		return jButtonConfirmDeleteNo;
 	}
 
 
