@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Rectangle;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -14,28 +16,33 @@ import java.awt.Dimension;
 import javax.swing.JList;
 import javax.swing.JDialog;
 
+import servicios.Fachada;
+
+import dominio.Item;
 import dominio.Presupuesto;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class VistaItemsPresupuesto {
+
+public class VistaItemsPresupuesto  {
 
 	private JDialog jDialogItems = null;  //  @jve:decl-index=0:visual-constraint="9,10"
 	private JPanel jContentPaneItems = null;
 	private JButton jButtonFromAvailabletoItem = null;
 	private JButton jButtonFromItemToAvailable = null;
 	private JScrollPane jScrollPaneItemsDelPresupuesto = null;
-	private JList jListItemsDelPresupuesto = null;
+	private static JList jListItemsDelPresupuesto = null;
 	private JScrollPane jScrollPaneItemsAvailable = null;
 	private JList jListItemsAvailable = null;
 	private JLabel jLabel7 = null;
 	private JLabel jLabel8 = null;
-	private JTextField jTextNombre = null;
-	private JTextField jTextMedida = null;
-	private JTextField jTextCostoItem = null;
-	private JTextField jTextStock = null;
+	private static JTextField jTextNombre = null;
+	private static JTextField jTextMedida = null;
+	private static JTextField jTextCostoItem = null;
+	private static JTextField jTextStock = null;
 	private JLabel jLabel9 = null;
 	private JLabel jLabel10 = null;
 	private JLabel jLabel11 = null;
@@ -63,6 +70,10 @@ public class VistaItemsPresupuesto {
 	private static JTextField jTextId = null;
 	private JLabel jLabel41 = null;
 	private static JTextField jTextDuenio = null;
+	private static ArrayList colItemsPresup = new ArrayList();  //  @jve:decl-index=0:
+	
+	static DefaultListModel modeloJList;
+	private JList jListItemsDelPresupuesto1 = null;  //  @jve:decl-index=0:visual-constraint="571,108"
 	
 	/**
 	 * This method initializes jDialogItems	
@@ -243,11 +254,50 @@ public class VistaItemsPresupuesto {
 	 * @return javax.swing.JList	
 	 */
 	private JList getJListItemsDelPresupuesto() {
+
 		if (jListItemsDelPresupuesto == null) {
-			jListItemsDelPresupuesto = new JList();
+			if(VistaPresupuestos.presupuestoSeleccionado!=null){
+				colItemsPresup=Fachada.obtenerItems(VistaPresupuestos.presupuestoSeleccionado);
+				modeloJList = new DefaultListModel();
+				jListItemsDelPresupuesto = new JList(modeloJList);
+
+				for (int i=0;i<colItemsPresup.size();i++){
+					Object unItem=colItemsPresup.get(i);
+					modeloJList.addElement(unItem);
+				}	
+			}
+			else{
+				modeloJList = new DefaultListModel();
+				jListItemsDelPresupuesto = new JList(modeloJList);
+			}
+			jListItemsDelPresupuesto
+			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
+
+
+
+				}
+			});
+			
 		}
+		else{
+			jListItemsDelPresupuesto
+			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
+
+
+
+				}
+			});
+		}
+
+
 		return jListItemsDelPresupuesto;
-	}
+	}  
+
+
 
 	/**
 	 * This method initializes jScrollPaneItemsAvailable	
@@ -358,6 +408,7 @@ public class VistaItemsPresupuesto {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					VistaPrincipal.dPresupuesto.setVisible(true);
 					getJDialogItems().setVisible(false);
+					
 				}
 			});
 		}
@@ -394,8 +445,35 @@ public class VistaItemsPresupuesto {
 			jTextDuenio.setText(unPresupuesto.getDuenio().getNombre());
 			jTextEstado.setText(unPresupuesto.getEstado());
 			jTextCosto.setText(Double.toString(unPresupuesto.getCosto()));
+			colItemsPresup=Fachada.obtenerItems(unPresupuesto);
+			modeloJList.removeAllElements();
+				for (int i=0;i<colItemsPresup.size();i++){
+					Object unItem=colItemsPresup.get(i);
+					if(unItem!=null){
+						modeloJList.addElement(unItem);	
+					}
+					
+				}	
 			
 		}
+
+	}
+
+	public static void setDetallesItem(Object o){
+		Item item=(Item) o;
+		jTextNombre.setText(item.getElArticulo().getNombre());
+		jTextMedida.setText(item.getElArticulo().getMedida().toString());
+		Presupuesto elPresupuesto=VistaPresupuestos.presupuestoSeleccionado;
+		if(elPresupuesto!=null){
+			if(elPresupuesto.getEstado()=="Finalizado"){
+				
+				jTextCostoItem.setText(Double.toString(item.getCostoFinalizado()));
+			}
+			else if(elPresupuesto.getEstado()=="En Construccion"){
+				jTextCostoItem.setText(Double.toString(item.getElArticulo().getCosto()));	
+			}
+		}
+		jTextStock.setText(Integer.toString(item.getCantidadItem()));
 	}
 	
 	/**
@@ -551,5 +629,11 @@ public class VistaItemsPresupuesto {
 		}
 		return jTextDuenio;
 	}
+
+	public void notificar() {
+		
+		
+	}
+
 
 }

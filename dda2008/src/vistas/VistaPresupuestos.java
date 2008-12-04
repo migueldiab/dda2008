@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Collections;
+import java.util.Observer;
+
 import javax.swing.SwingConstants;
 import servicios.Fachada;
 import utils.Fecha;
@@ -20,11 +22,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
-public class VistaPresupuestos extends JFrame{
+	 
+public class VistaPresupuestos extends JFrame {
 
-	/**
-	 * 
-	 */
+	private ArrayList observadores=new ArrayList();
 	private static final long serialVersionUID = 1L;
 	private JDialog jDialogPresupuestos = null;  //  @jve:decl-index=0:visual-constraint="7,7"
 	private JPanel jContentPanePresupuestos = null;
@@ -60,7 +61,7 @@ public class VistaPresupuestos extends JFrame{
 	private JDialog dItemsPresupuesto = null;
 	private static ArrayList colPresup = new ArrayList();
 	DefaultListModel modeloJList;
-	
+	public static Presupuesto presupuestoSeleccionado=null;
 	
 	
 	private void nuevoPresupuesto() {
@@ -440,13 +441,13 @@ public class VistaPresupuestos extends JFrame{
 						dItemsPresupuesto.setBounds(0,0,530,358);
 						dItemsPresupuesto.setVisible(true); 
 						jDialogPresupuestos.setVisible(false);
-						Object o = jListPresupuesto.getSelectedValue();
-						VistaItemsPresupuesto.setPresupuestoItem(o);
+						VistaItemsPresupuesto.setPresupuestoItem(jListPresupuesto.getSelectedValue());
+						presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
 					}
-					else {
-						dItemsPresupuesto.setVisible(true);
-						jDialogPresupuestos.setVisible(false);
-					}
+					dItemsPresupuesto.setVisible(true); 
+					jDialogPresupuestos.setVisible(false);
+					VistaItemsPresupuesto.setPresupuestoItem(jListPresupuesto.getSelectedValue());
+					presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
 				}
 			});
 		}
@@ -519,19 +520,21 @@ public class VistaPresupuestos extends JFrame{
 			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
 			Object[] presu =colPresup.toArray();
 			modeloJList = new DefaultListModel();
-		jListPresupuesto = new JList(modeloJList);
-			
-		for (int i=0;i<colPresup.size();i++){
-			Object unPresu=colPresup.get(i);
-			modeloJList.addElement(unPresu);
-		}
-		
-		jListPresupuesto
-				.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-					public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-						mostrarDatos(jListPresupuesto.getSelectedValue());
-					}
-				});
+			jListPresupuesto = new JList(modeloJList);
+
+			for (int i=0;i<colPresup.size();i++){
+				Object unPresu=colPresup.get(i);
+				modeloJList.addElement(unPresu);
+			}
+
+			jListPresupuesto
+			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+					mostrarDatos(jListPresupuesto.getSelectedValue());
+					
+					
+				}
+			});
 		}
 		return jListPresupuesto;
 	}
@@ -549,6 +552,8 @@ public class VistaPresupuestos extends JFrame{
 		}
 		return jScrollPanePresupuesto;
 	}
+
+
 
 
 }
