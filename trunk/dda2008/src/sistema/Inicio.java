@@ -123,12 +123,12 @@ public class Inicio {
           I18n.sdf.parse("10/01/2008"),
           otroUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items56));
+          items12));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba3", 
           I18n.sdf.parse("15/11/2008"),
           unUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items12));
+          items56));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba5", 
           I18n.sdf.parse("31/12/2008"),
           otro2Usuario,

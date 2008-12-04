@@ -35,9 +35,9 @@ public double getCostoFinalizado() {
 }
 public String toString(){
 	if(this.getCostoFinalizado()>0){
-		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida()+" - Cantidad: "+this.getCantidadItem()+" - Costo Articulo: "+this.getCostoFinalizado() + " - Costo Item: "+ this.getCostoFinalizado()*this.getCantidadItem()+"\r";
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida();
 	}else{
-		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida()+" - Cantidad: "+this.getCantidadItem()+" - Costo Articulo: "+this.getElArticulo().getCosto() + " - Costo Item: "+ this.getElArticulo().getCosto()*this.getCantidadItem()+"\r";	
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida();	
 	}
 	
 	
