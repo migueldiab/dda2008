@@ -18,6 +18,7 @@ import javax.swing.JDialog;
 
 import servicios.Fachada;
 
+import dominio.Articulo;
 import dominio.Item;
 import dominio.Presupuesto;
 
@@ -71,9 +72,21 @@ public class VistaItemsPresupuesto  {
 	private JLabel jLabel41 = null;
 	private static JTextField jTextDuenio = null;
 	private static ArrayList colItemsPresup = new ArrayList();  //  @jve:decl-index=0:
-	
+	private static ArrayList colItemsAvailable = new ArrayList();  //  @jve:decl-index=0:
 	static DefaultListModel modeloJList;
-	private JList jListItemsDelPresupuesto1 = null;  //  @jve:decl-index=0:visual-constraint="571,108"
+	static DefaultListModel modeloJListAvailable;
+	
+	private static VistaItemsPresupuesto instancia=null;  //  @jve:decl-index=0:
+	public static VistaItemsPresupuesto getInstancia(){
+		if(instancia==null){
+			instancia=new VistaItemsPresupuesto();
+			JDialog dialogo=instancia.getJDialogItems();
+			dialogo.pack();
+			dialogo.setBounds(0,0,530,358);
+		}
+		return instancia;
+	}
+	
 	
 	/**
 	 * This method initializes jDialogItems	
@@ -88,17 +101,17 @@ public class VistaItemsPresupuesto  {
 			jDialogItems.setContentPane(getJContentPaneItems());
 			jDialogItems.addWindowListener(new java.awt.event.WindowAdapter() {
 				public void windowClosing(java.awt.event.WindowEvent e) {
-					if (VistaPrincipal.dPresupuesto == null) {
+/*					if (VistaPrincipal.dPresupuesto == null) {
 						VistaPresupuestos guiPresupuesto = new VistaPresupuestos();
 						VistaPrincipal.dPresupuesto = guiPresupuesto.getJDialogPresupuestos();
 						VistaPrincipal.dPresupuesto.pack();
 						VistaPrincipal.dPresupuesto.setBounds(0,0,714,480);
 						VistaPrincipal.dPresupuesto.setVisible(true);            
 					}
-					else {
+					else {*/
 						VistaPrincipal.dPresupuesto.setVisible(true);
 						
-					}
+					
 				}
 			});
 		}
@@ -216,6 +229,23 @@ public class VistaItemsPresupuesto  {
 			jButtonFromAvailabletoItem = new JButton();
 			jButtonFromAvailabletoItem.setBounds(new Rectangle(217, 104, 68, 20));
 			jButtonFromAvailabletoItem.setText("<=");
+			jButtonFromAvailabletoItem
+			.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(jListItemsAvailable.getSelectedValue()!=null){
+						if(!jTextCantidadItem.getText().isEmpty()){
+							int cant=Integer.parseInt(jTextCantidadItem.getText());
+							Object articuloARemover=jListItemsAvailable.getSelectedValue();
+							Articulo articulo=(Articulo)articuloARemover;
+							if(cant<=articulo.getCantidad()){
+								modeloJListAvailable.removeElement(articuloARemover);
+								Item item=new Item((Articulo)articulo,cant);
+								modeloJList.addElement(item);
+							}
+						}
+					}
+				}
+			});
 		}
 		return jButtonFromAvailabletoItem;
 	}
@@ -230,6 +260,19 @@ public class VistaItemsPresupuesto  {
 			jButtonFromItemToAvailable = new JButton();
 			jButtonFromItemToAvailable.setBounds(new Rectangle(217, 36, 69, 21));
 			jButtonFromItemToAvailable.setText("=>");
+			jButtonFromItemToAvailable
+			.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(jListItemsDelPresupuesto.getSelectedValue()!=null){
+						Object itemARemover=jListItemsDelPresupuesto.getSelectedValue();
+						modeloJList.removeElement(itemARemover);
+						Item item=(Item) itemARemover;
+						Articulo articulo=(Articulo) item.getElArticulo();
+						modeloJListAvailable.addElement(articulo);
+					}
+
+				}
+			});
 		}
 		return jButtonFromItemToAvailable;
 	}
@@ -273,7 +316,7 @@ public class VistaItemsPresupuesto  {
 			jListItemsDelPresupuesto
 			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
+					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue(),1);
 
 
 
@@ -285,7 +328,7 @@ public class VistaItemsPresupuesto  {
 			jListItemsDelPresupuesto
 			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
+					//setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
 
 
 
@@ -320,8 +363,27 @@ public class VistaItemsPresupuesto  {
 	 */
 	private JList getJListItemsAvailable() {
 		if (jListItemsAvailable == null) {
-			jListItemsAvailable = new JList();
-		}
+			if(VistaPresupuestos.presupuestoSeleccionado!=null){
+				colItemsAvailable=Fachada.obtenerArticulosNotIn(VistaPresupuestos.presupuestoSeleccionado);
+				modeloJListAvailable = new DefaultListModel();
+				jListItemsAvailable = new JList(modeloJListAvailable);
+				jListItemsAvailable
+				.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+					public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+						setDetallesItem(jListItemsAvailable.getSelectedValue(),0);
+					}
+				});
+
+				for (int i=0;i<colItemsAvailable.size();i++){
+					Object unItem=colItemsAvailable.get(i);
+					modeloJListAvailable.addElement(unItem);
+				}	
+			}
+			else{
+				modeloJListAvailable = new DefaultListModel();
+				jListItemsAvailable = new JList(modeloJListAvailable);
+			}
+		}	
 		return jListItemsAvailable;
 	}
 
@@ -433,49 +495,80 @@ public class VistaItemsPresupuesto  {
 			Presupuesto unPresupuesto=(Presupuesto) o;
 			jTextDescripcion.setText(unPresupuesto.getDescripcion());
 			Calendar cal=new GregorianCalendar();
-			cal.setTime(unPresupuesto.getFechaEjecucion());
-			jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-			jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-			jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+			if(unPresupuesto.getFechaEjecucion()!=null){
+				cal.setTime(unPresupuesto.getFechaEjecucion());
+				jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));	
+			}
+			
+			
 			jTextId.setText(Integer.toString(unPresupuesto.getId()));
-			cal.setTime(unPresupuesto.getFechaModificacion());
-			jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-			jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-			jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
-			jTextDuenio.setText(unPresupuesto.getDuenio().getNombre());
-			jTextEstado.setText(unPresupuesto.getEstado());
-			jTextCosto.setText(Double.toString(unPresupuesto.getCosto()));
-			colItemsPresup=Fachada.obtenerItems(unPresupuesto);
-			modeloJList.removeAllElements();
+			if(unPresupuesto.getFechaModificacion()!=null){
+				cal.setTime(unPresupuesto.getFechaModificacion());
+				jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				jTextDuenio.setText(unPresupuesto.getDuenio().getNombre());
+				jTextCosto.setText(Double.toString(unPresupuesto.getCosto()));
+				colItemsPresup=Fachada.obtenerItems(unPresupuesto);
+				modeloJList.removeAllElements();
 				for (int i=0;i<colItemsPresup.size();i++){
 					Object unItem=colItemsPresup.get(i);
 					if(unItem!=null){
 						modeloJList.addElement(unItem);	
 					}
-					
+
 				}	
-			
-		}
-
-	}
-
-	public static void setDetallesItem(Object o){
-		Item item=(Item) o;
-		jTextNombre.setText(item.getElArticulo().getNombre());
-		jTextMedida.setText(item.getElArticulo().getMedida().toString());
-		Presupuesto elPresupuesto=VistaPresupuestos.presupuestoSeleccionado;
-		if(elPresupuesto!=null){
-			if(elPresupuesto.getEstado()=="Finalizado"){
+			}
+			jTextEstado.setText(unPresupuesto.getEstado());
+			colItemsAvailable=Fachada.obtenerArticulosNotIn(unPresupuesto);
+			modeloJListAvailable.removeAllElements();
+			for (int i=0;i<colItemsAvailable.size();i++){
+				Object unItem=colItemsAvailable.get(i);
+				if(unItem!=null){
+					modeloJListAvailable.addElement(unItem);	
+				}
 				
-				jTextCostoItem.setText(Double.toString(item.getCostoFinalizado()));
-			}
-			else if(elPresupuesto.getEstado()=="En Construccion"){
-				jTextCostoItem.setText(Double.toString(item.getElArticulo().getCosto()));	
+			}	
+		}
+
+	}
+
+	public static void setDetallesItem(Object o, int i){
+		if(i==1){
+			Item item=(Item) o;
+			if(item!=null){
+				jTextNombre.setText(item.getElArticulo().getNombre());
+				jTextMedida.setText(item.getElArticulo().getMedida().toString());
+				Presupuesto elPresupuesto=VistaPresupuestos.presupuestoSeleccionado;
+				if(elPresupuesto!=null){
+					if(elPresupuesto.getEstado()=="Finalizado"){
+
+						jTextCostoItem.setText(Double.toString(item.getCostoFinalizado()));
+					}
+					else if(elPresupuesto.getEstado()=="En Construccion"){
+						jTextCostoItem.setText(Double.toString(item.getElArticulo().getCosto()));	
+					}
+				}
+				jTextStock.setText(Integer.toString(item.getCantidadItem()));	
 			}
 		}
-		jTextStock.setText(Integer.toString(item.getCantidadItem()));
+		else{
+			if(i==0){
+				Articulo articulo=(Articulo) o;
+				if(articulo!=null){
+					jTextNombre.setText(articulo.getNombre());
+					jTextMedida.setText(articulo.getMedida().toString());
+					Presupuesto elPresupuesto=VistaPresupuestos.presupuestoSeleccionado;
+					jTextCostoItem.setText(Double.toString(articulo.getCosto()));	
+					jTextStock.setText(Integer.toString(articulo.getCantidad()));		
+				}
+			}
+		}
 	}
-	
+
+
 	/**
 	 * This method initializes jTextDescripcion	
 	 * 	
@@ -630,10 +723,16 @@ public class VistaItemsPresupuesto  {
 		return jTextDuenio;
 	}
 
-	public void notificar() {
-		
+	public static ArrayList itemsModificados(){
+		ArrayList retorno=new ArrayList();
+		for(int i=0;i<modeloJList.getSize();i++){
+			if(modeloJList.isEmpty()==false){
+				retorno.add(modeloJList.getElementAt(i));	
+			}
+			
+		}
+		return retorno;
 		
 	}
-
 
 }
