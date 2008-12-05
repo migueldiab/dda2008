@@ -2,6 +2,7 @@ package uiConsola;
 
 import java.util.ArrayList;
 import dominio.Articulo;
+import dominio.ArticuloSimple;
 import dominio.Medida;
 import dominio.Presupuesto;
 import servicios.Fachada;
@@ -26,7 +27,7 @@ public class UiArticulo
 			medida = (Medida) medidas.get(posMedida);
 			cantidad = Consola.leerInt(I18n.CANTIDAD + " : ");
 			costo = Consola.leerDouble(I18n.COSTO + " : ");
-			Articulo unArticulo = new Articulo(nombre, medida, cantidad, costo);
+			Articulo unArticulo = new ArticuloSimple(nombre, medida, cantidad, costo);
 			if (Fachada.agregarArticulo(unArticulo)) {
 				Consola.println(I18n.INGRESO_OK);
 				Consola.leer(I18n.PRESIONE_ENTER);

@@ -175,21 +175,21 @@ public class Fachada {
   
   
   public static ArrayList listadoArticulosCompuestos() {
-    return ServiciosArticulosCompuestos.listado();
+    return ServiciosArticulos.listadoCompuestos();
   }
   
   
   public static ArticuloCompuesto obtenerArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    return (ArticuloCompuesto) ServiciosArticulosCompuestos.obtener(unArticuloCompuesto);
+    return (ArticuloCompuesto) ServiciosArticulos.obtenerCompuesto(unArticuloCompuesto);
   }
   
   
   public static boolean agregarArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    return ServiciosArticulosCompuestos.agregar(unArticuloCompuesto);
+    return ServiciosArticulos.agregarCompuesto(unArticuloCompuesto);
   }
   
   public static boolean borrarArticuloCompuesto(ArticuloCompuesto u) {
-    return ServiciosArticulosCompuestos.borrar(u);
+    return ServiciosArticulos.borrarCompuesto(u);
   }
 public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
 	return ServiciosArticulos.getArticulosStockInsuficiente(cal);
