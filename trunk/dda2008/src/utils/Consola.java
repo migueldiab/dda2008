@@ -213,10 +213,10 @@ public class Consola {
 			  println( (x+1) + "-" + ((Item) opciones.get(x)).getElArticulo().toStringNombreMedida());
 		  }
 		  else if(tipo==3)	{
-			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringIdDescFechaMod());
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toString());
 		  }
 		  else if(tipo==4)	{
-			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toStringSinItems());
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toString());
 		  }
 		  else{
 			  println( (x+1) + "-" + opciones.get(x).toString());
