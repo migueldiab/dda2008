@@ -80,7 +80,24 @@ public class Fecha {
 		t = new Time(c.getTimeInMillis());
 		return t;
 	}
+	public static Date ValidarFecha(int dia, int mes, int anio) {
+		if (dia >=1 && dia<=31){
+			if(mes>=1 && mes<=12){
+				if(anio>1000 && anio<9999){
+					String anioString=Integer.toString(anio);
+					if (anioString.length()==4){
+						Calendar cal=new GregorianCalendar();
+						cal.set(anio, mes-1, dia);
+						Date fecha=new Date();
+						fecha=cal.getTime();
+						return fecha;
+					}
+				}
+			}
+		}
 
+		return null;
+	}
 	
   public static Calendar toDate(String fecha) {
     Date d;

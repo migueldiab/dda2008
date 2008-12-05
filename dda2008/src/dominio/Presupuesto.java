@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import servicios.ServiciosUsuarios;
 import utils.I18n;
 
 /**
@@ -33,18 +34,21 @@ public class Presupuesto implements Comparable {
  */
   
   public Presupuesto (String descripcion, Date fechaEjecucion){
-    this.descripcion=descripcion;
-    this.fechaEjecucion=fechaEjecucion;
-    this.id=nuevoId();
-    this.estado=EN_CONSTRUCCION; 
+	  Date now=new Date();
+	  this.descripcion=descripcion;
+	  this.fechaEjecucion=fechaEjecucion;
+	  this.id=nuevoId();
+	  this.estado=EN_CONSTRUCCION; 
+	  this.setFechaModificacion(now);
+	  this.setDuenio(ServiciosUsuarios.getUsuarioActual());
   }
   public Presupuesto (String descripcion, Date fechaEjecucion, Usuario duenio, String estado, ArrayList items){
-    this(descripcion, fechaEjecucion);
-    this.setDuenio(duenio);
-    this.setEstado(estado);
-    for (int i=0; i<items.size(); i++) {
-      this.agregarItem(items.get(i));
-    }
+	  this(descripcion, fechaEjecucion);
+	  this.setDuenio(duenio);
+	  this.setEstado(estado);
+	  for (int i=0; i<items.size(); i++) {
+		  this.agregarItem(items.get(i));
+	  }
   }
     
 
@@ -196,24 +200,10 @@ public class Presupuesto implements Comparable {
   
 
   public String toString(){
-    String retorno="Id: "+this.getId() + this.getDescripcion() +" - Fecha de modificacion: "+this.getFechaModificacionString();
+    String retorno="Id: "+this.getId()+ " " + this.getDescripcion() +" - Fecha de modificacion: "+this.getFechaModificacionString();
   return retorno;
   }
 
-  public String toStringIdDescFechaMod(){
-	  return "Id: "+this.getId() + "- Descripcion: "+this.getDescripcion() + " - Fecha Modificacion: "+ this.getFechaModificacionString();
-  }
-  
-  public String toStringSinItems(){
-	  String retorno=this.getDescripcion() + " - Id: "+this.getId() + " - Estado: "+this.getEstado();
-	  retorno+=" - Costo: " +this.getCosto() + " - Nombre Dueño: "+this.getDuenio().getNombre() + " - Apellido: "+ this.getDuenio().getApellido() + " - Fecha de Ejecucion : " ;
-	  retorno+=this.getFechaEjecucionString() + " - Fecha ultima modificacion: "+this.getFechaModificacionString();
-	  return retorno;
-  }
-
-  
-  
-  
   public boolean equals(Object arg0)
   {
     try

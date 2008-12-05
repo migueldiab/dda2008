@@ -25,8 +25,8 @@ public class Fachada {
   public static ArrayList listadoArticulos() {
     return ServiciosArticulos.listado();
   }
-  public static void calcularCosto(Presupuesto unPresupuesto){
-		ServiciosPresupuestos.calcularCosto(unPresupuesto);
+  public static Double calcularCosto(Presupuesto unPresupuesto){
+		return ServiciosPresupuestos.calcularCosto(unPresupuesto);
   }
   public static boolean agregarPresupuesto(Presupuesto unPresupuesto) {
     return ServiciosPresupuestos.agregar(unPresupuesto);
@@ -197,6 +197,12 @@ public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
 //public static void guardarItemsPresupuesto(ArrayList obtenerItems,
 	//	ArrayList items,Presupuesto presupuesto) {
 	//ServiciosPresupuestos.guardarItemsPresupuesto(obtenerItems,items,presupuesto);
+public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
+	return ServiciosPresupuestos.obtenerPresupuestosAntesDe(fecha);
+}
+public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
+	return ServiciosPresupuestos.getArticulosSimplesDePresupuestosAntesDe(fecha);
+}
 	
 //}
 

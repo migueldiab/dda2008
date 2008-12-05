@@ -25,6 +25,7 @@ import dominio.Presupuesto;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 
@@ -75,7 +76,7 @@ public class VistaItemsPresupuesto  {
 	private static ArrayList colItemsAvailable = new ArrayList();  //  @jve:decl-index=0:
 	static DefaultListModel modeloJList;
 	static DefaultListModel modeloJListAvailable;
-	
+	private static Presupuesto presupuestoTemporal=null;
 	private static VistaItemsPresupuesto instancia=null;  //  @jve:decl-index=0:
 	public static VistaItemsPresupuesto getInstancia(){
 		if(instancia==null){
@@ -101,14 +102,6 @@ public class VistaItemsPresupuesto  {
 			jDialogItems.setContentPane(getJContentPaneItems());
 			jDialogItems.addWindowListener(new java.awt.event.WindowAdapter() {
 				public void windowClosing(java.awt.event.WindowEvent e) {
-/*					if (VistaPrincipal.dPresupuesto == null) {
-						VistaPresupuestos guiPresupuesto = new VistaPresupuestos();
-						VistaPrincipal.dPresupuesto = guiPresupuesto.getJDialogPresupuestos();
-						VistaPrincipal.dPresupuesto.pack();
-						VistaPrincipal.dPresupuesto.setBounds(0,0,714,480);
-						VistaPrincipal.dPresupuesto.setVisible(true);            
-					}
-					else {*/
 						VistaPrincipal.dPresupuesto.setVisible(true);
 						
 					
@@ -241,6 +234,9 @@ public class VistaItemsPresupuesto  {
 								modeloJListAvailable.removeElement(articuloARemover);
 								Item item=new Item((Articulo)articulo,cant);
 								modeloJList.addElement(item);
+								presupuestoTemporal.setItems(itemsModificados());
+								presupuestoTemporal.setCosto(Fachada.calcularCosto(presupuestoTemporal));
+								jTextCosto.setText(Double.toString(Math.round(presupuestoTemporal.getCosto())));
 							}
 						}
 					}
@@ -269,6 +265,10 @@ public class VistaItemsPresupuesto  {
 						Item item=(Item) itemARemover;
 						Articulo articulo=(Articulo) item.getElArticulo();
 						modeloJListAvailable.addElement(articulo);
+						//setPresupuestoItem(VistaPresupuestos.presupuestoSeleccionado);
+						presupuestoTemporal.setItems(itemsModificados());
+						presupuestoTemporal.setCosto(Fachada.calcularCosto(presupuestoTemporal));
+						jTextCosto.setText(Double.toString(Math.round(presupuestoTemporal.getCosto())));
 					}
 
 				}
@@ -317,26 +317,9 @@ public class VistaItemsPresupuesto  {
 			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
 					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue(),1);
-
-
-
-				}
-			});
-			
-		}
-		else{
-			jListItemsDelPresupuesto
-			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-					//setDetallesItem(jListItemsDelPresupuesto.getSelectedValue());
-
-
-
 				}
 			});
 		}
-
-
 		return jListItemsDelPresupuesto;
 	}  
 
@@ -368,12 +351,11 @@ public class VistaItemsPresupuesto  {
 				modeloJListAvailable = new DefaultListModel();
 				jListItemsAvailable = new JList(modeloJListAvailable);
 				jListItemsAvailable
-				.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-					public void valueChanged(javax.swing.event.ListSelectionEvent e) {
-						setDetallesItem(jListItemsAvailable.getSelectedValue(),0);
-					}
-				});
-
+						.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+							public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+								setDetallesItem(jListItemsAvailable.getSelectedValue(),0);
+							}
+						});
 				for (int i=0;i<colItemsAvailable.size();i++){
 					Object unItem=colItemsAvailable.get(i);
 					modeloJListAvailable.addElement(unItem);
@@ -470,7 +452,7 @@ public class VistaItemsPresupuesto  {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					VistaPrincipal.dPresupuesto.setVisible(true);
 					getJDialogItems().setVisible(false);
-					
+					VistaPresupuestos.updateCosto();
 				}
 			});
 		}
@@ -492,6 +474,12 @@ public class VistaItemsPresupuesto  {
 			jTextCosto.setText("");
 		}
 		else{
+			if(presupuestoTemporal==null){
+				presupuestoTemporal=new Presupuesto("temporal",new Date());
+			}
+			else{
+				presupuestoTemporal.setItems(itemsModificados());
+			}
 			Presupuesto unPresupuesto=(Presupuesto) o;
 			jTextDescripcion.setText(unPresupuesto.getDescripcion());
 			Calendar cal=new GregorianCalendar();
@@ -510,7 +498,8 @@ public class VistaItemsPresupuesto  {
 				jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
 				jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
 				jTextDuenio.setText(unPresupuesto.getDuenio().getNombre());
-				jTextCosto.setText(Double.toString(unPresupuesto.getCosto()));
+				
+				jTextCosto.setText(Double.toString(Math.round(Fachada.calcularCosto(presupuestoTemporal))));
 				colItemsPresup=Fachada.obtenerItems(unPresupuesto);
 				modeloJList.removeAllElements();
 				for (int i=0;i<colItemsPresup.size();i++){

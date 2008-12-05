@@ -19,6 +19,9 @@ import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
 import servicios.Fachada;
+import utils.Fecha;
+
+import javax.swing.JList;
 
 public class VistaMonitorStock {
 
@@ -33,7 +36,7 @@ public class VistaMonitorStock {
 	private JLabel jlblSeleccioneFecha = null;
 	private JButton jbtnCheckDate = null;
 	private JScrollPane jScrollPane = null;
-	private JTable jTable = null;
+	private JList jList = null;
 	/**
 	 * This method initializes jFrame	
 	 * 	
@@ -149,8 +152,10 @@ public class VistaMonitorStock {
 			jbtnCheckDate.setText("Chequear Stock");
 			jbtnCheckDate.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					System.out.println("actionPerformed()"); // TODO Auto-generated Event stub actionPerformed()
+					getArticulosSinStock();
 				}
+
+				
 			});
 		}
 		return jbtnCheckDate;
@@ -174,21 +179,9 @@ public class VistaMonitorStock {
 		if (jScrollPane == null) {
 			jScrollPane = new JScrollPane();
 			jScrollPane.setBounds(new Rectangle(29, 113, 442, 272));
-			jScrollPane.setViewportView(getJTable());
+			jScrollPane.setViewportView(getJList());
 		}
 		return jScrollPane;
-	}
-
-	/**
-	 * This method initializes jTable	
-	 * 	
-	 * @return javax.swing.JTable	
-	 */
-	private JTable getJTable() {
-		if (jTable == null) {
-			jTable = new JTable(new MiModelo());
-		}
-		return jTable;
 	}
 
 	class MiModelo extends AbstractTableModel {
@@ -225,5 +218,20 @@ public class VistaMonitorStock {
 		
 		
 	}
-	
+
+	/**
+	 * This method initializes jList	
+	 * 	
+	 * @return javax.swing.JList	
+	 */
+	private JList getJList() {
+		if (jList == null) {
+			jList = new JList();
+		}
+		return jList;
+	}
+	private void getArticulosSinStock() {
+		Date fecha=	Fecha.ValidarFecha(Integer.parseInt(jTextDia.getText()),Integer.parseInt(jTextMes.getText()),Integer.parseInt(jTextAnio.getText()));
+		ArrayList losArticulosSimples=Fachada.getArticulosSimplesDePresupuestosAntesDe(fecha);
+	}
 }

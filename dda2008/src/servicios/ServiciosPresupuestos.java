@@ -15,14 +15,10 @@ public class ServiciosPresupuestos
 	private static ArrayList presupuestos = new ArrayList();
   
   public static boolean agregar(Presupuesto unPresupuesto){
-    Date now=new Date();
+    
   	if (presupuestos.indexOf(unPresupuesto)==-1){
-    	unPresupuesto.setFechaModificacion(now);
-      // FIXME
-      if (ServiciosUsuarios.getUsuarioActual()!=null)
-        unPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
     	presupuestos.add(unPresupuesto);
-    	calcularCosto(unPresupuesto);
+    	unPresupuesto.setCosto(calcularCosto(unPresupuesto));
     	return true;
   	}
   	else
@@ -40,7 +36,7 @@ public class ServiciosPresupuestos
   	 }
   }
   
-  public static void calcularCosto(Presupuesto unPresupuesto){
+  public static Double calcularCosto(Presupuesto unPresupuesto){
   int x = 0;
   double costo=0;
   	 for(x=0;x<unPresupuesto.getItems().size();x++){
@@ -51,8 +47,8 @@ public class ServiciosPresupuestos
   		 else{
   		 costo+=item.getElArticulo().getCosto()*item.getCantidadItem();
   		 }
-  		unPresupuesto.setCosto(costo);
   	 }
+  	 return costo;
   }
   public static ArrayList listado(){
   	 if(presupuestos.size()==0){
@@ -323,6 +319,38 @@ public class ServiciosPresupuestos
 	  }
 	  return losPresupuestos;
   }
+public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
+	ArrayList retorno=new ArrayList();
+	for(int i=0;i<presupuestos.size();i++){
+		Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
+		if(unPresupuesto.getEstado()=="En Construccion"){
+			if(unPresupuesto.getFechaEjecucion().before(fecha)){
+				retorno.add(unPresupuesto);
+			}
+			
+		}
+	}
+	return retorno;
+}
+public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
+	ArrayList retorno=new ArrayList();
+	ArrayList losPresupuestos=obtenerPresupuestosAntesDe(fecha);
+	for(int i=0;i<losPresupuestos.size();i++){
+		Presupuesto unPresupuesto=(Presupuesto)losPresupuestos.get(i);
+		for(int j=0;j<unPresupuesto.getItems().size();j++){
+			Item unItem=(Item) unPresupuesto.getItems().get(j);
+			if(retorno.contains(unItem.getElArticulo())){
+				int intArtRetorno = retorno.indexOf(unItem.getElArticulo());
+				Articulo itemRetorno=(Articulo)retorno.get(intArtRetorno);
+				//itemRetorno.setCantidad(itemRetorno.getCantidad()+unItem.getCantidad
+			}
+			
+		}
+		
+		
+	}
+	return retorno;
+}
 
 
 }
