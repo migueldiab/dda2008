@@ -1,6 +1,6 @@
 package dominio;
 
-public class Articulo implements Cloneable, Comparable
+public abstract class Articulo implements Cloneable, Comparable
 {
   private String nombre;
   private int cantidad;

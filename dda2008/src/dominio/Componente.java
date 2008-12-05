@@ -1,12 +1,9 @@
 package dominio;
 
-public class Componente extends Articulo implements Cloneable, Comparable {
+public class Componente {
 
+  private Articulo componente = null;
   private int cantidad = 0;
   
-  public Componente(String nombre, Medida unaMedida) {
-    super(nombre, unaMedida);
-    // TODO Auto-generated constructor stub
-  }
 
 }

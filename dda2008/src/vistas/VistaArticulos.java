@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 
 import servicios.Fachada;
 import dominio.Articulo;
+import dominio.ArticuloSimple;
 import dominio.Grupo;
 import dominio.Medida;
 import dominio.Usuario;
@@ -268,7 +269,7 @@ public class VistaArticulos extends JFrame {
   }
   private void guardarArticulo() {
     try {
-      Articulo unArticulo = new Articulo(tNombre.getText(), (Medida) cMedida.getSelectedItem());
+      Articulo unArticulo = new ArticuloSimple(tNombre.getText(), (Medida) cMedida.getSelectedItem());
       unArticulo = Fachada.obtenerArticulo(unArticulo);
       if ((unArticulo==null) || (JOptionPane.showConfirmDialog(
           null,"Desea guardar los cambios al articulo "+tNombre.getText()+"?",
@@ -280,7 +281,7 @@ public class VistaArticulos extends JFrame {
             cMedida.getSelectedIndex()!=-1
           )    
         {      
-          if (unArticulo==null) unArticulo = new Articulo(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          if (unArticulo==null) unArticulo = new ArticuloSimple(tNombre.getText(),(Medida) cMedida.getSelectedItem());
           unArticulo.setCantidad(Integer.parseInt(tCantidad.getText()));
           unArticulo.setCosto(Double.parseDouble(tCosto.getText()));
           if (Fachada.agregarArticulo(unArticulo)) {

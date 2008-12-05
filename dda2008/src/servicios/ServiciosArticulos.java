@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 
 import dominio.Articulo;
+import dominio.ArticuloCompuesto;
 import dominio.Item;
 import dominio.Medida;
 import dominio.Presupuesto;
@@ -127,6 +128,26 @@ public class ServiciosArticulos
   public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
 	
 	  return null;
+  }
+
+  public static boolean agregarCompuesto(ArticuloCompuesto unArticuloCompuesto) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  public static boolean borrarCompuesto(ArticuloCompuesto u) {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  public static ArticuloCompuesto obtenerCompuesto(ArticuloCompuesto unArticuloCompuesto) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  public static ArrayList listadoCompuestos() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 }
