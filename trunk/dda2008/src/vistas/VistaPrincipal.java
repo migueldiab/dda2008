@@ -65,7 +65,9 @@ public class VistaPrincipal {
     private JDialog dArticulosCompuestos = null; 
     private JDialog dMedidas = null; 
     public static JDialog dPresupuesto = null; 
-    private JDialog dMontitorStock = null; 
+    private JDialog dMontitorStock = null;
+    private JDialog dFinalizarPresupuesto = null;
+	private JMenuItem finalizarMenuItem = null; 
 	  /**
 	   * This method initializes jFrame
 	   * 
@@ -202,6 +204,7 @@ public class VistaPrincipal {
 	      operacionesMenu.add(getMedidasMenuItem());
         operacionesMenu.add(getPrespuestosMenuItem());
         operacionesMenu.add(getMonitorStockMenuItem());
+        operacionesMenu.add(getFinalizarMenuItem());
 	    }
 	    return operacionesMenu;
 	  }
@@ -534,4 +537,34 @@ public class VistaPrincipal {
     protected static void cerrar() {
       sistema.Inicio.principal.jFrame.dispose();
     }
+
+	/**
+	 * This method initializes finalizarMenuItem	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getFinalizarMenuItem() {
+		if (finalizarMenuItem == null) {
+			finalizarMenuItem = new JMenuItem();
+			finalizarMenuItem.setText("Finalizar Presupuesto");
+			finalizarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					   if (dFinalizarPresupuesto == null) {
+				            VistaFinalizacionPresupuesto guiFinalizarPresupuesto = new VistaFinalizacionPresupuesto();
+				            dFinalizarPresupuesto = guiFinalizarPresupuesto.getJDialog();
+				            dFinalizarPresupuesto.pack();
+				              Point loc = getJFrame().getLocation();
+				              loc.translate(20, 20);
+				              dFinalizarPresupuesto.setLocation(loc);
+				              dFinalizarPresupuesto.setBounds(10,10,625,516);
+				              dFinalizarPresupuesto.setVisible(true);            
+				            }
+				            else {
+				            	dFinalizarPresupuesto.setVisible(true);
+				            }	
+				}
+			});
+		}
+		return finalizarMenuItem;
+	}
 }
