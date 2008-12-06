@@ -67,7 +67,10 @@ public class VistaPrincipal {
     public static JDialog dPresupuesto = null; 
     private JDialog dMontitorStock = null;
     private JDialog dFinalizarPresupuesto = null;
-	private JMenuItem finalizarMenuItem = null; 
+    private JDialog dCopiarPresupuesto = null;
+    private JMenuItem finalizarMenuItem = null;
+
+	private JMenuItem copiarMenuItem = null; 
 	  /**
 	   * This method initializes jFrame
 	   * 
@@ -205,6 +208,7 @@ public class VistaPrincipal {
         operacionesMenu.add(getPrespuestosMenuItem());
         operacionesMenu.add(getMonitorStockMenuItem());
         operacionesMenu.add(getFinalizarMenuItem());
+        operacionesMenu.add(getCopiarMenuItem());
 	    }
 	    return operacionesMenu;
 	  }
@@ -566,5 +570,35 @@ public class VistaPrincipal {
 			});
 		}
 		return finalizarMenuItem;
+	}
+
+	/**
+	 * This method initializes copiarMenuItem	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getCopiarMenuItem() {
+		if (copiarMenuItem == null) {
+			copiarMenuItem = new JMenuItem();
+			copiarMenuItem.setText("Copiar Presupuesto");
+			copiarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if (dCopiarPresupuesto == null) {
+			            VistaCopiaPresupuesto guiCopiaPresupuesto = new VistaCopiaPresupuesto();
+			            dCopiarPresupuesto = guiCopiaPresupuesto.getJDialog();
+			            dCopiarPresupuesto.pack();
+			              Point loc = getJFrame().getLocation();
+			              loc.translate(20, 20);
+			              dCopiarPresupuesto.setLocation(loc);
+			              dCopiarPresupuesto.setBounds(10,10,625,516);
+			              dCopiarPresupuesto.setVisible(true);            
+			            }
+			            else {
+			            	dCopiarPresupuesto.setVisible(true);
+			            }	
+				}
+			});
+		}
+		return copiarMenuItem;
 	}
 }
