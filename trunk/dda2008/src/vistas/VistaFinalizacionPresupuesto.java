@@ -10,6 +10,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -20,7 +22,7 @@ import dominio.Presupuesto;
 
 import servicios.Fachada;
 
-public class VistaFinalizacionPresupuesto {
+public class VistaFinalizacionPresupuesto implements Observer {
 
 	private JDialog jDialog = null;  //  @jve:decl-index=0:visual-constraint="-15,10"
 	private JPanel jContentPane = null;
@@ -56,6 +58,11 @@ public class VistaFinalizacionPresupuesto {
 	private JLabel jLabelStatus = null;
 	private JButton jButtonSi = null;
 	private JButton jButtonNo = null;
+	private ModeloPresupuesto modeloPresupuesto;
+	public VistaFinalizacionPresupuesto(ModeloPresupuesto modeloPresupuesto) {
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+	}
 
 	/**
 	 * This method initializes jDialog	
@@ -191,9 +198,10 @@ public class VistaFinalizacionPresupuesto {
 							mostrarDatos(jListPresupuesto.getSelectedValue());
 						}
 					});
+			getModeloJListPresupuestos().removeAllElements();
 			for (int i=0;i<colPresup.size();i++){
 				Object unPresu=colPresup.get(i);
-				modeloJListPresupuestos.addElement(unPresu);
+				getModeloJListPresupuestos().addElement(unPresu);
 			}
 		}
 		return jListPresupuesto;
@@ -493,10 +501,10 @@ public class VistaFinalizacionPresupuesto {
 	private void mostrarDatosItems(Presupuesto p){
 		ArrayList colItemsAvailable=new ArrayList();
 		colItemsAvailable=Fachada.obtenerItems(p);
-		modeloJListItems.removeAllElements();
+		getModeloJListItems().removeAllElements();
 		for (int i=0;i<colItemsAvailable.size();i++){
 			Object unItem=colItemsAvailable.get(i);
-			modeloJListItems.addElement(unItem);
+			getModeloJListItems().addElement(unItem);
 		}
 	}
 	
@@ -575,6 +583,11 @@ public class VistaFinalizacionPresupuesto {
 		jListPresupuesto.setEnabled(true);
 		jButtonSi.setVisible(false);
 		jButtonNo.setVisible(false);
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		getJListPresupuesto();
 	}
 	
 }

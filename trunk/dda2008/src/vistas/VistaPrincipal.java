@@ -75,6 +75,9 @@ public class VistaPrincipal {
 	private JMenuItem copiarMenuItem = null;
 
 	private JMenuItem cambioDuenioMenuItem = null; 
+	ModeloPresupuesto modeloPresupuesto=new ModeloPresupuesto();  //  @jve:decl-index=0:
+	
+	
 	  /**
 	   * This method initializes jFrame
 	   * 
@@ -292,7 +295,7 @@ public class VistaPrincipal {
 	      presupuestosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
 	        	if (dPresupuesto == null) {
-	                VistaPresupuestos guiPresupuestos = new VistaPresupuestos();
+	                VistaPresupuestos guiPresupuestos = new VistaPresupuestos(modeloPresupuesto);
 	                dPresupuesto = guiPresupuestos.getJDialogPresupuestos();
 	                dPresupuesto.pack();
 	                Point loc = getJFrame().getLocation();
@@ -566,7 +569,7 @@ public class VistaPrincipal {
 			finalizarMenuItem.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					   if (dFinalizarPresupuesto == null) {
-				            VistaFinalizacionPresupuesto guiFinalizarPresupuesto = new VistaFinalizacionPresupuesto();
+				            VistaFinalizacionPresupuesto guiFinalizarPresupuesto = new VistaFinalizacionPresupuesto(modeloPresupuesto);
 				            dFinalizarPresupuesto = guiFinalizarPresupuesto.getJDialog();
 				            dFinalizarPresupuesto.pack();
 				              Point loc = getJFrame().getLocation();
@@ -596,7 +599,7 @@ public class VistaPrincipal {
 			copiarMenuItem.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (dCopiarPresupuesto == null) {
-			            VistaCopiaPresupuesto guiCopiaPresupuesto = new VistaCopiaPresupuesto();
+			            VistaCopiaPresupuesto guiCopiaPresupuesto = new VistaCopiaPresupuesto(modeloPresupuesto);
 			            dCopiarPresupuesto = guiCopiaPresupuesto.getJDialog();
 			            dCopiarPresupuesto.pack();
 			              Point loc = getJFrame().getLocation();
@@ -626,7 +629,7 @@ public class VistaPrincipal {
 			cambioDuenioMenuItem.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if (dCambioDuenio == null) {
-			            VistaCambioDuenio guiCambioDuenio = new VistaCambioDuenio();
+			            VistaCambioDuenio guiCambioDuenio = new VistaCambioDuenio(modeloPresupuesto);
 			            dCambioDuenio = guiCambioDuenio.getJDialog();
 			            dCambioDuenio.pack();
 			              Point loc = getJFrame().getLocation();

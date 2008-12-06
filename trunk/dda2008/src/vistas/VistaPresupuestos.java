@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Collections;
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.SwingConstants;
@@ -20,12 +21,14 @@ import javax.swing.JDialog;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
 	 
-public class VistaPresupuestos extends JFrame {
+public class VistaPresupuestos extends JFrame implements Observer {
 
 	private ArrayList observadores=new ArrayList();
 	private static final long serialVersionUID = 1L;
@@ -69,6 +72,11 @@ public class VistaPresupuestos extends JFrame {
 	
 	
 	
+	public VistaPresupuestos(ModeloPresupuesto modeloPresupuesto) {
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+	}
+	private ModeloPresupuesto modeloPresupuesto;
 	private void nuevoPresupuesto() {
 		this.jTextDescripcion.setEditable(true);
 		this.jTextFechaEjecucionDia.setEditable(true);
@@ -92,8 +100,10 @@ public class VistaPresupuestos extends JFrame {
 				Presupuesto tmpPresupuesto=new Presupuesto(this.jTextDescripcion.getText(),fechaEjecucion);
 				Fachada.agregarPresupuesto(tmpPresupuesto);
 				mostrarDatos(tmpPresupuesto);
-				modeloJList.addElement(tmpPresupuesto);
-				jListPresupuesto.setSelectedIndex(modeloJList.indexOf(tmpPresupuesto));
+				//getModeloJList().addElement(tmpPresupuesto);
+				modeloPresupuesto.fueModificado();
+				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
+				
 				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
 			}
 			else{
@@ -103,13 +113,14 @@ public class VistaPresupuestos extends JFrame {
 		else{			//si es una modificacion o tiene items
 			Presupuesto tmpPresupuesto=presupuestoSeleccionado;
 			if(Fachada.agregarPresupuesto(tmpPresupuesto)){
-				modeloJList.addElement(tmpPresupuesto);
+				getModeloJList().addElement(tmpPresupuesto);
 				ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
 				tmpPresupuesto.setItems(items);
 				Double elCosto = Fachada.calcularCosto(tmpPresupuesto);
 				tmpPresupuesto.setCosto(elCosto);
 				jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
-				jListPresupuesto.setSelectedIndex(modeloJList.indexOf(tmpPresupuesto));
+				modeloPresupuesto.fueModificado();
+				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
 				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
 			}
 			else{
@@ -120,6 +131,7 @@ public class VistaPresupuestos extends JFrame {
 					Double elCosto = Fachada.calcularCosto(tmpPresupuesto);
 					tmpPresupuesto.setCosto(elCosto);
 					jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
+					modeloPresupuesto.fueModificado();
 					this.jLabelStatusPresupuesto.setText("Modificado Correctamente");
 				}
 				else{
@@ -553,12 +565,12 @@ public class VistaPresupuestos extends JFrame {
 	private JList getJListPresupuesto() {
 		if (jListPresupuesto == null) {
 			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
-			modeloJList = new DefaultListModel();
-			jListPresupuesto = new JList(modeloJList);
+			
+			jListPresupuesto = new JList(getModeloJList());
 
 			for (int i=0;i<colPresup.size();i++){
 				Object unPresu=colPresup.get(i);
-				modeloJList.addElement(unPresu);
+				getModeloJList().addElement(unPresu);
 			}
 
 			jListPresupuesto
@@ -603,7 +615,8 @@ public class VistaPresupuestos extends JFrame {
 			jButtonConfirmDeleteYes.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
 					if(Fachada.borrarPresupuesto((Presupuesto)jListPresupuesto.getSelectedValue())){
-						modeloJList.removeElement(jListPresupuesto.getSelectedValue());
+						//getModeloJList().removeElement(jListPresupuesto.getSelectedValue());
+						modeloPresupuesto.fueModificado();
 						jLabelStatusPresupuesto.setText("Presupuesto Eliminado");
 					}
 					else{
@@ -679,6 +692,24 @@ public class VistaPresupuestos extends JFrame {
 		
 		jTextCosto.setText(Double.toString(Fachada.calcularCosto(presupuestoSeleccionado)));
 		
+	}
+
+	private DefaultListModel getModeloJList() {
+		if (modeloJList == null) {
+			modeloJList = new DefaultListModel();
+		}
+		return modeloJList;
+	}
+	
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		ArrayList colPresupuestos=new ArrayList();
+		colPresupuestos=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+		getModeloJList().removeAllElements();
+		for (int i=0;i<colPresupuestos.size();i++){
+			Object unPresu=colPresupuestos.get(i);
+			getModeloJList().addElement(unPresu);
+		}
 	}
 
 

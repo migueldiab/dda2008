@@ -5,6 +5,8 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -18,7 +20,7 @@ import javax.swing.JTextField;
 import servicios.Fachada;
 import dominio.Presupuesto;
 
-public class VistaCopiaPresupuesto {
+public class VistaCopiaPresupuesto implements Observer {
 	private JDialog jDialog = null;  //  @jve:decl-index=0:visual-constraint="-15,10"
 	private JPanel jContentPane = null;
 	private JList jListPresupuesto = null;
@@ -51,6 +53,12 @@ public class VistaCopiaPresupuesto {
 	private JButton jButtonCopiar = null;
 	private JButton jButtonCancelar = null;
 	private JLabel jLabelStatus = null;
+	private ModeloPresupuesto modeloPresupuesto;
+	public VistaCopiaPresupuesto(ModeloPresupuesto modeloPresupuesto) {
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+	}
+
 	/**
 	 * This method initializes jDialog	
 	 * 	
@@ -183,9 +191,10 @@ public class VistaCopiaPresupuesto {
 							mostrarDatos(jListPresupuesto.getSelectedValue());
 						}
 					});
+			getModeloJListPresupuestos().removeAllElements();
 			for (int i=0;i<colPresup.size();i++){
 				Object unPresu=colPresup.get(i);
-				modeloJListPresupuestos.addElement(unPresu);
+				getModeloJListPresupuestos().addElement(unPresu);
 			}
 		}
 		return jListPresupuesto;
@@ -505,5 +514,11 @@ public class VistaCopiaPresupuesto {
 		else{
 			jLabelStatus.setText("No pueden tener la misma descripcion");
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		getJListPresupuesto();
+		
 	}
 }
