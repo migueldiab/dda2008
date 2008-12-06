@@ -21,6 +21,7 @@ import javax.swing.SwingUtilities;
 import servicios.Fachada;
 import sistema.Inicio;
 import utils.I18n;
+import java.awt.Dimension;
 
 public class VistaPrincipal {
 
@@ -68,9 +69,12 @@ public class VistaPrincipal {
     private JDialog dMontitorStock = null;
     private JDialog dFinalizarPresupuesto = null;
     private JDialog dCopiarPresupuesto = null;
+    private JDialog dCambioDuenio = null;
     private JMenuItem finalizarMenuItem = null;
 
-	private JMenuItem copiarMenuItem = null; 
+	private JMenuItem copiarMenuItem = null;
+
+	private JMenuItem cambioDuenioMenuItem = null; 
 	  /**
 	   * This method initializes jFrame
 	   * 
@@ -202,6 +206,7 @@ public class VistaPrincipal {
 	    if (operacionesMenu == null) {
 	      operacionesMenu = new JMenu();
 	      operacionesMenu.setText("Operaciones");
+	      operacionesMenu.setPreferredSize(new Dimension(85, 21));
         operacionesMenu.add(getArticulosMenuItem());
         operacionesMenu.add(getArticulosCompuestosMenuItem());
 	      operacionesMenu.add(getMedidasMenuItem());
@@ -209,6 +214,7 @@ public class VistaPrincipal {
         operacionesMenu.add(getMonitorStockMenuItem());
         operacionesMenu.add(getFinalizarMenuItem());
         operacionesMenu.add(getCopiarMenuItem());
+        operacionesMenu.add(getCambioDuenioMenuItem());
 	    }
 	    return operacionesMenu;
 	  }
@@ -600,5 +606,35 @@ public class VistaPrincipal {
 			});
 		}
 		return copiarMenuItem;
+	}
+
+	/**
+	 * This method initializes cambioDuenioMenuItem	
+	 * 	
+	 * @return javax.swing.JMenuItem	
+	 */
+	private JMenuItem getCambioDuenioMenuItem() {
+		if (cambioDuenioMenuItem == null) {
+			cambioDuenioMenuItem = new JMenuItem();
+			cambioDuenioMenuItem.setText("Cambiar Dueño");
+			cambioDuenioMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if (dCambioDuenio == null) {
+			            VistaCambioDuenio guiCambioDuenio = new VistaCambioDuenio();
+			            dCambioDuenio = guiCambioDuenio.getJDialog();
+			            dCambioDuenio.pack();
+			              Point loc = getJFrame().getLocation();
+			              loc.translate(20, 20);
+			              dCambioDuenio.setLocation(loc);
+			              dCambioDuenio.setBounds(10,10,625,516);
+			              dCambioDuenio.setVisible(true);            
+			            }
+			            else {
+			            	dCambioDuenio.setVisible(true);
+			            }	
+				}
+			});
+		}
+		return cambioDuenioMenuItem;
 	}
 }
