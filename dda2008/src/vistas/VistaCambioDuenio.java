@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -18,7 +20,7 @@ import dominio.Usuario;
 
 import servicios.Fachada;
 
-public class VistaCambioDuenio {
+public class VistaCambioDuenio implements Observer {
 
 	private JDialog jDialog = null;  //  @jve:decl-index=0:visual-constraint="7,-10"
 	private JPanel jContentPane = null;
@@ -37,7 +39,12 @@ public class VistaCambioDuenio {
 	private DefaultListModel modeloJListPresupuestos = null;
 	private DefaultListModel modeloJListUsuarios = null;
 	private DefaultListModel modeloJListNuevoDuenio= null;
-	
+	private ModeloPresupuesto modeloPresupuesto;
+	public VistaCambioDuenio(ModeloPresupuesto modeloPresupuesto) {
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+	}
+
 	/**
 	 * This method initializes jDialog	
 	 * 	
@@ -307,5 +314,13 @@ public class VistaCambioDuenio {
 		else{
 			jLabelStatus.setText("Debe seleccionar Usuario, Presupuesto y nuevo Dueño");
 		}
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(jListUsuarios.getSelectedValue()!=null){
+			mostrarPresupuestos();
+		}
+		
 	}
 }
