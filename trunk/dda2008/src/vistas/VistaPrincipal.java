@@ -203,20 +203,26 @@ public class VistaPrincipal {
 	  }
 	  
 	  private JMenu getOperacionesMenu() {
-	    if (operacionesMenu == null) {
-	      operacionesMenu = new JMenu();
-	      operacionesMenu.setText("Operaciones");
-	      operacionesMenu.setPreferredSize(new Dimension(85, 21));
-        operacionesMenu.add(getArticulosMenuItem());
-        operacionesMenu.add(getArticulosCompuestosMenuItem());
-	      operacionesMenu.add(getMedidasMenuItem());
-        operacionesMenu.add(getPrespuestosMenuItem());
-        operacionesMenu.add(getMonitorStockMenuItem());
-        operacionesMenu.add(getFinalizarMenuItem());
-        operacionesMenu.add(getCopiarMenuItem());
-        operacionesMenu.add(getCambioDuenioMenuItem());
-	    }
-	    return operacionesMenu;
+		  if (operacionesMenu == null) {
+			  operacionesMenu = new JMenu();
+			  operacionesMenu.setText("Operaciones");
+			  operacionesMenu.setPreferredSize(new Dimension(85, 21));
+			  operacionesMenu.add(getArticulosMenuItem());
+			  operacionesMenu.add(getArticulosCompuestosMenuItem());
+			  operacionesMenu.add(getMedidasMenuItem());
+			  boolean tienePermiso=Fachada.getUsuarioActual().getGrupo().tienePermiso("PRESUPUESTOS");
+			  if(tienePermiso){
+				  operacionesMenu.add(getPrespuestosMenuItem());  
+				  operacionesMenu.add(getFinalizarMenuItem());
+				  operacionesMenu.add(getCopiarMenuItem());
+			  }
+			  operacionesMenu.add(getMonitorStockMenuItem());
+			  tienePermiso=Fachada.getUsuarioActual().getGrupo().tienePermiso("CAMBIO_DUENIO_PRESUPUESTO");
+			  if(tienePermiso){
+				  operacionesMenu.add(getCambioDuenioMenuItem());
+			  }
+		  }
+		  return operacionesMenu;
 	  }
 	  private JMenuItem getArticulosMenuItem() {
 	    if (articulosMenuItem == null) {
