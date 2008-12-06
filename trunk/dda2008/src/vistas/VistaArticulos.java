@@ -328,7 +328,7 @@ public class VistaArticulos extends JFrame {
   }
   private void cargarListas() {
     listaArticulos.clear();
-    for (Object u : Fachada.listadoArticulos()) {
+    for (Object u : Fachada.listadoArticulosSimples()) {
       listaArticulos.addElement((Articulo) u);  
     }
     cMedida.removeAllItems();

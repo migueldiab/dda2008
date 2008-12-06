@@ -3,6 +3,7 @@ package vistas;
 import java.awt.*;
 
 import javax.swing.*;
+import javax.swing.tree.*;
 
 import servicios.Fachada;
 
@@ -10,15 +11,8 @@ import dominio.ArticuloCompuesto;
 import dominio.Articulo;
 import dominio.Medida;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JTree;
-import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 
 public class VistaArticulosCompuestos extends JFrame {
 
@@ -210,6 +204,13 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     return tCosto;
   }
+  private JTextField getTCantidad() {
+    if (tCantidad == null) {
+      tCantidad = new JTextField();
+      tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
+    }
+    return tCantidad;
+  }
 
   /*
    * Paneles
@@ -230,6 +231,7 @@ public class VistaArticulosCompuestos extends JFrame {
     if (pArticulosCompuestos == null) {
       pArticulosCompuestos = new JScrollPane(lArticulosCompuestos);     
       pArticulosCompuestos.setBounds(new Rectangle(410, 40, 230, 300));
+      
      
     }
     return pArticulosCompuestos;
@@ -270,8 +272,9 @@ public class VistaArticulosCompuestos extends JFrame {
     return pArticulos;
   }
   private JScrollPane getPComponentes() {
-    treeComponentes = new DefaultMutableTreeNode();
+    treeComponentes = new DefaultMutableTreeNode("-N/A-");
     tComponentes = new JTree(treeComponentes);
+
     //tComponentes.setBounds(new Rectangle(10, 150, 160, 230));
     tComponentes.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
           public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
@@ -280,6 +283,7 @@ public class VistaArticulosCompuestos extends JFrame {
     if (pComponentes == null) {
       pComponentes = new JScrollPane(tComponentes);  
       pComponentes.setBounds(new Rectangle(10, 150, 160, 230));
+      
     }
     return pComponentes;
   }  
@@ -288,10 +292,15 @@ public class VistaArticulosCompuestos extends JFrame {
       bAgregar = new JButton();
       bAgregar.setBounds(new Rectangle(180, 180, 45, 20));
       bAgregar.setText("<");
+      bAgregar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          agregarComponente();
+        }
+
+      });
     }
     return bAgregar;
   }
-
   private JButton getBQuitar() {
     if (bQuitar == null) {
       bQuitar = new JButton();
@@ -301,7 +310,6 @@ public class VistaArticulosCompuestos extends JFrame {
     return bQuitar;
   }
 
-  
 /*
  * Métodos
  */  
@@ -311,9 +319,16 @@ public class VistaArticulosCompuestos extends JFrame {
     tNombre.setText(u.getNombre());
     tCantidad.setText(Integer.toString(u.getCantidad()));
     cMedida.setSelectedItem(u.getMedida());
+    
+    treeComponentes = new DefaultMutableTreeNode(u);
+    tComponentes = new JTree(treeComponentes);    
+    pComponentes.setViewportView(tComponentes);
+    
+    
+    
   }
   private void buscarArticuloCompuesto() {
-    tNombre.setText("Test2");
+    //tNombre.setText("Test2");
   }
   private void guardarArticuloCompuesto() {
     try {
@@ -369,14 +384,6 @@ public class VistaArticulosCompuestos extends JFrame {
       cMedida.addItem((Medida) g);        
     }    
   }
-  private JTextField getTCantidad() {
-    if (tCantidad == null) {
-      tCantidad = new JTextField();
-      tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
-    }
-    return tCantidad;
-  }
-
   private void limpiarCampos() {
     lArticulosCompuestos.clearSelection();
     
@@ -405,6 +412,8 @@ public class VistaArticulosCompuestos extends JFrame {
       }      
     }
   }
+  private void agregarComponente() {
 
+  }
 
 }

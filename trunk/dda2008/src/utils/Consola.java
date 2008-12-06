@@ -207,10 +207,12 @@ public class Consola {
 
 	  for(int x=0;x<opciones.size();x++){
 		  if(tipo==1){
-			  println( (x+1) + "-" + ((Articulo) opciones.get(x)).toStringNombreMedida());
+        // FIXME Broken toString... debe mostrar otras cosas
+			  println( (x+1) + "-" + ((Articulo) opciones.get(x)).toString());
 		  }
 		  else if(tipo==2){
-			  println( (x+1) + "-" + ((Item) opciones.get(x)).getElArticulo().toStringNombreMedida());
+        // FIXME Broken toString... debe mostrar otras cosas
+        println( (x+1) + "-" + ((Item) opciones.get(x)).getElArticulo().toString());
 		  }
 		  else if(tipo==3)	{
 			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toString());

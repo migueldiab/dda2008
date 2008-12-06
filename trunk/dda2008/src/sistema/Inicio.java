@@ -38,6 +38,10 @@ public class Inicio {
     losArticulos.add(unArticulo);
     Item item1=new Item(unArticulo,7);
     
+    Articulo unArticuloComp = new ArticuloCompuesto("El Compuesto", new Medida("ud", "Unidad"), 12, 105.34);
+    
+    Fachada.agregarArticulo(unArticuloComp);
+
     Articulo unArticulo1 = new ArticuloSimple("Otra Pintura", new Medida("co", "Ciento"), 63, 224.88);
     Fachada.agregarArticulo(unArticulo1);
     losArticulos.add(unArticulo1);
