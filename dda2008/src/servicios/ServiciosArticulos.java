@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+import utils.I18n;
+
 import dominio.Articulo;
 import dominio.ArticuloCompuesto;
+import dominio.ArticuloSimple;
 import dominio.Item;
 import dominio.Medida;
 import dominio.Presupuesto;
@@ -146,8 +149,33 @@ public class ServiciosArticulos
   }
 
   public static ArrayList listadoCompuestos() {
-    // TODO Auto-generated method stub
-    return null;
+    if (cantidad() == 0)
+      return null;
+    else {
+      ArrayList<ArticuloCompuesto> articulosCompuestos = new ArrayList<ArticuloCompuesto>();
+      for (int i=0;i<articulos.size();i++) {
+        String tipo = ((Articulo) articulos.get(i)).tipoArticulo();
+        if (tipo.equals("Compuesto")) {
+          articulosCompuestos.add((ArticuloCompuesto) articulos.get(i));
+        }
+      }
+      return articulosCompuestos;
+    }
+  }
+
+  public static ArrayList listadoSimples() {
+    if (cantidad() == 0)
+      return null;
+    else {
+      ArrayList<ArticuloSimple> articulosCompuestos = new ArrayList<ArticuloSimple>();
+      for (int i=0;i<articulos.size();i++) {
+        String tipo = ((Articulo) articulos.get(i)).tipoArticulo();
+        if (tipo.equals("Simple")) {
+          articulosCompuestos.add((ArticuloSimple) articulos.get(i));
+        }
+      }
+      return articulosCompuestos;
+    }
   }
 
 }

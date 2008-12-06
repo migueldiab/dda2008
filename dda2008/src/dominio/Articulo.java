@@ -65,17 +65,7 @@ public abstract class Articulo implements Cloneable, Comparable
     // TODO Auto-generated method stub
     return this.getNombre()+" ("+this.getMedida()+")";
   }
-  
-  public String toStringNombreMedida(){
-    //FIXME Borrar esto!!!
-	  return "Nombre: "+this.getNombre() + " - Medida: "+this.medida.getDescripcion();
-  }
-  
-  public String toStringConCosto(){
-    //FIXME Borrar esto!!!
-    return " Articulo: "+this.getNombre()+" - Medida: "+this.getMedida()+" - Cantidad: "+this.cantidad+" - Costo: "+this.costo + " - Costo total: " + this.cantidad*this.costo +"\r";
-  }
-  
+    
   /*
    * Get's & Sets
    */
@@ -135,35 +125,34 @@ public abstract class Articulo implements Cloneable, Comparable
   {
     this.nombre = nombre;
   }
- /*public Object clone(){
-	  Object o=null;
-	  try{
-		  o=super.clone();
-	  }catch(CloneNotSupportedException e){
-			  System.err.println("No puede Clonar Articulo");
-	  }
-	  
-
-	  return o;
-	  
-  }*/
-public int compareTo(Object o) {
-	{
-	    try
-	    {
-	      Articulo articulo = (Articulo)o;
-	      int retorno= articulo.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
-	      if (retorno==0){
-	    	  retorno=articulo.getMedida().getDescripcion().toUpperCase().compareTo(this.getMedida().getDescripcion().toUpperCase())*-1;
-	      }
-	      return retorno;
-	    }
-	    catch (RuntimeException e)
-	    {
-	      e.printStackTrace();
-	    }
-	    return 0;
-	  }
-}
   
+  public int compareTo(Object o) {
+  	{
+  	    try
+  	    {
+  	      Articulo articulo = (Articulo)o;
+  	      int retorno= articulo.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
+  	      if (retorno==0){
+  	    	  retorno=articulo.getMedida().getDescripcion().toUpperCase().compareTo(this.getMedida().getDescripcion().toUpperCase())*-1;
+  	      }
+  	      return retorno;
+  	    }
+  	    catch (RuntimeException e)
+  	    {
+  	      e.printStackTrace();
+  	    }
+  	    return 0;
+  	  }
+  }
+    
+  public abstract String tipoArticulo();
+  public abstract boolean agregarComponente(Componente unComponente);
+  public abstract boolean eliminar(Componente unComponente);
+  public abstract boolean esHoja();
+  public abstract Componente getHijo(int posicion);
+  public abstract int getCantidadDeHijos();
+  public abstract int getIndiceHijo(Componente unComponente);
+  public abstract Componente getPadre(Componente unComponente);  
+  
+
 }

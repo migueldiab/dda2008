@@ -177,6 +177,9 @@ public class Fachada {
   public static ArrayList listadoArticulosCompuestos() {
     return ServiciosArticulos.listadoCompuestos();
   }
+  public static ArrayList listadoArticulosSimples() {
+    return ServiciosArticulos.listadoSimples();
+  }
   
   
   public static ArticuloCompuesto obtenerArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
