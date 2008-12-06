@@ -61,7 +61,7 @@ public class VistaPresupuestos extends JFrame {
 	private JList jListPresupuesto = null;
 	private JScrollPane jScrollPanePresupuesto = null;
 	private JDialog dItemsPresupuesto = null;
-	private static ArrayList colPresup = new ArrayList();
+	private static ArrayList colPresup = new ArrayList();  //  @jve:decl-index=0:
 	DefaultListModel modeloJList;
 	public static Presupuesto presupuestoSeleccionado=null;
 	private JButton jButtonConfirmDeleteYes = null;
@@ -553,7 +553,6 @@ public class VistaPresupuestos extends JFrame {
 	private JList getJListPresupuesto() {
 		if (jListPresupuesto == null) {
 			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
-			Object[] presu =colPresup.toArray();
 			modeloJList = new DefaultListModel();
 			jListPresupuesto = new JList(modeloJList);
 
