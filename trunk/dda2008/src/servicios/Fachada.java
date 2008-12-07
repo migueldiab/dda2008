@@ -188,11 +188,11 @@ public class Fachada {
   
   
   public static boolean agregarArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    return ServiciosArticulos.agregarCompuesto(unArticuloCompuesto);
+    return ServiciosArticulos.agregar((Articulo) unArticuloCompuesto);
   }
   
   public static boolean borrarArticuloCompuesto(ArticuloCompuesto u) {
-    return ServiciosArticulos.borrarCompuesto(u);
+    return ServiciosArticulos.borrar((Articulo) u);
   }
 public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
 	return ServiciosArticulos.getArticulosStockInsuficiente(cal);

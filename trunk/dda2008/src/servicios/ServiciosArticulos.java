@@ -133,10 +133,6 @@ public class ServiciosArticulos
 	  return null;
   }
 
-  public static boolean agregarCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    // TODO Auto-generated method stub
-    return false;
-  }
 
   public static boolean borrarCompuesto(ArticuloCompuesto u) {
     // TODO Auto-generated method stub
