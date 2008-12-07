@@ -9,6 +9,7 @@ import utils.I18n;
 import dominio.Articulo;
 import dominio.ArticuloCompuesto;
 import dominio.ArticuloSimple;
+import dominio.Componente;
 import dominio.Item;
 import dominio.Medida;
 import dominio.Presupuesto;
@@ -88,7 +89,6 @@ public class ServiciosArticulos
 
   public static Object obtener(Object o)
   {
-    // TODO Auto-generated method stub
     int pos = articulos.indexOf((Articulo) o);
     if (pos!=-1) { 
       return articulos.get(pos);
@@ -137,17 +137,6 @@ public class ServiciosArticulos
 	  return null;
   }
 
-
-  public static boolean borrarCompuesto(ArticuloCompuesto u) {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  public static ArticuloCompuesto obtenerCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
   public static ArrayList listadoCompuestos() {
     if (cantidad() == 0)
       return null;
@@ -176,6 +165,24 @@ public class ServiciosArticulos
       }
       return articulosCompuestos;
     }
+  }
+  public static boolean recalcularStock(ArticuloCompuesto unArticuloCompuesto) {
+    int cantidadMax = 0;
+    Articulo unArticulo = (Articulo) obtener(unArticuloCompuesto);
+    if (unArticulo!=null) {
+      if (unArticulo.esCompuesto()) {
+        for (Componente unComponente : unArticulo.listarComponentes()) {
+          if (unComponente.getArticulo().esCompuesto()) {
+            recalcularStock((ArticuloCompuesto) unComponente.getArticulo());
+          }
+          int temp = unComponente.getArticulo().getCantidad() / unComponente.getCantidad();
+        }
+      }
+      else {
+        return false;
+      }
+    }
+    return false;
   }
 
 }

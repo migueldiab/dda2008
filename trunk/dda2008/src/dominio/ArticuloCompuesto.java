@@ -70,6 +70,11 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
     return componentes.indexOf(unComponente);
   }
 
+  @Override
+  public boolean esCompuesto() {
+    return true;
+  }
+
 
 
   

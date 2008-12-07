@@ -183,7 +183,7 @@ public class Fachada {
   
   
   public static ArticuloCompuesto obtenerArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    return (ArticuloCompuesto) ServiciosArticulos.obtenerCompuesto(unArticuloCompuesto);
+    return (ArticuloCompuesto) ServiciosArticulos.obtener(unArticuloCompuesto);
   }
   
   

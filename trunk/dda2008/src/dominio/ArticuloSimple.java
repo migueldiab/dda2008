@@ -35,6 +35,10 @@ public class ArticuloSimple extends Articulo {
   public boolean esHoja() {
     return true;
   }
+  @Override
+  public boolean esCompuesto() {
+    return false;
+  }
   
 
 }
