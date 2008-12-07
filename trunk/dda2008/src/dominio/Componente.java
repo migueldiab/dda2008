@@ -43,7 +43,7 @@ public class Componente {
   }
   @Override
   public String toString() {
-    return articulo.toString() + "(" + cantidad + ")";
+    return cantidad + " - " + articulo.toString();
   }
   public int getCantidad() {
     return cantidad;

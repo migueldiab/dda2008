@@ -316,6 +316,11 @@ public class VistaArticulosCompuestos extends JFrame {
       bQuitar = new JButton();
       bQuitar.setBounds(new Rectangle(180, 220, 45, 20));
       bQuitar.setText(">");
+      bQuitar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          eliminarComponente();
+        }
+      });
     }
     return bQuitar;
   }
@@ -451,8 +456,12 @@ public class VistaArticulosCompuestos extends JFrame {
         if (raiz!=null) {
           raiz.agregarComponente(unComponente);
           arbolComponentes=new ModeloArbol(raiz);
-          tComponentes.setModel(arbolComponentes);      
+          tComponentes.setModel(arbolComponentes);
           tComponentes.updateUI();
+          cargarArticuloCompuesto();
+          lInfo.setForeground(new Color(65, 190, 79));
+          lInfo.setText(unComponente.toString() +" cargado.");            
+          
         }
         else {
           lInfo.setForeground(new Color(190, 65, 79));
@@ -464,6 +473,37 @@ public class VistaArticulosCompuestos extends JFrame {
         lInfo.setForeground(new Color(190, 65, 79));
         lInfo.setText("Error inesperado...");          
       }        
+    }
+  }
+  private void eliminarComponente() {
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      if (unComponente==null) {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Debe seleccionar un componente.");           
+      }
+      else {
+        if (raiz!=null) {
+          if (raiz.eliminarComponente(unComponente)) {
+            arbolComponentes=new ModeloArbol(raiz);
+            tComponentes.setModel(arbolComponentes);
+            tComponentes.updateUI();
+            cargarArticuloCompuesto();
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Un articulo compuesto debe tener al menos un componente.");            
+          }
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("No hay ningún articulo cargado para eliminar el componente.");            
+        }
+      }
+    } catch (Exception e) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("No se puede eliminar el componente raiz.");            
+      
     }
   }
 

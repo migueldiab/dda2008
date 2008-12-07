@@ -27,6 +27,8 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
          unComponente = componentes.get(pos);
          int cantidad = unComponente.getCantidad();
          unComponente.setCantidad(++cantidad);
+         recalcularStock();
+         recalcularCosto();
       }
       else {
         this.componentes.add(unComponente);  
@@ -45,8 +47,31 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
 
   @Override
   public boolean eliminarComponente(Componente unComponente) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      int pos = getPosComponente(unComponente);
+      if (pos!=-1) {
+         unComponente = componentes.get(pos);
+         int cantidad = unComponente.getCantidad();
+         if (cantidad==1) {
+           if (componentes.size()>1)
+             componentes.remove(pos);
+           else
+             return false;
+         }
+         else {
+           unComponente.setCantidad(--cantidad);
+         }
+         recalcularStock();
+         recalcularCosto();
+         return true;
+      }
+      else {
+        // No existe el componente
+        return false;  
+      }
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   @Override
