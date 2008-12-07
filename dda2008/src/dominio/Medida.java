@@ -48,8 +48,6 @@ public class Medida
     }
     catch (RuntimeException e)
     {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
       return false;
     }
     return true;

@@ -50,7 +50,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField tCosto = null;
   private JTree tComponentes = null;
   private ModeloArbol arbolComponentes = null;
-  private ArticuloCompuesto raiz = null;
+  private ArticuloCompuesto raiz = null;  //  @jve:decl-index=0:visual-constraint="981,11"
   //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
   private JButton bQuitar = null;
@@ -207,6 +207,7 @@ public class VistaArticulosCompuestos extends JFrame {
     if (tCosto == null) {
       tCosto = new JTextField();
       tCosto.setBounds(new Rectangle(100, 100, 150, 20));
+      tCosto.setEnabled(false);
     }
     return tCosto;
   }
@@ -214,6 +215,7 @@ public class VistaArticulosCompuestos extends JFrame {
     if (tCantidad == null) {
       tCantidad = new JTextField();
       tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
+      tCantidad.setEnabled(false);
     }
     return tCantidad;
   }
@@ -325,7 +327,6 @@ public class VistaArticulosCompuestos extends JFrame {
     tNombre.setText(u.getNombre());
     tCantidad.setText(Integer.toString(u.getCantidad()));
     cMedida.setSelectedItem(u.getMedida());
-    
     raiz = u;
     arbolComponentes=new ModeloArbol(raiz);
     tComponentes.setModel(arbolComponentes);
@@ -359,7 +360,7 @@ public class VistaArticulosCompuestos extends JFrame {
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));
-            lInfo.setText("No se pudo eliminar el medio.");           
+            lInfo.setText("No se pudo guardar el medio.");           
           }
         }
         else {
@@ -394,13 +395,19 @@ public class VistaArticulosCompuestos extends JFrame {
     lArticulosCompuestos.clearSelection();
     
     tNombre.setText("");
-    tCantidad.setText("");
+    tCantidad.setText("0");
+    tCosto.setText("0.00");
     cMedida.removeAllItems();
     for (Object g : Fachada.listaMedidas()) {
       cMedida.addItem((Medida) g);        
     }
     cMedida.setSelectedItem(null);
     tNombre.requestFocus();
+    
+    arbolComponentes=new ModeloArbol(null);
+    tComponentes.setModel(arbolComponentes);
+    tComponentes.updateUI();
+
   }
   private void eliminarArticuloCompuesto(ArticuloCompuesto u) {
     if (JOptionPane.showConfirmDialog(
