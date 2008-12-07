@@ -69,6 +69,13 @@ public class Componente {
 				int total=getTotalCantidadPadres(getPadre(hijo), itemRoot,0);
 				sumarItem(hijo.getArticulo(),retorno,itemRoot.getElArticulo().getCantidad()*total);
 			}
+			else{
+				for(int z=0;z<hijo.getArticulo().listarComponentes().size();z++){
+					Componente elHijo=hijo.getArticulo().listarComponentes().get(z);
+					StockSimplesPresupuestos(itemRoot,elHijo,retorno);
+				}
+					
+			}
 		}
 		else if(hijo==null&&articulo.esHoja()){
 			//si el item del presupuesto es un Articulo simple. Caso mas facil.
@@ -76,8 +83,8 @@ public class Componente {
 				x=0;
 		}
 		else{		//si no es hoja
-			for(int z=0;z<getCantidadDeHijos();z++){
-				Componente elHijo=getHijo(z);
+				for(int z=0;z<itemRoot.getElArticulo().listarComponentes().size();z++){
+				Componente elHijo=itemRoot.getElArticulo().listarComponentes().get(z);
 				StockSimplesPresupuestos(itemRoot,elHijo,retorno);
 			}
 		}
@@ -90,7 +97,7 @@ public class Componente {
 	private static int getTotalCantidadPadres(Componente componente2,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
 		int total=0;
 		if(componente2.getArticulo().equals(item.getElArticulo())){
-			total=componente2.articulo.getCantidad()*subtotal;
+			total=componente2.getArticulo().getCantidad()*subtotal;
 			
 			return total;
 		}
