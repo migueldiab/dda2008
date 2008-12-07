@@ -1,6 +1,6 @@
 package dominio;
 
-public class Item {
+public class Item implements Cloneable{
 private int cantidadItem;
 private Articulo elArticulo;
 private double costoFinalizado;
@@ -40,8 +40,16 @@ public String toString(){
 		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida();	
 	}
 	
-	
 }
+
+public Object clone() throws CloneNotSupportedException {
+
+    Item clone=(Item)super.clone();
+
+  
+    return clone;
+
+  }
 
 
 }

@@ -70,6 +70,7 @@ public class VistaPrincipal {
     private JDialog dFinalizarPresupuesto = null;
     private JDialog dCopiarPresupuesto = null;
     private JDialog dCambioDuenio = null;
+    private JDialog dMonitorStock = null;
     private JMenuItem finalizarMenuItem = null;
 
 	private JMenuItem copiarMenuItem = null;
@@ -313,18 +314,32 @@ public class VistaPrincipal {
 	    }
 	    return presupuestosMenuItem;
 	  }
-    private JMenuItem getMonitorStockMenuItem() {
-      if (monitorStockMenuItem == null) {
-        monitorStockMenuItem = new JMenuItem();
-        monitorStockMenuItem.setText(I18n.MONITOR_STOCK);
-        monitorStockMenuItem.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-            
-          }
-        });
-      }
-      return monitorStockMenuItem;
-    }    
+	  private JMenuItem getMonitorStockMenuItem() {
+		  if (monitorStockMenuItem == null) {
+			  monitorStockMenuItem = new JMenuItem();
+			  monitorStockMenuItem.setText(I18n.MONITOR_STOCK);
+			  monitorStockMenuItem.addActionListener(new ActionListener() {   
+				  public void actionPerformed(java.awt.event.ActionEvent e) {    
+					  if (dMonitorStock == null) { 
+						  VistaMonitorStock guiMonitorStock = new VistaMonitorStock();
+						  dMonitorStock = guiMonitorStock.getJDialog();
+						  dMonitorStock.pack();
+						  Point loc = getJFrame().getLocation();
+						  loc.translate(20, 20);
+						  dMonitorStock.setLocation(loc);
+						  dMonitorStock.setBounds(10,10,704,474);
+						  dMonitorStock.setVisible(true);            
+					  }
+					  else {
+						  dMonitorStock.setVisible(true);
+					  }                  
+				  }
+
+			  });
+		  }
+		  return monitorStockMenuItem;
+	  }    
+    
 	  private JMenu getListadosMenu() {
 	    if (listadosMenu == null) {
 	      listadosMenu = new JMenu();

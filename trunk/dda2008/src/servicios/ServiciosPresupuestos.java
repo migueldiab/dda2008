@@ -258,7 +258,19 @@ public class ServiciosPresupuestos
 
   public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
 	Presupuesto nuevoPresupuesto=new Presupuesto(descripcion,unPresupuesto.getFechaEjecucion());
-	nuevoPresupuesto.setItems(unPresupuesto.getItems());
+	
+	;// pppp//mal
+	ArrayList nuevosItems=new ArrayList();
+	for(int i=0;i<unPresupuesto.getItems().size();i++){
+		Item item=(Item)unPresupuesto.getItems().get(i);
+		try {
+			Item nuevoItem=(Item) item.clone();
+			nuevosItems.add(nuevoItem);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		nuevoPresupuesto.setItems(nuevosItems);
+	}
 	nuevoPresupuesto.setDuenio(ServiciosUsuarios.getUsuarioActual());
 	Date now=new Date();
 	nuevoPresupuesto.setFechaModificacion(now);

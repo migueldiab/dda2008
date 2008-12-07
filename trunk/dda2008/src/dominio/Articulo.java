@@ -154,5 +154,9 @@ public abstract class Articulo implements Cloneable, Comparable
     
 
   
+  
+	
+
+  
 
 }

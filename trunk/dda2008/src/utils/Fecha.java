@@ -99,6 +99,19 @@ public class Fecha {
 		return null;
 	}
 	
+	public static boolean isInteger( String input )
+	{
+	   try
+	   {
+	      Integer.parseInt( input );
+	      return true;
+	   }
+	   catch( Exception ex )
+	   {
+	      return false;
+	   }
+	}
+	
   public static Calendar toDate(String fecha) {
     Date d;
     SimpleDateFormat fSimple = new SimpleDateFormat(I18n.FORMATO_FECHA);

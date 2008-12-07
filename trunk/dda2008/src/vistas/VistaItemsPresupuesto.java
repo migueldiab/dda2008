@@ -17,6 +17,7 @@ import javax.swing.JList;
 import javax.swing.JDialog;
 
 import servicios.Fachada;
+import utils.Fecha;
 
 import dominio.Articulo;
 import dominio.Item;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.awt.Font;
 
 
 public class VistaItemsPresupuesto  {
@@ -78,6 +80,7 @@ public class VistaItemsPresupuesto  {
 	static DefaultListModel modeloJListAvailable;
 	private static Presupuesto presupuestoTemporal=null;
 	private static VistaItemsPresupuesto instancia=null;  //  @jve:decl-index=0:
+	private JButton jButtonCantidad = null;
 	public static VistaItemsPresupuesto getInstancia(){
 		if(instancia==null){
 			instancia=new VistaItemsPresupuesto();
@@ -208,6 +211,7 @@ public class VistaItemsPresupuesto  {
 			jContentPaneItems.add(getJTextId(), null);
 			jContentPaneItems.add(jLabel41, null);
 			jContentPaneItems.add(getJTextDuenio(), null);
+			jContentPaneItems.add(getJButtonCantidad(), null);
 		}
 		return jContentPaneItems;
 	}
@@ -220,7 +224,7 @@ public class VistaItemsPresupuesto  {
 	private JButton getJButtonFromAvailabletoItem() {
 		if (jButtonFromAvailabletoItem == null) {
 			jButtonFromAvailabletoItem = new JButton();
-			jButtonFromAvailabletoItem.setBounds(new Rectangle(217, 104, 68, 20));
+			jButtonFromAvailabletoItem.setBounds(new Rectangle(217, 62, 68, 20));
 			jButtonFromAvailabletoItem.setText("<=");
 			jButtonFromAvailabletoItem
 			.addActionListener(new java.awt.event.ActionListener() {
@@ -724,4 +728,42 @@ public class VistaItemsPresupuesto  {
 		
 	}
 
+
+	/**
+	 * This method initializes jButtonCantidad	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButtonCantidad() {
+		if (jButtonCantidad == null) {
+			jButtonCantidad = new JButton();
+			jButtonCantidad.setBounds(new Rectangle(187, 90, 128, 22));
+			jButtonCantidad.setFont(new Font("Dialog", Font.BOLD, 10));
+			jButtonCantidad.setText("Cambiar Cantidad");
+			jButtonCantidad.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(jListItemsDelPresupuesto.getSelectedValue()!=null){
+						cambiarCantidad();
+					}
+				}
+			});
+		}
+		return jButtonCantidad;
+	}
+
+	private void cambiarCantidad(){
+		if(Fecha.isInteger(jTextCantidadItem.getText())){
+			Object articuloARemover=jListItemsDelPresupuesto.getSelectedValue();
+			Item itemARemover=(Item)articuloARemover;
+			int cant=Integer.parseInt(jTextCantidadItem.getText());
+			if(cant<=Fachada.obtenerArticulo(itemARemover.getElArticulo()).getCantidad()){
+				modeloJList.removeElement(articuloARemover);
+				Item item=new Item((Articulo)itemARemover.getElArticulo(),cant);
+				modeloJList.addElement(item);
+				presupuestoTemporal.setItems(itemsModificados());
+				presupuestoTemporal.setCosto(Fachada.calcularCosto(presupuestoTemporal));
+				jTextCosto.setText(Double.toString(Math.round(presupuestoTemporal.getCosto())));
+			}
+		}
+	}
 }
