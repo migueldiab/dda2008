@@ -325,10 +325,13 @@ public class VistaArticulosCompuestos extends JFrame {
  */  
   private void cargarArticuloCompuesto() {
     
-    ArticuloCompuesto u = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();    
+    ArticuloCompuesto u = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();
+    u.recalcularStock();
+    u.recalcularCosto();
     tNombre.setText(u.getNombre());
     tCantidad.setText(Integer.toString(u.getCantidad()));
     cMedida.setSelectedItem(u.getMedida());
+    tCosto.setText(Double.toString(u.getCosto()));
     raiz = u;
     arbolComponentes=new ModeloArbol(raiz);
     tComponentes.setModel(arbolComponentes);
