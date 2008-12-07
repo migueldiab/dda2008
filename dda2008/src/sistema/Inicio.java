@@ -52,7 +52,7 @@ public class Inicio {
     losArticulos.add(unArticulo2);
     Item item3=new Item(unArticulo2,4);
     
-    Articulo unArticulo3 = new ArticuloSimple("Otro Portland", new Medida("c1", "Ciento"), 23, 84.33);
+    Articulo unArticulo3 = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 23, 84.33);
     Fachada.agregarArticulo(unArticulo3);
     losArticulos.add(unArticulo3);
     Item item4=new Item(unArticulo3,8);
@@ -66,7 +66,7 @@ public class Inicio {
     losArticulos.add(unArticulo4);
     Item item5=new Item(unArticulo4,9);
     
-    Articulo unArticulo5 = new ArticuloSimple("Otra Ceramica", new Medida("ud", "Unidad"), 54, 22.15);
+    Articulo unArticulo5 = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 54, 22.15);
     Fachada.agregarArticulo(unArticulo5);
     losArticulos.add(unArticulo5);
     Item item6=new Item(unArticulo5,1);
@@ -75,13 +75,21 @@ public class Inicio {
     items56.add(item5);
     items56.add(item6);
     
-    Articulo unArticuloComp = new ArticuloCompuesto("Tornillo", new Medida("ud", "Unidad"), 12, 105.34);
-    unArticuloComp.agregarComponente(new Componente(unArticulo));
+    Articulo unArticuloComp = new ArticuloCompuesto("Puerta", new Medida("ud", "Unidad"), 2, 105.34);
+    unArticuloComp.agregarComponente(new Componente(unArticulo5,17));
+    unArticuloComp.agregarComponente(new Componente(unArticulo3,4));
     Fachada.agregarArticulo(unArticuloComp);
+    
+    Articulo unArticuloComp0 = new ArticuloCompuesto("Cajon", new Medida("ud", "Unidad"), 2, 44.10);
+    unArticuloComp0.agregarComponente(new Componente(unArticulo5,6));
+    unArticuloComp0.agregarComponente(new Componente(unArticulo3,4));
+    Fachada.agregarArticulo(unArticuloComp0);
+    
     
     Articulo unArticuloComp1 = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"), 8, 317.75);
     unArticuloComp1.agregarComponente(new Componente(unArticulo1));
     unArticuloComp1.agregarComponente(new Componente(unArticuloComp));
+    unArticuloComp1.agregarComponente(new Componente(unArticuloComp0));
     Fachada.agregarArticulo(unArticuloComp1);
     
     ArrayList permisos = new ArrayList();
