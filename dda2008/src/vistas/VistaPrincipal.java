@@ -70,6 +70,7 @@ public class VistaPrincipal {
     private JDialog dUsuario = null; 
     private JDialog dGrupo = null; 
     private JDialog dArticulos = null; 
+    private JDialog dListados = null; 
     private JDialog dArticulosCompuestos = null; 
     private JDialog dMedidas = null; 
     public static JDialog dPresupuesto = null; 
@@ -386,11 +387,23 @@ public class VistaPrincipal {
         listadoPresupuestosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
             if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.CONSULTAS)) {
-                // Mostrar Listado
+              if (dListados == null) {
+                VistaListado guiListado = new VistaListado();
+                dListados = guiListado.getDListados();
+                dListados.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dListados.setLocation(loc);
+                dListados.setBounds(10,10,500,290);
+                dListados.setVisible(true);            
+              }
+              else {
+                dListados.setVisible(true);
+              }
             }
             else {
               JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
-            }	          
+            }                
 	        }
 	      });
 	    }
@@ -715,3 +728,4 @@ public class VistaPrincipal {
 		return cambioDuenioMenuItem;
 	}
 }
+
