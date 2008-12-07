@@ -15,6 +15,7 @@ public class Grupo {
   public static final String CAMBIO_DUENIO_PRESUPUESTO = "CAMBIO_DUENIO_PRESUPUESTO";
   public static final String CONSULTAS = "CONSULTAS";
   public static final String PRESUPUESTOS = "PRESUPUESTOS";
+  public static final String MEDIDAS = "MEDIDAS";
   private String nombre;
   private ArrayList permisos = new ArrayList();
   

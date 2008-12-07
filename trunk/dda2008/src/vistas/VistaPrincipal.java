@@ -12,11 +12,17 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JWindow;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+
+import com.sun.org.apache.bcel.internal.util.JavaWrapper;
+
+import dominio.Grupo;
 
 import servicios.Fachada;
 import sistema.Inicio;
@@ -25,7 +31,8 @@ import java.awt.Dimension;
 
 public class VistaPrincipal {
 
-	  private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="10,10"
+
+    private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="10,10"
 
 	  private JPanel jContentPane = null;
 	  private JMenuBar jJMenuBar = null;
@@ -214,17 +221,11 @@ public class VistaPrincipal {
 			  operacionesMenu.add(getArticulosMenuItem());
 			  operacionesMenu.add(getArticulosCompuestosMenuItem());
 			  operacionesMenu.add(getMedidasMenuItem());
-			  boolean tienePermiso=Fachada.getUsuarioActual().getGrupo().tienePermiso("PRESUPUESTOS");
-			  if(tienePermiso){
-				  operacionesMenu.add(getPrespuestosMenuItem());  
-				  operacionesMenu.add(getFinalizarMenuItem());
-				  operacionesMenu.add(getCopiarMenuItem());
-			  }
+			  operacionesMenu.add(getPrespuestosMenuItem());  
+			  operacionesMenu.add(getFinalizarMenuItem());
+			  operacionesMenu.add(getCopiarMenuItem());
 			  operacionesMenu.add(getMonitorStockMenuItem());
-			  tienePermiso=Fachada.getUsuarioActual().getGrupo().tienePermiso("CAMBIO_DUENIO_PRESUPUESTO");
-			  if(tienePermiso){
-				  operacionesMenu.add(getCambioDuenioMenuItem());
-			  }
+			  operacionesMenu.add(getCambioDuenioMenuItem());
 		  }
 		  return operacionesMenu;
 	  }
@@ -234,20 +235,26 @@ public class VistaPrincipal {
 	      articulosMenuItem.setText(I18n.ARTICULOS);
 	      articulosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
+            
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.ARTICULOS)) {
 
-            if (dArticulos == null) {
-            VistaArticulos guiArticulo = new VistaArticulos();
-              dArticulos = guiArticulo.getDAbmArticulos();
-              dArticulos.pack();
-              Point loc = getJFrame().getLocation();
-              loc.translate(20, 20);
-              dArticulos.setLocation(loc);
-              dArticulos.setBounds(10,10,500,290);
-              dArticulos.setVisible(true);            
+              if (dArticulos == null) {
+              VistaArticulos guiArticulo = new VistaArticulos();
+                dArticulos = guiArticulo.getDAbmArticulos();
+                dArticulos.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dArticulos.setLocation(loc);
+                dArticulos.setBounds(10,10,500,290);
+                dArticulos.setVisible(true);            
+              }
+              else {
+                dArticulos.setVisible(true);
+              }
             }
             else {
-              dArticulos.setVisible(true);
-            }	          
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
 	        }
 	      });
 	    }
@@ -259,7 +266,9 @@ public class VistaPrincipal {
         articulosCompuestosMenuItem.setText(I18n.ARTICULOS_COMPUESTOS);
         articulosCompuestosMenuItem.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            if (dArticulosCompuestos == null) {
+            
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.ARTICULOS)) {
+              if (dArticulosCompuestos == null) {
                 VistaArticulosCompuestos guiArticuloCompuesto = new VistaArticulosCompuestos();
                 dArticulosCompuestos = guiArticuloCompuesto.getDAbmArticulosCompuestos();
                 dArticulosCompuestos.pack();
@@ -272,6 +281,11 @@ public class VistaPrincipal {
               else {
                 dArticulosCompuestos.setVisible(true);
               }                    
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
           }
         });
       }
@@ -283,6 +297,12 @@ public class VistaPrincipal {
 	      medidasMenuItem.setText(I18n.MEDIDAS);
 	      medidasMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.MEDIDAS)) {
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
 	          
 	        }
 	      });
@@ -295,20 +315,25 @@ public class VistaPrincipal {
 	      presupuestosMenuItem.setText(I18n.PRESUPUESTOS);
 	      presupuestosMenuItem.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e) {
-	        	if (dPresupuesto == null) {
-	                VistaPresupuestos guiPresupuestos = new VistaPresupuestos(modeloPresupuesto);
-	                dPresupuesto = guiPresupuestos.getJDialogPresupuestos();
-	                dPresupuesto.pack();
-	                Point loc = getJFrame().getLocation();
-	                loc.translate(20, 20);
-	                dPresupuesto.setLocation(loc);
-	                dPresupuesto.setBounds(10,10,704,474);
-	                dPresupuesto.setVisible(true);            
-	              }
-	              else {
-	            	  dPresupuesto.setVisible(true);
-	              }                    
-	          
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+              if (dPresupuesto == null) {
+                VistaPresupuestos guiPresupuestos = new VistaPresupuestos(modeloPresupuesto);
+                dPresupuesto = guiPresupuestos.getJDialogPresupuestos();
+                dPresupuesto.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dPresupuesto.setLocation(loc);
+                dPresupuesto.setBounds(10,10,704,474);
+                dPresupuesto.setVisible(true);            
+              }
+              else {
+                dPresupuesto.setVisible(true);
+              }                    
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
 	        }
 	      });
 	    }
@@ -410,8 +435,9 @@ public class VistaPrincipal {
         cambiarUsuarioMenuItem.setText("Cambiar Usuario");
         cambiarUsuarioMenuItem.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-            vistas.VistaPrincipal.cerrar();
-            Inicio.login.setVisible(true);  
+            Inicio.login.cargar();  
+            //vistas.VistaPrincipal.cerrar();
+            Inicio.principal.cerrar();
           }
         });
       }
@@ -564,12 +590,12 @@ public class VistaPrincipal {
 	  */
 
 	  public static void cargar() {
-      // FIXME : Aca que cargue los menúes visibles segun el usuario...
 	    sistema.Inicio.principal.getJFrame().setVisible(true);
-     // System.out.println("cargo : "+Fachada.getUsuarioActual());
+      sistema.Inicio.principal.getJJMenuBar();
 	  }
-    protected static void cerrar() {
+    public void cerrar() {
       sistema.Inicio.principal.jFrame.dispose();
+      
     }
 
 	/**
