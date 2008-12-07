@@ -46,9 +46,12 @@ public class Presupuesto implements Comparable {
 	  this(descripcion, fechaEjecucion);
 	  this.setDuenio(duenio);
 	  this.setEstado(estado);
-	  for (int i=0; i<items.size(); i++) {
-		  this.agregarItem(items.get(i));
+	  if(items!=null){
+		  for (int i=0; i<items.size(); i++) {
+			  this.agregarItem(items.get(i));
+		  }  
 	  }
+	  
   }
     
 

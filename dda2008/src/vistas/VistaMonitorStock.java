@@ -291,9 +291,9 @@ public class VistaMonitorStock {
 				Componente componenteConTotalSimplesEnPresupuestos=(Componente) articulosSimplesUnPresupuesto.get(k);
 				for (int w=0;w<todosLosArticulosSimples.size();w++){
 					Articulo articuloSimples=(Articulo)todosLosArticulosSimples.get(w);
-					if(componenteConTotalSimplesEnPresupuestos.getComponente().equals(articuloSimples)){
-						if(componenteConTotalSimplesEnPresupuestos.getCantidad()>articuloSimples.getCantidad()){
-							int deficit=componenteConTotalSimplesEnPresupuestos.getCantidad()-articuloSimples.getCantidad();
+					if(componenteConTotalSimplesEnPresupuestos.getArticulo().equals(articuloSimples)){
+						if(componenteConTotalSimplesEnPresupuestos.getArticulo().getCantidad()>articuloSimples.getCantidad()){
+							int deficit=componenteConTotalSimplesEnPresupuestos.getArticulo().getCantidad()-articuloSimples.getCantidad();
 							retorno.add(new Componente(articuloSimples,deficit));
 						}
 					}

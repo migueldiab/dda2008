@@ -66,7 +66,7 @@ public class Inicio {
     losArticulos.add(manija);
     Item item5=new Item(manija,9);
     
-    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 110, 22.15);
+    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 125, 22.15);
     Fachada.agregarArticulo(tornillo);
     losArticulos.add(tornillo);
     Item item6=new Item(tornillo,1);
@@ -92,6 +92,12 @@ public class Inicio {
     armario.agregarComponente(new Componente(puerta,2));
     armario.agregarComponente(new Componente(cajon,4));
     Fachada.agregarArticulo(armario);
+    
+    ArrayList itemsArmario=new ArrayList();
+    Item elItemArmario=new Item(armario,2);//2 armarios
+    itemsArmario.add(elItemArmario);
+    
+    
     
     ArrayList permisos = new ArrayList();
     //permisos.add(Grupo.ADMIN);
@@ -130,27 +136,27 @@ public class Inicio {
           I18n.sdf.parse("27/01/2008"),
           unUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items12));
+          itemsArmario));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba2", 
           I18n.sdf.parse("12/01/2008"),
           unUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items34));
+          itemsArmario));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba4", 
           I18n.sdf.parse("10/01/2008"),
           otroUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items12));
+          itemsArmario));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba3", 
           I18n.sdf.parse("15/11/2008"),
           unUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          items56));
+          null));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba5", 
           I18n.sdf.parse("31/12/2008"),
           otro2Usuario,
           Presupuesto.EN_CONSTRUCCION,
-          items56));
+          null));
     }
     catch (ParseException e)
     {
