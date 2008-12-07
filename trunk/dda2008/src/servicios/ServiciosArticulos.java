@@ -62,7 +62,7 @@ public class ServiciosArticulos
       return articulos;
   }
 
-  public static boolean modificar(Articulo original,String nombre,Medida medida,int cantidad,double costo )
+  public static boolean modificar(Articulo original,Articulo nuevo)
   {
     if (( original == null))  return false;
     int posOriginal = articulos.indexOf( original);
@@ -72,13 +72,14 @@ public class ServiciosArticulos
     // Medida : No se puede modificar si el articulo esta involucrado en algun presupuesto
     ArrayList presupuestos = null;
     presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(original);
-    if (presupuestos.size() > 0 && !original.getMedida().equals(medida)) {
+    if (presupuestos.size() > 0 && !original.getMedida().equals(nuevo.getMedida())) {
           return false;
     }
-    original.setCantidad(cantidad);
-    original.setCosto(costo);
-    original.setMedida(medida);
-    original.setNombre(nombre);
+    original.setCantidad(nuevo.getCantidad());
+    original.setCosto(nuevo.getCosto());
+    original.setMedida(nuevo.getMedida());
+    original.setNombre(nuevo.getNombre());
+    original.remplazarComponentes(nuevo.listarComponentes());
     return true;
   }
 
@@ -137,7 +138,7 @@ public class ServiciosArticulos
 	  return null;
   }
 
-  public static ArrayList listadoCompuestos() {
+  public static ArrayList<ArticuloCompuesto> listadoCompuestos() {
     if (cantidad() == 0)
       return null;
     else {
@@ -165,6 +166,36 @@ public class ServiciosArticulos
       }
       return articulosCompuestos;
     }
+  }
+
+  public static boolean agregarCompuesto(ArticuloCompuesto unArticuloCompuesto) {
+    if (unArticuloCompuesto.listarComponentes().size()<1)
+      return false;
+    Articulo unArticulo = (Articulo) obtener(unArticuloCompuesto);
+    if (unArticulo!=null)
+      return modificar(unArticulo, unArticuloCompuesto);
+    else
+      return agregar((Articulo) unArticuloCompuesto) ;   
+  }
+
+  public static boolean verificarRedundancia(ArticuloCompuesto elArticuloCompuesto, Articulo articulo) {
+    // Recorro todos los articulos compuestos
+    for (ArticuloCompuesto unArticuloCompuesto : listadoCompuestos()) {
+      // Salvo el mismo articulo que estoy chequeando
+      if (!unArticuloCompuesto.equals(elArticuloCompuesto)) {
+        // Dentro de cada uno, todos sus componentes.
+        for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
+          // Si sus componentes son compuestos
+          if (unComponente.getArticulo().esCompuesto()) {
+            // Si el compuesto es el articulo que intento agregar, genero una dependencia circular
+            if (unComponente.getArticulo().equals(articulo)) {
+              return false;
+            }  
+          }
+        }
+      }
+    }
+    return true;
   }
 
 

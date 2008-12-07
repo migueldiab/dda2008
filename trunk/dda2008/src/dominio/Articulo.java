@@ -15,6 +15,7 @@ public abstract class Articulo implements Cloneable, Comparable
   public abstract boolean esHoja();
   public abstract boolean esCompuesto();
   public abstract Articulo getPadre(Componente hijo);
+  public abstract boolean remplazarComponentes(ArrayList<Componente> listaComponetes);
   
   public abstract String tipoArticulo();  
   /*
@@ -155,12 +156,5 @@ public abstract class Articulo implements Cloneable, Comparable
   	    return 0;
   	  }
   }
-    
-
-  
-  
-	
-
-  
 
 }
