@@ -444,13 +444,12 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     else {
       if ((Articulo) lArticulos.getSelectedValue()!=null) {
-        if (Fachada.verificarRedundanciaArticulosCompuestos(elArticuloCompuesto, (Articulo) lArticulos.getSelectedValue())) {
-          Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
-          if (elArticuloCompuesto==null) {
-            elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
-          }
-          if (elArticuloCompuesto!=null) {
-            elArticuloCompuesto.agregarComponente(unComponente);
+        Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
+        if (elArticuloCompuesto==null) {
+          elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+        }
+        if (elArticuloCompuesto!=null) {
+          if (elArticuloCompuesto.agregarComponente(unComponente)) {
             actualizar();       
             arbolComponentes=new ModeloArbol(elArticuloCompuesto);
             tComponentes.setModel(arbolComponentes);
@@ -460,12 +459,12 @@ public class VistaArticulosCompuestos extends JFrame {
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));
-            lInfo.setText("Error al crear articulo compuesto.");            
+            lInfo.setText("Error: No puede agregar un componente a si mismo o un componente circular.");
           }
         }
         else {
           lInfo.setForeground(new Color(190, 65, 79));
-          lInfo.setText("Componente redundante, evite referencias circulares.");
+          lInfo.setText("Error al crear articulo compuesto.");            
         }
       }
       else {

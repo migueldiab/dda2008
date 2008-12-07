@@ -178,20 +178,16 @@ public class ServiciosArticulos
       return agregar((Articulo) unArticuloCompuesto) ;   
   }
 
-  public static boolean verificarRedundancia(ArticuloCompuesto elArticuloCompuesto, Articulo articulo) {
-    // Recorro todos los articulos compuestos
-    for (ArticuloCompuesto unArticuloCompuesto : listadoCompuestos()) {
-      // Salvo el mismo articulo que estoy chequeando
-      if (!unArticuloCompuesto.equals(elArticuloCompuesto)) {
-        // Dentro de cada uno, todos sus componentes.
-        for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
-          // Si sus componentes son compuestos
-          if (unComponente.getArticulo().esCompuesto()) {
-            // Si el compuesto es el articulo que intento agregar, genero una dependencia circular
-            if (unComponente.getArticulo().equals(articulo)) {
-              return false;
-            }  
-          }
+  public static boolean verificarRedundancia(ArticuloCompuesto elArticuloCompuesto, Componente elComponente) {
+    
+    ArticuloCompuesto unArticuloCompuesto = (ArticuloCompuesto) obtener(elComponente.getArticulo());
+    for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
+      if (unComponente.getArticulo().esCompuesto()) {
+        if (unComponente.getArticulo().equals(elArticuloCompuesto)) {
+          return false;
+        }
+        else {
+          verificarRedundancia((ArticuloCompuesto) unComponente.getArticulo(), elComponente);
         }
       }
     }

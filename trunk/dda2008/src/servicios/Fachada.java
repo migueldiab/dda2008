@@ -206,8 +206,8 @@ public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
 public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
 	return ServiciosPresupuestos.getArticulosSimplesDePresupuestosAntesDe(fecha);
 }
-public static boolean verificarRedundanciaArticulosCompuestos(ArticuloCompuesto elArticuloCompuesto, Articulo articulo) {
-  return ServiciosArticulos.verificarRedundancia(elArticuloCompuesto, articulo);
+public static boolean verificarRedundanciaArticulosCompuestos(ArticuloCompuesto elArticuloCompuesto, Componente unComponente) {
+  return ServiciosArticulos.verificarRedundancia(elArticuloCompuesto, unComponente);
 }
 	
 //}
