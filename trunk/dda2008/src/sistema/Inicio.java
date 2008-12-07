@@ -38,7 +38,7 @@ public class Inicio {
     losArticulos.add(unArticulo);
     Item item1=new Item(unArticulo,7);
     
-    Articulo tabla = new ArticuloSimple("Tabla", new Medida("co", "Ciento"), 63, 224.88);
+    Articulo tabla = new ArticuloSimple("Tabla", new Medida("co", "Ciento"), 10, 224.88);
     Fachada.agregarArticulo(tabla);
     losArticulos.add(tabla);
     Item item2=new Item(tabla,3);
@@ -52,7 +52,7 @@ public class Inicio {
     losArticulos.add(unArticulo2);
     Item item3=new Item(unArticulo2,4);
     
-    Articulo bisagra = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 23, 84.33);
+    Articulo bisagra = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 85, 84.33);
     Fachada.agregarArticulo(bisagra);
     losArticulos.add(bisagra);
     Item item4=new Item(bisagra,8);
@@ -66,7 +66,7 @@ public class Inicio {
     losArticulos.add(manija);
     Item item5=new Item(manija,9);
     
-    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 54, 22.15);
+    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 110, 22.15);
     Fachada.agregarArticulo(tornillo);
     losArticulos.add(tornillo);
     Item item6=new Item(tornillo,1);
@@ -75,19 +75,19 @@ public class Inicio {
     items56.add(item5);
     items56.add(item6);
     
-    Articulo puerta = new ArticuloCompuesto("Puerta", new Medida("ud", "Unidad"), 2, 105.34);
+    Articulo puerta = new ArticuloCompuesto("Puerta", new Medida("ud", "Unidad"));
     puerta.agregarComponente(new Componente(tornillo,17));
     puerta.agregarComponente(new Componente(bisagra,4));
     puerta.agregarComponente(new Componente(manija,2));
     Fachada.agregarArticulo(puerta);
     
-    Articulo cajon = new ArticuloCompuesto("Cajon", new Medida("ud", "Unidad"), 2, 44.10);
+    Articulo cajon = new ArticuloCompuesto("Cajon", new Medida("ud", "Unidad"));
     cajon.agregarComponente(new Componente(tornillo,6));
     cajon.agregarComponente(new Componente(bisagra,4));
     Fachada.agregarArticulo(cajon);
     
     
-    Articulo armario = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"), 8, 317.75);
+    Articulo armario = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"));
     armario.agregarComponente(new Componente(tabla,3));
     armario.agregarComponente(new Componente(puerta,2));
     armario.agregarComponente(new Componente(cajon,4));
