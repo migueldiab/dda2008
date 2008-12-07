@@ -9,7 +9,11 @@ import servicios.Fachada;
 
 import dominio.ArticuloCompuesto;
 import dominio.Articulo;
+import dominio.ArticuloSimple;
+import dominio.Componente;
 import dominio.Medida;
+import dominio.ModeloArbol;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
@@ -45,7 +49,9 @@ public class VistaArticulosCompuestos extends JFrame {
   private JLabel lCosto = null;
   private JTextField tCosto = null;
   private JTree tComponentes = null;
-  private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
+  private ModeloArbol componentes = null;
+  private ArticuloCompuesto raiz = null;
+  //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
   private JButton bQuitar = null;
 
@@ -78,7 +84,7 @@ public class VistaArticulosCompuestos extends JFrame {
       lCosto.setText("Costo");
       
       lInfo = new JLabel();
-      lInfo.setBounds(new Rectangle(0, 390, 390, 30));
+      lInfo.setBounds(new Rectangle(0, 360, 650, 30));
       lInfo.setHorizontalAlignment(SwingConstants.CENTER);
       lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
       lInfo.setText("");
@@ -136,7 +142,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JButton getBCancelar() {
     if (bCancelar == null) {
       bCancelar = new JButton();
-      bCancelar.setBounds(new Rectangle(500, 350, 100, 30));
+      bCancelar.setBounds(new Rectangle(538, 336, 100, 30));
       bCancelar.setText("Cerrar");
       bCancelar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -230,7 +236,7 @@ public class VistaArticulosCompuestos extends JFrame {
         });
     if (pArticulosCompuestos == null) {
       pArticulosCompuestos = new JScrollPane(lArticulosCompuestos);     
-      pArticulosCompuestos.setBounds(new Rectangle(410, 40, 230, 300));
+      pArticulosCompuestos.setBounds(new Rectangle(410, 40, 230, 291));
       
      
     }
@@ -267,26 +273,26 @@ public class VistaArticulosCompuestos extends JFrame {
         });
     if (pArticulos == null) {
       pArticulos = new JScrollPane(lArticulos);     
-      pArticulos.setBounds(new Rectangle(240, 150, 160, 230));
+      pArticulos.setBounds(new Rectangle(240, 150, 160, 212));
     }
     return pArticulos;
   }
   private JScrollPane getPComponentes() {
-    treeComponentes = new DefaultMutableTreeNode("-N/A-");
-    tComponentes = new JTree(treeComponentes);
 
-    //tComponentes.setBounds(new Rectangle(10, 150, 160, 230));
-    tComponentes.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
-          public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
-          }
-        });
     if (pComponentes == null) {
-      pComponentes = new JScrollPane(tComponentes);  
-      pComponentes.setBounds(new Rectangle(10, 150, 160, 230));
-      
+      pComponentes = new JScrollPane();  
+      pComponentes.setBounds(new Rectangle(10, 150, 160, 211));
+      pComponentes.setViewportView(getTComponentes());
     }
     return pComponentes;
   }  
+  private Component getTComponentes() {
+    if (tComponentes == null) {
+      tComponentes = new JTree();
+    }
+    return tComponentes;
+  }
+
   private JButton getBAgregar() {
     if (bAgregar == null) {
       bAgregar = new JButton();
@@ -320,10 +326,20 @@ public class VistaArticulosCompuestos extends JFrame {
     tCantidad.setText(Integer.toString(u.getCantidad()));
     cMedida.setSelectedItem(u.getMedida());
     
-    treeComponentes = new DefaultMutableTreeNode(u);
-    tComponentes = new JTree(treeComponentes);    
-    pComponentes.setViewportView(tComponentes);
-    
+    raiz=new ArticuloCompuesto("prueba", new Medida("ts", "test"));
+    raiz.agregarComponente(new Componente(new ArticuloCompuesto("--Compuesto--", new Medida("dos", "otra"))));
+    raiz.agregarComponente(new Componente(new ArticuloSimple("--Simple--", new Medida("tres", "ultima"))));
+    componentes=new ModeloArbol(raiz);
+    //componentes=new ModeloArbol(u);
+    tComponentes.setModel(componentes);
+    tComponentes.updateUI();
+//    treeComponentes = new DefaultMutableTreeNode(u);
+//    for (int i=0;i<u.getCantidadDeHijos();i++) {
+//      
+//    }
+//    tComponentes = new JTree(treeComponentes);    
+//    pComponentes.setViewportView(tComponentes);
+//    
     
     
   }
@@ -413,7 +429,29 @@ public class VistaArticulosCompuestos extends JFrame {
     }
   }
   private void agregarComponente() {
+    if (lArticulos.getSelectedIndex()==-1) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Debe seleccionar un artículo.");           
+     
+    }
+    else {
+      Articulo unComponente = (ArticuloSimple) lArticulos.getSelectedValue();
+      Object seleccionado= tComponentes.getLastSelectedPathComponent();
+      if(seleccionado!=null){
+        Articulo padre = (Articulo) ((DefaultMutableTreeNode) seleccionado).getUserObject();
+        //padre.agregarComponente(unComponente);
+        
+        //if(seleccionado.agregarComponente(unComponente)){
 
+        //}
+      } 
+      else {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Debe indicar dónde se ubica el componente.");           
+        
+      }
+    }
   }
+
 
 }

@@ -701,7 +701,6 @@ public class VistaPresupuestos extends JFrame implements Observer {
 		return modeloJList;
 	}
 	
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		ArrayList colPresupuestos=new ArrayList();
 		colPresupuestos=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);

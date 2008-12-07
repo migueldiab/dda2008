@@ -585,7 +585,6 @@ public class VistaFinalizacionPresupuesto implements Observer {
 		jButtonNo.setVisible(false);
 	}
 
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		getJListPresupuesto();
 	}
