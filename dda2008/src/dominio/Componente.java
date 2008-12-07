@@ -19,10 +19,10 @@ public class Componente {
   public boolean esHoja() {
     return componente.esHoja();
   }
-  public Componente getHijo(int posicion) { return null; }
-  public int getCantidadDeHijos() { return 0; }
+  public static Componente getHijo(int posicion) { return null; }
+  public static int getCantidadDeHijos() { return 0; }
   public int getIndiceHijo(Componente unComponente) { return -1; }
-  public Componente getPadre(Componente unComponente) { return null; }
+  public static Componente getPadre(Componente unComponente) { return null; }
 
   @Override
   public boolean equals(Object arg0) {
@@ -58,24 +58,27 @@ public class Componente {
     this.componente = componente;
   }  
 
-	/*private static int x=0;
-	public ArrayList StockSimplesPresupuestos(Item itemRoot, Articulo hijo){//art hijo en principio es null
-		ArrayList retorno=new ArrayList();
+	private static int x=0;
+	public static  ArrayList StockSimplesPresupuestos(Item itemRoot, Componente hijo, ArrayList retorno){//art hijo en principio es null
 		
-		if(this.esHoja()){
-			if(this.equals(item.getElArticulo())){//si el item del presupuesto es un Articulo simple. Caso mas facil.
-				retorno=sumarItem(retorno, x);
+		Articulo articulo=itemRoot.getElArticulo();
+		
+		if(hijo!=null){
+			Articulo artHijo=hijo.getComponente();
+			if(artHijo.esHoja()){
+				int total=getTotalCantidadPadres(getPadre(hijo), itemRoot,0);
+				sumarItem(hijo.getComponente(),retorno,itemRoot.getElArticulo().getCantidad()*total);
+			}
+		}
+		else if(hijo==null&&articulo.esHoja()){
+			//si el item del presupuesto es un Articulo simple. Caso mas facil.
+				retorno=sumarItem(articulo, retorno, itemRoot.getCantidadItem());
 				x=0;
-			}
-			else{  //si es hoja pero no es del tipo del item, buscar el total con el parent 
-				int total=getTotalCantidadPadres(getPadre(this), itemRoot);
-				sumarItem(retorno,this.cantidad*total);
-			}
 		}
 		else{		//si no es hoja
 			for(int z=0;z<getCantidadDeHijos();z++){
-				Articulo elHijo=getHijo(z);
-				StockSimplesPresupuestos(itemRoot,elHijo);
+				Componente elHijo=getHijo(z);
+				StockSimplesPresupuestos(itemRoot,elHijo,retorno);
 			}
 		}
 		return retorno;
@@ -84,40 +87,41 @@ public class Componente {
 	
 	
 	
-	private int getTotalCantidadPadres(Articulo padre,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
+	private static int getTotalCantidadPadres(Componente componente2,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
 		int total=0;
-		if(padre.equals(item.getElArticulo())){
-			total=padre.getCantidad()*subtotal;
+		if(componente2.getComponente().equals(item.getElArticulo())){
+			total=componente2.componente.getCantidad()*subtotal;
 			
 			return total;
 		}
 		else{
-			getTotalCantidadPadres(getPadre(padre),item,subtotal*padre.cantidad);
+			getTotalCantidadPadres(getPadre(componente2),item,subtotal*componente2.cantidad);
 		}
 	
 	
 		return total;
 	}
 	
-	private ArrayList sumarItem(ArrayList items,int cantidad){
+	private static ArrayList sumarItem(Articulo articulo, ArrayList componentes,int cantidad){
 		boolean tiene=false;
-		for(int i=0;i<items.size()&&tiene==false;i++){
-			Item item=((Item) items.get(i));
-			Articulo tmpArt=item.getElArticulo();
-			if(tmpArt.equals(this)){
-				item.setCantidadItem(item.getCantidadItem()+cantidad);
+		for(int i=0;i<componentes.size()&&tiene==false;i++){
+			Componente componente=((Componente) componentes.get(i));
+			Articulo tmpArt=componente.getComponente();
+			if(tmpArt.equals(articulo)){
+				componente.setCantidad(componente.getCantidad()+cantidad);
 				tiene=true;
 			}
-			return items;
 		}
-		Item tmpItem=new Item(this,cantidad);
-		items.add(tmpItem);
-		return items;
+		if (tiene==false){
+			Componente tmpComponente=new Componente(articulo,cantidad);
+			componentes.add(tmpComponente);
+		}
+		return componentes;
 	}
-	
+
 	
   
-  */
+  
   
   
   

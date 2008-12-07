@@ -336,9 +336,12 @@ public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
 	for(int i=0;i<presupuestos.size();i++){
 		Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
 		if(unPresupuesto.getEstado()=="En Construccion"){
-			if(unPresupuesto.getFechaEjecucion().before(fecha)){
-				retorno.add(unPresupuesto);
+			if(unPresupuesto.getFechaEjecucion()!=null){
+				if(unPresupuesto.getFechaEjecucion().before(fecha)){
+					retorno.add(unPresupuesto);
+				}	
 			}
+			
 			
 		}
 	}

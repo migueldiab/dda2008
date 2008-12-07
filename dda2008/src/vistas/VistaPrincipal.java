@@ -566,7 +566,7 @@ public class VistaPrincipal {
 	  public static void cargar() {
       // FIXME : Aca que cargue los menúes visibles segun el usuario...
 	    sistema.Inicio.principal.getJFrame().setVisible(true);
-      System.out.println("cargo : "+Fachada.getUsuarioActual());
+     // System.out.println("cargo : "+Fachada.getUsuarioActual());
 	  }
     protected static void cerrar() {
       sistema.Inicio.principal.jFrame.dispose();
