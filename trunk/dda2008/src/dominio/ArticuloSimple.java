@@ -39,6 +39,11 @@ public class ArticuloSimple extends Articulo {
   public boolean esCompuesto() {
     return false;
   }
+  @Override
+  public boolean recalcularStock() {
+    // TODO Auto-generated method stub
+    return false;
+  }
   
 
 }

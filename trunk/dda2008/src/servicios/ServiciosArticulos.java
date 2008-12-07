@@ -166,23 +166,6 @@ public class ServiciosArticulos
       return articulosCompuestos;
     }
   }
-  public static boolean recalcularStock(ArticuloCompuesto unArticuloCompuesto) {
-    int cantidadMax = 0;
-    Articulo unArticulo = (Articulo) obtener(unArticuloCompuesto);
-    if (unArticulo!=null) {
-      if (unArticulo.esCompuesto()) {
-        for (Componente unComponente : unArticulo.listarComponentes()) {
-          if (unComponente.getArticulo().esCompuesto()) {
-            recalcularStock((ArticuloCompuesto) unComponente.getArticulo());
-          }
-          int temp = unComponente.getArticulo().getCantidad() / unComponente.getCantidad();
-        }
-      }
-      else {
-        return false;
-      }
-    }
-    return false;
-  }
+
 
 }

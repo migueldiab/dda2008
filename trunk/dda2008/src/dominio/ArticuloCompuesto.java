@@ -75,6 +75,22 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
     return true;
   }
 
+  @Override
+  public boolean recalcularStock() {
+    int cantidadMax = 0;
+    for (Componente unComponente : this.listarComponentes()) {
+      if (unComponente.getArticulo().esCompuesto()) {
+        unComponente.getArticulo().recalcularStock();
+      }
+      int temp = unComponente.getArticulo().getCantidad() / unComponente.getCantidad();
+      if (cantidadMax > temp) {
+        cantidadMax = temp;
+      }
+    }
+    this.setCantidad(cantidadMax);
+    return true;
+  }
+
 
 
   
