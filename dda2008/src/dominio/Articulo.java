@@ -47,7 +47,6 @@ public abstract class Articulo implements Cloneable, Comparable
    */
   public boolean equals(Object arg0)
   {
-    // TODO Auto-generated method stub
     try
     {
       Articulo articulo = (Articulo)arg0;

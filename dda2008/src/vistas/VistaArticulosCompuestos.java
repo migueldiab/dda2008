@@ -49,7 +49,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JLabel lCosto = null;
   private JTextField tCosto = null;
   private JTree tComponentes = null;
-  private ModeloArbol componentes = null;
+  private ModeloArbol arbolComponentes = null;
   private ArticuloCompuesto raiz = null;
   //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
@@ -329,9 +329,9 @@ public class VistaArticulosCompuestos extends JFrame {
     raiz=new ArticuloCompuesto("prueba", new Medida("ts", "test"));
     raiz.agregarComponente(new Componente(new ArticuloCompuesto("--Compuesto--", new Medida("dos", "otra"))));
     raiz.agregarComponente(new Componente(new ArticuloSimple("--Simple--", new Medida("tres", "ultima"))));
-    componentes=new ModeloArbol(raiz);
+    arbolComponentes=new ModeloArbol(raiz);
     //componentes=new ModeloArbol(u);
-    tComponentes.setModel(componentes);
+    tComponentes.setModel(arbolComponentes);
     tComponentes.updateUI();
 //    treeComponentes = new DefaultMutableTreeNode(u);
 //    for (int i=0;i<u.getCantidadDeHijos();i++) {
@@ -435,21 +435,9 @@ public class VistaArticulosCompuestos extends JFrame {
      
     }
     else {
-      Articulo unComponente = (ArticuloSimple) lArticulos.getSelectedValue();
-      Object seleccionado= tComponentes.getLastSelectedPathComponent();
-      if(seleccionado!=null){
-        Articulo padre = (Articulo) ((DefaultMutableTreeNode) seleccionado).getUserObject();
-        //padre.agregarComponente(unComponente);
-        
-        //if(seleccionado.agregarComponente(unComponente)){
-
-        //}
-      } 
-      else {
-        lInfo.setForeground(new Color(190, 65, 79));
-        lInfo.setText("Debe indicar dónde se ubica el componente.");           
-        
-      }
+      Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
+      raiz.agregarComponente(unComponente);
+      tComponentes.updateUI();
     }
   }
 

@@ -24,8 +24,20 @@ public class Componente {
 
   @Override
   public boolean equals(Object arg0) {
-    // TODO Auto-generated method stub
-    return super.equals(arg0);
+    try
+    {
+      Articulo articulo = (Articulo) ((Componente) arg0).getComponente();
+      if (articulo.getNombre().equals(this.componente.getNombre())) {
+        if (articulo.getMedida().equals(this.componente.getMedida())) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+
+    }
+    return false;
   }
   @Override
   public String toString() {

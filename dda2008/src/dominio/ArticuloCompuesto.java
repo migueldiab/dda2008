@@ -19,8 +19,21 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
 
   @Override
   public boolean agregarComponente(Componente unComponente) {
-    this.componentes.add(unComponente);
-    return true;
+    try {
+      int pos = getPosComponente(unComponente);
+      if (pos!=-1) {
+         unComponente = componentes.get(pos);
+         int cantidad = unComponente.getCantidad();
+         unComponente.setCantidad(++cantidad);
+      }
+      else {
+        this.componentes.add(unComponente);  
+      }
+      return true;
+      
+    } catch (Exception e) {
+      return false;
+    }
   }
 
   @Override
@@ -51,6 +64,10 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
 
   public Object getHijo(int posicion) {
     return componentes.get(posicion);
+  }
+
+  public int getPosComponente(Componente unComponente) {
+    return componentes.indexOf(unComponente);
   }
 
 
