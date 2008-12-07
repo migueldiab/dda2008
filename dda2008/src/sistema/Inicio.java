@@ -19,7 +19,7 @@ public class Inicio {
    */
   public static void main(String[] args) {
     cargarDatosInicio();
-    login.setVisible(true);   
+    login.cargar();   
 
   }
 

@@ -1,6 +1,7 @@
 package vistas;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -13,11 +14,12 @@ import utils.MultiLineLabelUI;
 import java.awt.Rectangle;
 
 
-public class VistaLogin extends JDialog {
+public class VistaLogin {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel jContentPane = null;
+  private JFrame jFrame = null;
+  private JPanel jContentPane = null;
 	private JTextField tUsuario = null;
 
   private JPasswordField tClave = null;
@@ -26,6 +28,23 @@ public class VistaLogin extends JDialog {
   private JLabel lPassword = null;
   private JLabel lError = null;	
 
+  
+  /**
+   * This method initializes jFrame
+   * 
+   * @return javax.swing.JFrame
+   */
+  private JFrame getJFrame() {
+    if (jFrame == null) {
+      jFrame = new JFrame();
+      jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      jFrame.setSize(300, 200);
+      jFrame.setContentPane(getJContentPane());
+      jFrame.setTitle("Sistema de Gestion de Presupuestos");
+    }
+    return jFrame;
+  }
+  
 	/**
 	 * @param owner
 	 */
@@ -33,6 +52,7 @@ public class VistaLogin extends JDialog {
 		super();
 		initialize();
 		//VistaPrincipal.cargar();
+    //Inicio.principal.getJFrame();
 	}
 
 	/**
@@ -41,9 +61,9 @@ public class VistaLogin extends JDialog {
 	 * @return void
 	 */
 	private void initialize() {
-		this.setSize(250, 180);
-		this.setContentPane(getJContentPane());
-		this.setTitle("Acceso a Sistema de Presupuestos");
+//		this.setSize(250, 180);
+//		this.setContentPane(getJContentPane());
+//		this.setTitle("Acceso a Sistema de Presupuestos");
 		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
 	}
 
@@ -126,7 +146,7 @@ public class VistaLogin extends JDialog {
           else {
             VistaPrincipal.cargar();            
             lError.setText("");
-            Inicio.login.setVisible(false);
+            Inicio.login.cerrar();
           }
           
             
@@ -136,5 +156,14 @@ public class VistaLogin extends JDialog {
     
     
     return bLogin;
+  }
+
+  public void cerrar() {
+    this.jFrame.dispose();
+    
+  }
+
+  public void cargar() {
+    sistema.Inicio.login.getJFrame().setVisible(true);
   }
 }
