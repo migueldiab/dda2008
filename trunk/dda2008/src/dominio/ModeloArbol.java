@@ -40,8 +40,15 @@ public class ModeloArbol implements TreeModel{
   }
 
   public int getIndexOfChild(Object p, Object hijo) {
-    Componente padre=(Componente)p;
-    return padre.getIndiceHijo((Componente)hijo);
+    try {
+      Componente padre=(Componente)p;
+      return padre.getIndiceHijo((Componente)hijo);
+      
+    } catch (Exception e) {
+      ArticuloCompuesto padre = (ArticuloCompuesto) p;
+      return padre.getPosComponente((Componente) hijo);
+      
+    }
   }
 
   public Object getRoot() {
