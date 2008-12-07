@@ -179,19 +179,30 @@ public class ServiciosArticulos
   }
 
   public static boolean verificarRedundancia(ArticuloCompuesto elArticuloCompuesto, Componente elComponente) {
-    
     ArticuloCompuesto unArticuloCompuesto = (ArticuloCompuesto) obtener(elComponente.getArticulo());
-    for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
-      if (unComponente.getArticulo().esCompuesto()) {
-        if (unComponente.getArticulo().equals(elArticuloCompuesto)) {
-          return false;
-        }
-        else {
-          verificarRedundancia((ArticuloCompuesto) unComponente.getArticulo(), elComponente);
+    if (unArticuloCompuesto!=null) {
+      for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
+        if (unComponente.getArticulo().esCompuesto()) {
+          if (unComponente.getArticulo().equals(elArticuloCompuesto)) {
+            return false;
+          }
+          else {
+            if (articuloTieneComponente((ArticuloCompuesto) unComponente.getArticulo(), new Componente(elArticuloCompuesto)))
+              return false;
+          }
         }
       }
     }
     return true;
+  }
+
+  private static boolean articuloTieneComponente(ArticuloCompuesto compuesto, Componente componente) {
+    for (Componente unComponente : compuesto.listarComponentes()) {
+      if (unComponente.equals(componente)) {
+        return true;
+      }
+    }
+    return false;
   }
 
 
