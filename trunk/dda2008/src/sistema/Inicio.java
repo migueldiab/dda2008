@@ -38,10 +38,6 @@ public class Inicio {
     losArticulos.add(unArticulo);
     Item item1=new Item(unArticulo,7);
     
-    Articulo unArticuloComp = new ArticuloCompuesto("El Compuesto", new Medida("ud", "Unidad"), 12, 105.34);
-    unArticuloComp.agregarComponente(new Componente(unArticulo));
-    Fachada.agregarArticulo(unArticuloComp);
-
     Articulo unArticulo1 = new ArticuloSimple("Otra Pintura", new Medida("co", "Ciento"), 63, 224.88);
     Fachada.agregarArticulo(unArticulo1);
     losArticulos.add(unArticulo1);
@@ -51,34 +47,42 @@ public class Inicio {
     items12.add(item1);
     items12.add(item2);
     
-    unArticulo = new ArticuloSimple("Portland", new Medida("kg", "Kilogramo"), 12, 105.34);
-    Fachada.agregarArticulo(unArticulo);
-    losArticulos.add(unArticulo);
-    Item item3=new Item(unArticulo,4);
+    Articulo unArticulo2 = new ArticuloSimple("Portland", new Medida("kg", "Kilogramo"), 12, 105.34);
+    Fachada.agregarArticulo(unArticulo2);
+    losArticulos.add(unArticulo2);
+    Item item3=new Item(unArticulo2,4);
     
-    unArticulo = new ArticuloSimple("Otro Portland", new Medida("c1", "Ciento"), 23, 84.33);
-    Fachada.agregarArticulo(unArticulo);
-    losArticulos.add(unArticulo);
-    Item item4=new Item(unArticulo,8);
+    Articulo unArticulo3 = new ArticuloSimple("Otro Portland", new Medida("c1", "Ciento"), 23, 84.33);
+    Fachada.agregarArticulo(unArticulo3);
+    losArticulos.add(unArticulo3);
+    Item item4=new Item(unArticulo3,8);
     ArrayList items34=new ArrayList();
     
     items34.add(item3);
     items34.add(item4);
     
-    unArticulo = new ArticuloSimple("Ceramica", new Medida("da", "Docena"), 12, 105.34);
-    Fachada.agregarArticulo(unArticulo);
-    losArticulos.add(unArticulo);
-    Item item5=new Item(unArticulo,9);
+    Articulo unArticulo4 = new ArticuloSimple("Ceramica", new Medida("da", "Docena"), 12, 105.34);
+    Fachada.agregarArticulo(unArticulo4);
+    losArticulos.add(unArticulo4);
+    Item item5=new Item(unArticulo4,9);
     
-    unArticulo = new ArticuloSimple("Otra Ceramica", new Medida("ud", "Unidad"), 54, 22.15);
-    Fachada.agregarArticulo(unArticulo);
-    losArticulos.add(unArticulo);
-    Item item6=new Item(unArticulo,1);
+    Articulo unArticulo5 = new ArticuloSimple("Otra Ceramica", new Medida("ud", "Unidad"), 54, 22.15);
+    Fachada.agregarArticulo(unArticulo5);
+    losArticulos.add(unArticulo5);
+    Item item6=new Item(unArticulo5,1);
     ArrayList items56=new ArrayList();
     
     items56.add(item5);
     items56.add(item6);
     
+    Articulo unArticuloComp = new ArticuloCompuesto("Tornillo", new Medida("ud", "Unidad"), 12, 105.34);
+    unArticuloComp.agregarComponente(new Componente(unArticulo));
+    Fachada.agregarArticulo(unArticuloComp);
+    
+    Articulo unArticuloComp1 = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"), 8, 317.75);
+    unArticuloComp1.agregarComponente(new Componente(unArticulo1));
+    unArticuloComp1.agregarComponente(new Componente(unArticuloComp));
+    Fachada.agregarArticulo(unArticuloComp1);
     
     ArrayList permisos = new ArrayList();
     //permisos.add(Grupo.ADMIN);
