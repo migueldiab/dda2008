@@ -326,22 +326,10 @@ public class VistaArticulosCompuestos extends JFrame {
     tCantidad.setText(Integer.toString(u.getCantidad()));
     cMedida.setSelectedItem(u.getMedida());
     
-    raiz=new ArticuloCompuesto("prueba", new Medida("ts", "test"));
-    raiz.agregarComponente(new Componente(new ArticuloCompuesto("--Compuesto--", new Medida("dos", "otra"))));
-    raiz.agregarComponente(new Componente(new ArticuloSimple("--Simple--", new Medida("tres", "ultima"))));
+    raiz = u;
     arbolComponentes=new ModeloArbol(raiz);
-    //componentes=new ModeloArbol(u);
     tComponentes.setModel(arbolComponentes);
     tComponentes.updateUI();
-//    treeComponentes = new DefaultMutableTreeNode(u);
-//    for (int i=0;i<u.getCantidadDeHijos();i++) {
-//      
-//    }
-//    tComponentes = new JTree(treeComponentes);    
-//    pComponentes.setViewportView(tComponentes);
-//    
-    
-    
   }
   private void buscarArticuloCompuesto() {
     //tNombre.setText("Test2");
@@ -398,7 +386,9 @@ public class VistaArticulosCompuestos extends JFrame {
     cMedida.removeAllItems();
     for (Object g : Fachada.listaMedidas()) {
       cMedida.addItem((Medida) g);        
-    }    
+    }
+    tComponentes.setModel(null);
+    tComponentes.updateUI();
   }
   private void limpiarCampos() {
     lArticulosCompuestos.clearSelection();
