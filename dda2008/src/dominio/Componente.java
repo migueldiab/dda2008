@@ -60,9 +60,7 @@ public class Componente {
 
 	private static int x=0;
 	public static  ArrayList StockSimplesPresupuestos(Item itemRoot, Componente hijo, ArrayList retorno){//art hijo en principio es null
-		
 		Articulo articulo=itemRoot.getElArticulo();
-		
 		if(hijo!=null){
 			Articulo artHijo=hijo.getArticulo();
 			if(artHijo.esHoja()){
@@ -74,7 +72,6 @@ public class Componente {
 					Componente elHijo=hijo.getArticulo().listarComponentes().get(z);
 					StockSimplesPresupuestos(itemRoot,elHijo,retorno);
 				}
-					
 			}
 		}
 		else if(hijo==null&&articulo.esHoja()){

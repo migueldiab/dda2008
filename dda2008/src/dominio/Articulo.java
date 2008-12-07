@@ -14,6 +14,7 @@ public abstract class Articulo implements Cloneable, Comparable
   public abstract boolean eliminarComponente(Componente unComponente);
   public abstract boolean esHoja();
   public abstract boolean esCompuesto();
+  public abstract Articulo getPadre(Componente hijo);
   
   public abstract String tipoArticulo();  
   /*
