@@ -446,7 +446,12 @@ public class VistaArticulosCompuestos extends JFrame {
       if ((Articulo) lArticulos.getSelectedValue()!=null) {
         Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
         if (elArticuloCompuesto==null) {
-          elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          if (tNombre.getText().length()>3 &&
+              cMedida.getSelectedIndex()!=-1
+            )    
+          {     
+            elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          }
         }
         if (elArticuloCompuesto!=null) {
           if (elArticuloCompuesto.agregarComponente(unComponente)) {
