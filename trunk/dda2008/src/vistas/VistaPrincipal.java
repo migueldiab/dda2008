@@ -591,7 +591,6 @@ public class VistaPrincipal {
 
 	  public static void cargar() {
 	    sistema.Inicio.principal.getJFrame().setVisible(true);
-      sistema.Inicio.principal.getJJMenuBar();
 	  }
     public void cerrar() {
       sistema.Inicio.principal.jFrame.dispose();
