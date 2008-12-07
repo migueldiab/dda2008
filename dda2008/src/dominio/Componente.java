@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 public class Componente {
 
-  private Articulo componente = null;
+  private Articulo articulo = null;
   private int cantidad = 0;
   
   public Componente(Articulo unArticulo, int cantidad) {
-    setComponente(unArticulo);
+    setArticulo(unArticulo);
     setCantidad(cantidad);
   }
   public Componente(Articulo unArticulo) {
-    setComponente(unArticulo);
+    setArticulo(unArticulo);
     setCantidad(1);
   }
   
   public boolean esHoja() {
-    return componente.esHoja();
+    return articulo.esHoja();
   }
   public static Componente getHijo(int posicion) { return null; }
   public static int getCantidadDeHijos() { return 0; }
@@ -28,9 +28,9 @@ public class Componente {
   public boolean equals(Object arg0) {
     try
     {
-      Articulo articulo = (Articulo) ((Componente) arg0).getComponente();
-      if (articulo.getNombre().equals(this.componente.getNombre())) {
-        if (articulo.getMedida().equals(this.componente.getMedida())) {
+      Articulo articulo = (Articulo) ((Componente) arg0).getArticulo();
+      if (articulo.getNombre().equals(this.articulo.getNombre())) {
+        if (articulo.getMedida().equals(this.articulo.getMedida())) {
           return true;
         }
       }
@@ -43,7 +43,7 @@ public class Componente {
   }
   @Override
   public String toString() {
-    return componente.toString() + "(" + cantidad + ")";
+    return articulo.toString() + "(" + cantidad + ")";
   }
   public int getCantidad() {
     return cantidad;
@@ -51,11 +51,11 @@ public class Componente {
   public void setCantidad(int cantidad) {
     this.cantidad = cantidad;
   }
-  public Articulo getComponente() {
-    return componente;
+  public Articulo getArticulo() {
+    return articulo;
   }
-  public void setComponente(Articulo componente) {
-    this.componente = componente;
+  public void setArticulo(Articulo componente) {
+    this.articulo = componente;
   }  
 
 	private static int x=0;
@@ -64,10 +64,10 @@ public class Componente {
 		Articulo articulo=itemRoot.getElArticulo();
 		
 		if(hijo!=null){
-			Articulo artHijo=hijo.getComponente();
+			Articulo artHijo=hijo.getArticulo();
 			if(artHijo.esHoja()){
 				int total=getTotalCantidadPadres(getPadre(hijo), itemRoot,0);
-				sumarItem(hijo.getComponente(),retorno,itemRoot.getElArticulo().getCantidad()*total);
+				sumarItem(hijo.getArticulo(),retorno,itemRoot.getElArticulo().getCantidad()*total);
 			}
 		}
 		else if(hijo==null&&articulo.esHoja()){
@@ -89,8 +89,8 @@ public class Componente {
 	
 	private static int getTotalCantidadPadres(Componente componente2,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
 		int total=0;
-		if(componente2.getComponente().equals(item.getElArticulo())){
-			total=componente2.componente.getCantidad()*subtotal;
+		if(componente2.getArticulo().equals(item.getElArticulo())){
+			total=componente2.articulo.getCantidad()*subtotal;
 			
 			return total;
 		}
@@ -106,7 +106,7 @@ public class Componente {
 		boolean tiene=false;
 		for(int i=0;i<componentes.size()&&tiene==false;i++){
 			Componente componente=((Componente) componentes.get(i));
-			Articulo tmpArt=componente.getComponente();
+			Articulo tmpArt=componente.getArticulo();
 			if(tmpArt.equals(articulo)){
 				componente.setCantidad(componente.getCantidad()+cantidad);
 				tiene=true;
