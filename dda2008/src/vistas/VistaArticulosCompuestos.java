@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.tree.*;
 
 import servicios.Fachada;
+import servicios.ServiciosArticulos;
 
 import dominio.ArticuloCompuesto;
 import dominio.Articulo;
@@ -50,7 +51,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField tCosto = null;
   private JTree tComponentes = null;
   private ModeloArbol arbolComponentes = null;  //  @jve:decl-index=0:
-  private ArticuloCompuesto raiz = null;  //  @jve:decl-index=0:visual-constraint="981,11"
+  private ArticuloCompuesto elArticuloCompuesto = null;  //  @jve:decl-index=0:visual-constraint="981,11"
   //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
   private JButton bQuitar = null;
@@ -329,16 +330,16 @@ public class VistaArticulosCompuestos extends JFrame {
  * Métodos
  */  
   private void cargarArticuloCompuesto() {
-    
-    ArticuloCompuesto u = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();
-    u.recalcularStock();
-    u.recalcularCosto();
-    tNombre.setText(u.getNombre());
-    tCantidad.setText(Integer.toString(u.getCantidad()));
-    cMedida.setSelectedItem(u.getMedida());
-    tCosto.setText(Double.toString(u.getCosto()));
-    raiz = u;
-    arbolComponentes=new ModeloArbol(raiz);
+    ArticuloCompuesto temp = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();
+    elArticuloCompuesto = new ArticuloCompuesto(temp.getNombre(), temp.getMedida());
+    elArticuloCompuesto.remplazarComponentes(temp.listarComponentes());
+    elArticuloCompuesto.recalcularStock();
+    elArticuloCompuesto.recalcularCosto();
+    tNombre.setText(elArticuloCompuesto.getNombre());
+    tCantidad.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    cMedida.setSelectedItem(elArticuloCompuesto.getMedida());
+    tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
+    arbolComponentes=new ModeloArbol(elArticuloCompuesto);
     tComponentes.setModel(arbolComponentes);
     tComponentes.updateUI();
   }
@@ -347,9 +348,7 @@ public class VistaArticulosCompuestos extends JFrame {
   }
   private void guardarArticuloCompuesto() {
     try {
-      ArticuloCompuesto unArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(), (Medida) cMedida.getSelectedItem());
-      unArticuloCompuesto = Fachada.obtenerArticuloCompuesto(unArticuloCompuesto);
-      if ((unArticuloCompuesto==null) || (JOptionPane.showConfirmDialog(
+      if ((elArticuloCompuesto==null) || (JOptionPane.showConfirmDialog(
           null,"Desea guardar los cambios al articulo "+tNombre.getText()+"?",
           "Confirma guardar?",
           JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
@@ -359,15 +358,14 @@ public class VistaArticulosCompuestos extends JFrame {
             cMedida.getSelectedIndex()!=-1
           )    
         {      
-          if (unArticuloCompuesto==null) unArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
-          unArticuloCompuesto.setCantidad(Integer.parseInt(tCantidad.getText()));
-          unArticuloCompuesto.setCosto(Double.parseDouble(tCosto.getText()));
-          if (Fachada.agregarArticuloCompuesto(unArticuloCompuesto)) {
+          if (elArticuloCompuesto==null) elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          elArticuloCompuesto.setCantidad(Integer.parseInt(tCantidad.getText()));
+          elArticuloCompuesto.setCosto(Double.parseDouble(tCosto.getText()));
+          if (Fachada.agregarArticuloCompuesto(elArticuloCompuesto)) {
             lInfo.setForeground(new Color(65, 190, 79));
             lInfo.setText("Articulo " + tNombre.getText() + " guardado");
-            raiz = unArticuloCompuesto;
             cargarListas();
-            //limpiarCampos();
+            limpiarCampos();
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));
@@ -416,7 +414,7 @@ public class VistaArticulosCompuestos extends JFrame {
     cMedida.setSelectedItem(null);
     tNombre.requestFocus();
     
-    raiz = null;
+    elArticuloCompuesto = null;
     
     arbolComponentes=new ModeloArbol(null);
     tComponentes.setModel(arbolComponentes);
@@ -446,26 +444,28 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     else {
       if ((Articulo) lArticulos.getSelectedValue()!=null) {
-        Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
-        if (raiz==null && (JOptionPane.showConfirmDialog(
-            null,"Al agregar un componente se guardará el ítem creado",
-            "Confirma guardar?",
-            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)) {
-            guardarArticuloCompuesto();
-        }
-        if (raiz!=null) {
-          raiz.agregarComponente(unComponente);
-          arbolComponentes=new ModeloArbol(raiz);
-          tComponentes.setModel(arbolComponentes);
-          tComponentes.updateUI();
-          cargarArticuloCompuesto();
-          lInfo.setForeground(new Color(65, 190, 79));
-          lInfo.setText(unComponente.toString() +" cargado.");            
-          
+        if (Fachada.verificarRedundanciaArticulosCompuestos(elArticuloCompuesto, (Articulo) lArticulos.getSelectedValue())) {
+          Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
+          if (elArticuloCompuesto==null) {
+            elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          }
+          if (elArticuloCompuesto!=null) {
+            elArticuloCompuesto.agregarComponente(unComponente);
+            actualizar();       
+            arbolComponentes=new ModeloArbol(elArticuloCompuesto);
+            tComponentes.setModel(arbolComponentes);
+            tComponentes.updateUI();
+            lInfo.setForeground(new Color(65, 190, 79));
+            lInfo.setText(unComponente.toString() +" cargado.");
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Error al crear articulo compuesto.");            
+          }
         }
         else {
           lInfo.setForeground(new Color(190, 65, 79));
-          lInfo.setText("Error al crear articulo compuesto.");            
+          lInfo.setText("Componente redundante, evite referencias circulares.");
         }
       }
       else {
@@ -475,6 +475,15 @@ public class VistaArticulosCompuestos extends JFrame {
       }        
     }
   }
+  private void actualizar() {
+    elArticuloCompuesto.recalcularCosto();
+    elArticuloCompuesto.recalcularStock();
+    tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
+    tCantidad.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    
+    
+  }
+
   private void eliminarComponente() {
     try {
       Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
@@ -483,12 +492,12 @@ public class VistaArticulosCompuestos extends JFrame {
         lInfo.setText("Debe seleccionar un componente.");           
       }
       else {
-        if (raiz!=null) {
-          if (raiz.eliminarComponente(unComponente)) {
-            arbolComponentes=new ModeloArbol(raiz);
+        if (elArticuloCompuesto!=null) {
+          if (elArticuloCompuesto.eliminarComponente(unComponente)) {
+            actualizar();
+            arbolComponentes=new ModeloArbol(elArticuloCompuesto);
             tComponentes.setModel(arbolComponentes);
             tComponentes.updateUI();
-            cargarArticuloCompuesto();
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));

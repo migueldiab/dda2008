@@ -18,8 +18,8 @@ public class Fachada {
     return ServiciosArticulos.borrar(unArticulo); 
   }
 
-  public static boolean modificarArticulo(Articulo original,String nombre,Medida medida,int cantidad,double costo) {    
-    return ServiciosArticulos.modificar(original, nombre, medida, cantidad, costo);
+  public static boolean modificarArticulo(Articulo original,Articulo nuevo) {    
+    return ServiciosArticulos.modificar(original, nuevo);
   }
 
   public static ArrayList listadoArticulos() {
@@ -188,7 +188,7 @@ public class Fachada {
   
   
   public static boolean agregarArticuloCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    return ServiciosArticulos.agregar((Articulo) unArticuloCompuesto);
+    return ServiciosArticulos.agregarCompuesto(unArticuloCompuesto);
   }
   
   public static boolean borrarArticuloCompuesto(ArticuloCompuesto u) {
@@ -205,6 +205,9 @@ public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
 }
 public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
 	return ServiciosPresupuestos.getArticulosSimplesDePresupuestosAntesDe(fecha);
+}
+public static boolean verificarRedundanciaArticulosCompuestos(ArticuloCompuesto elArticuloCompuesto, Articulo articulo) {
+  return ServiciosArticulos.verificarRedundancia(elArticuloCompuesto, articulo);
 }
 	
 //}

@@ -39,10 +39,14 @@ public class ArticuloSimple extends Articulo {
   public boolean esCompuesto() {
     return false;
   }
-@Override
-public Articulo getPadre(Componente hijo) {
-	return null;
-}
+  @Override
+  public Articulo getPadre(Componente hijo) {
+  	return null;
+  }
+  @Override
+  public boolean remplazarComponentes(ArrayList<Componente> listaComponetes) {
+    return false;
+  }
 
   
 

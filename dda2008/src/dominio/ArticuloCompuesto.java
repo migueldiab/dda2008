@@ -10,7 +10,6 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
   
   public ArticuloCompuesto(String nombre, Medida unaMedida) {
     super(nombre, unaMedida);
-    // TODO Auto-generated constructor stub
   }
 
   public ArticuloCompuesto(String nombre, Medida unaMedida, int cantidad, double costo) {
@@ -143,11 +142,18 @@ public Articulo getPadre(Componente hijo) {
 		return padre;
 	}
 
-
-
-  
-
-
-  
+  @Override
+  public boolean remplazarComponentes(ArrayList<Componente> listaComponetes) {
+    if (listaComponetes.size()>0) {
+      componentes.clear();
+      for (Componente unComponente : listaComponetes) {
+        agregarComponente(unComponente);
+      }
+      return true;      
+    }
+    else {
+      return false;
+    }
+  }
 
 }
