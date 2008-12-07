@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.ArrayList;
+
 public class Componente {
 
   private Articulo componente = null;
@@ -56,4 +58,69 @@ public class Componente {
     this.componente = componente;
   }  
 
+	/*private static int x=0;
+	public ArrayList StockSimplesPresupuestos(Item itemRoot, Articulo hijo){//art hijo en principio es null
+		ArrayList retorno=new ArrayList();
+		
+		if(this.esHoja()){
+			if(this.equals(item.getElArticulo())){//si el item del presupuesto es un Articulo simple. Caso mas facil.
+				retorno=sumarItem(retorno, x);
+				x=0;
+			}
+			else{  //si es hoja pero no es del tipo del item, buscar el total con el parent 
+				int total=getTotalCantidadPadres(getPadre(this), itemRoot);
+				sumarItem(retorno,this.cantidad*total);
+			}
+		}
+		else{		//si no es hoja
+			for(int z=0;z<getCantidadDeHijos();z++){
+				Articulo elHijo=getHijo(z);
+				StockSimplesPresupuestos(itemRoot,elHijo);
+			}
+		}
+		return retorno;
+	}
+	
+	
+	
+	
+	private int getTotalCantidadPadres(Articulo padre,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
+		int total=0;
+		if(padre.equals(item.getElArticulo())){
+			total=padre.getCantidad()*subtotal;
+			
+			return total;
+		}
+		else{
+			getTotalCantidadPadres(getPadre(padre),item,subtotal*padre.cantidad);
+		}
+	
+	
+		return total;
+	}
+	
+	private ArrayList sumarItem(ArrayList items,int cantidad){
+		boolean tiene=false;
+		for(int i=0;i<items.size()&&tiene==false;i++){
+			Item item=((Item) items.get(i));
+			Articulo tmpArt=item.getElArticulo();
+			if(tmpArt.equals(this)){
+				item.setCantidadItem(item.getCantidadItem()+cantidad);
+				tiene=true;
+			}
+			return items;
+		}
+		Item tmpItem=new Item(this,cantidad);
+		items.add(tmpItem);
+		return items;
+	}
+	
+	
+  
+  */
+  
+  
+  
+  
+  
 }
