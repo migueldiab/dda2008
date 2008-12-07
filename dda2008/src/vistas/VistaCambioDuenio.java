@@ -316,7 +316,6 @@ public class VistaCambioDuenio implements Observer {
 		}
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
 		if(jListUsuarios.getSelectedValue()!=null){
 			mostrarPresupuestos();

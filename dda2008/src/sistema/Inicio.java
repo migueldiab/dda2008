@@ -39,7 +39,7 @@ public class Inicio {
     Item item1=new Item(unArticulo,7);
     
     Articulo unArticuloComp = new ArticuloCompuesto("El Compuesto", new Medida("ud", "Unidad"), 12, 105.34);
-    
+    unArticuloComp.agregarComponente(new Componente(unArticulo));
     Fachada.agregarArticulo(unArticuloComp);
 
     Articulo unArticulo1 = new ArticuloSimple("Otra Pintura", new Medida("co", "Ciento"), 63, 224.88);

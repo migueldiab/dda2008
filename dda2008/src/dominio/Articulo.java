@@ -1,5 +1,7 @@
 package dominio;
 
+import java.util.ArrayList;
+
 public abstract class Articulo implements Cloneable, Comparable
 {
   private String nombre;
@@ -7,6 +9,12 @@ public abstract class Articulo implements Cloneable, Comparable
   private Medida medida;
   private double costo;
   
+  public abstract boolean agregarComponente(Componente unComponente);
+  public abstract ArrayList<Componente> listarComponentes();
+  public abstract boolean eliminarComponente(Componente unComponente);
+  public abstract boolean esHoja();
+  
+  public abstract String tipoArticulo();  
   /*
    * Constructores
    */
@@ -145,14 +153,7 @@ public abstract class Articulo implements Cloneable, Comparable
   	  }
   }
     
-  public abstract String tipoArticulo();
-  public abstract boolean agregarComponente(Componente unComponente);
-  public abstract boolean eliminar(Componente unComponente);
-  public abstract boolean esHoja();
-  public abstract Componente getHijo(int posicion);
-  public abstract int getCantidadDeHijos();
-  public abstract int getIndiceHijo(Componente unComponente);
-  public abstract Componente getPadre(Componente unComponente);  
+
   
 
 }

@@ -15,57 +15,47 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
     super(nombre, unaMedida, cantidad, costo);
   }
 
+  
+
   @Override
-  public String tipoArticulo() {
-    // TODO Auto-generated method stub
-    return "Compuesto";
-  }
-
-  public ArrayList<Componente> listarComponentes() {
-    return componentes;
-  }
-
-
   public boolean agregarComponente(Componente unComponente) {
     this.componentes.add(unComponente);
     return true;
   }
 
   @Override
-  public boolean eliminar(Componente unComponente) {
+  public String tipoArticulo() {
+    return "Compuesto";
+  }
+
+  @Override
+  public boolean eliminarComponente(Componente unComponente) {
     // TODO Auto-generated method stub
     return false;
+  }
+
+  @Override
+  public ArrayList<Componente> listarComponentes() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
   @Override
   public boolean esHoja() {
-    // TODO Auto-generated method stub
     return false;
   }
 
-  @Override
-  public int getCantidadDeHijos() {
-    // TODO Auto-generated method stub
-    return 0;
+  public int contarComponentes() {
+    return componentes.size();
   }
 
-  @Override
-  public Componente getHijo(int posicion) {
-    // TODO Auto-generated method stub
-    return null;
+  public Object getHijo(int posicion) {
+    return componentes.get(posicion);
   }
 
-  @Override
-  public int getIndiceHijo(Componente unComponente) {
-    // TODO Auto-generated method stub
-    return 0;
-  }
 
-  @Override
-  public Componente getPadre(Componente unComponente) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+
+  
 
 
   
