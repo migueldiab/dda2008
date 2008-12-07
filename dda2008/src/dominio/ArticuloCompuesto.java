@@ -1,6 +1,9 @@
 package dominio;
 
+import java.awt.Color;
 import java.util.ArrayList;
+
+import servicios.Fachada;
 
 
 
@@ -21,6 +24,14 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
   @Override
   public boolean agregarComponente(Componente unComponente) {
     try {
+      // No puedo agregar un componente a si mismo
+      if (unComponente.getArticulo().equals(this)) {
+        return false;
+      }
+      if (unComponente.getArticulo().esCompuesto()) {
+        if (!Fachada.verificarRedundanciaArticulosCompuestos(this, unComponente))
+            return false;
+      }
       int pos = getPosComponente(unComponente);
       if (pos!=-1) {
          unComponente = componentes.get(pos);
