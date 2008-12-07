@@ -2,6 +2,8 @@ package dominio;
 
 import java.util.ArrayList;
 
+
+
 public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparable {
 
   public ArrayList<Componente> componentes = new ArrayList<Componente>();
@@ -102,7 +104,20 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
     this.setCosto(costo);
     return true;
   }
-  
+
+@Override
+public Articulo getPadre(Componente hijo) {
+		if(componentes.contains(hijo)){
+		return this;
+		}
+		Articulo padre=null;
+		for(int x=0;x<componentes.size()&& padre==null;x++){
+			Componente unHijo=(Componente)componentes.get(x);
+			padre=unHijo.getArticulo().getPadre(hijo);
+		}
+		return padre;
+	}
+
 
 
   
