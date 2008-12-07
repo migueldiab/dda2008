@@ -206,4 +206,62 @@ public class ServiciosArticulos
   }
 
 
+  
+  	public static ArrayList StockSimplesPresupuestos(Item itemRoot, ArrayList articulosSimplesUnPresupuesto){
+		Articulo articuloRoot=itemRoot.getElArticulo();
+		for(int i=0;i<articulos.size();i++){
+			Articulo unArticulo=(Articulo)articulos.get(i);
+			if(articuloRoot.equals(unArticulo)&&unArticulo.esHoja()){
+				articulosSimplesUnPresupuesto=addArticuloToArraylistCompuestosRetorno(unArticulo, 1,articulosSimplesUnPresupuesto);
+			}
+			else if(articuloRoot.equals(unArticulo)&&unArticulo.esCompuesto()){
+				ArrayList losComponentes=unArticulo.listarComponentes();
+				articulosSimplesUnPresupuesto=traerComponentesDeArticulosSimplesConCantidad(losComponentes,1,articulosSimplesUnPresupuesto);
+			}
+		}
+		return articulosSimplesUnPresupuesto;
+	}
+
+  	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,ArrayList arrayLoop){
+  		
+  		
+  			for(int i=0;i<losComponentes.size();i++){
+  				Componente componente=(Componente)losComponentes.get(i);
+  				if(componente.getArticulo().esHoja()){
+  					arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
+  					x=1;
+  				}
+  				else if(componente.getArticulo().esCompuesto()){
+  					x=x*componente.getCantidad();
+  					arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
+
+  				}
+
+  			}
+  		
+  		return arrayLoop;
+  	}
+  
+  	private static ArrayList addArticuloToArraylistCompuestosRetorno(Articulo unArticulo,int cantidad,ArrayList componentes){
+  		boolean tiene=false;
+		for(int i=0;i<componentes.size()&&tiene==false;i++){
+			Componente componente=((Componente) componentes.get(i));
+			Articulo tmpArt=componente.getArticulo();
+			if(tmpArt.equals(unArticulo)){
+				componente.setCantidad(componente.getCantidad()+cantidad);
+				tiene=true;
+			}
+		}
+		if (tiene==false){
+			Componente tmpComponente=new Componente(unArticulo,cantidad);
+			componentes.add(tmpComponente);
+		}
+		return componentes;
+  		
+  		
+  		
+  	}
+  
+  
+  
 }

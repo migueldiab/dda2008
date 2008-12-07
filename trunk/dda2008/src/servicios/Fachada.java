@@ -209,6 +209,9 @@ public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
 public static boolean verificarRedundanciaArticulosCompuestos(ArticuloCompuesto elArticuloCompuesto, Componente unComponente) {
   return ServiciosArticulos.verificarRedundancia(elArticuloCompuesto, unComponente);
 }
+public static ArrayList StockSimplesPresupuestos(Item item, ArrayList articulosSimplesUnPresupuesto) {
+	return ServiciosArticulos.StockSimplesPresupuestos(item,articulosSimplesUnPresupuesto);
+}
 	
 //}
 
