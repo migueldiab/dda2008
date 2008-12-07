@@ -281,7 +281,7 @@ public class VistaMonitorStock {
 				Presupuesto unPresupuesto=(Presupuesto)losPresupuestos.get(i);
 				for(int j=0;j<unPresupuesto.getItems().size();j++){
 					Item item=(Item) unPresupuesto.getItems().get(j);
-					articulosSimplesUnPresupuesto=Componente.StockSimplesPresupuestos(item, null,articulosSimplesUnPresupuesto);
+					articulosSimplesUnPresupuesto=Fachada.StockSimplesPresupuestos(item,articulosSimplesUnPresupuesto);
 					//retorna arraylist con todos los simples en esos presupuestos, sumados cuando repetidos.
 				}
 			}
@@ -292,8 +292,8 @@ public class VistaMonitorStock {
 				for (int w=0;w<todosLosArticulosSimples.size();w++){
 					Articulo articuloSimples=(Articulo)todosLosArticulosSimples.get(w);
 					if(componenteConTotalSimplesEnPresupuestos.getArticulo().equals(articuloSimples)){
-						if(componenteConTotalSimplesEnPresupuestos.getArticulo().getCantidad()>articuloSimples.getCantidad()){
-							int deficit=componenteConTotalSimplesEnPresupuestos.getArticulo().getCantidad()-articuloSimples.getCantidad();
+						if(componenteConTotalSimplesEnPresupuestos.getCantidad()>articuloSimples.getCantidad()){
+							int deficit=componenteConTotalSimplesEnPresupuestos.getCantidad()-articuloSimples.getCantidad();
 							retorno.add(new Componente(articuloSimples,deficit));
 						}
 					}

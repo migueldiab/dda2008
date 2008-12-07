@@ -59,12 +59,12 @@ public class Componente {
   }  
 
 	private static int x=0;
-	public static  ArrayList StockSimplesPresupuestos(Item itemRoot, Componente hijo, ArrayList retorno){//art hijo en principio es null
+/*	public static  ArrayList StockSimplesPresupuestos(Item itemRoot, Componente hijo, ArrayList retorno){//art hijo en principio es null
 		Articulo articulo=itemRoot.getElArticulo();
 		if(hijo!=null){
 			Articulo artHijo=hijo.getArticulo();
 			if(artHijo.esHoja()){
-				int total=getTotalCantidadPadres(getPadre(hijo), itemRoot,0);
+				int total=getTotalCantidadPadres(hijo, itemRoot,0);
 				sumarItem(hijo.getArticulo(),retorno,itemRoot.getElArticulo().getCantidad()*total);
 			}
 			else{
@@ -86,27 +86,28 @@ public class Componente {
 			}
 		}
 		return retorno;
-	}
+	}*/
 	
-	
-	
-	
-	private static int getTotalCantidadPadres(Componente componente2,Item item, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
+	/**
+	 * @param componente2
+	 * @param item
+	 * @param subtotal
+	 * @return
+	 *//*
+	private static int getTotalCantidadPadres(Componente componente2,Item itemRoot, int subtotal){ //devuelve la cantidad por la que se debe multiplicar el articulos hoja hasta el Item(Compuesto) 
 		int total=0;
-		if(componente2.getArticulo().equals(item.getElArticulo())){
+		if(componente2.getArticulo().equals(itemRoot.getElArticulo())){
 			total=componente2.getArticulo().getCantidad()*subtotal;
-			
 			return total;
 		}
 		else{
-			getTotalCantidadPadres(getPadre(componente2),item,subtotal*componente2.cantidad);
+			componente2=componente2.getPadre()
+			getTotalCantidadPadres(getPadre(componente2),itemRoot,subtotal*componente2.cantidad);
 		}
-	
-	
 		return total;
-	}
+	}*/
 	
-	private static ArrayList sumarItem(Articulo articulo, ArrayList componentes,int cantidad){
+	/*private static ArrayList sumarItem(Articulo articulo, ArrayList componentes,int cantidad){
 		boolean tiene=false;
 		for(int i=0;i<componentes.size()&&tiene==false;i++){
 			Componente componente=((Componente) componentes.get(i));
@@ -121,14 +122,9 @@ public class Componente {
 			componentes.add(tmpComponente);
 		}
 		return componentes;
-	}
+	}*/
 
 	
-  
-  
-  
-  
-  
-  
-  
+	
+	
 }
