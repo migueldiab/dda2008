@@ -38,10 +38,10 @@ public class Inicio {
     losArticulos.add(unArticulo);
     Item item1=new Item(unArticulo,7);
     
-    Articulo unArticulo1 = new ArticuloSimple("Otra Pintura", new Medida("co", "Ciento"), 63, 224.88);
-    Fachada.agregarArticulo(unArticulo1);
-    losArticulos.add(unArticulo1);
-    Item item2=new Item(unArticulo1,3);
+    Articulo tabla = new ArticuloSimple("Tabla", new Medida("co", "Ciento"), 63, 224.88);
+    Fachada.agregarArticulo(tabla);
+    losArticulos.add(tabla);
+    Item item2=new Item(tabla,3);
     ArrayList items12=new ArrayList();
     
     items12.add(item1);
@@ -52,45 +52,46 @@ public class Inicio {
     losArticulos.add(unArticulo2);
     Item item3=new Item(unArticulo2,4);
     
-    Articulo unArticulo3 = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 23, 84.33);
-    Fachada.agregarArticulo(unArticulo3);
-    losArticulos.add(unArticulo3);
-    Item item4=new Item(unArticulo3,8);
+    Articulo bisagra = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 23, 84.33);
+    Fachada.agregarArticulo(bisagra);
+    losArticulos.add(bisagra);
+    Item item4=new Item(bisagra,8);
     ArrayList items34=new ArrayList();
     
     items34.add(item3);
     items34.add(item4);
     
-    Articulo unArticulo4 = new ArticuloSimple("Ceramica", new Medida("da", "Docena"), 12, 105.34);
-    Fachada.agregarArticulo(unArticulo4);
-    losArticulos.add(unArticulo4);
-    Item item5=new Item(unArticulo4,9);
+    Articulo manija = new ArticuloSimple("Manija", new Medida("da", "Docena"), 12, 105.34);
+    Fachada.agregarArticulo(manija);
+    losArticulos.add(manija);
+    Item item5=new Item(manija,9);
     
-    Articulo unArticulo5 = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 54, 22.15);
-    Fachada.agregarArticulo(unArticulo5);
-    losArticulos.add(unArticulo5);
-    Item item6=new Item(unArticulo5,1);
+    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 54, 22.15);
+    Fachada.agregarArticulo(tornillo);
+    losArticulos.add(tornillo);
+    Item item6=new Item(tornillo,1);
     ArrayList items56=new ArrayList();
     
     items56.add(item5);
     items56.add(item6);
     
-    Articulo unArticuloComp = new ArticuloCompuesto("Puerta", new Medida("ud", "Unidad"), 2, 105.34);
-    unArticuloComp.agregarComponente(new Componente(unArticulo5,17));
-    unArticuloComp.agregarComponente(new Componente(unArticulo3,4));
-    Fachada.agregarArticulo(unArticuloComp);
+    Articulo puerta = new ArticuloCompuesto("Puerta", new Medida("ud", "Unidad"), 2, 105.34);
+    puerta.agregarComponente(new Componente(tornillo,17));
+    puerta.agregarComponente(new Componente(bisagra,4));
+    puerta.agregarComponente(new Componente(manija,2));
+    Fachada.agregarArticulo(puerta);
     
-    Articulo unArticuloComp0 = new ArticuloCompuesto("Cajon", new Medida("ud", "Unidad"), 2, 44.10);
-    unArticuloComp0.agregarComponente(new Componente(unArticulo5,6));
-    unArticuloComp0.agregarComponente(new Componente(unArticulo3,4));
-    Fachada.agregarArticulo(unArticuloComp0);
+    Articulo cajon = new ArticuloCompuesto("Cajon", new Medida("ud", "Unidad"), 2, 44.10);
+    cajon.agregarComponente(new Componente(tornillo,6));
+    cajon.agregarComponente(new Componente(bisagra,4));
+    Fachada.agregarArticulo(cajon);
     
     
-    Articulo unArticuloComp1 = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"), 8, 317.75);
-    unArticuloComp1.agregarComponente(new Componente(unArticulo1));
-    unArticuloComp1.agregarComponente(new Componente(unArticuloComp));
-    unArticuloComp1.agregarComponente(new Componente(unArticuloComp0));
-    Fachada.agregarArticulo(unArticuloComp1);
+    Articulo armario = new ArticuloCompuesto("Armario", new Medida("ud", "Unidad"), 8, 317.75);
+    armario.agregarComponente(new Componente(tabla,3));
+    armario.agregarComponente(new Componente(puerta,2));
+    armario.agregarComponente(new Componente(cajon,4));
+    Fachada.agregarArticulo(armario);
     
     ArrayList permisos = new ArrayList();
     //permisos.add(Grupo.ADMIN);
