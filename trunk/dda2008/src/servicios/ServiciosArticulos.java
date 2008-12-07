@@ -20,9 +20,13 @@ public class ServiciosArticulos
 
   public static boolean agregar(Object o)
   {
+    Articulo unArticulo = (Articulo) o;
+    if ((unArticulo.getNombre().length()<4) ||
+      (unArticulo.getMedida()==null))
+      return false;
     
-    if (articulos.indexOf((Articulo) o)==-1) {
-      articulos.add((Articulo) o);
+    if (articulos.indexOf(unArticulo)==-1) {
+      articulos.add(unArticulo);
       return true;
     }
     else {

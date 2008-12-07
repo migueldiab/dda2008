@@ -49,7 +49,7 @@ public class VistaArticulosCompuestos extends JFrame {
   private JLabel lCosto = null;
   private JTextField tCosto = null;
   private JTree tComponentes = null;
-  private ModeloArbol arbolComponentes = null;
+  private ModeloArbol arbolComponentes = null;  //  @jve:decl-index=0:
   private ArticuloCompuesto raiz = null;  //  @jve:decl-index=0:visual-constraint="981,11"
   //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
@@ -208,6 +208,7 @@ public class VistaArticulosCompuestos extends JFrame {
       tCosto = new JTextField();
       tCosto.setBounds(new Rectangle(100, 100, 150, 20));
       tCosto.setEnabled(false);
+      tCosto.setText("0.00");
     }
     return tCosto;
   }
@@ -216,6 +217,7 @@ public class VistaArticulosCompuestos extends JFrame {
       tCantidad = new JTextField();
       tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
       tCantidad.setEnabled(false);
+      tCantidad.setText("0");
     }
     return tCantidad;
   }
@@ -345,7 +347,7 @@ public class VistaArticulosCompuestos extends JFrame {
           JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         )
       {
-        if (tNombre.getText()!="" &&
+        if (tNombre.getText().length()>3 &&
             cMedida.getSelectedIndex()!=-1
           )    
         {      
@@ -355,8 +357,9 @@ public class VistaArticulosCompuestos extends JFrame {
           if (Fachada.agregarArticuloCompuesto(unArticuloCompuesto)) {
             lInfo.setForeground(new Color(65, 190, 79));
             lInfo.setText("Articulo " + tNombre.getText() + " guardado");
+            raiz = unArticuloCompuesto;
             cargarListas();
-            limpiarCampos();
+            //limpiarCampos();
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));
@@ -370,7 +373,7 @@ public class VistaArticulosCompuestos extends JFrame {
       }      
     } catch (Exception e) {
       lInfo.setForeground(new Color(190, 65, 79));
-      lInfo.setText("Verifique que los valores numéricos sean correctos");        
+      lInfo.setText("Verifique que los valores sean correctos");        
     }
     
   }
@@ -388,7 +391,8 @@ public class VistaArticulosCompuestos extends JFrame {
     for (Object g : Fachada.listaMedidas()) {
       cMedida.addItem((Medida) g);        
     }
-    tComponentes.setModel(null);
+    arbolComponentes=new ModeloArbol(null);
+    tComponentes.setModel(arbolComponentes);
     tComponentes.updateUI();
   }
   private void limpiarCampos() {
@@ -403,6 +407,8 @@ public class VistaArticulosCompuestos extends JFrame {
     }
     cMedida.setSelectedItem(null);
     tNombre.requestFocus();
+    
+    raiz = null;
     
     arbolComponentes=new ModeloArbol(null);
     tComponentes.setModel(arbolComponentes);
@@ -429,12 +435,32 @@ public class VistaArticulosCompuestos extends JFrame {
     if (lArticulos.getSelectedIndex()==-1) {
       lInfo.setForeground(new Color(190, 65, 79));
       lInfo.setText("Debe seleccionar un artículo.");           
-     
     }
     else {
-      Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
-      raiz.agregarComponente(unComponente);
-      tComponentes.updateUI();
+      if ((Articulo) lArticulos.getSelectedValue()!=null) {
+        Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
+        if (raiz==null && (JOptionPane.showConfirmDialog(
+            null,"Al agregar un componente se guardará el ítem creado",
+            "Confirma guardar?",
+            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)) {
+            guardarArticuloCompuesto();
+        }
+        if (raiz!=null) {
+          raiz.agregarComponente(unComponente);
+          arbolComponentes=new ModeloArbol(raiz);
+          tComponentes.setModel(arbolComponentes);      
+          tComponentes.updateUI();
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("Error al crear articulo compuesto.");            
+        }
+      }
+      else {
+        // WTF!? Esto no debería de pasar
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Error inesperado...");          
+      }        
     }
   }
 

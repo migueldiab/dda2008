@@ -23,6 +23,8 @@ public abstract class Articulo implements Cloneable, Comparable
     try {
       if (nombre == "") 
         throw new Exception("Nombre de articulo no puede ser vacío");
+      if (nombre.length()<4) 
+        throw new Exception("Nombre de articulo no puede tener menos de 4 caracteres");
       if (nombre == null)
         throw new Exception("Articulo debe recibir nombre como parametro");
       if (unaMedida == null) 
@@ -146,7 +148,7 @@ public abstract class Articulo implements Cloneable, Comparable
   	    }
   	    catch (RuntimeException e)
   	    {
-  	      e.printStackTrace();
+  	      //e.printStackTrace();
   	    }
   	    return 0;
   	  }
