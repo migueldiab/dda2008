@@ -81,6 +81,7 @@ public class VistaItemsPresupuesto  {
 	private static Presupuesto presupuestoTemporal=null;
 	private static VistaItemsPresupuesto instancia=null;  //  @jve:decl-index=0:
 	private JButton jButtonCantidad = null;
+	
 	public static VistaItemsPresupuesto getInstancia(){
 		if(instancia==null){
 			instancia=new VistaItemsPresupuesto();
