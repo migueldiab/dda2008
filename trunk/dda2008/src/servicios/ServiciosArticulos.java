@@ -44,6 +44,13 @@ public class ServiciosArticulos
         return false;
       }
       else {
+        for (ArticuloCompuesto articuloComponente : listadoCompuestos()) {
+          for (Componente unComponente : articuloComponente.listarComponentes()) {
+            if (unArticulo.equals(unComponente.getArticulo())) {
+              return false;
+            }
+          }
+        }
         articulos.remove(unArticulo);
         return true;        
       }     
@@ -169,7 +176,7 @@ public class ServiciosArticulos
   }
 
   public static boolean agregarCompuesto(ArticuloCompuesto unArticuloCompuesto) {
-    if (unArticuloCompuesto.listarComponentes().size()<1)
+    if (unArticuloCompuesto.listarComponentes().size()<2)
       return false;
     Articulo unArticulo = (Articulo) obtener(unArticuloCompuesto);
     if (unArticulo!=null)
