@@ -139,7 +139,7 @@ public class Inicio {
           I18n.sdf.parse("12/01/2008"),
           unUsuario,
           Presupuesto.EN_CONSTRUCCION,
-          null));
+          items56));
       Fachada.agregarPresupuesto(new Presupuesto("Prueba4", 
           I18n.sdf.parse("10/01/2008"),
           otroUsuario,
