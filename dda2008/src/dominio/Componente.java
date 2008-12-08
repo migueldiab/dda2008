@@ -1,5 +1,9 @@
 package dominio;
 
+import java.util.ArrayList;
+
+import servicios.ServiciosArticulos;
+
 public class Componente {
 
   private Articulo articulo = null;
@@ -17,10 +21,40 @@ public class Componente {
   public boolean esHoja() {
     return articulo.esHoja();
   }
-  public static Componente getHijo(int posicion) { return null; }
-  public static int getCantidadDeHijos() { return 0; }
-  public int getIndiceHijo(Componente unComponente) { return -1; }
-  public static Componente getPadre(Componente unComponente) { return null; }
+  public Componente getHijo(int posicion) {
+    ArrayList componentes = articulo.listarComponentes();
+    if (componentes==null) {
+      return null;
+    }
+    else {
+      return (Componente) componentes.get(posicion);
+    }
+  }
+  public int getCantidadDeHijos() {
+    return articulo.listarComponentes().size(); 
+  }
+  public int getIndiceHijo(Componente unComponente) {
+    ArrayList componentes = articulo.listarComponentes();
+    if (componentes==null) {
+      return -1;
+    }
+    else {
+      return componentes.indexOf(unComponente);
+    }
+    
+  }
+  public static Articulo getPadre(Componente unComponente) {
+    for (Articulo articulo : ServiciosArticulos.listadoCompuestos()) {
+      if (articulo.esCompuesto()) {
+        for (Componente componente : articulo.listarComponentes()) {
+          if (componente == unComponente) {
+            return articulo;
+          }
+        }
+      }      
+    }
+    return null; 
+  }
 
   @Override
   public boolean equals(Object arg0) {
