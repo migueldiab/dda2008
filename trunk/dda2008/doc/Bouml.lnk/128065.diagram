@@ -1,0 +1,164 @@
+format 62
+
+classinstance 128065 class_ref 135173 // VistaFinalizacionPresupuesto
+  name ""   xyz 17 4 2005 life_line_z 2000
+classinstance 128193 class_ref 131461 // Fachada
+  name ""   xyz 265 5 2010 life_line_z 2000
+classinstance 128321 class_ref 131973 // ServiciosPresupuestos
+  name ""   xyz 408 4 2015 life_line_z 2000
+classinstance 128449 class_ref 131205 // Presupuesto
+  name ""   xyz 663 4 2005 life_line_z 2000
+classinstance 129729 class_ref 131589 // ServiciosArticulos
+  name ""   xyz 550 4 2020 life_line_z 2000
+classinstance 133185 class_ref 129157 // Articulo
+  name ""   xyz 753 4 2005 life_line_z 2000
+classinstance 133569 class_ref 130821 // Item
+  name ""   xyz 808 4 2005 life_line_z 2000
+durationcanvas 128833 classinstance_ref 128065 // :VistaFinalizacionPresupuesto
+  xyzwh 100 81 2010 11 76
+end
+durationcanvas 128961 classinstance_ref 128193 // :Fachada
+  xyzwh 290 81 2010 11 62
+end
+durationcanvas 129217 classinstance_ref 128321 // :ServiciosPresupuestos
+  xyzwh 473 85 2010 11 47
+end
+durationcanvas 129473 classinstance_ref 128449 // :Presupuesto
+  xyzwh 700 84 2010 11 42
+end
+durationcanvas 129857 classinstance_ref 129729 // :ServiciosArticulos
+  xyzwh 600 105 2010 11 26
+end
+durationcanvas 130625 classinstance_ref 128065 // :VistaFinalizacionPresupuesto
+  xyzwh 100 193 2010 11 53
+end
+durationcanvas 130753 classinstance_ref 128193 // :Fachada
+  xyzwh 290 193 2010 11 50
+end
+durationcanvas 131009 classinstance_ref 128321 // :ServiciosPresupuestos
+  xyzwh 473 199 2010 11 30
+end
+durationcanvas 131521 classinstance_ref 128065 // :VistaFinalizacionPresupuesto
+  xyzwh 100 265 2010 11 171
+end
+durationcanvas 131649 classinstance_ref 128193 // :Fachada
+  xyzwh 290 265 2010 11 156
+end
+durationcanvas 131905 classinstance_ref 128321 // :ServiciosPresupuestos
+  xyzwh 473 271 2010 11 144
+end
+durationcanvas 132161 classinstance_ref 128449 // :Presupuesto
+  xyzwh 700 276 2010 11 31
+end
+durationcanvas 132417 classinstance_ref 129729 // :ServiciosArticulos
+  xyzwh 600 291 2010 11 25
+end
+durationcanvas 133313 classinstance_ref 133185 // :Articulo
+  xyzwh 774 334 2010 11 25
+end
+durationcanvas 133697 classinstance_ref 133569 // :Item
+  xyzwh 827 380 2010 11 25
+end
+msg 129089 synchronous
+  from durationcanvas_ref 128833
+  to durationcanvas_ref 128961
+  yz 81 2015 msg operation_ref 150789 // "validoCantidadesFinalizacion(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 112 68
+msg 129345 synchronous
+  from durationcanvas_ref 128961
+  to durationcanvas_ref 129217
+  yz 85 2015 msg operation_ref 158981 // "validoCantidadesFinalizacion(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 302 70
+msg 129601 synchronous
+  from durationcanvas_ref 129217
+  to durationcanvas_ref 129473
+  yz 90 2020 msg operation_ref 144261 // "getItems() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 581 79
+msg 129985 synchronous
+  from durationcanvas_ref 129217
+  to durationcanvas_ref 129857
+  yz 105 2025 msg operation_ref 153861 // "listado() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 525 94
+msg 130369 return
+  from durationcanvas_ref 129217
+  to durationcanvas_ref 128961
+  yz 121 2030 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130497 return
+  from durationcanvas_ref 128961
+  to durationcanvas_ref 128833
+  yz 132 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 130881 synchronous
+  from durationcanvas_ref 130625
+  to durationcanvas_ref 130753
+  yz 193 2015 msg operation_ref 151813 // "validoFechaEjecucion(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 147 178
+msg 131137 synchronous
+  from durationcanvas_ref 130753
+  to durationcanvas_ref 131009
+  yz 199 2015 msg operation_ref 159493 // "validoFechaEjecucion(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 325 184
+msg 131265 return
+  from durationcanvas_ref 131009
+  to durationcanvas_ref 130753
+  yz 218 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131393 return
+  from durationcanvas_ref 130753
+  to durationcanvas_ref 130625
+  yz 232 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131777 synchronous
+  from durationcanvas_ref 131521
+  to durationcanvas_ref 131649
+  yz 265 2015 msg operation_ref 150661 // "finalizarPresupuesto(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 151 250
+msg 132033 synchronous
+  from durationcanvas_ref 131649
+  to durationcanvas_ref 131905
+  yz 271 2015 msg operation_ref 158853 // "finalizarPresupuestos(inout unPresupuesto : Presupuesto) : boolean"
+  show_full_operations_definition default drawing_language default
+  label_xy 325 256
+msg 132289 synchronous
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 132161
+  yz 276 2020 msg operation_ref 144261 // "getItems() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 612 261
+msg 132545 synchronous
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 132417
+  yz 291 2025 msg operation_ref 153861 // "listado() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 522 282
+msg 133441 synchronous
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 133313
+  yz 334 2015 msg operation_ref 130821 // "setCantidad(in cantidad : int) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 614 320
+msg 133825 synchronous
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 133697
+  yz 380 2015 msg operation_ref 139269 // "setCostoFinalizado(in costoFinalizado : double) : void"
+  show_full_operations_definition default drawing_language default
+  label_xy 619 364
+msg 133953 return
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 131649
+  yz 398 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 134081 return
+  from durationcanvas_ref 131649
+  to durationcanvas_ref 131521
+  yz 414 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+end

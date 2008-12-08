@@ -1,7 +1,7 @@
 format 62
 "Bouml.lnk"
-  revision 11
-  modified_by 5 "Administrator"
+  revision 12
+  modified_by 65 "Marcos"
   java_root_dir "D:/Data/Personal/Ort/DyD/workspace/dda2008/src/"
 
 
@@ -79,6 +79,11 @@ format 62
     end
 
     sequencediagram 129669 "EliminarItem"
+      show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+      overlapping_bars size A3-Landscape
+    end
+
+    sequencediagram 128065 "FinalizacionPresupuesto"
       show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
       overlapping_bars size A3-Landscape
     end
