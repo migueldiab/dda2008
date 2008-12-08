@@ -375,8 +375,8 @@ public class VistaPrincipal {
 	      listadosMenu = new JMenu();
 	      listadosMenu.setText("Listados");
 	      listadosMenu.add(getListadoPresupuestosMenuItem());
-	      listadosMenu.add(getListado2MenuItem());
-	      listadosMenu.add(getListado3MenuItem());
+	      //listadosMenu.add(getListado2MenuItem());
+	      //listadosMenu.add(getListado3MenuItem());
 	    }
 	    return listadosMenu;
 	  }

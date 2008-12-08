@@ -16,7 +16,10 @@ import dominio.Medida;
 import dominio.ModeloArbol;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 
 public class VistaArticulosCompuestos extends JFrame {
@@ -44,8 +47,8 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField tBuscar = null;
   private JButton bBuscar = null;
   private JButton bNuevo = null;
-  private JLabel lCantidad = null;
-  private JTextField tCantidad = null;
+  private JLabel lStock = null;
+  private JTextField tStock = null;
   private JLabel lInfo = null;
   private JLabel lCosto = null;
   private JTextField tCosto = null;
@@ -55,6 +58,8 @@ public class VistaArticulosCompuestos extends JFrame {
   //private DefaultMutableTreeNode treeComponentes = null;  //  @jve:decl-index=0:visual-constraint="538,137"
   private JButton bAgregar = null;
   private JButton bQuitar = null;
+  private JLabel lCantidad = null;
+  private JTextField tCantidad = null;
 
   public JDialog getDAbmArticulosCompuestos() {
     if (dAbmArticulosCompuestos == null) {
@@ -68,13 +73,16 @@ public class VistaArticulosCompuestos extends JFrame {
 
   private JPanel getPAbmArticulosCompuestos() {
     if (pAbmArticulosCompuestos == null) {
+      lCantidad = new JLabel();
+      lCantidad.setBounds(new Rectangle(10, 120, 90, 20));
+      lCantidad.setText("Cantidad");
       lNombre = new JLabel();
       lNombre.setBounds(new Rectangle(10, 20, 90, 20));
       lNombre.setText("Nombre");
 
-      lCantidad = new JLabel();
-      lCantidad.setBounds(new Rectangle(10, 45, 90, 20));
-      lCantidad.setText("Cantidad");
+      lStock = new JLabel();
+      lStock.setBounds(new Rectangle(10, 45, 90, 20));
+      lStock.setText("Stock");
       
       lMedida = new JLabel();
       lMedida.setBounds(new Rectangle(10, 70, 90, 20));
@@ -95,8 +103,8 @@ public class VistaArticulosCompuestos extends JFrame {
       
       pAbmArticulosCompuestos.add(lNombre);
       pAbmArticulosCompuestos.add(getTNombre());
-      pAbmArticulosCompuestos.add(lCantidad, null);
-      pAbmArticulosCompuestos.add(getTCantidad(), null);
+      pAbmArticulosCompuestos.add(lStock, null);
+      pAbmArticulosCompuestos.add(getTStock(), null);
       pAbmArticulosCompuestos.add(lMedida);
       pAbmArticulosCompuestos.add(getCMedida());
       pAbmArticulosCompuestos.add(lCosto, null);
@@ -117,6 +125,8 @@ public class VistaArticulosCompuestos extends JFrame {
       pAbmArticulosCompuestos.add(getBEliminar());
 
       pAbmArticulosCompuestos.add(lInfo, null);
+      pAbmArticulosCompuestos.add(lCantidad, null);
+      pAbmArticulosCompuestos.add(getTCantidad(), null);
       cargarListas();
       
     }
@@ -207,22 +217,36 @@ public class VistaArticulosCompuestos extends JFrame {
   private JTextField getTCosto() {
     if (tCosto == null) {
       tCosto = new JTextField();
-      tCosto.setBounds(new Rectangle(100, 100, 150, 20));
+      tCosto.setBounds(new Rectangle(100, 95, 150, 20));
       tCosto.setEnabled(false);
       tCosto.setText("0.00");
     }
     return tCosto;
   }
+  private JTextField getTStock() {
+    if (tStock == null) {
+      tStock = new JTextField();
+      tStock.setBounds(new Rectangle(100, 45, 150, 20));
+      tStock.setEnabled(false);
+      tStock.setText("0");
+    }
+    return tStock;
+  }
   private JTextField getTCantidad() {
     if (tCantidad == null) {
       tCantidad = new JTextField();
-      tCantidad.setBounds(new Rectangle(100, 45, 150, 20));
-      tCantidad.setEnabled(false);
-      tCantidad.setText("0");
+      tCantidad.setBounds(new Rectangle(100, 120, 150, 20));
+      tCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent e) {
+          char iKey = e.getKeyChar();
+          if (iKey == '\n') {
+            actualizarCantidadComponente();
+          }
+        }
+      });
     }
     return tCantidad;
   }
-
   /*
    * Paneles
    */
@@ -294,6 +318,12 @@ public class VistaArticulosCompuestos extends JFrame {
   private Component getTComponentes() {
     if (tComponentes == null) {
       tComponentes = new JTree();
+      tComponentes
+          .addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+              cargarDatosComponente();
+            }
+          });
     }
     return tComponentes;
   }
@@ -336,7 +366,7 @@ public class VistaArticulosCompuestos extends JFrame {
     elArticuloCompuesto.recalcularStock();
     elArticuloCompuesto.recalcularCosto();
     tNombre.setText(elArticuloCompuesto.getNombre());
-    tCantidad.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    tStock.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
     cMedida.setSelectedItem(elArticuloCompuesto.getMedida());
     tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
     arbolComponentes=new ModeloArbol(elArticuloCompuesto);
@@ -359,7 +389,7 @@ public class VistaArticulosCompuestos extends JFrame {
           )    
         {      
           if (elArticuloCompuesto==null) elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
-          elArticuloCompuesto.setCantidad(Integer.parseInt(tCantidad.getText()));
+          elArticuloCompuesto.setCantidad(Integer.parseInt(tStock.getText()));
           elArticuloCompuesto.setCosto(Double.parseDouble(tCosto.getText()));
           if (Fachada.agregarArticuloCompuesto(elArticuloCompuesto)) {
             lInfo.setForeground(new Color(65, 190, 79));
@@ -405,9 +435,10 @@ public class VistaArticulosCompuestos extends JFrame {
     lArticulosCompuestos.clearSelection();
     
     tNombre.setText("");
-    tCantidad.setText("0");
+    tStock.setText("0");
     tCosto.setText("0.00");
     cMedida.removeAllItems();
+    tCantidad.setText("");
     for (Object g : Fachada.listaMedidas()) {
       cMedida.addItem((Medida) g);        
     }
@@ -459,6 +490,7 @@ public class VistaArticulosCompuestos extends JFrame {
             arbolComponentes=new ModeloArbol(elArticuloCompuesto);
             tComponentes.setModel(arbolComponentes);
             tComponentes.updateUI();
+            tCantidad.setText("");
             lInfo.setForeground(new Color(65, 190, 79));
             lInfo.setText(unComponente.toString() +" cargado.");
           }
@@ -483,7 +515,7 @@ public class VistaArticulosCompuestos extends JFrame {
     elArticuloCompuesto.recalcularCosto();
     elArticuloCompuesto.recalcularStock();
     tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
-    tCantidad.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    tStock.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
     
     
   }
@@ -499,9 +531,8 @@ public class VistaArticulosCompuestos extends JFrame {
         if (elArticuloCompuesto!=null) {
           if (elArticuloCompuesto.eliminarComponente(unComponente)) {
             actualizar();
-            arbolComponentes=new ModeloArbol(elArticuloCompuesto);
-            tComponentes.setModel(arbolComponentes);
             tComponentes.updateUI();
+            tCantidad.setText("");
           }
           else {
             lInfo.setForeground(new Color(190, 65, 79));
@@ -520,5 +551,42 @@ public class VistaArticulosCompuestos extends JFrame {
     }
   }
 
+  private void cargarDatosComponente() {
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      tCantidad.setText(Integer.toString(unComponente.getCantidad()));
+      
+    } catch (Exception e) {
+      tCantidad.setText("");
+    }
+    
+  }
+  private void actualizarCantidadComponente() {
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      if (unComponente==null) {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Debe seleccionar un componente.");           
+      }
+      else {
+        int cantidad = Integer.parseInt(tCantidad.getText());
+        if (cantidad>0) {
+          unComponente.setCantidad(cantidad);
+          elArticuloCompuesto.agregarComponenteCantidad(unComponente);
+          actualizar();
+          tComponentes.updateUI();
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("La cantidad debe ser mayor que cero.");            
+         
+        }
+      }
+    } catch (Exception e) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Verifique la cantidad y el elemento seleccionado.");            
+    } 
+    
+  }
 
 }
