@@ -188,8 +188,12 @@ public class VistaFinalizacionPresupuesto implements Observer {
 	 */
 	private JList getJListPresupuesto() {
 		if (jListPresupuesto == null) {
-			ArrayList colPresup=new ArrayList();
-			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+      
+      jListPresupuesto = null;
+      ArrayList colPresup=new ArrayList();
+      colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+           
+			
 			jListPresupuesto = new JList(getModeloJListPresupuestos());
 			jListPresupuesto
 					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -585,7 +589,13 @@ public class VistaFinalizacionPresupuesto implements Observer {
 	}
 
 	public void update(Observable arg0, Object arg1) {
-		getJListPresupuesto();
+    ArrayList colPresup=new ArrayList();
+    colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+    getModeloJListPresupuestos().removeAllElements();
+    for (int i=0;i<colPresup.size();i++){
+      Object unPresu=colPresup.get(i);
+      getModeloJListPresupuestos().addElement(unPresu);
+    }
 	}
 	
 }

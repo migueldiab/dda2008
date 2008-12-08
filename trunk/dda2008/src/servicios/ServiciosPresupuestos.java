@@ -222,7 +222,6 @@ public class ServiciosPresupuestos
 			if (articulo.equals(item.getElArticulo())) {
         if (articulo.esCompuesto()) {
           ServiciosArticulos.actualizarStock(articulo, item.getCantidadItem());
-          item.setCostoFinalizado(articulo.getCosto());
         }
         else {
           articulo.setCantidad(articulo.getCantidad()-item.getCantidadItem());
@@ -246,6 +245,9 @@ public class ServiciosPresupuestos
 		while(j<articulos.size()){
 			articulo=(Articulo)articulos.get(j);
 			if (articulo.equals(item.getElArticulo())){
+        if (articulo.esCompuesto()) {
+          ((ArticuloCompuesto) articulo).recalcularStock();
+        }
 				if(articulo.getCantidad()<item.getCantidadItem()){
 					return false;
 				}
