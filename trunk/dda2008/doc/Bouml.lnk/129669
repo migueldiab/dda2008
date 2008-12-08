@@ -1,6 +1,6 @@
 format 62
 "sistema" // src::sistema
-  revision 1
+  revision 2
   modified_by 5 "Administrator"
   // class settings
   //class diagram settings
@@ -128,4 +128,9 @@ ${definition}"
     end
   end
 
+  simplerelation 130821
+    -_->
+      on 
+      package_ref 129797 // vistas
+  end
 end

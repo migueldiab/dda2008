@@ -1,6 +1,6 @@
 format 62
 "dominio" // src::dominio
-  revision 1
+  revision 2
   modified_by 5 "Administrator"
   // class settings
   //class diagram settings
@@ -821,7 +821,7 @@ ${members}}
       classrelation 129925 // componentes (<unidirectional association>)
 	relation 129925 --->
 	  stereotype "ArrayList"
-	  a role_name "componentes" init_value "=  new ArrayList<Componente>()" public
+	  a role_name "componentes" multiplicity "*" init_value "=  new ArrayList<Componente>()" public
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
 "
 	    classrelation_ref 129925 // componentes (<unidirectional association>)

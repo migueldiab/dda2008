@@ -1,6 +1,6 @@
 format 62
 "Bouml.lnk"
-  revision 10
+  revision 11
   modified_by 5 "Administrator"
   java_root_dir "D:/Data/Personal/Ort/DyD/workspace/dda2008/src/"
 
@@ -69,12 +69,12 @@ format 62
     end
 
     classdiagram 129285 "Clases conceptual"
-      draw_all_relations yes hide_attributes yes hide_operations no show_members_full_definition no show_members_visibility yes show_members_stereotype yes show_members_multiplicity default show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes package_name_in_tab default class_drawing_mode default drawing_language uml show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties yes
+      draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility yes show_members_stereotype yes show_members_multiplicity default show_members_initialization yes show_attribute_modifiers yes member_max_width 0 show_parameter_dir yes show_parameter_name yes package_name_in_tab default class_drawing_mode default drawing_language uml show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties yes
       size A2-Landscape
     end
 
     classdiagram 129413 "Entidades"
-      draw_all_relations default hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+      draw_all_relations no hide_attributes yes hide_operations yes show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
       size A3-Landscape
     end
 

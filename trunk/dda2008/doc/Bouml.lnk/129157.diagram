@@ -2,36 +2,46 @@ format 62
 
 packagecanvas 128005 
   package_ref 129797 // vistas
-    xyzwh 720 303 2000 237 369
+    xyzwh 600 178 2000 236 368
 end
 packagecanvas 128133 
   package_ref 129285 // dominio
-    xyzwh 36 60 2000 140 178
+    xyzwh 97 57 2000 140 177
 end
 packagecanvas 128261 
   package_ref 129541 // servicios
-    xyzwh 175 299 2000 140 214
+    xyzwh 238 351 2000 140 213
 end
 packagecanvas 128389 
   package_ref 129669 // sistema
-    xyzwh 832 54 2000 65 75
-end
-classcanvas 128517 class_ref 132229 // Inicio
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 873 135 2000
+    xyzwh 931 70 2000 90 95
 end
 packagecanvas 128645 
   package_ref 130053 // utils
-    xyzwh 206 581 2000 65 75
+    xyzwh 70 380 2000 65 82
 end
-classcanvas 128773 class_ref 131461 // Fachada
-  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
-  xyz 363 -2 2005
-end
+textcanvas 130181 "mediante fachada"
+  xyzwh 437 428 2000 107 16
+textcanvas 130309 "objetos del sistema"
+  xyzwh 245 100 2004 87 53
+textcanvas 130437 "collecciones de objetos del sistema"
+  xyzwh 255 288 2005 101 51
+textcanvas 130565 "punto de inicio"
+  xyzwh 944 181 2000 76 51
 simplerelationcanvas 129285 simplerelation_ref 129413
   from ref 128005 z 1999 to ref 128133
 end
 simplerelationcanvas 129413 simplerelation_ref 129541
   from ref 128261 z 1999 to ref 128133
 end
+simplerelationcanvas 129541 simplerelation_ref 130693
+  from ref 128005 z 1999 to ref 128261
+end
+simplerelationcanvas 130053 simplerelation_ref 130821
+  from ref 128389 z 1999 to ref 128005
+end
+line 129669 -_-_
+  from ref 128645 z 1999 to ref 128261
+line 129797 -_-_
+  from ref 128645 z 1999 to ref 128133
 end
