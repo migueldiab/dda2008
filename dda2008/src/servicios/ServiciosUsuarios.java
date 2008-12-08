@@ -79,6 +79,7 @@ public class ServiciosUsuarios
         return false;
       }
     }
+    
     usuarios.set(posOriginal, nuevo);
     return true;
   }

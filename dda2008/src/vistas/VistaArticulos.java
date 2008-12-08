@@ -405,6 +405,7 @@ public class VistaArticulos extends JFrame {
     }
     cMedida.setSelectedItem(null);
     tNombre.requestFocus();
+    shadowArticulo = null;
   }
   private void eliminarArticulo(Articulo u) {
     if (JOptionPane.showConfirmDialog(
