@@ -394,7 +394,7 @@ public class VistaPrincipal {
                 Point loc = getJFrame().getLocation();
                 loc.translate(20, 20);
                 dListados.setLocation(loc);
-                dListados.setBounds(10,10,500,290);
+                dListados.setBounds(10,10,600,523);
                 dListados.setVisible(true);            
               }
               else {
