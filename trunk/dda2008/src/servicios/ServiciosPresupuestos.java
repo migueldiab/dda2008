@@ -222,6 +222,7 @@ public class ServiciosPresupuestos
 			if (articulo.equals(item.getElArticulo())) {
         if (articulo.esCompuesto()) {
           ServiciosArticulos.actualizarStock(articulo, item.getCantidadItem());
+          item.setCostoFinalizado(articulo.getCosto());
         }
         else {
           articulo.setCantidad(articulo.getCantidad()-item.getCantidadItem());

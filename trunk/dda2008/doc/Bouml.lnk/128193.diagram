@@ -1,0 +1,109 @@
+format 62
+
+classinstance 128065 class_ref 135685 // VistaMonitorStock
+  name ""   xyz 6 4 2005 life_line_z 2000
+classinstance 128193 class_ref 131461 // Fachada
+  name ""   xyz 220 4 2005 life_line_z 2000
+classinstance 128321 class_ref 131973 // ServiciosPresupuestos
+  name ""   xyz 374 4 2010 life_line_z 2000
+classinstance 128449 class_ref 131589 // ServiciosArticulos
+  name ""   xyz 545 4 2015 life_line_z 2000
+durationcanvas 128577 classinstance_ref 128065 // :VistaMonitorStock
+  xyzwh 56 55 2010 11 295
+end
+durationcanvas 128705 classinstance_ref 128193 // :Fachada
+  xyzwh 245 55 2010 11 49
+end
+durationcanvas 128961 classinstance_ref 128321 // :ServiciosPresupuestos
+  xyzwh 439 67 2010 11 26
+end
+durationcanvas 129473 classinstance_ref 128193 // :Fachada
+  xyzwh 245 129 2010 11 122
+end
+durationcanvas 129729 classinstance_ref 128449 // :ServiciosArticulos
+  xyzwh 595 145 2010 11 93
+  overlappingdurationcanvas 130241
+    xyzwh 601 147 2020 11 25
+  end
+  overlappingdurationcanvas 130497
+    xyzwh 601 197 2020 11 25
+  end
+end
+durationcanvas 130881 classinstance_ref 128193 // :Fachada
+  xyzwh 245 285 2010 11 58
+end
+durationcanvas 131137 classinstance_ref 128449 // :ServiciosArticulos
+  xyzwh 595 300 2010 11 27
+end
+msg 128833 synchronous
+  from durationcanvas_ref 128577
+  to durationcanvas_ref 128705
+  yz 55 2015 msg operation_ref 153093 // "obtenerPresupuestosAntesDe(inout fecha : Date) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 67 41
+msg 129089 synchronous
+  from durationcanvas_ref 128705
+  to durationcanvas_ref 128961
+  yz 67 2020 msg operation_ref 159877 // "obtenerPresupuestosAntesDe(inout fecha : Date) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 258 57
+msg 129217 return
+  from durationcanvas_ref 128961
+  to durationcanvas_ref 128705
+  yz 82 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 129345 return
+  from durationcanvas_ref 128705
+  to durationcanvas_ref 128577
+  yz 88 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 129601 synchronous
+  from durationcanvas_ref 128577
+  to durationcanvas_ref 129473
+  yz 129 2015 msg operation_ref 153477 // "StockSimplesPresupuestos(inout item : Item, inout articulosSimplesUnPresupuesto : ArrayList) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 75 114
+msg 129857 synchronous
+  from durationcanvas_ref 129473
+  to durationcanvas_ref 129729
+  yz 145 2015 msg operation_ref 155269 // "StockSimplesPresupuestos(inout itemRoot : Item, inout articulosSimplesUnPresupuesto : ArrayList) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 344 130
+reflexivemsg 130369 synchronous
+  to durationcanvas_ref 130241
+  yz 147 2025 msg operation_ref 155525 // "addArticuloToArraylistCompuestosRetorno(inout unArticulo : Articulo, in cantidad : int, inout componentes : ArrayList) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 611 131
+reflexivemsg 130625 synchronous
+  to durationcanvas_ref 130497
+  yz 197 2025 msg operation_ref 155397 // "traerComponentesDeArticulosSimplesConCantidad(inout losComponentes : ArrayList, in x : int, inout arrayLoop : ArrayList) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 608 181
+msg 130753 return
+  from durationcanvas_ref 129729
+  to durationcanvas_ref 129473
+  yz 227 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131009 synchronous
+  from durationcanvas_ref 128577
+  to durationcanvas_ref 130881
+  yz 285 2015 msg operation_ref 152453 // "listadoArticulosSimples() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 87 270
+msg 131265 synchronous
+  from durationcanvas_ref 130881
+  to durationcanvas_ref 131137
+  yz 300 2020 msg operation_ref 154757 // "listadoSimples() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 380 285
+msg 131393 return
+  from durationcanvas_ref 131137
+  to durationcanvas_ref 130881
+  yz 316 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131777 return
+  from durationcanvas_ref 130881
+  to durationcanvas_ref 128577
+  yz 330 2030 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+end
