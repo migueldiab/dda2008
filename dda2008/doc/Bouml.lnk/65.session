@@ -1,0 +1,27 @@
+window_sizes 1024 712 151 867 512 82
+diagrams
+  classdiagram_ref 128002 // Conceptual
+    618 444 100 4 0 0
+  classdiagram_ref 130306 // Diseño
+    618 444 100 14 0 0
+  classdiagram_ref 129157 // Paquetes
+    618 444 100 14 102 0
+  active  sequencediagram_ref 129669 // EliminarItem
+    867 556 100 14 0 0
+  sequencediagram_ref 128065 // FinalizacionPresupuesto
+    689 444 100 14 0 4
+  sequencediagram_ref 128193 // MonitoreoStockInsuficiente
+    689 444 100 14 0 0
+  sequencediagram_ref 128321 // ConsultaPresupuestoGestor
+    689 444 100 14 0 0
+end
+show_stereotypes
+selected sequencediagram_ref 129669 // EliminarItem
+open
+  classview_ref 128770 // Diagrama de Clases
+  
+  package_ref 129157 // src
+  
+  package_ref 129413 // unknown
+end
+end

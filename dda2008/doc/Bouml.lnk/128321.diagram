@@ -1,0 +1,101 @@
+format 62
+
+classinstance 128065 class_ref 135429 // VistaListado
+  name ""   xyz 133 4 2005 life_line_z 2000
+classinstance 128193 class_ref 131461 // Fachada
+  name ""   xyz 322 4 2010 life_line_z 2000
+classinstance 128449 class_ref 131973 // ServiciosPresupuestos
+  name ""   xyz 462 4 2015 life_line_z 2000
+classinstance 128961 class_ref 132101 // ServiciosUsuarios
+  name ""   xyz 605 4 2020 life_line_z 2000
+classinstance 130369 class_ref 131205 // Presupuesto
+  name ""   xyz 723 4 2025 life_line_z 2000
+classinstance 131137 class_ref 128065 // Persona
+  name ""   xyz 2 4 2005 life_line_z 2000
+durationcanvas 128577 classinstance_ref 128065 // :VistaListado
+  xyzwh 168 55 2010 11 144
+end
+durationcanvas 128705 classinstance_ref 128193 // :Fachada
+  xyzwh 347 52 2010 11 62
+end
+durationcanvas 129089 classinstance_ref 128961 // :ServiciosUsuarios
+  xyzwh 657 60 2010 11 30
+end
+durationcanvas 129601 classinstance_ref 128193 // :Fachada
+  xyzwh 347 132 2010 11 57
+end
+durationcanvas 129857 classinstance_ref 128449 // :ServiciosPresupuestos
+  xyzwh 527 146 2010 11 30
+end
+durationcanvas 131521 classinstance_ref 131137 // :Persona
+  xyzwh 27 234 2010 11 40
+end
+durationcanvas 131649 classinstance_ref 128065 // :VistaListado
+  xyzwh 168 234 2010 11 60
+end
+durationcanvas 131905 classinstance_ref 130369 // :Presupuesto
+  xyzwh 760 251 2010 11 29
+end
+msg 128833 synchronous
+  from durationcanvas_ref 128577
+  to durationcanvas_ref 128705
+  yz 56 2015 msg operation_ref 147333 // "getUsuarioActual() : Usuario"
+  show_full_operations_definition default drawing_language default
+  label_xy 222 42
+msg 129217 synchronous
+  from durationcanvas_ref 128705
+  to durationcanvas_ref 129089
+  yz 60 3005 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 129345 return
+  from durationcanvas_ref 129089
+  to durationcanvas_ref 128705
+  yz 79 3010 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 129473 return
+  from durationcanvas_ref 128705
+  to durationcanvas_ref 128577
+  yz 94 3015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 129729 synchronous
+  from durationcanvas_ref 128577
+  to durationcanvas_ref 129601
+  yz 132 2015 msg operation_ref 150405 // "obtenerPresupuestos(inout unUsuario : Usuario, in Criterio0Asc1Desc : int, in Criterio0XFechaMod1XFechaEje : int, in Criterio0EnConstr1Todos : int) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  args "Gestor"
+  label_xy 183 118
+msg 129985 synchronous
+  from durationcanvas_ref 129601
+  to durationcanvas_ref 129857
+  yz 146 2020 msg operation_ref 158597 // "obtenerPresupuestos(inout unUsuario : Usuario, in Criterio0Asc1Desc : int, in Criterio0XFechaMod1XFechaEje : int, in Criterio0EnConstr1Todos : int) : ArrayList"
+  show_full_operations_definition default drawing_language default
+  args "Gestor"
+  label_xy 362 132
+msg 130881 return
+  from durationcanvas_ref 129857
+  to durationcanvas_ref 129601
+  yz 165 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131009 return
+  from durationcanvas_ref 129601
+  to durationcanvas_ref 128577
+  yz 174 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131777 synchronous
+  from durationcanvas_ref 131521
+  to durationcanvas_ref 131649
+  yz 234 2015 explicitmsg "Selecciona Presupuesto"
+  show_full_operations_definition default drawing_language default
+  label_xy 36 219
+msg 132033 synchronous
+  from durationcanvas_ref 131649
+  to durationcanvas_ref 131905
+  yz 251 2015 msg operation_ref 144261 // "getItems() : ArrayList"
+  show_full_operations_definition default drawing_language default
+  label_xy 441 236
+msg 132161 return
+  from durationcanvas_ref 131905
+  to durationcanvas_ref 131649
+  yz 269 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+end
