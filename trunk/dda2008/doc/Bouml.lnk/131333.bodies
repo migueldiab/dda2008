@@ -1,0 +1,87 @@
+class Usuario
+!!!145157.java!!!	Usuario(in id : String, in clave : String, inout grupo : Grupo)
+
+    this(id);
+    this.setClave(clave);
+    this.setGrupo(grupo);
+!!!145285.java!!!	Usuario(in id : String, in clave : String, inout grupo : Grupo, in nombre : String, in apellido : String)
+
+    this(id, clave, grupo);
+    this.setApellido(apellido);
+    this.setNombre(nombre);
+!!!145413.java!!!	Usuario(in id : String)
+
+    // TODO Auto-generated constructor stub
+    this.setId(id);
+!!!145541.java!!!	getApellido() : String
+
+    return apellido;
+!!!145669.java!!!	setApellido(in apellido : String) : void
+
+    this.apellido = apellido;
+!!!145797.java!!!	getClave() : String
+
+    return clave;
+!!!145925.java!!!	setClave(in clave : String) : void
+
+    this.clave = clave;
+!!!146053.java!!!	getGrupo() : Grupo
+
+    return grupo;
+!!!146181.java!!!	setGrupo(inout grupo : Grupo) : void
+
+    this.grupo = grupo;
+!!!146309.java!!!	getId() : String
+
+    return id;
+!!!146437.java!!!	setId(in id : String) : void
+
+    this.id = id;
+!!!146565.java!!!	getNombre() : String
+
+    return nombre;
+!!!146693.java!!!	setNombre(in nombre : String) : void
+
+    this.nombre = nombre;
+!!!146821.java!!!	equals(inout arg0 : Object) : boolean
+
+    // TODO Auto-generated method stub
+    try
+    {
+      Usuario usuario = (Usuario)arg0;
+      if (usuario.id.equals(this.id)) {
+        return true;
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
+!!!146949.java!!!	toString() : String
+
+    // TODO Auto-generated method stub
+    return this.getId() + "(" + this.getGrupo().toString() + ")";
+!!!147077.java!!!	compareTo(inout o : Object) : int
+
+	try
+    {
+      Usuario usuario = (Usuario)o;
+      int retorno=usuario.getApellido().toUpperCase().compareTo(this.getApellido().toUpperCase())*-1;
+      if (retorno==0){
+    	  retorno=usuario.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
+      }
+      return retorno;
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return 0;
+!!!147205.java!!!	compare(inout unUsuario1 : Object, inout unUsuario2 : Object) : int
+
+		Usuario u1=(Usuario)unUsuario1;
+		Usuario u2=(Usuario)unUsuario2;
+		return u1.getId().toUpperCase().compareTo(u2.getId().toUpperCase());

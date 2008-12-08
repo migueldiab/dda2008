@@ -1,0 +1,7 @@
+class CriterioComparacionPorFechaModificacionDesc
+!!!137093.java!!!	compare(inout unPresupuesto1 : Object, inout unPresupuesto2 : Object) : int
+
+	    Presupuesto p1=(Presupuesto)unPresupuesto1;
+	    Presupuesto p2=(Presupuesto)unPresupuesto2;
+	    return p1.getFechaModificacion().compareTo(p2.getFechaModificacion())*-1;
+	        

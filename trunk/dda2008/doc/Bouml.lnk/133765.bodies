@@ -1,0 +1,4 @@
+class I18n
+!!!171781.java!!!	setFormato(in mascara : String) : void
+
+    sdf = new SimpleDateFormat(mascara);

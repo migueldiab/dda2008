@@ -1,0 +1,35 @@
+class ArticuloSimple
+!!!133893.java!!!	ArticuloSimple(in nombre : String, inout unaMedida : Medida)
+
+    super(nombre, unaMedida);
+    // TODO Auto-generated constructor stub
+!!!134021.java!!!	ArticuloSimple(in nombre : String, inout unaMedida : Medida, in cantidad : int, in costo : double)
+
+    super(nombre, unaMedida, cantidad, costo);
+    // TODO Auto-generated constructor stub
+!!!134149.java!!!	agregarComponente(inout unComponente : Componente) : boolean
+
+    return false;
+!!!134277.java!!!	tipoArticulo() : String
+
+    return "Simple";
+!!!134405.java!!!	eliminarComponente(inout unComponente : Componente) : boolean
+
+    // TODO Auto-generated method stub
+    return false;
+!!!134533.java!!!	listarComponentes() : Componente
+
+    // TODO Auto-generated method stub
+    return null;
+!!!134661.java!!!	esHoja() : boolean
+
+    return true;
+!!!134789.java!!!	esCompuesto() : boolean
+
+    return false;
+!!!134917.java!!!	getPadre(inout hijo : Componente) : Articulo
+
+  	return null;
+!!!135045.java!!!	remplazarComponentes(inout listaComponetes : ArrayList<Componente>) : boolean
+
+    return false;

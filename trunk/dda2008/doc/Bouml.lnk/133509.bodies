@@ -1,0 +1,103 @@
+class Fecha
+!!!168709.java!!!	MaximoDiaDeLaSemana() : int
+
+		return c.getMaximum(Calendar.DAY_OF_WEEK);
+!!!168837.java!!!	MinimoDiaDeLaSemana() : int
+
+		return c.getMinimum(Calendar.DAY_OF_WEEK);
+!!!168965.java!!!	NombreDiaDeLaSemana(in d : int) : String
+
+		switch (d){
+			case 1: return I18n.DAY_OF_WEEK_MON;
+			case 2: return I18n.DAY_OF_WEEK_MON;
+			case 3: return I18n.DAY_OF_WEEK_TUE;
+			case 4: return I18n.DAY_OF_WEEK_WED;
+			case 5: return I18n.DAY_OF_WEEK_THU;
+			case 6: return I18n.DAY_OF_WEEK_FRI;
+			case 7: return I18n.DAY_OF_WEEK_SAT;
+			default: return "";
+			}
+!!!169093.java!!!	MaximoHorasDelDia() : int
+
+		return c.getMaximum(Calendar.HOUR_OF_DAY);
+!!!169221.java!!!	MinimoHorasDelDia() : int
+
+		return c.getMinimum(Calendar.HOUR_OF_DAY);
+!!!169349.java!!!	MaximoMinutosHora() : int
+
+		return c.getMaximum(Calendar.MINUTE);
+!!!169477.java!!!	MinimoMinutosHora() : int
+
+		return c.getMinimum(Calendar.MINUTE);
+!!!169605.java!!!	ValidarHoras(in h : int) : boolean
+
+		if(h<MinimoHorasDelDia() || h>MaximoHorasDelDia()){
+			return false;
+		}
+		else{
+			return true;
+		}
+!!!169733.java!!!	ValidarMinutos(in m : int) : boolean
+
+		if(m<MinimoMinutosHora() || m>MaximoMinutosHora()){
+			return false;
+		}
+		else{
+			return true;
+		}
+!!!169861.java!!!	ValidarDia(in d : int) : boolean
+
+		if(d<MinimoDiaDeLaSemana() || d>MaximoDiaDeLaSemana()){
+			return false;
+		}
+		else{
+			return true;
+		}
+!!!169989.java!!!	GetTime(in pHora : int, in pMinuto : int) : Time
+
+		c.set(1900, 1, 1, pHora, pMinuto, 0);
+		t = new Time(c.getTimeInMillis());
+		return t;
+!!!170117.java!!!	ValidarFecha(in dia : int, in mes : int, in anio : int) : Date
+
+		if (dia >=1 && dia<=31){
+			if(mes>=1 && mes<=12){
+				if(anio>1000 && anio<9999){
+					String anioString=Integer.toString(anio);
+					if (anioString.length()==4){
+						Calendar cal=new GregorianCalendar();
+						cal.set(anio, mes-1, dia);
+						Date fecha=new Date();
+						fecha=cal.getTime();
+						return fecha;
+					}
+				}
+			}
+		}
+
+		return null;
+!!!170245.java!!!	isInteger(in input : String) : boolean
+
+	   try
+	   {
+	      Integer.parseInt( input );
+	      return true;
+	   }
+	   catch( Exception ex )
+	   {
+	      return false;
+	   }
+!!!170373.java!!!	toDate(in fecha : String) : Calendar
+
+    Date d;
+    SimpleDateFormat fSimple = new SimpleDateFormat(I18n.FORMATO_FECHA);
+    try {
+      d = fSimple.parse(fecha);
+      Calendar calendario = new GregorianCalendar();
+      calendario.setTime(d);
+      return calendario;
+    }
+    catch (ParseException e) {
+      System.out.println(I18n.ERROR);     
+    }
+    return null;

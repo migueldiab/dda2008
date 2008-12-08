@@ -1,0 +1,2010 @@
+format 62
+"utils" // src::utils
+  revision 1
+  modified_by 5 "Administrator"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "utils"
+  java_package "utils"
+  classview 129925 "utils"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 133253 "Canonic"
+      visibility public stereotype "interface"
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}interface ${name}${extends} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 165509 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 165637 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133381 "Consola"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 134149 "in"
+	class_attribute protected explicit_type "BufferedReader"
+	init_value "=  new BufferedReader(new InputStreamReader(System.in))"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 165765 "print"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "s" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 165893 "println"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "s" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166021 "print"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "i" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166149 "println"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "i" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166277 "print"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "d" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166405 "println"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "d" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166533 "print"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "c" explicit_type "char"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166661 "println"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "c" explicit_type "char"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166789 "leer"
+	class_operation public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 166917 "leer"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "s" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167045 "modificar"
+	class_operation public explicit_return_type "String"
+	nparams 2
+	  param in name "s" explicit_type "String"
+	  param in name "actual" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167173 "modificarInt"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param in name "msg" explicit_type "String"
+	  param in name "actual" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167301 "modificarFecha"
+	class_operation public explicit_return_type "Date"
+	nparams 2
+	  param in name "msg" explicit_type "String"
+	  param inout name "actual" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167429 "modificarDouble"
+	class_operation public explicit_return_type "double"
+	nparams 2
+	  param in name "msg" explicit_type "String"
+	  param in name "actual" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167557 "leerInt"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167685 "leerInt"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param in name "msg" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167813 "leerFecha"
+	class_operation public explicit_return_type "Calendar"
+	nparams 1
+	  param in name "msg" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 167941 "printFecha"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "fecha" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168069 "menu"
+	class_operation public explicit_return_type "int"
+	nparams 1
+	  param inout name "opciones" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168197 "menu"
+	class_operation public explicit_return_type "Object"
+	nparams 3
+	  param inout name "opciones" explicit_type "ArrayList"
+	  param in name "titulo" explicit_type "String"
+	  param in name "tipo" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param ArrayList opciones
+@param String titulo
+@param 0 Any - 1 Articulo - 2 Item - 3 Presupuesto Id,Descripcion,FechaModificacion - 4 Presupuesto toString sin Items
+@return
+"
+      end
+
+      operation 168325 "menu"
+	class_operation public explicit_return_type "int"
+	nparams 2
+	  param inout name "opciones" explicit_type "ArrayList"
+	  param in name "titulo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168453 "leerDouble"
+	class_operation public explicit_return_type "double"
+	nparams 1
+	  param in name "msg" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168581 "listado"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param inout name "lista" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133509 "Fecha"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 134277 "c"
+	class_attribute private explicit_type "Calendar"
+	init_value "=  Calendar.getInstance()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134405 "t"
+	class_attribute private explicit_type "Time"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 168709 "MaximoDiaDeLaSemana"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168837 "MinimoDiaDeLaSemana"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 168965 "NombreDiaDeLaSemana"
+	class_operation public explicit_return_type "String"
+	nparams 1
+	  param in name "d" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169093 "MaximoHorasDelDia"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169221 "MinimoHorasDelDia"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169349 "MaximoMinutosHora"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169477 "MinimoMinutosHora"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169605 "ValidarHoras"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "h" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169733 "ValidarMinutos"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "m" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169861 "ValidarDia"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "d" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 169989 "GetTime"
+	class_operation public explicit_return_type "Time"
+	nparams 2
+	  param in name "pHora" explicit_type "int"
+	  param in name "pMinuto" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170117 "ValidarFecha"
+	class_operation public explicit_return_type "Date"
+	nparams 3
+	  param in name "dia" explicit_type "int"
+	  param in name "mes" explicit_type "int"
+	  param in name "anio" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170245 "isInteger"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param in name "input" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170373 "toDate"
+	class_operation public explicit_return_type "Calendar"
+	nparams 1
+	  param in name "fecha" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133637 "Horario"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132229 // <realization>
+	relation 132229 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132229 // <realization>
+	  b parent class_ref 133253 // Canonic
+      end
+
+      classrelation 132357 // <realization>
+	relation 132357 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132357 // <realization>
+	  b parent class_ref 129413 // Comparable
+      end
+
+      attribute 134533 "_Dia"
+	private explicit_type "int"
+	init_value "= 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "attributes
+"
+      end
+
+      attribute 134661 "_Hora"
+	private explicit_type "Time"
+	init_value "= null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 170501 "get_Dia"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "gets and sets"
+      end
+
+      operation 170629 "set_Dia"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "dia" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170757 "get_Hora"
+	public explicit_return_type "Time"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 170885 "set_Hora"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "hora" explicit_type "Time"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171013 "Horario"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "constructors"
+      end
+
+      operation 171141 "Horario"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "pDia" explicit_type "int"
+	  param inout name "pHora" explicit_type "Time"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171269 "Horario"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "f" type class_ref 133637 // Horario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171397 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "methods"
+      end
+
+      operation 171525 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "obj" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 171653 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133765 "I18n"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 134789 "LISTA_VACIA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"No existen elementos en la lista\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134917 "FORMATO_FECHA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"dd/MM/yyyy\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135045 "sdf"
+	class_attribute public explicit_type "SimpleDateFormat"
+	init_value "=  new SimpleDateFormat(FORMATO_FECHA)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135173 "FINALIZAR_PRESUPUESTO"
+	class_attribute public explicit_type "String"
+	init_value "= \"Finalizar Presupuesto\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135301 "FINALIZADO"
+	class_attribute public explicit_type "String"
+	init_value "= \"Finalizado\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135429 "ERROR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Error\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135557 "DAY_OF_WEEK_SUN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Domingo\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135685 "DAY_OF_WEEK_MON"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Lunes\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135813 "DAY_OF_WEEK_TUE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Martes\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 135941 "DAY_OF_WEEK_WED"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Miercoles\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136069 "DAY_OF_WEEK_THU"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Jueves\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136197 "DAY_OF_WEEK_FRI"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Viernes\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136325 "DAY_OF_WEEK_SAT"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Sabado\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136453 "PRINCIPAL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Principal\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136581 "ARTICULOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Articulos\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136709 "PRESUPUESTOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Presupuestos\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136837 "USUARIOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Usuarios\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 136965 "CERRAR_SESION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Cerrar Sessión\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137093 "LISTADOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Listados\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137221 "ALTA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Crear Nuevo\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137349 "BAJA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Eliminar\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137477 "MODIFICACIONES"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Modificar\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137605 "MENU_ANTERIOR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Menu Anterior\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137733 "SELECCIONE_OPCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione Opción\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137861 "SEPARADOR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"------------------------------\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 137989 "SELECCIONE_CANTIDAD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione Cantidad del Item\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138117 "CANTIDAD_MAL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "= \"Debe seleccionar una cantidad inferior o igual al total y al menos 1, operacion cancelada\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138245 "SALIR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Salir\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138373 "CANCELAR"
+	class_attribute const_attribute public explicit_type "Object"
+	init_value "=  \"Cancelar\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138501 "SI"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"S\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138629 "NO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"N\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138757 "CONFIRMA_ELIMINAR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Confirma que desea eliminar (\"+SI+\"/\"+NO+\") : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 138885 "NOMBRE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Nombre\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139013 "CANTIDAD"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Cantidad\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139141 "COSTO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Costo\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139269 "DESCRIPCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Descripcion\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139397 "FECHAEJECUCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "= \"Fecha de Ejecucion (Opcional) dd/mm/aaaa : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139525 "MODIFICA_ITEMS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "= \"Desea modificar los items? (\"+SI+\"/\"+NO+\") :\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139653 "CONFIRMA_MODIFICAR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Confirma que desea modifcar (\"+SI+\"/\"+NO+\") : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139781 "CANTIDAD_MAYOR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"La cantidad no puede ser superior al stock del articulo.\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 139909 "MODIFICADO_OK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Objeto modificado correctamente\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140037 "INGRESO_OK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Objeto ingresado correctamente\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140165 "BORRADO_OK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Objeto eliminado correctamente\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140293 "APELLIDO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Apellido\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140421 "CLAVE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Clave\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140549 "ID"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Id\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140677 "CLAVE_REPETIR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Repetir \" + CLAVE"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140805 "CANCELADA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Operacion Cancelada\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 140933 "NUMERO_INTENTOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Error al validar credenciales,\\n # de intentos restante : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141061 "CONSULTAS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Consultas\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141189 "CAMBIAR_DUENIO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Cambiar Dueño\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141317 "PRESIONE_ENTER"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Presione enter para Continuar\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141445 "CONFIRMA_FINALIZACION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Esta seguro que desea Finalizar el presupuesto (esta operacion es irreversible) (\"+SI+\"/\"+NO+\"):  \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141573 "ARTICULOS_SIN_STOCK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"No hay Stock suficiente de articulos en alguno de los items del presupuesto o no existe e Articulo\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141701 "FINALIZADO_OK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Se ha Finalizado correctamente\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141829 "COPIAR_PRESUPUESTO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Copiar Presupuesto\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 141957 "CONFIRMA_COPIA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Desea crear una copiar del Presupuesto?(\"+SI+\"/\"+NO+\"): \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142085 "INGRESE_DESCRIPCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Ingrese descripcion de la Copia : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142213 "SELECCIONE_GESTOR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione un Dueño : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142341 "SELECCIONE_PRESUPUESTO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione un Presupuesto : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142469 "SELECCIONE_NUEVO_DUENIO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione un nuevo dueño para el Presupuesto : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142597 "ITEM_ALTA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Agregar un Item\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142725 "ITEM_BAJA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Eliminar un Item\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142853 "ITEM_MODIFICA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Modificar un Item\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 142981 "PRESUPUESTO_MODIFICA"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Modificar datos del Presupuesto\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143109 "SELECCIONE_ITEM_BORRAR"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Seleccione item a Borrar : \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143237 "DESEA_FECHA_EJECUCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Desea ingresar una fecha de ejecucion?(\"+SI+\"/\"+NO+\"): \" "
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143365 "SELECCIONE_ARTICULO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \" Seleccione Articulo: \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143493 "PRESUPUESTO_YA_EXSTE"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Ya existe un presupuesto con el mismo dueño y descripcion. \""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143621 "FECHAEJECUCION_MAL"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Fecha de Ejecucion no existe o es mayor a actual.\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143749 "MEDIDAS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Medidas\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 143877 "ARTICULOS_COMPUESTOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Articulos Compuestos\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144005 "MONITOR_STOCK"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Monitor de Stock\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 171781 "setFormato"
+	class_operation public explicit_return_type "void"
+	nparams 1
+	  param in name "mascara" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 133893 "MultiLineLabelUI"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 132485 // <generalisation>
+	relation 132485 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 132485 // <generalisation>
+	  b parent class_ref 134021 // BasicLabelUI
+      end
+
+      extra_member 129157 "initialization"
+	
+	cpp "" ""
+	java "  static {
+    labelUI = new MultiLineLabelUI();
+  }"
+	php ""
+	python ""
+	idl ""
+      end
+
+      operation 171909 "layoutCL"
+	protected explicit_return_type "String"
+	nparams 7
+	  param inout name "label" explicit_type "JLabel"
+	  param inout name "fontMetrics" explicit_type "FontMetrics"
+	  param in name "text" explicit_type "String"
+	  param inout name "icon" explicit_type "Icon"
+	  param inout name "viewR" explicit_type "Rectangle"
+	  param inout name "iconR" explicit_type "Rectangle"
+	  param inout name "textR" explicit_type "Rectangle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 144133 "LEADING"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.LEADING"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144261 "TRAILING"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.TRAILING"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144389 "LEFT"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.LEFT"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144517 "RIGHT"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.RIGHT"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144645 "TOP"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.TOP"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 144773 "CENTER"
+	class_attribute const_attribute package explicit_type "int"
+	init_value "=  SwingConstants.CENTER"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 172037 "layoutCompoundLabel"
+	class_operation public explicit_return_type "String"
+	nparams 12
+	  param inout name "c" explicit_type "JComponent"
+	  param inout name "fm" explicit_type "FontMetrics"
+	  param in name "text" explicit_type "String"
+	  param inout name "icon" explicit_type "Icon"
+	  param in name "verticalAlignment" explicit_type "int"
+	  param in name "horizontalAlignment" explicit_type "int"
+	  param in name "verticalTextPosition" explicit_type "int"
+	  param in name "horizontalTextPosition" explicit_type "int"
+	  param inout name "viewR" explicit_type "Rectangle"
+	  param inout name "iconR" explicit_type "Rectangle"
+	  param inout name "textR" explicit_type "Rectangle"
+	  param in name "textIconGap" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2}[] ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}, ${t7} ${p7}, ${t8} ${p8}, ${t9} ${p9}, ${t10} ${p10}, ${t11} ${p11}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Compute and return the location of the icons origin, the
+location of origin of the text baseline, and a possibly clipped
+version of the compound labels string.  Locations are computed
+relative to the viewR rectangle.
+The JComponents orientation (LEADING/TRAILING) will also be taken
+into account and translated into LEFT/RIGHT values accordingly.
+"
+      end
+
+      operation 172165 "layoutCompoundLabel"
+	class_operation public explicit_return_type "String"
+	nparams 11
+	  param inout name "fm" explicit_type "FontMetrics"
+	  param in name "text" explicit_type "String"
+	  param inout name "icon" explicit_type "Icon"
+	  param in name "verticalAlignment" explicit_type "int"
+	  param in name "horizontalAlignment" explicit_type "int"
+	  param in name "verticalTextPosition" explicit_type "int"
+	  param in name "horizontalTextPosition" explicit_type "int"
+	  param inout name "viewR" explicit_type "Rectangle"
+	  param inout name "iconR" explicit_type "Rectangle"
+	  param inout name "textR" explicit_type "Rectangle"
+	  param in name "textIconGap" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}, ${t5} ${p5}, ${t6} ${p6}, ${t7} ${p7}, ${t8} ${p8}, ${t9} ${p9}, ${t10} ${p10}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Compute and return the location of the icons origin, the
+location of origin of the text baseline, and a possibly clipped
+version of the compound labels string.  Locations are computed
+relative to the viewR rectangle.
+This layoutCompoundLabel() does not know how to handle LEADING/TRAILING
+values in horizontalTextPosition (they will default to RIGHT) and in
+horizontalAlignment (they will default to CENTER).
+Use the other version of layoutCompoundLabel() instead.
+"
+      end
+
+      operation 172293 "paintEnabledText"
+	protected explicit_return_type "void"
+	nparams 5
+	  param inout name "l" explicit_type "JLabel"
+	  param inout name "g" explicit_type "Graphics"
+	  param in name "s" explicit_type "String"
+	  param in name "textX" explicit_type "int"
+	  param in name "textY" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 172421 "paintDisabledText"
+	protected explicit_return_type "void"
+	nparams 5
+	  param inout name "l" explicit_type "JLabel"
+	  param inout name "g" explicit_type "Graphics"
+	  param in name "s" explicit_type "String"
+	  param in name "textX" explicit_type "int"
+	  param in name "textY" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 172549 "drawString"
+	protected explicit_return_type "void"
+	nparams 5
+	  param inout name "g" explicit_type "Graphics"
+	  param in name "s" explicit_type "String"
+	  param in name "accChar" explicit_type "int"
+	  param in name "textX" explicit_type "int"
+	  param in name "textY" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 172677 "computeMultiLineDimension"
+	class_operation public explicit_return_type "Dimension"
+	nparams 2
+	  param inout name "fm" explicit_type "FontMetrics"
+	  param in name "strs" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 144901 "str"
+	protected explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 145029 "strs"
+	protected explicit_type "String"
+	multiplicity "[]"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type}${multiplicity} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 172805 "splitStringByLines"
+	public explicit_return_type "String"
+	nparams 1
+	  param in name "str" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type}[] ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+  end
+
+  deploymentview 129669 "utils"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 132485 "Canonic"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 133253 // Canonic
+      end
+    end
+
+    artifact 132613 "Consola"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.io.*;
+import java.text.ParseException;
+import java.util.*;
+import dominio.Articulo;
+import dominio.Presupuesto;
+import dominio.Item;
+${definition}"
+      associated_classes
+	class_ref 133381 // Consola
+      end
+    end
+
+    artifact 132741 "Fecha"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.sql.Time;
+${definition}"
+      associated_classes
+	class_ref 133509 // Fecha
+      end
+    end
+
+    artifact 132869 "Horario"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.sql.Time;
+${definition}"
+      associated_classes
+	class_ref 133637 // Horario
+      end
+    end
+
+    artifact 132997 "I18n"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.SimpleDateFormat;
+${definition}"
+      associated_classes
+	class_ref 133765 // I18n
+      end
+    end
+
+    artifact 133125 "MultiLineLabelUI"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.*;
+import java.util.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.plaf.basic.*;
+${definition}"
+      associated_classes
+	class_ref 133893 // MultiLineLabelUI
+      end
+    end
+  end
+end

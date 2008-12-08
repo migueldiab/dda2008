@@ -1,0 +1,295 @@
+class VistaUsuarios
+!!!205061.java!!!	getDAbmUsuarios() : JDialog
+
+    if (dAbmUsuarios == null) {
+      dAbmUsuarios = new JDialog();
+      dAbmUsuarios.setBounds(new Rectangle(0, 0, 500, 290));
+      dAbmUsuarios.setContentPane(getPAbmUsuarios());
+      dAbmUsuarios.setTitle("ABM Usuarios");
+    }
+    return dAbmUsuarios;
+!!!205189.java!!!	getPAbmUsuarios() : JPanel
+
+    if (pAbmUsuarios == null) {
+      lInfo = new JLabel();
+      lInfo.setBounds(new Rectangle(0, 240, 481, 30));
+      lInfo.setHorizontalAlignment(SwingConstants.CENTER);
+      lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
+      
+      lInfo.setText("");
+      lId = new JLabel();
+      lId.setBounds(new Rectangle(10, 20, 90, 20));
+      lId.setText("Id Usuario");
+      lApellido = new JLabel();
+      lApellido.setBounds(new Rectangle(10, 70, 90, 20));
+      lApellido.setText("Apellido");
+      lGrupo = new JLabel();
+      lGrupo.setBounds(new Rectangle(10, 145, 90, 20));
+      lGrupo.setText("Grupo");
+      lClave2 = new JLabel();
+      lClave2.setBounds(new Rectangle(10, 120, 90, 20));
+      lClave2.setText("Repetir");
+      lClave1 = new JLabel();
+      lClave1.setBounds(new Rectangle(10, 95, 90, 20));
+      lClave1.setText("Clave");
+      lNombre = new JLabel();
+      lNombre.setBounds(new Rectangle(10, 45, 90, 20));
+      lNombre.setText("Nombre");
+      pAbmUsuarios = new JPanel();
+      pAbmUsuarios.setLayout(null);
+      pAbmUsuarios.add(lNombre);
+      pAbmUsuarios.add(getTNombre());
+      pAbmUsuarios.add(getBGuardar());
+      pAbmUsuarios.add(getBCancelar());
+      pAbmUsuarios.add(getBEliminar());
+      pAbmUsuarios.add(getTClave1());
+      pAbmUsuarios.add(getTClave2());
+      pAbmUsuarios.add(getCGrupo());
+      pAbmUsuarios.add(lClave1);
+      pAbmUsuarios.add(lClave2);
+      pAbmUsuarios.add(lGrupo);
+      pAbmUsuarios.add(getPUsuarios());
+      pAbmUsuarios.add(getTBuscar());
+      pAbmUsuarios.add(getBBuscar());
+      pAbmUsuarios.add(getBNuevo(), null);
+      pAbmUsuarios.add(lApellido, null);
+      pAbmUsuarios.add(getTApellido(), null);
+      pAbmUsuarios.add(lId, null);
+      pAbmUsuarios.add(getTId(), null);
+      pAbmUsuarios.add(lInfo, null);
+      cargarListas();
+      
+    }
+    return pAbmUsuarios;
+!!!205317.java!!!	getTNombre() : JTextField
+
+    if (tNombre == null) {
+      tNombre = new JTextField();
+      tNombre.setBounds(new Rectangle(100, 45, 150, 20));
+    }
+    return tNombre;
+!!!205445.java!!!	getBGuardar() : JButton
+
+    if (bGuardar == null) {
+      bGuardar = new JButton();
+      bGuardar.setBounds(new Rectangle(10, 200, 100, 30));
+      bGuardar.setText("Guardar");
+      bGuardar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          guardarUsuario();
+          
+        }
+      });
+    }
+    return bGuardar;
+!!!205573.java!!!	getBCancelar() : JButton
+
+    if (bCancelar == null) {
+      bCancelar = new JButton();
+      bCancelar.setBounds(new Rectangle(250, 200, 100, 30));
+      bCancelar.setText("Cerrar");
+      bCancelar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          limpiarCampos();
+          dAbmUsuarios.setVisible(false);
+        }
+      });
+    }
+    return bCancelar;
+!!!205701.java!!!	getBEliminar() : JButton
+
+    if (bEliminar == null) {
+      bEliminar = new JButton();
+      bEliminar.setBounds(new Rectangle(130, 200, 100, 30));
+      bEliminar.setText("Eliminar");
+      bEliminar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          if (lUsuarios.getSelectedIndex()==-1) {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Debe seleccionar un usuario de la lista para eliminarlo");
+          }
+          else {
+            eliminarUsuario((Usuario) lUsuarios.getSelectedValue());
+          }
+        }
+      });
+    }
+    return bEliminar;
+!!!205829.java!!!	getTClave1() : JPasswordField
+
+    if (tClave1 == null) {
+      tClave1 = new JPasswordField();
+      tClave1.setBounds(new Rectangle(100, 95, 90, 20));
+    }
+    return tClave1;
+!!!205957.java!!!	getTClave2() : JPasswordField
+
+    if (tClave2 == null) {
+      tClave2 = new JPasswordField();
+      tClave2.setBounds(new Rectangle(100, 120, 90, 20));
+    }
+    return tClave2;
+!!!206085.java!!!	getCGrupo() : JComboBox
+
+    if (cGrupo == null) {
+      cGrupo = new JComboBox();
+      cGrupo.setBounds(new Rectangle(100, 145, 150, 20));
+    }
+    return cGrupo;
+!!!206213.java!!!	getPUsuarios() : JScrollPane
+
+    listaUsuarios = new DefaultListModel();
+    lUsuarios = new JList(listaUsuarios);
+    lUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    lUsuarios.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+          public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+            if (lUsuarios.getSelectedIndex()!=-1) {
+              cargarUsuario();
+              lInfo.setText("");
+
+            }
+          }
+        });
+    if (pUsuarios == null) {
+      pUsuarios = new JScrollPane(lUsuarios);     
+      pUsuarios.setBounds(new Rectangle(260, 40, 210, 120));
+    }
+    return pUsuarios;
+!!!206341.java!!!	getTBuscar() : JTextField
+
+    if (tBuscar == null) {
+      tBuscar = new JTextField();
+      tBuscar.setBounds(new Rectangle(260, 20, 186, 20));      
+    }
+    return tBuscar;
+!!!206469.java!!!	getBBuscar() : JButton
+
+    if (bBuscar == null) {
+      bBuscar = new JButton();
+      bBuscar.setBounds(new Rectangle(447, 20, 20, 20));
+      bBuscar.setText("...");
+      bBuscar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          buscarUsuario();
+        }
+      });
+    }
+    return bBuscar;
+!!!206597.java!!!	cargarUsuario() : void
+
+    
+    Usuario u = (Usuario) lUsuarios.getSelectedValue();    
+    tId.setText(u.getId());
+    tNombre.setText(u.getNombre());
+    tApellido.setText(u.getApellido());
+    tClave1.setText(u.getClave());
+    tClave2.setText(u.getClave());
+    cGrupo.setSelectedItem(u.getGrupo());
+!!!206725.java!!!	buscarUsuario() : void
+
+    tNombre.setText("Test2");
+!!!206853.java!!!	guardarUsuario() : void
+
+    Usuario unUsuario = new Usuario(tId.getText());
+    unUsuario = Fachada.obtenerUsuario(unUsuario);    
+    if ((unUsuario==null) || (JOptionPane.showConfirmDialog(
+        null,"Desea guardar los cambios al usuario "+tId.getText()+"?",
+        "Confirma guardar?",
+        JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+      )
+    {
+      if (tId.getText()!="" &&
+          tClave1.getText().equals(tClave2.getText()) &&
+          tClave1.getText().length() > 4 &&
+          cGrupo.getSelectedIndex()!=-1
+        )    
+      {      
+        if (unUsuario==null) unUsuario = new Usuario(tId.getText());
+        unUsuario.setNombre(tNombre.getText());
+        unUsuario.setApellido(tApellido.getText());
+        unUsuario.setClave(tClave1.getText());
+        unUsuario.setGrupo((Grupo) cGrupo.getSelectedItem());
+        if (Fachada.agregarUsuario(unUsuario)) {
+          lInfo.setForeground(new Color(65, 190, 79));
+          lInfo.setText("Usuario " + tId.getText() + " guardado");
+          cargarListas();
+          limpiarCampos();
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("No se pudo eliminar el medio.");           
+        }
+      }
+      else {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Complete los datos del usuario antes de guardarlo");        
+      }
+    }
+!!!206981.java!!!	getBNuevo() : JButton
+
+    if (bNuevo == null) {
+      bNuevo = new JButton();
+      bNuevo.setBounds(new Rectangle(366, 163, 100, 20));
+      bNuevo.setText("Nuevo");
+      bNuevo.addActionListener(new java.awt.event.ActionListener() {   
+        public void actionPerformed(java.awt.event.ActionEvent e) {    
+          limpiarCampos();
+        }      
+      });
+    }
+    return bNuevo;
+!!!207109.java!!!	cargarListas() : void
+
+    listaUsuarios.clear();
+    for (Object u : Fachada.listadoUsuarios()) {
+      listaUsuarios.addElement((Usuario) u);  
+    }
+    cGrupo.removeAllItems();
+    for (Object g : Fachada.listaGrupos()) {
+      cGrupo.addItem((Grupo) g);        
+    }    
+!!!207237.java!!!	getTApellido() : JTextField
+
+    if (tApellido == null) {
+      tApellido = new JTextField();
+      tApellido.setBounds(new Rectangle(100, 70, 150, 20));
+    }
+    return tApellido;
+!!!207365.java!!!	getTId() : JTextField
+
+    if (tId == null) {
+      tId = new JTextField();
+      tId.setBounds(new Rectangle(100, 20, 100, 20));
+    }
+    return tId;
+!!!207493.java!!!	limpiarCampos() : void
+
+    lUsuarios.clearSelection();
+    
+    tId.setText("");
+    tNombre.setText("");
+    tApellido.setText("");
+    tClave1.setText("");
+    tClave2.setText("");
+    cGrupo.removeAllItems();
+    for (Object g : Fachada.listaGrupos()) {
+      cGrupo.addItem((Grupo) g);        
+    }
+    cGrupo.setSelectedItem(null);
+    tId.requestFocus();
+!!!207621.java!!!	eliminarUsuario(inout u : Usuario) : void
+
+    if (JOptionPane.showConfirmDialog(
+        null,"Desea eliminar el usuario "+tId.getText()+"?",
+        "Confirma eliminar?",
+        JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+    { 
+      if (Fachada.borrarUsuario(u)) {
+        cargarListas();
+        limpiarCampos();
+      }
+      else {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("No se pudo eliminar el medio.");           
+      }      
+    }

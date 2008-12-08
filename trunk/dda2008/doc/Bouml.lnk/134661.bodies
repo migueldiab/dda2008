@@ -1,0 +1,509 @@
+class VistaArticulosCompuestos
+!!!175493.java!!!	getDAbmArticulosCompuestos() : JDialog
+
+    if (dAbmArticulosCompuestos == null) {
+      dAbmArticulosCompuestos = new JDialog();
+      dAbmArticulosCompuestos.setBounds(new Rectangle(0,0,660,420));
+      dAbmArticulosCompuestos.setContentPane(getPAbmArticulosCompuestos());
+      dAbmArticulosCompuestos.setTitle("ABM ArticulosCompuestos");
+    }
+    return dAbmArticulosCompuestos;
+!!!175621.java!!!	getPAbmArticulosCompuestos() : JPanel
+
+    if (pAbmArticulosCompuestos == null) {
+      lCantidad = new JLabel();
+      lCantidad.setBounds(new Rectangle(10, 120, 90, 20));
+      lCantidad.setText("Cantidad");
+      lNombre = new JLabel();
+      lNombre.setBounds(new Rectangle(10, 20, 90, 20));
+      lNombre.setText("Nombre");
+
+      lStock = new JLabel();
+      lStock.setBounds(new Rectangle(10, 45, 90, 20));
+      lStock.setText("Stock");
+      
+      lMedida = new JLabel();
+      lMedida.setBounds(new Rectangle(10, 70, 90, 20));
+      lMedida.setText("Medida");
+      
+      lCosto = new JLabel();
+      lCosto.setBounds(new Rectangle(10, 95, 90, 20));
+      lCosto.setText("Costo");
+      
+      lInfo = new JLabel();
+      lInfo.setBounds(new Rectangle(0, 360, 650, 30));
+      lInfo.setHorizontalAlignment(SwingConstants.CENTER);
+      lInfo.setHorizontalTextPosition(SwingConstants.CENTER);
+      lInfo.setText("");
+      
+      pAbmArticulosCompuestos = new JPanel();
+      pAbmArticulosCompuestos.setLayout(null);
+      
+      pAbmArticulosCompuestos.add(lNombre);
+      pAbmArticulosCompuestos.add(getTNombre());
+      pAbmArticulosCompuestos.add(lStock, null);
+      pAbmArticulosCompuestos.add(getTStock(), null);
+      pAbmArticulosCompuestos.add(lMedida);
+      pAbmArticulosCompuestos.add(getCMedida());
+      pAbmArticulosCompuestos.add(lCosto, null);
+      pAbmArticulosCompuestos.add(getTCosto(), null);
+      
+      pAbmArticulosCompuestos.add(getPArticulos());
+      pAbmArticulosCompuestos.add(getPComponentes());
+      pAbmArticulosCompuestos.add(getBAgregar(), null);
+      pAbmArticulosCompuestos.add(getBQuitar(), null);
+
+      pAbmArticulosCompuestos.add(getTBuscar());
+      pAbmArticulosCompuestos.add(getBBuscar());
+      pAbmArticulosCompuestos.add(getPArticulosCompuestos());
+
+      pAbmArticulosCompuestos.add(getBNuevo(), null);
+      pAbmArticulosCompuestos.add(getBGuardar());
+      pAbmArticulosCompuestos.add(getBCancelar());
+      pAbmArticulosCompuestos.add(getBEliminar());
+
+      pAbmArticulosCompuestos.add(lInfo, null);
+      pAbmArticulosCompuestos.add(lCantidad, null);
+      pAbmArticulosCompuestos.add(getTCantidad(), null);
+      cargarListas();
+      
+    }
+    return pAbmArticulosCompuestos;
+!!!175749.java!!!	getBGuardar() : JButton
+
+    if (bGuardar == null) {
+      bGuardar = new JButton();
+      bGuardar.setBounds(new Rectangle(260, 20, 100, 30));
+      bGuardar.setText("Guardar");
+      bGuardar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          guardarArticuloCompuesto();
+          
+        }
+      });
+    }
+    return bGuardar;
+!!!175877.java!!!	getBCancelar() : JButton
+
+    if (bCancelar == null) {
+      bCancelar = new JButton();
+      bCancelar.setBounds(new Rectangle(538, 336, 100, 30));
+      bCancelar.setText("Cerrar");
+      bCancelar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          limpiarCampos();
+          dAbmArticulosCompuestos.setVisible(false);
+        }
+      });
+    }
+    return bCancelar;
+!!!176005.java!!!	getBEliminar() : JButton
+
+    if (bEliminar == null) {
+      bEliminar = new JButton();
+      bEliminar.setBounds(new Rectangle(260, 60, 100, 30));
+      bEliminar.setText("Eliminar");
+      bEliminar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          if (lArticulosCompuestos.getSelectedIndex()==-1) {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Debe seleccionar un articulo de la lista para eliminarlo");
+          }
+          else {
+            eliminarArticuloCompuesto((ArticuloCompuesto) lArticulosCompuestos.getSelectedValue());
+          }
+        }
+      });
+    }
+    return bEliminar;
+!!!176133.java!!!	getBNuevo() : JButton
+
+    if (bNuevo == null) {
+      bNuevo = new JButton();
+      bNuevo.setBounds(new Rectangle(260, 100, 100, 30));
+      bNuevo.setText("Nuevo");
+      bNuevo.addActionListener(new java.awt.event.ActionListener() {   
+        public void actionPerformed(java.awt.event.ActionEvent e) {    
+          limpiarCampos();
+        }      
+      });
+    }
+    return bNuevo;
+!!!176261.java!!!	getTNombre() : JTextField
+
+    if (tNombre == null) {
+      tNombre = new JTextField();
+      tNombre.setBounds(new Rectangle(100, 20, 150, 20));
+    }
+    return tNombre;
+!!!176389.java!!!	getCMedida() : JComboBox
+
+    if (cMedida == null) {
+      cMedida = new JComboBox();
+      cMedida.setBounds(new Rectangle(100, 70, 150, 20));
+    }
+    return cMedida;
+!!!176517.java!!!	getTCosto() : JTextField
+
+    if (tCosto == null) {
+      tCosto = new JTextField();
+      tCosto.setBounds(new Rectangle(100, 95, 150, 20));
+      tCosto.setEnabled(false);
+      tCosto.setText("0.00");
+    }
+    return tCosto;
+!!!176645.java!!!	getTStock() : JTextField
+
+    if (tStock == null) {
+      tStock = new JTextField();
+      tStock.setBounds(new Rectangle(100, 45, 150, 20));
+      tStock.setEnabled(false);
+      tStock.setText("0");
+    }
+    return tStock;
+!!!176773.java!!!	getTCantidad() : JTextField
+
+    if (tCantidad == null) {
+      tCantidad = new JTextField();
+      tCantidad.setBounds(new Rectangle(100, 120, 150, 20));
+      tCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyTyped(java.awt.event.KeyEvent e) {
+          char iKey = e.getKeyChar();
+          if (iKey == '\n') {
+            actualizarCantidadComponente();
+          }
+        }
+      });
+    }
+    return tCantidad;
+!!!176901.java!!!	getPArticulosCompuestos() : JScrollPane
+
+    listaArticulosCompuestos = new DefaultListModel();
+    lArticulosCompuestos = new JList(listaArticulosCompuestos);
+    lArticulosCompuestos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    lArticulosCompuestos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+          public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+            if (lArticulosCompuestos.getSelectedIndex()!=-1) {
+              cargarArticuloCompuesto();
+              lInfo.setText("");
+
+            }
+          }
+        });
+    if (pArticulosCompuestos == null) {
+      pArticulosCompuestos = new JScrollPane(lArticulosCompuestos);     
+      pArticulosCompuestos.setBounds(new Rectangle(410, 40, 230, 291));
+      
+     
+    }
+    return pArticulosCompuestos;
+!!!177029.java!!!	getTBuscar() : JTextField
+
+    if (tBuscar == null) {
+      tBuscar = new JTextField();
+      tBuscar.setBounds(new Rectangle(410, 20, 210, 20));
+    }
+    return tBuscar;
+!!!177157.java!!!	getBBuscar() : JButton
+
+    if (bBuscar == null) {
+      bBuscar = new JButton();
+      bBuscar.setBounds(new Rectangle(620, 20, 20, 20));
+      bBuscar.setText("...");
+      bBuscar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          buscarArticuloCompuesto();
+        }
+      });
+    }
+    return bBuscar;
+!!!177285.java!!!	getPArticulos() : JScrollPane
+
+    listaArticulos = new DefaultListModel();
+    lArticulos = new JList(listaArticulos);
+    lArticulos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+    lArticulos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+          public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+            
+          }
+        });
+    if (pArticulos == null) {
+      pArticulos = new JScrollPane(lArticulos);     
+      pArticulos.setBounds(new Rectangle(240, 150, 160, 212));
+    }
+    return pArticulos;
+!!!177413.java!!!	getPComponentes() : JScrollPane
+
+
+    if (pComponentes == null) {
+      pComponentes = new JScrollPane();  
+      pComponentes.setBounds(new Rectangle(10, 150, 160, 211));
+      pComponentes.setViewportView(getTComponentes());
+    }
+    return pComponentes;
+!!!177541.java!!!	getTComponentes() : Component
+
+    if (tComponentes == null) {
+      tComponentes = new JTree();
+      tComponentes
+          .addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent e) {
+              cargarDatosComponente();
+            }
+          });
+    }
+    return tComponentes;
+!!!177669.java!!!	getBAgregar() : JButton
+
+    if (bAgregar == null) {
+      bAgregar = new JButton();
+      bAgregar.setBounds(new Rectangle(180, 180, 45, 20));
+      bAgregar.setText("<");
+      bAgregar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          agregarComponente();
+        }
+
+      });
+    }
+    return bAgregar;
+!!!177797.java!!!	getBQuitar() : JButton
+
+    if (bQuitar == null) {
+      bQuitar = new JButton();
+      bQuitar.setBounds(new Rectangle(180, 220, 45, 20));
+      bQuitar.setText(">");
+      bQuitar.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          eliminarComponente();
+        }
+      });
+    }
+    return bQuitar;
+!!!177925.java!!!	cargarArticuloCompuesto() : void
+
+    ArticuloCompuesto temp = (ArticuloCompuesto) lArticulosCompuestos.getSelectedValue();
+    elArticuloCompuesto = new ArticuloCompuesto(temp.getNombre(), temp.getMedida());
+    elArticuloCompuesto.remplazarComponentes(temp.listarComponentes());
+    elArticuloCompuesto.recalcularStock();
+    elArticuloCompuesto.recalcularCosto();
+    tNombre.setText(elArticuloCompuesto.getNombre());
+    tStock.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    cMedida.setSelectedItem(elArticuloCompuesto.getMedida());
+    tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
+    arbolComponentes=new ModeloArbol(elArticuloCompuesto);
+    tComponentes.setModel(arbolComponentes);
+    tComponentes.updateUI();
+!!!178053.java!!!	buscarArticuloCompuesto() : void
+
+    //tNombre.setText("Test2");
+!!!178181.java!!!	guardarArticuloCompuesto() : void
+
+    try {
+      if ((elArticuloCompuesto==null) || (JOptionPane.showConfirmDialog(
+          null,"Desea guardar los cambios al articulo "+tNombre.getText()+"?",
+          "Confirma guardar?",
+          JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+        )
+      {
+        if (tNombre.getText().length()>3 &&
+            cMedida.getSelectedIndex()!=-1
+          )    
+        {      
+          if (elArticuloCompuesto==null) elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          elArticuloCompuesto.setCantidad(Integer.parseInt(tStock.getText()));
+          elArticuloCompuesto.setCosto(Double.parseDouble(tCosto.getText()));
+          if (Fachada.agregarArticuloCompuesto(elArticuloCompuesto)) {
+            lInfo.setForeground(new Color(65, 190, 79));
+            lInfo.setText("Articulo " + tNombre.getText() + " guardado");
+            cargarListas();
+            limpiarCampos();
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("No se pudo guardar el medio.");           
+          }
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("Complete los datos del articulo antes de guardarlo");        
+        }
+      }      
+    } catch (Exception e) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Verifique que los valores sean correctos");        
+    }
+    
+!!!178309.java!!!	cargarListas() : void
+
+    listaArticulosCompuestos.clear();
+    for (Object u : Fachada.listadoArticulosCompuestos()) {
+      listaArticulosCompuestos.addElement((ArticuloCompuesto) u);  
+    }
+    
+    listaArticulos.clear();
+    for (Object u : Fachada.listadoArticulos()) {
+      listaArticulos.addElement((Articulo) u);  
+    }    
+    cMedida.removeAllItems();
+    for (Object g : Fachada.listaMedidas()) {
+      cMedida.addItem((Medida) g);        
+    }
+    arbolComponentes=new ModeloArbol(null);
+    tComponentes.setModel(arbolComponentes);
+    tComponentes.updateUI();
+!!!178437.java!!!	limpiarCampos() : void
+
+    lArticulosCompuestos.clearSelection();
+    
+    tNombre.setText("");
+    tStock.setText("0");
+    tCosto.setText("0.00");
+    cMedida.removeAllItems();
+    tCantidad.setText("");
+    for (Object g : Fachada.listaMedidas()) {
+      cMedida.addItem((Medida) g);        
+    }
+    cMedida.setSelectedItem(null);
+    tNombre.requestFocus();
+    
+    elArticuloCompuesto = null;
+    
+    arbolComponentes=new ModeloArbol(null);
+    tComponentes.setModel(arbolComponentes);
+    tComponentes.updateUI();
+
+!!!178565.java!!!	eliminarArticuloCompuesto(inout u : ArticuloCompuesto) : void
+
+    if (JOptionPane.showConfirmDialog(
+        null,"Desea eliminar el articulo "+tNombre.getText()+"?",
+        "Confirma eliminar?",
+        JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+    { 
+      if (Fachada.borrarArticuloCompuesto(u)) {
+        cargarListas();
+        limpiarCampos();
+      }
+      else {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("No se pudo eliminar el medio.");           
+      }      
+    }
+!!!178693.java!!!	agregarComponente() : void
+
+    if (lArticulos.getSelectedIndex()==-1) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Debe seleccionar un artículo.");           
+    }
+    else {
+      if ((Articulo) lArticulos.getSelectedValue()!=null) {
+        Componente unComponente = new Componente((Articulo) lArticulos.getSelectedValue());
+        if (elArticuloCompuesto==null) {
+          if (tNombre.getText().length()>3 &&
+              cMedida.getSelectedIndex()!=-1
+            )    
+          {     
+            elArticuloCompuesto = new ArticuloCompuesto(tNombre.getText(),(Medida) cMedida.getSelectedItem());
+          }
+        }
+        if (elArticuloCompuesto!=null) {
+          if (elArticuloCompuesto.agregarComponente(unComponente)) {
+            actualizar();       
+            arbolComponentes=new ModeloArbol(elArticuloCompuesto);
+            tComponentes.setModel(arbolComponentes);
+            tComponentes.updateUI();
+            tCantidad.setText("");
+            lInfo.setForeground(new Color(65, 190, 79));
+            lInfo.setText(unComponente.toString() +" cargado.");
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Error: No puede agregar un componente a si mismo o un componente circular.");
+          }
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("Error al crear articulo compuesto.");            
+        }
+      }
+      else {
+        // WTF!? Esto no debería de pasar
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Error inesperado...");          
+      }        
+    }
+!!!178821.java!!!	actualizar() : void
+
+    elArticuloCompuesto.recalcularCosto();
+    elArticuloCompuesto.recalcularStock();
+    tCosto.setText(Double.toString(elArticuloCompuesto.getCosto()));
+    tStock.setText(Integer.toString(elArticuloCompuesto.getCantidad()));
+    
+    
+!!!178949.java!!!	eliminarComponente() : void
+
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      if (unComponente==null) {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Debe seleccionar un componente.");           
+      }
+      else {
+        if (elArticuloCompuesto!=null) {
+          if (elArticuloCompuesto.eliminarComponente(unComponente)) {
+            actualizar();
+            tComponentes.updateUI();
+            tCantidad.setText("");
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("Un articulo compuesto debe tener al menos un componente.");            
+          }
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("No hay ningún articulo cargado para eliminar el componente.");            
+        }
+      }
+    } catch (Exception e) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("No se puede eliminar el componente raiz.");            
+      
+    }
+!!!179077.java!!!	cargarDatosComponente() : void
+
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      tCantidad.setText(Integer.toString(unComponente.getCantidad()));
+      
+    } catch (Exception e) {
+      tCantidad.setText("");
+    }
+    
+!!!179205.java!!!	actualizarCantidadComponente() : void
+
+    try {
+      Componente unComponente = (Componente) tComponentes.getLastSelectedPathComponent();
+      if (unComponente==null) {
+        lInfo.setForeground(new Color(190, 65, 79));
+        lInfo.setText("Debe seleccionar un componente.");           
+      }
+      else {
+        int cantidad = Integer.parseInt(tCantidad.getText());
+        if (cantidad>0) {
+          unComponente.setCantidad(cantidad);
+          elArticuloCompuesto.agregarComponenteCantidad(unComponente);
+          actualizar();
+          tComponentes.updateUI();
+        }
+        else {
+          lInfo.setForeground(new Color(190, 65, 79));
+          lInfo.setText("La cantidad debe ser mayor que cero.");            
+         
+        }
+      }
+    } catch (Exception e) {
+      lInfo.setForeground(new Color(190, 65, 79));
+      lInfo.setText("Verifique la cantidad y el elemento seleccionado.");            
+    } 
+    

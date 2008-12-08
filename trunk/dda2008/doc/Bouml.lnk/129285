@@ -1,0 +1,3013 @@
+format 62
+"dominio" // src::dominio
+  revision 1
+  modified_by 5 "Administrator"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "dominio"
+  java_package "dominio"
+  classview 129157 "dominio"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 129157 "Articulo"
+      abstract visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129157 // <realization>
+	relation 129157 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129157 // <realization>
+	  b parent class_ref 129285 // Cloneable
+      end
+
+      classrelation 129285 // <realization>
+	relation 129285 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129285 // <realization>
+	  b parent class_ref 129413 // Comparable
+      end
+
+      attribute 129157 "nombre"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129285 "cantidad"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 129413 // medida (<unidirectional association>)
+	relation 129413 --->
+	  a role_name "medida" multiplicity "1..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 129413 // medida (<unidirectional association>)
+	  b parent class_ref 129541 // Medida
+      end
+
+      attribute 129413 "costo"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 129157 "agregarComponente"
+	abstract public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129285 "listarComponentes"
+	abstract public return_type class_ref 129669 // Componente
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129413 "eliminarComponente"
+	abstract public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129541 "esHoja"
+	abstract public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129669 "esCompuesto"
+	abstract public explicit_return_type "boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129797 "getPadre"
+	abstract public return_type class_ref 129157 // Articulo
+	nparams 1
+	  param inout name "hijo" type class_ref 129669 // Componente
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 129925 "remplazarComponentes"
+	abstract public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "listaComponetes" explicit_type "ArrayList<Componente>"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130053 "tipoArticulo"
+	abstract public explicit_return_type "String"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130181 "Articulo"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Constructores
+"
+      end
+
+      operation 130309 "Articulo"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	  param in name "cantidad" explicit_type "int"
+	  param in name "costo" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 130437 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#equals(java.lang.Object)
+"
+      end
+
+      operation 130565 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#toString()
+"
+      end
+
+      operation 130693 "getCantidad"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Get's & Sets
+
+
+@return the cantidad
+"
+      end
+
+      operation 130821 "setCantidad"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "cantidad" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param cantidad the cantidad to set
+"
+      end
+
+      operation 130949 "getCosto"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the costo
+"
+      end
+
+      operation 131077 "setCosto"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "costo" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param costo the costo to set
+"
+      end
+
+      operation 131205 "getMedida"
+	public return_type class_ref 129541 // Medida
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the medida
+"
+      end
+
+      operation 131333 "setMedida"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "medida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param medida the medida to set
+"
+      end
+
+      operation 131461 "getNombre"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the nombre
+"
+      end
+
+      operation 131589 "setNombre"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param nombre the nombre to set
+"
+      end
+
+      operation 131717 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 138501 // <composition>
+	relation_ref 138245 // <composition>
+      end
+    end
+
+    class 129541 "Medida"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 131205 "codigo"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131333 "descripcion"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 139781 "Medida"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "codigo" explicit_type "String"
+	  param in name "descripcion" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Constructores
+"
+      end
+
+      operation 139909 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Overrides
+
+ (non-Javadoc)
+@see java.lang.Object#equals(java.lang.Object)
+"
+      end
+
+      operation 140037 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#toString()
+"
+      end
+
+      operation 140165 "getCodigo"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Get's & Sets
+
+
+@return the codigo
+"
+      end
+
+      operation 140293 "setCodigo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "codigo" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param codigo the codigo to set
+"
+      end
+
+      operation 140421 "getDescripcion"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the descripcion
+"
+      end
+
+      operation 140549 "setDescripcion"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "descripcion" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param descripcion the descripcion to set
+"
+      end
+
+      classrelation 139013 // <composition>
+	relation_ref 138501 // <composition>
+      end
+    end
+
+    class 129669 "Componente"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130181 // articulo (<unidirectional association>)
+	relation 130181 --->
+	  a role_name "articulo" init_value "=  null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130181 // articulo (<unidirectional association>)
+	  b parent class_ref 129157 // Articulo
+      end
+
+      attribute 129541 "cantidad"
+	private explicit_type "int"
+	init_value "=  0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 135173 "Componente"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	  param in name "cantidad" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135301 "Componente"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135429 "esHoja"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135557 "getHijo"
+	class_operation public return_type class_ref 129669 // Componente
+	nparams 1
+	  param in name "posicion" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135685 "getCantidadDeHijos"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135813 "getIndiceHijo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 135941 "getPadre"
+	class_operation public return_type class_ref 129669 // Componente
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136069 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 136197 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 136325 "getCantidad"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136453 "setCantidad"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "cantidad" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136581 "getArticulo"
+	public return_type class_ref 129157 // Articulo
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 136709 "setArticulo"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "componente" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 129669 "x"
+	class_attribute private explicit_type "int"
+	init_value "= 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+    end
+
+    class 129797 "ArticuloCompuesto"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 129541 // <generalisation>
+	relation 129541 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129541 // <generalisation>
+	  b parent class_ref 129157 // Articulo
+      end
+
+      classrelation 129669 // <realization>
+	relation 129669 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129669 // <realization>
+	  b parent class_ref 129285 // Cloneable
+      end
+
+      classrelation 129797 // <realization>
+	relation 129797 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 129797 // <realization>
+	  b parent class_ref 129413 // Comparable
+      end
+
+      classrelation 129925 // componentes (<unidirectional association>)
+	relation 129925 --->
+	  stereotype "ArrayList"
+	  a role_name "componentes" init_value "=  new ArrayList<Componente>()" public
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 129925 // componentes (<unidirectional association>)
+	  b parent class_ref 129669 // Componente
+      end
+
+      operation 131845 "ArticuloCompuesto"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 131973 "ArticuloCompuesto"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	  param in name "cantidad" explicit_type "int"
+	  param in name "costo" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132101 "agregarComponente"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132229 "tipoArticulo"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132357 "eliminarComponente"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132485 "listarComponentes"
+	public return_type class_ref 129669 // Componente
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132613 "esHoja"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 132741 "contarComponentes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132869 "getHijo"
+	public explicit_return_type "Object"
+	nparams 1
+	  param in name "posicion" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 132997 "getPosComponente"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133125 "esCompuesto"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 133253 "recalcularStock"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133381 "recalcularCosto"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 133509 "getPadre"
+	public return_type class_ref 129157 // Articulo
+	nparams 1
+	  param inout name "hijo" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 133637 "remplazarComponentes"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "listaComponetes" explicit_type "ArrayList<Componente>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 133765 "agregarComponenteCantidad"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 129925 "ArticuloSimple"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130053 // <generalisation>
+	relation 130053 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130053 // <generalisation>
+	  b parent class_ref 129157 // Articulo
+      end
+
+      operation 133893 "ArticuloSimple"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134021 "ArticuloSimple"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "nombre" explicit_type "String"
+	  param inout name "unaMedida" type class_ref 129541 // Medida
+	  param in name "cantidad" explicit_type "int"
+	  param in name "costo" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 134149 "agregarComponente"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134277 "tipoArticulo"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134405 "eliminarComponente"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134533 "listarComponentes"
+	public return_type class_ref 129669 // Componente
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134661 "esHoja"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134789 "esCompuesto"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 134917 "getPadre"
+	public return_type class_ref 129157 // Articulo
+	nparams 1
+	  param inout name "hijo" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+
+      operation 135045 "remplazarComponentes"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "listaComponetes" explicit_type "ArrayList<Componente>"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+      end
+    end
+
+    class 130053 "CriterioComparacionPorFechaEjecucionYModificacionDesc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130309 // <realization>
+	relation 130309 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130309 // <realization>
+	  b parent class_ref 130181 // Comparator
+      end
+
+      operation 136837 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130309 "CriterioComparacionPorFechaModificacionAsc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130437 // <realization>
+	relation 130437 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130437 // <realization>
+	  b parent class_ref 130181 // Comparator
+      end
+
+      operation 136965 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130437 "CriterioComparacionPorFechaModificacionDesc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130565 // <realization>
+	relation 130565 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130565 // <realization>
+	  b parent class_ref 130181 // Comparator
+      end
+
+      operation 137093 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unPresupuesto1" explicit_type "Object"
+	  param inout name "unPresupuesto2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130565 "CriterioComparacionPorNombreUsuarioAsc"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130693 // <realization>
+	relation 130693 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130693 // <realization>
+	  b parent class_ref 130181 // Comparator
+      end
+
+      operation 137221 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unUsuario1" explicit_type "Object"
+	  param inout name "unUsuario2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 130693 "Grupo"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 129797 "ADMIN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Admin\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 129925 "USUARIOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"USUARIOS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	comment "  public static final String ALTA_USUARIO = \"ALTA_USUARIO\";
+  public static final String BAJA_USUARIO = \"BAJA_USUARIO\";
+  public static final String MODI_USUARIO = \"MODI_USUARIO\";
+  public static final String LIST_USUARIO = \"LIST_USUARIO\";
+"
+      end
+
+      attribute 130053 "ARTICULOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"ARTICULOS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130181 "CAMBIO_DUENIO_PRESUPUESTO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"CAMBIO_DUENIO_PRESUPUESTO\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130309 "CONSULTAS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"CONSULTAS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130437 "PRESUPUESTOS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"PRESUPUESTOS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130565 "MEDIDAS"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"MEDIDAS\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130693 "nombre"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 130821 "permisos"
+	private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 137349 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#equals(java.lang.Object)
+"
+      end
+
+      operation 137477 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#toString()
+"
+      end
+
+      operation 137605 "Grupo"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137733 "Grupo"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "nombre" explicit_type "String"
+	  param inout name "permisos" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 137861 "getNombre"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Get's & Sets
+
+
+@return the nombre
+"
+      end
+
+      operation 137989 "setNombre"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param nombre the nombre to set
+"
+      end
+
+      operation 138117 "getPermisos"
+	public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the permisos
+"
+      end
+
+      operation 138245 "setPermisos"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "permisos" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param permisos the permisos to set
+"
+      end
+
+      operation 138373 "agregarPermiso"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "permiso" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138501 "tienePermiso"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "permiso" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 139525 // <composition>
+	relation_ref 138757 // <composition>
+      end
+    end
+
+    class 130821 "Item"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130821 // <realization>
+	relation 130821 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130821 // <realization>
+	  b parent class_ref 129285 // Cloneable
+      end
+
+      attribute 130949 "cantidadItem"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 130949 // elArticulo (<unidirectional association>)
+	relation 130949 --->
+	  a role_name "elArticulo" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 130949 // elArticulo (<unidirectional association>)
+	  b parent class_ref 129157 // Articulo
+      end
+
+      attribute 131077 "costoFinalizado"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 138629 "Item"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	  param in name "cantidadItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138757 "getElArticulo"
+	public return_type class_ref 129157 // Articulo
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 138885 "setElArticulo"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "elArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139013 "getCantidadItem"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139141 "setCantidadItem"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "cantidadItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139269 "setCostoFinalizado"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "costoFinalizado" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139397 "getCostoFinalizado"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139525 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 139653 "clone"
+	public explicit_return_type "Object"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "CloneNotSupportedException"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 135685 // <composition>
+	relation_ref 135557 // <composition>
+      end
+    end
+
+    class 130949 "ModeloArbol"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131077 // <realization>
+	relation 131077 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131077 // <realization>
+	  b parent class_ref 131077 // TreeModel
+      end
+
+      classrelation 131205 // raiz (<unidirectional association>)
+	relation 131205 --->
+	  a role_name "raiz" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131205 // raiz (<unidirectional association>)
+	  b parent class_ref 129797 // ArticuloCompuesto
+      end
+
+      operation 140677 "ModeloArbol"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "r" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140805 "eliminar"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 140933 "getChild"
+	public explicit_return_type "Object"
+	nparams 2
+	  param inout name "nodo" explicit_type "Object"
+	  param in name "posicion" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141061 "getChildCount"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "n" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141189 "getIndexOfChild"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "p" explicit_type "Object"
+	  param inout name "hijo" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141317 "getRoot"
+	public explicit_return_type "Object"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141445 "isLeaf"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "n" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141573 "removeTreeModelListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "arg0" explicit_type "TreeModelListener"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141701 "valueForPathChanged"
+	public explicit_return_type "void"
+	nparams 2
+	  param inout name "arg0" explicit_type "TreePath"
+	  param inout name "arg1" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 141829 "addTreeModelListener"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "arg0" explicit_type "TreeModelListener"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+    end
+
+    class 131205 "Presupuesto"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "
+@author Marcos
+
+"
+      classrelation 131333 // <realization>
+	relation 131333 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131333 // <realization>
+	  b parent class_ref 129413 // Comparable
+      end
+
+      attribute 131461 "EN_CONSTRUCCION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"En Construccion\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131589 "FINALIZADO"
+	class_attribute const_attribute public explicit_type "String"
+	init_value "=  \"Finalizado\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131717 "sdf"
+	class_attribute private explicit_type "SimpleDateFormat"
+	init_value "=  new SimpleDateFormat(I18n.FORMATO_FECHA)"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131845 "id"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 131973 "descripcion"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132101 "fechaEjecucion"
+	private explicit_type "Date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132229 "costo"
+	private explicit_type "double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132357 "fechaModificacion"
+	private explicit_type "Date"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 131461 // duenio (<unidirectional association>)
+	relation 131461 --->
+	  a role_name "duenio" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131461 // duenio (<unidirectional association>)
+	  b parent class_ref 131333 // Usuario
+      end
+
+      attribute 132485 "estado"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132613 "items"
+	private explicit_type "ArrayList"
+	init_value "= new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132741 "ultimoId"
+	class_attribute private explicit_type "int"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 141957 "Presupuesto"
+	public explicit_return_type ""
+	nparams 2
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "fechaEjecucion" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+ Contructores
+"
+      end
+
+      operation 142085 "Presupuesto"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "fechaEjecucion" explicit_type "Date"
+	  param inout name "duenio" type class_ref 131333 // Usuario
+	  param in name "estado" explicit_type "String"
+	  param inout name "items" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 142213 "getCosto"
+	public explicit_return_type "double"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Get's & Sets
+
+
+@return the costo
+"
+      end
+
+      operation 142341 "setCosto"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "costo2" explicit_type "double"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param costo2 the costo to set
+"
+      end
+
+      operation 142469 "getDescripcion"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the descripcion
+"
+      end
+
+      operation 142597 "setDescripcion"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "descripcion" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param descripcion the descripcion to set
+"
+      end
+
+      operation 142725 "getDuenio"
+	public return_type class_ref 131333 // Usuario
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the duenio
+"
+      end
+
+      operation 142853 "setDuenio"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "duenio" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param duenio the duenio to set
+"
+      end
+
+      operation 142981 "getEstado"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the estado
+"
+      end
+
+      operation 143109 "setEstado"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "estado" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param estado the estado to set
+"
+      end
+
+      operation 143237 "getFechaEjecucion"
+	public explicit_return_type "Date"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the fechaEjecucion
+"
+      end
+
+      operation 143365 "getFechaEjecucionString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143493 "setFechaEjecucion"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "fechaEjecucion" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param fechaEjecucion the fechaEjecucion to set
+"
+      end
+
+      operation 143621 "getFechaModificacion"
+	public explicit_return_type "Date"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the fechaModificacion
+"
+      end
+
+      operation 143749 "getFechaModificacionString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143877 "setFechaModificacion"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "fechaModificacion" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param fechaModificacion the fechaModificacion to set
+"
+      end
+
+      operation 144005 "getId"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the id
+"
+      end
+
+      operation 144133 "nuevoId"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param id the id to set
+"
+      end
+
+      operation 144261 "getItems"
+	public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the items
+"
+      end
+
+      operation 144389 "setItems"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "newItems" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144517 "agregarItem"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "object" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144645 "borrarItem"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "item" type class_ref 130821 // Item
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144773 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Overrides
+
+ (non-Javadoc)
+@see java.lang.Object#equals(java.lang.Object)
+"
+      end
+
+      operation 144901 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145029 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 135429 // <dependency>
+	relation 135429 -_->
+	  a default
+	    classrelation_ref 135429 // <dependency>
+	  b parent class_ref 129157 // Articulo
+      end
+
+      classrelation 135557 // <composition>
+	relation 135557 *---
+	  stereotype "list"
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135557 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135685 // <composition>
+      end
+
+      classrelation 138757 // <composition>
+	relation_ref 138373 // <composition>
+      end
+    end
+
+    class 131333 "Usuario"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 131589 // <realization>
+	relation 131589 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 131589 // <realization>
+	  b parent class_ref 129413 // Comparable
+      end
+
+      attribute 132869 "id"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 132997 "nombre"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133125 "apellido"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 133253 "clave"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 131717 // grupo (<unidirectional association>)
+	relation 131717 --->
+	  a role_name "grupo" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131717 // grupo (<unidirectional association>)
+	  b parent class_ref 130693 // Grupo
+      end
+
+      operation 145157 "Usuario"
+	public explicit_return_type ""
+	nparams 3
+	  param in name "id" explicit_type "String"
+	  param in name "clave" explicit_type "String"
+	  param inout name "grupo" type class_ref 130693 // Grupo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145285 "Usuario"
+	public explicit_return_type ""
+	nparams 5
+	  param in name "id" explicit_type "String"
+	  param in name "clave" explicit_type "String"
+	  param inout name "grupo" type class_ref 130693 // Grupo
+	  param in name "nombre" explicit_type "String"
+	  param in name "apellido" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}, ${t4} ${p4}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145413 "Usuario"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "id" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 145541 "getApellido"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Get's & Sets
+
+
+@return the apellido
+"
+      end
+
+      operation 145669 "setApellido"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "apellido" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param apellido the apellido to set
+"
+      end
+
+      operation 145797 "getClave"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the clave
+"
+      end
+
+      operation 145925 "setClave"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "clave" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param clave the clave to set
+"
+      end
+
+      operation 146053 "getGrupo"
+	public return_type class_ref 130693 // Grupo
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the grupo
+"
+      end
+
+      operation 146181 "setGrupo"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "grupo" type class_ref 130693 // Grupo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param grupo the grupo to set
+"
+      end
+
+      operation 146309 "getId"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the id
+"
+      end
+
+      operation 146437 "setId"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "id" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param id the id to set
+"
+      end
+
+      operation 146565 "getNombre"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@return the nombre
+"
+      end
+
+      operation 146693 "setNombre"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nombre" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@param nombre the nombre to set
+"
+      end
+
+      operation 146821 "equals"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "arg0" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+Overrides
+
+ (non-Javadoc)
+@see java.lang.Object#equals(java.lang.Object)
+"
+      end
+
+      operation 146949 "toString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " (non-Javadoc)
+@see java.lang.Object#toString()
+"
+      end
+
+      operation 147077 "compareTo"
+	public explicit_return_type "int"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147205 "compare"
+	public explicit_return_type "int"
+	nparams 2
+	  param inout name "unUsuario1" explicit_type "Object"
+	  param inout name "unUsuario2" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 139269 // <composition>
+	relation_ref 138629 // <composition>
+      end
+    end
+  end
+
+  deploymentview 129157 "dominio"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 129157 "Articulo"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_classes
+	class_ref 129157 // Articulo
+      end
+    end
+
+    artifact 129285 "ArticuloCompuesto"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.awt.Color;
+import java.util.ArrayList;
+import servicios.Fachada;
+${definition}"
+      associated_classes
+	class_ref 129797 // ArticuloCompuesto
+      end
+    end
+
+    artifact 129413 "ArticuloSimple"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_classes
+	class_ref 129925 // ArticuloSimple
+      end
+    end
+
+    artifact 129541 "Componente"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_classes
+	class_ref 129669 // Componente
+      end
+    end
+
+    artifact 129669 "CriterioComparacionPorFechaEjecucionYModificacionDesc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 130053 // CriterioComparacionPorFechaEjecucionYModificacionDesc
+      end
+    end
+
+    artifact 129797 "CriterioComparacionPorFechaModificacionAsc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 130309 // CriterioComparacionPorFechaModificacionAsc
+      end
+    end
+
+    artifact 129925 "CriterioComparacionPorFechaModificacionDesc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 130437 // CriterioComparacionPorFechaModificacionDesc
+      end
+    end
+
+    artifact 130053 "CriterioComparacionPorNombreUsuarioAsc"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.Comparator;
+${definition}"
+      associated_classes
+	class_ref 130565 // CriterioComparacionPorNombreUsuarioAsc
+      end
+    end
+
+    artifact 130181 "Grupo"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+${definition}"
+      associated_classes
+	class_ref 130693 // Grupo
+      end
+    end
+
+    artifact 130309 "Item"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 130821 // Item
+      end
+    end
+
+    artifact 130437 "Medida"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 129541 // Medida
+      end
+    end
+
+    artifact 130565 "ModeloArbol"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+${definition}"
+      associated_classes
+	class_ref 130949 // ModeloArbol
+      end
+    end
+
+    artifact 130693 "Presupuesto"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import servicios.ServiciosUsuarios;
+import utils.I18n;
+${definition}"
+      associated_classes
+	class_ref 131205 // Presupuesto
+      end
+    end
+
+    artifact 130821 "Usuario"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_classes
+	class_ref 131333 // Usuario
+      end
+    end
+  end
+end

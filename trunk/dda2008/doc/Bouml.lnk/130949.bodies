@@ -1,0 +1,59 @@
+class ModeloArbol
+!!!140677.java!!!	ModeloArbol(inout r : ArticuloCompuesto)
+
+    raiz=r;
+!!!140805.java!!!	eliminar(inout unComponente : Componente) : boolean
+
+//    Componente padre=raiz.getPadre(unComponente);
+//    if(padre!=null){
+//      return padre.eliminarComponente(unComponente);
+//    }
+    return false;
+!!!140933.java!!!	getChild(inout nodo : Object, in posicion : int) : Object
+
+    try {
+      Componente padre = (Componente)nodo;
+      return padre.getHijo(posicion);      
+    } catch (Exception e) {
+      ArticuloCompuesto padre = (ArticuloCompuesto) nodo;
+      return padre.getHijo(posicion);
+    }
+!!!141061.java!!!	getChildCount(inout n : Object) : int
+
+    try {
+      Componente nodo=(Componente)n;
+      return nodo.getCantidadDeHijos();
+       
+    } catch (Exception e) {
+      ArticuloCompuesto padre = (ArticuloCompuesto) n;
+      return padre.contarComponentes();
+    }
+!!!141189.java!!!	getIndexOfChild(inout p : Object, inout hijo : Object) : int
+
+    try {
+      Componente padre=(Componente)p;
+      return padre.getIndiceHijo((Componente)hijo);
+      
+    } catch (Exception e) {
+      ArticuloCompuesto padre = (ArticuloCompuesto) p;
+      return padre.getPosComponente((Componente) hijo);
+      
+    }
+!!!141317.java!!!	getRoot() : Object
+
+    return raiz;
+!!!141445.java!!!	isLeaf(inout n : Object) : boolean
+
+    try {
+      Componente nodo=(Componente)n;
+      return nodo.esHoja();
+      
+    } catch (Exception e) {
+      return false;
+    }
+!!!141573.java!!!	removeTreeModelListener(inout arg0 : TreeModelListener) : void
+
+!!!141701.java!!!	valueForPathChanged(inout arg0 : TreePath, inout arg1 : Object) : void
+
+!!!141829.java!!!	addTreeModelListener(inout arg0 : TreeModelListener) : void
+

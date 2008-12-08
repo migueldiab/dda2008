@@ -1,0 +1,201 @@
+class VistaCambioDuenio
+!!!179333.java!!!	VistaCambioDuenio(inout modeloPresupuesto : ModeloPresupuesto)
+
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+!!!179461.java!!!	getJDialog() : JDialog
+
+		if (jDialog == null) {
+			jDialog = new JDialog();
+			jDialog.setSize(new Dimension(576, 493));
+			jDialog.setContentPane(getJContentPane());
+		}
+		return jDialog;
+!!!179589.java!!!	getJContentPane() : JPanel
+
+		if (jContentPane == null) {
+			jLabel2 = new JLabel();
+			jLabel2.setBounds(new Rectangle(8, 237, 288, 19));
+			jLabel2.setText("Seleccione Presupuesto a cambiar dueño");
+			jLabel1 = new JLabel();
+			jLabel1.setBounds(new Rectangle(269, 4, 239, 18));
+			jLabel1.setText("Seleccione Nuevo Dueño");
+			jLabel = new JLabel();
+			jLabel.setBounds(new Rectangle(12, 5, 152, 16));
+			jLabel.setText("Seleccione Usuario");
+			jLabelStatus = new JLabel();
+			jLabelStatus.setBounds(new Rectangle(8, 424, 513, 29));
+			jLabelStatus.setText("");
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			jContentPane.add(getJScrollPaneUsuarios(), null);
+			jContentPane.add(getJScrollPanePresupuestos(), null);
+			jContentPane.add(jLabelStatus, null);
+			jContentPane.add(getJScrollPaneNuevoDuenio(), null);
+			jContentPane.add(jLabel, null);
+			jContentPane.add(jLabel1, null);
+			jContentPane.add(jLabel2, null);
+			jContentPane.add(getJButtonCambiar(), null);
+			jContentPane.add(getJButtonCerrar(), null);
+		}
+		return jContentPane;
+!!!179717.java!!!	getJScrollPaneUsuarios() : JScrollPane
+
+		if (jScrollPaneUsuarios == null) {
+			jScrollPaneUsuarios = new JScrollPane();
+			jScrollPaneUsuarios.setBounds(new Rectangle(7, 26, 254, 211));
+			jScrollPaneUsuarios.setViewportView(getJListUsuarios());
+		}
+		return jScrollPaneUsuarios;
+!!!179845.java!!!	getModeloJListPresupuestos() : DefaultListModel
+
+		if (modeloJListPresupuestos == null) {
+			modeloJListPresupuestos = new DefaultListModel();
+		}
+		return modeloJListPresupuestos;
+!!!179973.java!!!	getModeloJListUsuarios() : DefaultListModel
+
+		if (modeloJListUsuarios == null) {
+			modeloJListUsuarios = new DefaultListModel();
+		}
+		return modeloJListUsuarios;
+!!!180101.java!!!	getModeloJListNuevoDuenio() : DefaultListModel
+
+		if (modeloJListNuevoDuenio == null) {
+			modeloJListNuevoDuenio = new DefaultListModel();
+		}
+		return modeloJListNuevoDuenio;
+!!!180229.java!!!	getJListUsuarios() : JList
+
+		if (jListUsuarios == null) {
+			jListUsuarios = new JList(getModeloJListUsuarios());
+			actualizarListaUsuarios();
+			jListUsuarios
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							mostrarPresupuestos();
+							
+						}
+					});
+		}
+		return jListUsuarios;
+!!!180357.java!!!	getJScrollPanePresupuestos() : JScrollPane
+
+		if (jScrollPanePresupuestos == null) {
+			jScrollPanePresupuestos = new JScrollPane();
+			jScrollPanePresupuestos.setBounds(new Rectangle(8, 258, 293, 162));
+			jScrollPanePresupuestos.setViewportView(getJListPresupuestos());
+		}
+		return jScrollPanePresupuestos;
+!!!180485.java!!!	getJListPresupuestos() : JList
+
+		if (jListPresupuestos == null) {
+			jListPresupuestos = new JList(getModeloJListPresupuestos());
+			jListPresupuestos
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							jLabelStatus.setText("Seleccione nuevo Dueño");
+						}
+					});
+		}
+		return jListPresupuestos;
+!!!180613.java!!!	getJScrollPaneNuevoDuenio() : JScrollPane
+
+		if (jScrollPaneNuevoDuenio == null) {
+			jScrollPaneNuevoDuenio = new JScrollPane();
+			jScrollPaneNuevoDuenio.setBounds(new Rectangle(266, 27, 290, 210));
+			jScrollPaneNuevoDuenio.setViewportView(getJListNuevoDuenio());
+		}
+		return jScrollPaneNuevoDuenio;
+!!!180741.java!!!	getJListNuevoDuenio() : JList
+
+		if (jListNuevoDuenio == null) {
+			jListNuevoDuenio = new JList(getModeloJListNuevoDuenio());
+			jListNuevoDuenio
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							if(jListPresupuestos.getSelectedValue()!=null){
+								jLabelStatus.setText("Presione Cambiar Dueño");
+							}
+						}
+					});
+			actualizarListaNuevoDuenio();
+		}
+		return jListNuevoDuenio;
+!!!180869.java!!!	getJButtonCambiar() : JButton
+
+		if (jButtonCambiar == null) {
+			jButtonCambiar = new JButton();
+			jButtonCambiar.setBounds(new Rectangle(382, 283, 138, 29));
+			jButtonCambiar.setText("Cambiar Dueño");
+			jButtonCambiar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					cambiarDuenio();
+				}
+			});
+		}
+		return jButtonCambiar;
+!!!180997.java!!!	getJButtonCerrar() : JButton
+
+		if (jButtonCerrar == null) {
+			jButtonCerrar = new JButton();
+			jButtonCerrar.setBounds(new Rectangle(383, 321, 139, 29));
+			jButtonCerrar.setText("Cerrar");
+			jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					jDialog.setVisible(false);
+				}
+			});
+		}
+		return jButtonCerrar;
+!!!181125.java!!!	actualizarListaUsuarios() : void
+
+		getModeloJListUsuarios().removeAllElements();
+		ArrayList losUsuariosGestores=new ArrayList();
+		losUsuariosGestores=Fachada.listadoGestoresPorApellido();
+		for(int i=0;i<losUsuariosGestores.size();i++){
+			Usuario unGestor=(Usuario)losUsuariosGestores.get(i);
+			getModeloJListUsuarios().addElement(unGestor);
+			getModeloJListPresupuestos().removeAllElements();
+		}
+		
+!!!181253.java!!!	mostrarPresupuestos() : void
+
+		getModeloJListPresupuestos().removeAllElements();
+		ArrayList losPresupuestos=new ArrayList();
+		losPresupuestos=Fachada.obtenerPresupuestos((Usuario) jListUsuarios.getSelectedValue(), 0, 0, 0);
+		for(int i=0;i<losPresupuestos.size();i++){
+			Presupuesto unPresupuesto=(Presupuesto)losPresupuestos.get(i);
+			getModeloJListPresupuestos().addElement(unPresupuesto);
+			
+		}
+!!!181381.java!!!	actualizarListaNuevoDuenio() : void
+
+		getModeloJListNuevoDuenio().removeAllElements();
+		ArrayList losGestores=new ArrayList();
+		losGestores=Fachada.listadoGestoresPorApellido();
+		for(int i=0;i<losGestores.size();i++){
+			Usuario unGestor=(Usuario)losGestores.get(i);
+			getModeloJListNuevoDuenio().addElement(unGestor);
+		}
+!!!181509.java!!!	cambiarDuenio() : void
+
+		jLabelStatus.setText("");
+		if(jListUsuarios.getSelectedValue()!=null&&jListPresupuestos.getSelectedValue()!=null&&jListNuevoDuenio.getSelectedValue()!=null){
+			if(Fachada.cambiarDuenio((Presupuesto)jListPresupuestos.getSelectedValue(),(Usuario)jListNuevoDuenio.getSelectedValue())){;
+			mostrarPresupuestos();
+			jLabelStatus.setText("Cambiado correctamente");
+			
+
+			}
+
+		}
+		else{
+			jLabelStatus.setText("Debe seleccionar Usuario, Presupuesto y nuevo Dueño");
+		}
+!!!181637.java!!!	update(inout o : Observable, inout arg : Object) : void
+
+		if(jListUsuarios.getSelectedValue()!=null){
+			mostrarPresupuestos();
+		}
+		

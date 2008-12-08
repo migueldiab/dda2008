@@ -1,0 +1,219 @@
+class Consola
+!!!165765.java!!!	print(in s : String) : void
+
+		System.out.print(s);
+		
+!!!165893.java!!!	println(in s : String) : void
+
+		
+		System.out.println(s);
+		
+!!!166021.java!!!	print(in i : int) : void
+
+    System.out.print(i);
+    
+!!!166149.java!!!	println(in i : int) : void
+
+    System.out.println(i);
+!!!166277.java!!!	print(in d : double) : void
+
+    System.out.print(d);
+    
+!!!166405.java!!!	println(in d : double) : void
+
+    System.out.println(d);
+!!!166533.java!!!	print(in c : char) : void
+
+    System.out.print(c);
+    
+!!!166661.java!!!	println(in c : char) : void
+
+    System.out.println(c);
+!!!166789.java!!!	leer() : String
+
+		
+		try{
+			return in.readLine();
+		}catch(Exception e){return null;}
+		
+!!!166917.java!!!	leer(in s : String) : String
+
+		print(s);
+		return leer();
+!!!167045.java!!!	modificar(in s : String, in actual : String) : String
+
+    
+    try{
+      print(s + "[" + actual + "] : ");
+      String nuevo = leer();
+      if (nuevo.equals(""))
+        return actual;
+      else if (nuevo.equals(" "))
+        return "";
+      else
+        return nuevo;
+    }catch(Exception e){return null;}
+    
+!!!167173.java!!!	modificarInt(in msg : String, in actual : int) : int
+
+    int num = -1;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          num = Integer.parseInt(nuevo);
+          return num;
+        }        
+      }catch(Exception e){}
+    }
+!!!167301.java!!!	modificarFecha(in msg : String, inout actual : Date) : Date
+
+    Date fecha = null;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          fecha = I18n.sdf.parse(nuevo);
+          return fecha;
+        }        
+      }catch(Exception e){}
+    }
+!!!167429.java!!!	modificarDouble(in msg : String, in actual : double) : double
+
+    double num = 0.0;
+    while(true){
+      try{
+        print(msg + "[" + actual + "] : ");
+        String nuevo = leer();
+        if (nuevo.equals(""))
+          return actual;
+        else {
+          num = Double.parseDouble(nuevo);
+          return num;
+        }        
+      }catch(Exception e){}
+    }
+!!!167557.java!!!	leerInt() : int
+
+		return leerInt(null);
+!!!167685.java!!!	leerInt(in msg : String) : int
+
+		int num = -1;
+		boolean ok = false;
+		while(!ok){
+			try{
+				if (msg!=null){print(msg);}
+				num = Integer.parseInt(leer());
+				ok = true;
+			}catch(Exception e){}
+		}
+		return num;
+!!!167813.java!!!	leerFecha(in msg : String) : Calendar
+
+    Date d=null;
+    boolean ok=false;
+    do {
+      try {
+    	  String fechaInput=leer(msg);
+        d = I18n.sdf.parse(fechaInput);
+        
+        ok = true;
+      } catch (ParseException e) {
+        println(I18n.ERROR);
+        
+      }
+    } while (!ok);
+    Calendar calendario = new GregorianCalendar();
+    calendario.setTime(d);
+    return calendario;
+!!!167941.java!!!	printFecha(inout fecha : Date) : void
+
+    System.out.println(I18n.sdf.format(fecha));
+!!!168069.java!!!	menu(inout opciones : ArrayList) : int
+
+	  int salida=opciones.size();
+		for(int x=0;x<opciones.size();x++){
+			println( (x+1) + "-" + opciones.get(x).toString());
+		}
+		int opcion;
+		do{
+      println(I18n.SEPARADOR);
+      opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+			
+		}while(opcion < 0 || opcion > opciones.size());
+		 if (opcion!=salida){
+		return opcion;
+		 }
+		 return -1;
+!!!168197.java!!!	menu(inout opciones : ArrayList, in titulo : String, in tipo : int) : Object
+
+	  int salida=opciones.size();
+
+	  println(I18n.SEPARADOR);
+	  println("|   "+titulo);
+	  println(I18n.SEPARADOR);
+
+	  for(int x=0;x<opciones.size();x++){
+		  if(tipo==1){
+        // FIXME Broken toString... debe mostrar otras cosas
+			  println( (x+1) + "-" + ((Articulo) opciones.get(x)).toString());
+		  }
+		  else if(tipo==2){
+        // FIXME Broken toString... debe mostrar otras cosas
+        println( (x+1) + "-" + ((Item) opciones.get(x)).getElArticulo().toString());
+		  }
+		  else if(tipo==3)	{
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toString());
+		  }
+		  else if(tipo==4)	{
+			  println( (x+1) + "-" + ((Presupuesto)opciones.get(x)).toString());
+		  }
+		  else{
+			  println( (x+1) + "-" + opciones.get(x).toString());
+		  }
+	  }
+	  println((opciones.size()+1)+ " Salir ");
+	  int opcion;
+	  do{
+		  println(I18n.SEPARADOR);
+		  opcion = leerInt("|  "+I18n.SELECCIONE_OPCION+" : ") - 1;
+
+	  }while(opcion < 0 || opcion > opciones.size());
+	  if (opcion!=salida){
+		  return opciones.get(opcion);
+	  }
+	  return null;
+!!!168325.java!!!	menu(inout opciones : ArrayList, in titulo : String) : int
+
+    println(I18n.SEPARADOR);
+    println("|   "+titulo);
+    println(I18n.SEPARADOR);
+    return menu(opciones);
+!!!168453.java!!!	leerDouble(in msg : String) : double
+
+    double doble = 0;    
+    
+    boolean ok = false;
+    while(!ok){
+      try
+      {
+        doble = Double.parseDouble(leer(msg));
+        ok = true;
+      }
+      catch (NumberFormatException e)
+      {
+        e.printStackTrace();
+      }    
+    }
+    return doble;
+!!!168581.java!!!	listado(inout lista : ArrayList) : void
+    
+    for(int x=0;x<lista.size();x++){
+      println(lista.get(x).toString());
+    }

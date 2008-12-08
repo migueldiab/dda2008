@@ -1,26 +1,6 @@
-package servicios;
+class ServiciosArticulos
+!!!153605.java!!!	agregar(inout o : Object) : boolean
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-
-import utils.I18n;
-
-import dominio.Articulo;
-import dominio.ArticuloCompuesto;
-import dominio.ArticuloSimple;
-import dominio.Componente;
-import dominio.Item;
-import dominio.Medida;
-import dominio.Presupuesto;
-import dominio.Usuario;
-
-public class ServiciosArticulos 
-{
-  private static ArrayList articulos = new ArrayList();
-
-  public static boolean agregar(Object o)
-  {
     Articulo unArticulo = (Articulo) o;
     if ((unArticulo.getNombre().length()<4) ||
       (unArticulo.getMedida()==null))
@@ -33,10 +13,8 @@ public class ServiciosArticulos
     else {
       return false;
     }    
-  }
+!!!153733.java!!!	borrar(inout unArticulo : Articulo) : boolean
 
-  public static boolean borrar(Articulo unArticulo)
-  {
     if (articulos.indexOf(unArticulo)!=-1) {
       ArrayList presupuestos = null;
       presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(unArticulo);
@@ -58,19 +36,15 @@ public class ServiciosArticulos
     else {
       return false;
     }      
-  }
+!!!153861.java!!!	listado() : ArrayList
 
-  public static ArrayList listado()
-  {
     if (cantidad() == 0)
       return null;
     else
     	Collections.sort(articulos);
       return articulos;
-  }
+!!!153989.java!!!	modificar(inout original : Articulo, inout nuevo : Articulo) : boolean
 
-  public static boolean modificar(Articulo original,Articulo nuevo)
-  {
     if (( original == null))  return false;
     int posOriginal = articulos.indexOf( original);
     if (posOriginal == -1) return false;
@@ -88,15 +62,11 @@ public class ServiciosArticulos
     original.setNombre(nuevo.getNombre());
     original.remplazarComponentes(nuevo.listarComponentes());
     return true;
-  }
+!!!154117.java!!!	cantidad() : int
 
-  public static int cantidad()
-  {
     return articulos.size();
-  }
+!!!154245.java!!!	obtener(inout o : Object) : Object
 
-  public static Object obtener(Object o)
-  {
     int pos = articulos.indexOf((Articulo) o);
     if (pos!=-1) { 
       return articulos.get(pos);
@@ -104,9 +74,8 @@ public class ServiciosArticulos
     else {
       return null;
     }  
-  }
+!!!154373.java!!!	obtenerArticulosNotIn(inout unPresupuesto : Presupuesto) : ArrayList
 
-  public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
 	ArrayList losArticulos=new ArrayList();
 	boolean existe;
 	try {
@@ -138,14 +107,12 @@ public class ServiciosArticulos
 	}
 	Collections.sort(losArticulos);
 		return losArticulos;
-  }
+!!!154501.java!!!	getArticulosStockInsuficiente(inout cal : Calendar) : ArrayList<Object[]>
 
-  public static ArrayList<Object[]> getArticulosStockInsuficiente(Calendar cal) {
 	
 	  return null;
-  }
+!!!154629.java!!!	listadoCompuestos() : ArticuloCompuesto
 
-  public static ArrayList<ArticuloCompuesto> listadoCompuestos() {
     if (cantidad() == 0)
       return null;
     else {
@@ -158,9 +125,8 @@ public class ServiciosArticulos
       }
       return articulosCompuestos;
     }
-  }
+!!!154757.java!!!	listadoSimples() : ArrayList
 
-  public static ArrayList listadoSimples() {
     if (cantidad() == 0)
       return null;
     else {
@@ -173,9 +139,8 @@ public class ServiciosArticulos
       }
       return articulosCompuestos;
     }
-  }
+!!!154885.java!!!	agregarCompuesto(inout unArticuloCompuesto : ArticuloCompuesto) : boolean
 
-  public static boolean agregarCompuesto(ArticuloCompuesto unArticuloCompuesto) {
     if (unArticuloCompuesto.listarComponentes().size()<2)
       return false;
     Articulo unArticulo = (Articulo) obtener(unArticuloCompuesto);
@@ -183,9 +148,8 @@ public class ServiciosArticulos
       return modificar(unArticulo, unArticuloCompuesto);
     else
       return agregar((Articulo) unArticuloCompuesto) ;   
-  }
+!!!155013.java!!!	verificarRedundancia(inout elArticuloCompuesto : ArticuloCompuesto, inout elComponente : Componente) : boolean
 
-  public static boolean verificarRedundancia(ArticuloCompuesto elArticuloCompuesto, Componente elComponente) {
     ArticuloCompuesto unArticuloCompuesto = (ArticuloCompuesto) obtener(elComponente.getArticulo());
     if (unArticuloCompuesto!=null) {
       for (Componente unComponente : unArticuloCompuesto.listarComponentes()) {
@@ -201,25 +165,21 @@ public class ServiciosArticulos
       }
     }
     return true;
-  }
+!!!155141.java!!!	articuloTieneComponente(inout compuesto : ArticuloCompuesto, inout componente : Componente) : boolean
 
-  private static boolean articuloTieneComponente(ArticuloCompuesto compuesto, Componente componente) {
     for (Componente unComponente : compuesto.listarComponentes()) {
       if (unComponente.equals(componente)) {
         return true;
       }
     }
     return false;
-  }
+!!!155269.java!!!	StockSimplesPresupuestos(inout itemRoot : Item, inout articulosSimplesUnPresupuesto : ArrayList) : ArrayList
 
-
-  
-  	public static ArrayList StockSimplesPresupuestos(Item itemRoot, ArrayList articulosSimplesUnPresupuesto){
 		Articulo articuloRoot=itemRoot.getElArticulo();
 		for(int i=0;i<articulos.size();i++){
 			Articulo unArticulo=(Articulo)articulos.get(i);
 			if(articuloRoot.equals(unArticulo)&&unArticulo.esHoja()){
-				articulosSimplesUnPresupuesto=addArticuloToArraylistCompuestosRetorno(unArticulo, itemRoot.getCantidadItem(),articulosSimplesUnPresupuesto);
+				articulosSimplesUnPresupuesto=addArticuloToArraylistCompuestosRetorno(unArticulo, 1,articulosSimplesUnPresupuesto);
 			}
 			else if(articuloRoot.equals(unArticulo)&&unArticulo.esCompuesto()){
 				ArrayList losComponentes=unArticulo.listarComponentes();
@@ -227,30 +187,27 @@ public class ServiciosArticulos
 			}
 		}
 		return articulosSimplesUnPresupuesto;
-	}
+!!!155397.java!!!	traerComponentesDeArticulosSimplesConCantidad(inout losComponentes : ArrayList, in x : int, inout arrayLoop : ArrayList) : ArrayList
 
-  	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,ArrayList arrayLoop){
-  		boolean anteriorHoja=false;
-  		for(int i=0;i<losComponentes.size();i++){
-  			Componente componente=(Componente)losComponentes.get(i);
-  			if(componente.getArticulo().esHoja()){
-  				arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
-  				if(anteriorHoja){
-  				x=1;
+  		
+  		
+  			for(int i=0;i<losComponentes.size();i++){
+  				Componente componente=(Componente)losComponentes.get(i);
+  				if(componente.getArticulo().esHoja()){
+  					arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
+  					x=1;
   				}
-  				anteriorHoja=true;
+  				else if(componente.getArticulo().esCompuesto()){
+  					x=x*componente.getCantidad();
+  					arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
+
+  				}
+
   			}
-  			else if(componente.getArticulo().esCompuesto()){
-  				x=x*componente.getCantidad();
-  				arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
-  				x=1;
-  				anteriorHoja=false;
-  			}
-  		}
+  		
   		return arrayLoop;
-  	}
-  
-  	private static ArrayList addArticuloToArraylistCompuestosRetorno(Articulo unArticulo,int cantidad,ArrayList componentes){
+!!!155525.java!!!	addArticuloToArraylistCompuestosRetorno(inout unArticulo : Articulo, in cantidad : int, inout componentes : ArrayList) : ArrayList
+
   		boolean tiene=false;
 		for(int i=0;i<componentes.size()&&tiene==false;i++){
 			Componente componente=((Componente) componentes.get(i));
@@ -268,25 +225,3 @@ public class ServiciosArticulos
   		
   		
   		
-  	}
-
-    public static void actualizarStock(Articulo articulo, int cantidadItem) {
-      ArticuloCompuesto artCompuesto = (ArticuloCompuesto) articulo;
-      for (Componente componente : artCompuesto.listarComponentes()) {
-        if (componente.getArticulo().esCompuesto()) {
-          actualizarStock(componente.getArticulo(), cantidadItem*componente.getCantidad());
-        }
-        else {
-          Articulo elArticulo = (Articulo) obtener(componente.getArticulo());
-          int cant = elArticulo.getCantidad();
-          cant = cant - (cantidadItem*componente.getCantidad());
-          elArticulo.setCantidad(cant);
-          
-        }
-      }
-      
-    }
-  
-  
-  
-}

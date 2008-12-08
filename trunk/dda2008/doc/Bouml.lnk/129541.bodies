@@ -1,0 +1,52 @@
+class Medida
+!!!139781.java!!!	Medida(in codigo : String, in descripcion : String)
+
+    try {
+      if (codigo == "") 
+        throw new Exception("Codigo de medida no puede ser vacío");
+      if (codigo == null)
+        throw new Exception("Medida debe recibir codigo como parametro");
+      if (descripcion == "") 
+        throw new Exception("Descripcion de medida no puede ser vacío");
+      if (descripcion == null)
+        throw new Exception("Medida debe recibir descripcion como parametro");
+      
+      this.setCodigo(codigo);
+      this.setDescripcion(descripcion);
+    }
+    catch (Exception e){
+      System.out.println(e);
+    }
+!!!139909.java!!!	equals(inout arg0 : Object) : boolean
+
+    try
+    {
+      Medida medida = (Medida)arg0;
+      if (!medida.codigo.equals(this.codigo)) {
+        return false;
+      }
+      if (!medida.descripcion.equals(this.descripcion)) {
+        return false;
+      }
+    }
+    catch (RuntimeException e)
+    {
+      return false;
+    }
+    return true;
+!!!140037.java!!!	toString() : String
+
+    // TODO Auto-generated method stub
+    return this.descripcion;
+!!!140165.java!!!	getCodigo() : String
+
+    return codigo;
+!!!140293.java!!!	setCodigo(in codigo : String) : void
+
+    this.codigo = codigo;
+!!!140421.java!!!	getDescripcion() : String
+
+    return descripcion;
+!!!140549.java!!!	setDescripcion(in descripcion : String) : void
+
+    this.descripcion = descripcion;
