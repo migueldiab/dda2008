@@ -351,7 +351,7 @@ public class VistaPrincipal {
 			  monitorStockMenuItem.addActionListener(new ActionListener() {   
 				  public void actionPerformed(java.awt.event.ActionEvent e) {    
 					  if (dMonitorStock == null) { 
-						  VistaMonitorStock guiMonitorStock = new VistaMonitorStock();
+						  VistaMonitorStock guiMonitorStock = new VistaMonitorStock(modeloPresupuesto);
 						  dMonitorStock = guiMonitorStock.getJDialog();
 						  dMonitorStock.pack();
 						  Point loc = getJFrame().getLocation();
