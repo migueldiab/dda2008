@@ -219,7 +219,7 @@ public class ServiciosArticulos
 		for(int i=0;i<articulos.size();i++){
 			Articulo unArticulo=(Articulo)articulos.get(i);
 			if(articuloRoot.equals(unArticulo)&&unArticulo.esHoja()){
-				articulosSimplesUnPresupuesto=addArticuloToArraylistCompuestosRetorno(unArticulo, 1,articulosSimplesUnPresupuesto);
+				articulosSimplesUnPresupuesto=addArticuloToArraylistCompuestosRetorno(unArticulo, itemRoot.getCantidadItem(),articulosSimplesUnPresupuesto);
 			}
 			else if(articuloRoot.equals(unArticulo)&&unArticulo.esCompuesto()){
 				ArrayList losComponentes=unArticulo.listarComponentes();
@@ -230,22 +230,23 @@ public class ServiciosArticulos
 	}
 
   	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,ArrayList arrayLoop){
-  		
-  		
-  			for(int i=0;i<losComponentes.size();i++){
-  				Componente componente=(Componente)losComponentes.get(i);
-  				if(componente.getArticulo().esHoja()){
-  					arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
-  					x=1;
+  		boolean anteriorHoja=false;
+  		for(int i=0;i<losComponentes.size();i++){
+  			Componente componente=(Componente)losComponentes.get(i);
+  			if(componente.getArticulo().esHoja()){
+  				arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
+  				if(anteriorHoja){
+  				x=1;
   				}
-  				else if(componente.getArticulo().esCompuesto()){
-  					x=x*componente.getCantidad();
-  					arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
-
-  				}
-
+  				anteriorHoja=true;
   			}
-  		
+  			else if(componente.getArticulo().esCompuesto()){
+  				x=x*componente.getCantidad();
+  				arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
+  				x=1;
+  				anteriorHoja=false;
+  			}
+  		}
   		return arrayLoop;
   	}
   

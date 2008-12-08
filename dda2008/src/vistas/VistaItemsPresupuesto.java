@@ -528,6 +528,10 @@ public class VistaItemsPresupuesto  {
 
 	}
 
+	/**
+	 * @param o
+	 * @param Si es Item, 1, y si es Articulo, 0
+	 */
 	public static void setDetallesItem(Object o, int i){
 		if(i==1){
 			Item item=(Item) o;
