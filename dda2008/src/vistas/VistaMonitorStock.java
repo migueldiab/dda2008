@@ -198,7 +198,7 @@ public class VistaMonitorStock {
 	private JTextField getJTextDia() {
 		if (jTextDia == null) {
 			jTextDia = new JTextField();
-			jTextDia.setBounds(new Rectangle(183, 73, 28, 22));
+			jTextDia.setBounds(new Rectangle(183, 73, 36, 22));
 			jTextDia.addCaretListener(new javax.swing.event.CaretListener() {
 				public void caretUpdate(javax.swing.event.CaretEvent e) {
 					mostrarStockInsuficiente();
@@ -216,7 +216,7 @@ public class VistaMonitorStock {
 	private JTextField getJTextMes() {
 		if (jTextMes == null) {
 			jTextMes = new JTextField();
-			jTextMes.setBounds(new Rectangle(223, 73, 31, 21));
+			jTextMes.setBounds(new Rectangle(223, 73, 41, 21));
 			jTextMes.addCaretListener(new javax.swing.event.CaretListener() {
 				public void caretUpdate(javax.swing.event.CaretEvent e) {
 					mostrarStockInsuficiente();
@@ -234,7 +234,7 @@ public class VistaMonitorStock {
 	private JTextField getJTextAnio() {
 		if (jTextAnio == null) {
 			jTextAnio = new JTextField();
-			jTextAnio.setBounds(new Rectangle(268, 73, 31, 21));
+			jTextAnio.setBounds(new Rectangle(268, 73, 52, 21));
 			jTextAnio.addCaretListener(new javax.swing.event.CaretListener() {
 				public void caretUpdate(javax.swing.event.CaretEvent e) {
 					mostrarStockInsuficiente();
