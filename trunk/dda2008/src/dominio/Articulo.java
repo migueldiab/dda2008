@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Articulo implements Cloneable, Comparable
 {
+  public static final int MIN_LARGO_NOMBRE = 4;
   private String nombre;
   private int cantidad;
   private Medida medida;

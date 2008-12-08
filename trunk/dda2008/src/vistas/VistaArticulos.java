@@ -269,30 +269,41 @@ public class VistaArticulos extends JFrame {
   }
   private void guardarArticulo() {
     try {
-      Articulo unArticulo = new ArticuloSimple(tNombre.getText(), (Medida) cMedida.getSelectedItem());
-      unArticulo = Fachada.obtenerArticulo(unArticulo);
-      if ((unArticulo==null) || (JOptionPane.showConfirmDialog(
+      Articulo unArticulo = new ArticuloSimple(tNombre.getText(),(Medida) cMedida.getSelectedItem(), Integer.parseInt(tCantidad.getText()), Double.parseDouble(tCosto.getText()));
+      Articulo tempArticulo = Fachada.obtenerArticulo(unArticulo);
+      if ((tempArticulo==null) || (JOptionPane.showConfirmDialog(
           null,"Desea guardar los cambios al articulo "+tNombre.getText()+"?",
           "Confirma guardar?",
           JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         )
       {
-        if (tNombre.getText()!="" &&
+        if (tNombre.getText().length()>Articulo.MIN_LARGO_NOMBRE &&
             cMedida.getSelectedIndex()!=-1
           )    
         {      
-          if (unArticulo==null) unArticulo = new ArticuloSimple(tNombre.getText(),(Medida) cMedida.getSelectedItem());
-          unArticulo.setCantidad(Integer.parseInt(tCantidad.getText()));
-          unArticulo.setCosto(Double.parseDouble(tCosto.getText()));
-          if (Fachada.agregarArticulo(unArticulo)) {
-            lInfo.setForeground(new Color(65, 190, 79));
-            lInfo.setText("Articulo " + tNombre.getText() + " guardado");
-            cargarListas();
-            limpiarCampos();
+          if (tempArticulo==null) {
+            if (Fachada.agregarArticulo(unArticulo)) {
+              lInfo.setForeground(new Color(65, 190, 79));
+              lInfo.setText("Articulo " + tNombre.getText() + " guardado");
+              cargarListas();
+              limpiarCampos();
+            }
+            else {
+              lInfo.setForeground(new Color(190, 65, 79));
+              lInfo.setText("No se pudo agregar el medio.");           
+            }
           }
           else {
-            lInfo.setForeground(new Color(190, 65, 79));
-            lInfo.setText("No se pudo eliminar el medio.");           
+            if (Fachada.modificarArticulo(tempArticulo, unArticulo)) {
+              lInfo.setForeground(new Color(65, 190, 79));
+              lInfo.setText("Articulo " + tNombre.getText() + " modificado");
+              cargarListas();
+              limpiarCampos();
+            }
+            else {
+              lInfo.setForeground(new Color(190, 65, 79));
+              lInfo.setText("No se pudo modificar el medio.");           
+            }
           }
         }
         else {
@@ -356,6 +367,7 @@ public class VistaArticulos extends JFrame {
     tNombre.setText("");
     tCantidad.setText("");
     cMedida.removeAllItems();
+    tCosto.setText("");
     for (Object g : Fachada.listaMedidas()) {
       cMedida.addItem((Medida) g);        
     }
