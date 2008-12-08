@@ -111,11 +111,11 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
 
 
   public boolean recalcularStock() {
+    ArticuloCompuesto tempCompuesto = new ArticuloCompuesto("ArtTemporal", new Medida("--","MedidaTemporal"));
+    
     int cantidadMax = 99999;
-    for (Componente unComponente : this.listarComponentes()) {
-      if (unComponente.getArticulo().esCompuesto()) {
-        ((ArticuloCompuesto) unComponente.getArticulo()).recalcularStock();
-      }
+    tempCompuesto = cargarComponentes(tempCompuesto, this, 1);
+    for (Componente unComponente : tempCompuesto.listarComponentes()) {
       int temp = unComponente.getArticulo().getCantidad() / unComponente.getCantidad();
       if (cantidadMax > temp) {
         cantidadMax = temp;
@@ -125,6 +125,50 @@ public class ArticuloCompuesto  extends Articulo implements Cloneable, Comparabl
     return true;
   }
   
+  private ArticuloCompuesto cargarComponentes(ArticuloCompuesto tempCompuesto, ArticuloCompuesto compuesto, int cantidad) {
+    
+    for (Componente unComponente : compuesto.listarComponentes()) {
+      if (unComponente.getArticulo().esCompuesto()) {
+        tempCompuesto = cargarComponentes(tempCompuesto, (ArticuloCompuesto) unComponente.getArticulo(), unComponente.getCantidad());
+      }
+      else {
+        tempCompuesto.componenteSumarCantidad(unComponente, cantidad);
+      }
+    }
+    return tempCompuesto;
+  }
+
+  private boolean componenteSumarCantidad(Componente unComponente, int cantidad) {
+    try {
+      // No puedo agregar un componente a si mismo
+      if (unComponente.getArticulo().equals(this)) {
+        return false;
+      }
+      if (unComponente.getArticulo().esCompuesto()) {
+        if (!Fachada.verificarRedundanciaArticulosCompuestos(this, unComponente))
+            return false;
+      }
+      int pos = getPosComponente(unComponente);
+      if (pos!=-1) {
+        if (unComponente.getCantidad()>0) {
+          int cant = (unComponente.getCantidad()*cantidad)+this.componentes.get(pos).getCantidad();
+          this.componentes.get(pos).setCantidad(cant);
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        this.componentes.add(new Componente(unComponente.getArticulo(), unComponente.getCantidad()*cantidad));  
+      }
+      return true;
+      
+    } catch (Exception e) {
+      return false;
+    }    
+    
+  }
+
   public boolean recalcularCosto() {
     double costo = 0;
     for (Componente unComponente : this.listarComponentes()) {
