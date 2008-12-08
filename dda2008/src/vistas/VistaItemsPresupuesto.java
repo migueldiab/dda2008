@@ -78,13 +78,18 @@ public class VistaItemsPresupuesto  {
 	private static Presupuesto presupuestoTemporal=null;
 	private static VistaItemsPresupuesto instancia=null;  //  @jve:decl-index=0:
 	private JButton jButtonCantidad = null;
+	private JLabel jLabelStatus = null;
+	private JButton jButtonSi = null;
+	private JButton jButtonNo = null;
+	private static boolean changed=false;
 	
 	public static VistaItemsPresupuesto getInstancia(){
 		if(instancia==null){
 			instancia=new VistaItemsPresupuesto();
-			JDialog dialogo=instancia.getJDialogItems();
-			dialogo.pack();
-			dialogo.setBounds(0,0,530,358);
+			instancia.getJDialogItems().pack();
+			instancia.getJDialogItems().setBounds(0,0,534,401);
+			
+			
 		}
 		return instancia;
 	}
@@ -119,6 +124,9 @@ public class VistaItemsPresupuesto  {
 	 */
 	private JPanel getJContentPaneItems() {
 		if (jContentPaneItems == null) {
+			jLabelStatus = new JLabel();
+			jLabelStatus.setBounds(new Rectangle(233, 321, 288, 16));
+			jLabelStatus.setText("");
 			jLabel41 = new JLabel();
 			jLabel41.setBounds(new Rectangle(7, 343, 53, 15));
 			jLabel41.setText("Dueño");
@@ -153,22 +161,22 @@ public class VistaItemsPresupuesto  {
 			jLabel13.setVerticalAlignment(SwingConstants.CENTER);
 			jLabel13.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
 			jLabel12 = new JLabel();
-			jLabel12.setBounds(new Rectangle(248, 296, 64, 21));
+			jLabel12.setBounds(new Rectangle(246, 299, 64, 21));
 			jLabel12.setText("Stock");
 			jLabel11 = new JLabel();
-			jLabel11.setBounds(new Rectangle(247, 273, 64, 18));
+			jLabel11.setBounds(new Rectangle(246, 277, 64, 18));
 			jLabel11.setText("Costo");
 			jLabel10 = new JLabel();
-			jLabel10.setBounds(new Rectangle(248, 247, 64, 22));
+			jLabel10.setBounds(new Rectangle(245, 250, 64, 22));
 			jLabel10.setText("Medida");
 			jLabel9 = new JLabel();
-			jLabel9.setBounds(new Rectangle(248, 223, 64, 20));
+			jLabel9.setBounds(new Rectangle(248, 224, 64, 20));
 			jLabel9.setText("Nombre");
 			jLabel8 = new JLabel();
-			jLabel8.setBounds(new Rectangle(323, 2, 175, 17));
+			jLabel8.setBounds(new Rectangle(322, 7, 175, 17));
 			jLabel8.setText("Items Disponibles");
 			jLabel7 = new JLabel();
-			jLabel7.setBounds(new Rectangle(12, 4, 172, 15));
+			jLabel7.setBounds(new Rectangle(15, 6, 172, 15));
 			jLabel7.setText("Items Presupuesto");
 			jContentPaneItems = new JPanel();
 			jContentPaneItems.setLayout(null);
@@ -210,6 +218,9 @@ public class VistaItemsPresupuesto  {
 			jContentPaneItems.add(jLabel41, null);
 			jContentPaneItems.add(getJTextDuenio(), null);
 			jContentPaneItems.add(getJButtonCantidad(), null);
+			jContentPaneItems.add(jLabelStatus, null);
+			jContentPaneItems.add(getJButtonSi(), null);
+			jContentPaneItems.add(getJButtonNo(), null);
 		}
 		return jContentPaneItems;
 	}
@@ -222,7 +233,7 @@ public class VistaItemsPresupuesto  {
 	private JButton getJButtonFromAvailabletoItem() {
 		if (jButtonFromAvailabletoItem == null) {
 			jButtonFromAvailabletoItem = new JButton();
-			jButtonFromAvailabletoItem.setBounds(new Rectangle(217, 62, 68, 20));
+			jButtonFromAvailabletoItem.setBounds(new Rectangle(218, 64, 68, 20));
 			jButtonFromAvailabletoItem.setText("<=");
 			jButtonFromAvailabletoItem
 			.addActionListener(new java.awt.event.ActionListener() {
@@ -256,7 +267,7 @@ public class VistaItemsPresupuesto  {
 	private JButton getJButtonFromItemToAvailable() {
 		if (jButtonFromItemToAvailable == null) {
 			jButtonFromItemToAvailable = new JButton();
-			jButtonFromItemToAvailable.setBounds(new Rectangle(217, 36, 69, 21));
+			jButtonFromItemToAvailable.setBounds(new Rectangle(216, 39, 69, 21));
 			jButtonFromItemToAvailable.setText("=>");
 			jButtonFromItemToAvailable
 			.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +298,7 @@ public class VistaItemsPresupuesto  {
 	private JScrollPane getJScrollPaneItemsDelPresupuesto() {
 		if (jScrollPaneItemsDelPresupuesto == null) {
 			jScrollPaneItemsDelPresupuesto = new JScrollPane();
-			jScrollPaneItemsDelPresupuesto.setBounds(new Rectangle(13, 28, 170, 160));
+			jScrollPaneItemsDelPresupuesto.setBounds(new Rectangle(13, 29, 170, 160));
 			jScrollPaneItemsDelPresupuesto.setViewportView(getJListItemsDelPresupuesto());
 		}
 		return jScrollPaneItemsDelPresupuesto;
@@ -321,6 +332,15 @@ public class VistaItemsPresupuesto  {
 					setDetallesItem(jListItemsDelPresupuesto.getSelectedValue(),1);
 				}
 			});
+			jListItemsDelPresupuesto
+					.addContainerListener(new java.awt.event.ContainerAdapter() {   
+				public void componentRemoved(java.awt.event.ContainerEvent e) {    
+					changed=true;
+				}
+						public void componentAdded(java.awt.event.ContainerEvent e) {
+							changed=true;
+						}
+					});
 		}
 		return jListItemsDelPresupuesto;
 	}  
@@ -335,7 +355,7 @@ public class VistaItemsPresupuesto  {
 	private JScrollPane getJScrollPaneItemsAvailable() {
 		if (jScrollPaneItemsAvailable == null) {
 			jScrollPaneItemsAvailable = new JScrollPane();
-			jScrollPaneItemsAvailable.setBounds(new Rectangle(322, 28, 187, 163));
+			jScrollPaneItemsAvailable.setBounds(new Rectangle(321, 28, 187, 163));
 			jScrollPaneItemsAvailable.setViewportView(getJListItemsAvailable());
 		}
 		return jScrollPaneItemsAvailable;
@@ -356,6 +376,7 @@ public class VistaItemsPresupuesto  {
 						.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
 							public void valueChanged(javax.swing.event.ListSelectionEvent e) {
 								setDetallesItem(jListItemsAvailable.getSelectedValue(),0);
+								
 							}
 						});
 				for (int i=0;i<colItemsAvailable.size();i++){
@@ -379,7 +400,7 @@ public class VistaItemsPresupuesto  {
 	private JTextField getJTextNombre() {
 		if (jTextNombre == null) {
 			jTextNombre = new JTextField();
-			jTextNombre.setBounds(new Rectangle(332, 223, 81, 19));
+			jTextNombre.setBounds(new Rectangle(332, 224, 81, 19));
 			jTextNombre.setEditable(false);
 		}
 		return jTextNombre;
@@ -407,7 +428,7 @@ public class VistaItemsPresupuesto  {
 	private JTextField getJTextCostoItem() {
 		if (jTextCostoItem == null) {
 			jTextCostoItem = new JTextField();
-			jTextCostoItem.setBounds(new Rectangle(333, 272, 79, 19));
+			jTextCostoItem.setBounds(new Rectangle(335, 274, 79, 19));
 			jTextCostoItem.setEditable(false);
 		}
 		return jTextCostoItem;
@@ -421,7 +442,7 @@ public class VistaItemsPresupuesto  {
 	private JTextField getJTextStock() {
 		if (jTextStock == null) {
 			jTextStock = new JTextField();
-			jTextStock.setBounds(new Rectangle(332, 297, 80, 20));
+			jTextStock.setBounds(new Rectangle(332, 296, 80, 20));
 			jTextStock.setEditable(false);
 		}
 		return jTextStock;
@@ -452,9 +473,14 @@ public class VistaItemsPresupuesto  {
 			jButtonVolverItems.setText("Volver");
 			jButtonVolverItems.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					VistaPrincipal.dPresupuesto.setVisible(true);
-					getJDialogItems().setVisible(false);
-					VistaPresupuestos.updateCosto();
+					if(checkeoSiHuboModificacion()){
+						VistaPrincipal.dPresupuesto.setVisible(true);
+						getJDialogItems().setVisible(false);
+							
+					}
+					else{
+						preguntarGuardar();
+					}
 				}
 			});
 		}
@@ -522,8 +548,9 @@ public class VistaItemsPresupuesto  {
 				}
 				
 			}	
+			
 		}
-
+		changed=false;
 	}
 
 	/**
@@ -768,4 +795,126 @@ public class VistaItemsPresupuesto  {
 			}
 		}
 	}
+
+
+	/**
+	 * This method initializes jButtonSi	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButtonSi() {
+		if (jButtonSi == null) {
+			jButtonSi = new JButton();
+			jButtonSi.setBounds(new Rectangle(251, 340, 81, 20));
+			jButtonSi.setText("Si");
+			jButtonSi.setVisible(false);
+			jButtonSi.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					VistaPresupuestos.guardarPresupuesto();
+					VistaPresupuestos.updateCosto();
+					jLabelStatus.setText("Guardado");
+					jButtonSi.setVisible(false);
+					jButtonNo.setVisible(false);
+					jListItemsDelPresupuesto.setEnabled(true);
+					VistaPrincipal.dPresupuesto.setVisible(true);
+					getJDialogItems().setVisible(false);
+				}
+			});
+		}
+		return jButtonSi;
+	}
+
+
+	/**
+	 * This method initializes jButtonNo	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getJButtonNo() {
+		if (jButtonNo == null) {
+			jButtonNo = new JButton();
+			jButtonNo.setBounds(new Rectangle(357, 341, 76, 20));
+			jButtonNo.setText("No");
+			jButtonNo.setVisible(false);
+			jButtonNo.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					VistaPrincipal.dPresupuesto.setVisible(true);
+					getJDialogItems().setVisible(false);
+					VistaPresupuestos.updateCosto();
+					jLabelStatus.setText("");
+					jButtonSi.setVisible(false);
+					jButtonNo.setVisible(false);
+					jListItemsDelPresupuesto.setEnabled(true);
+					
+				}
+			});
+		}
+		return jButtonNo;
+	}
+	
+	
+	private boolean checkeoSiHuboModificacion(){
+		return changed;
+	}
+	
+	/*private boolean checkeoSiHuboModificacion(){
+		Presupuesto presupuesto=(Presupuesto)VistaPresupuestos.presupuestoSeleccionado;
+
+		ArrayList original=presupuesto.getItems();
+		ArrayList current=new ArrayList();
+		boolean removed=true;
+		boolean added=true;
+
+		for(int i=0;i<modeloJList.size();i++){
+			current.add(modeloJList.get(i));
+		}
+		if(original.equals(current)){
+			return false;
+		}
+		for(int j=0;j<original.size();j++){
+			removed=true;
+			Item itemOrig=(Item)original.get(j);
+			for(int k=0;k<current.size()&&removed==true;k++){
+				Item itemCurr=(Item)current.get(k);
+				if(itemOrig.getElArticulo().equals(itemCurr.getElArticulo())){
+					if(itemOrig.getCantidadItem()==itemCurr.getCantidadItem()){
+						removed=false;
+					}
+				}
+
+			}
+			if(removed==true){
+				return true;
+			}
+		}
+		for(int u=0;u<current.size();u++){
+			added=true;
+			Item itemOrig=(Item)current.get(u);
+			for(int q=0;q<original.size()&&added==false;q++){
+				Item itemCurr=(Item)original.get(q);
+				if(itemOrig.getElArticulo().equals(itemCurr.getElArticulo())){
+					if(itemOrig.getCantidadItem()==itemCurr.getCantidadItem()){
+						added=false;
+					}
+				}
+
+			}
+		if(added==true){
+			return true;
+		}
+		
+		}
+
+		return false;//no hubo modificacion
+	}
+*/
+	private void preguntarGuardar(){
+		jButtonSi.setVisible(true);
+		jButtonNo.setVisible(true);
+		jLabelStatus.setText("Desea guardar los Cambios?");
+		jListItemsDelPresupuesto.setEnabled(false);
+		
+		
+	}
+	
 }
