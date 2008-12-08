@@ -270,21 +270,27 @@ public class ServiciosArticulos
   		
   	}
 
-    public static void actualizarStock(Articulo articulo, int cantidadItem) {
+    public static boolean actualizarStock(Articulo articulo, int cantidadItem) {
       ArticuloCompuesto artCompuesto = (ArticuloCompuesto) articulo;
       for (Componente componente : artCompuesto.listarComponentes()) {
         if (componente.getArticulo().esCompuesto()) {
-          actualizarStock(componente.getArticulo(), cantidadItem*componente.getCantidad());
+          if (!actualizarStock(componente.getArticulo(), cantidadItem*componente.getCantidad())) {
+            return false;
+          }
         }
         else {
           Articulo elArticulo = (Articulo) obtener(componente.getArticulo());
           int cant = elArticulo.getCantidad();
-          cant = cant - (cantidadItem*componente.getCantidad());
-          elArticulo.setCantidad(cant);
-          
-        }
+          if (cant<0) {
+            return false;
+          }
+          else {
+            cant = cant - (cantidadItem*componente.getCantidad());
+            elArticulo.setCantidad(cant);
+          }          
+        }        
       }
-      
+      return true;
     }
   
   
