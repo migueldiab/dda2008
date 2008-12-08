@@ -3,6 +3,7 @@ package vistas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -24,6 +25,7 @@ import dominio.Articulo;
 import dominio.ArticuloSimple;
 import dominio.Grupo;
 import dominio.Medida;
+import dominio.Presupuesto;
 import dominio.Usuario;
 
 public class VistaArticulos extends JFrame {
@@ -295,16 +297,45 @@ public class VistaArticulos extends JFrame {
             }
           }
           else {
-            if (Fachada.modificarArticulo(shadowArticulo, unArticulo)) {
-              lInfo.setForeground(new Color(65, 190, 79));
-              lInfo.setText("Articulo " + tNombre.getText() + " modificado");
-              cargarListas();
-              limpiarCampos();
+            String mensaje = "";
+            if (shadowArticulo.getCosto()!=unArticulo.getCosto()) {
+              ArrayList listado = Fachada.obtenerPresupuestoPorArticuloEstadoConFecha(shadowArticulo, Presupuesto.EN_CONSTRUCCION);
+              if (listado.size()>0) {
+                for (Object presupuesto : listado) {
+                  mensaje = ((Presupuesto) presupuesto).toString() + "\n";
+                }
+              }
+            }
+            if ((!mensaje.equals("")) &&
+                (JOptionPane.showConfirmDialog(null,mensaje,
+                "Articulo involucrado en presupuesto, confirma cambios?",
+                JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+              )
+            {
+              if (Fachada.modificarArticulo(shadowArticulo, unArticulo)) {
+                lInfo.setForeground(new Color(65, 190, 79));
+                lInfo.setText("Articulo " + tNombre.getText() + " modificado");
+                cargarListas();
+                limpiarCampos();
+              }
+              else {
+                lInfo.setForeground(new Color(190, 65, 79));
+                lInfo.setText("No se pudo modificar el medio.");           
+              }              
             }
             else {
-              lInfo.setForeground(new Color(190, 65, 79));
-              lInfo.setText("No se pudo modificar el medio.");           
+              if (Fachada.modificarArticulo(shadowArticulo, unArticulo)) {
+                lInfo.setForeground(new Color(65, 190, 79));
+                lInfo.setText("Articulo " + tNombre.getText() + " modificado");
+                cargarListas();
+                limpiarCampos();
+              }
+              else {
+                lInfo.setForeground(new Color(190, 65, 79));
+                lInfo.setText("No se pudo modificar el medio.");           
+              }                            
             }
+            
           }
         }
         else {
