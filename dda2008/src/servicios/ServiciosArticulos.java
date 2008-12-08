@@ -15,6 +15,10 @@ import dominio.Medida;
 import dominio.Presupuesto;
 import dominio.Usuario;
 
+/**
+ * @author Marcos
+ *
+ */
 public class ServiciosArticulos 
 {
   private static ArrayList articulos = new ArrayList();
@@ -226,31 +230,35 @@ public class ServiciosArticulos
 			}
 			else if(articuloRoot.equals(unArticulo)&&unArticulo.esCompuesto()){
 				ArrayList losComponentes=unArticulo.listarComponentes();
-				articulosSimplesUnPresupuesto=traerComponentesDeArticulosSimplesConCantidad(losComponentes,1,articulosSimplesUnPresupuesto);
+				articulosSimplesUnPresupuesto=traerComponentesDeArticulosSimplesConCantidad(losComponentes,1,unArticulo.getCantidad(),articulosSimplesUnPresupuesto);
 			}
 		}
 		return articulosSimplesUnPresupuesto;
 	}
 
-  	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,ArrayList arrayLoop){
+  	/**
+  	 * @param losComponentes
+  	 * @param x	Cantidad Componente
+  	 * @param y Cantidad Item Root
+  	 * @param arrayLoop
+  	 * @return
+  	 */
+  	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,int y,ArrayList arrayLoop){
   		boolean anteriorHoja=false;
   		for(int i=0;i<losComponentes.size();i++){
   			Componente componente=(Componente)losComponentes.get(i);
   			if(componente.getArticulo().esHoja()){
-  				arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*componente.getCantidad(),arrayLoop);
-  				if(anteriorHoja){
-  				x=1;
-  				}
-  				anteriorHoja=true;
-  			}
+  				arrayLoop=addArticuloToArraylistCompuestosRetorno(componente.getArticulo(), x*y*componente.getCantidad(),arrayLoop);
+  			}	
   			else if(componente.getArticulo().esCompuesto()){
   				x=x*componente.getCantidad();
-  				arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,arrayLoop);
+  				arrayLoop=traerComponentesDeArticulosSimplesConCantidad(componente.getArticulo().listarComponentes(),x,y,arrayLoop);
   				x=1;
-  				anteriorHoja=false;
   			}
   		}
+  		
   		return arrayLoop;
+  		
   	}
   
   	private static ArrayList addArticuloToArraylistCompuestosRetorno(Articulo unArticulo,int cantidad,ArrayList componentes){

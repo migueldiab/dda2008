@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Observable;
+import java.util.Observer;
 import java.lang.String;
 
 import javax.swing.DefaultListModel;
@@ -35,7 +37,7 @@ import dominio.Item;
 import dominio.ModeloArbol;
 import dominio.Presupuesto;
 
-public class VistaMonitorStock {
+public class VistaMonitorStock implements Observer{
 
 	private JDialog jDialog = null;  //  @jve:decl-index=0:visual-constraint="4,-2"
 	private JPanel jContentPane = null;
@@ -50,6 +52,8 @@ public class VistaMonitorStock {
 	private JLabel jlblAnio = null;
 	private JList jList = null;
 	private JTree treeComponentes;
+	private ModeloPresupuesto modeloPresupuesto;
+
 	//private ModeloArbol arbolComponentes = null;
 	private DefaultListModel modeloJList = null;
 	private ArticuloCompuesto raiz = null;  //  @jve:decl-index=0:visual-constraint="981,11"
@@ -102,6 +106,13 @@ public class VistaMonitorStock {
 		ArrayList losArticulosSimples=Fachada.getArticulosSimplesDePresupuestosAntesDe(fecha);
 	}
 
+	public VistaMonitorStock(ModeloPresupuesto modeloPresupuesto) {
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+	}
+
+	
+	
 	/**
 	 * This method initializes jDialog	
 	 * 	
@@ -301,6 +312,12 @@ public class VistaMonitorStock {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		mostrarStockInsuficiente();
+		
 	}
 
 
