@@ -212,6 +212,10 @@ public static boolean verificarRedundanciaArticulosCompuestos(ArticuloCompuesto 
 public static ArrayList StockSimplesPresupuestos(Item item, ArrayList articulosSimplesUnPresupuesto) {
 	return ServiciosArticulos.StockSimplesPresupuestos(item,articulosSimplesUnPresupuesto);
 }
+public static void actualizarDatosComponentes() {
+ ServiciosArticulos.actualizarDatosComponentes();
+  
+}
 	
 //}
 
