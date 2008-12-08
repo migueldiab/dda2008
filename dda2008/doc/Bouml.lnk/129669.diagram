@@ -1,64 +1,136 @@
 format 62
 
 classinstance 128005 class_ref 129157 // Articulo
-  name ""   xyz 658 4 2000 life_line_z 2000
+  name ""   xyz 682 4 2000 life_line_z 2000
 classinstance 128133 class_ref 131589 // ServiciosArticulos
-  name ""   xyz 199 4 2000 life_line_z 2000
+  name ""   xyz 241 4 2000 life_line_z 2000
 classinstance 128261 class_ref 134405 // VistaArticulos
-  name ""   xyz 21 4 2000 life_line_z 2000
+  name ""   xyz 1 4 2000 life_line_z 2000
 textcanvas 129029 "cargarArticulo()
 "
   xyzwh 74 75 2015 95 26
-textcanvas 129925 "eliminarArticulo()"
-  xyzwh 72 168 2020 93 15
-textcanvas 130053 "borrar()"
-  xyzwh 266 156 2015 41 15
+textcanvas 130053 "borrar()ServiciosArticulos.borrar((Articulo) u)"
+  xyzwh 309 218 2015 256 19
 classinstance 130181 class_ref 131973 // ServiciosPresupuestos
-  name ""   xyz 337 4 2000 life_line_z 2000
+  name ""   xyz 370 4 2000 life_line_z 2000
 textcanvas 130565 "obtenerPresupuestosPorArticulo()"
-  xyzwh 419 183 2000 187 15
+  xyzwh 460 246 2000 187 15
 textcanvas 131333 "listadoCompuestos()"
-  xyzwh 271 240 2000 117 15
+  xyzwh 312 293 2000 117 15
+classinstance 131461 class_ref 129797 // ArticuloCompuesto
+  name ""   xyz 536 4 2000 life_line_z 2000
+textcanvas 131845 "unArticulo.equals(unComponente.getArticulo())"
+  xyzwh 308 329 2020 257 15
+textcanvas 132229 "error"
+  xyzwh 59 365 2020 37 21
+textcanvas 133125 "articulos.remove(unArticulo);"
+  xyzwh 311 445 2030 156 15
+textcanvas 133509 "exito"
+  xyzwh 59 476 2020 71 30
+textcanvas 133765 "error"
+  xyzwh 61 255 2015 40 25
+classinstance 133893 class_ref 131461 // Fachada
+  name ""   xyz 149 4 2000 life_line_z 2000
+textcanvas 134533 "Fachada.borrarArticuloCompuesto(u)"
+  xyzwh 191 187 2025 204 15
+textcanvas 135173 "eliminarArticuloCompuesto(ArticuloCompuesto u)"
+  xyzwh 54 147 2025 273 15
 durationcanvas 129157 classinstance_ref 128261 // :VistaArticulos
-  xyzwh 59 67 2010 11 40
+  xyzwh 39 67 2010 11 64
+  overlappingdurationcanvas 134021
+    xyzwh 45 100 2020 11 25
+  end
 end
 durationcanvas 129285 classinstance_ref 128005 // :Articulo
-  xyzwh 679 64 2010 11 205
+  xyzwh 703 64 2010 11 434
+  overlappingdurationcanvas 135813
+    xyzwh 709 457 2020 11 28
+  end
 end
 durationcanvas 129541 classinstance_ref 128261 // :VistaArticulos
-  xyzwh 59 154 2010 11 40
-end
-durationcanvas 129669 classinstance_ref 128133 // :ServiciosArticulos
-  xyzwh 249 154 2010 11 63
-end
-durationcanvas 130309 classinstance_ref 130181 // :ServiciosPresupuestos
-  xyzwh 402 180 2010 11 28
+  xyzwh 39 151 2010 11 249
 end
 durationcanvas 131077 classinstance_ref 128133 // :ServiciosArticulos
-  xyzwh 249 227 2010 11 42
+  xyzwh 291 308 2010 11 109
+end
+durationcanvas 131589 classinstance_ref 131461 // :ArticuloCompuesto
+  xyzwh 590 345 2010 11 63
+end
+durationcanvas 131973 classinstance_ref 128261 // :VistaArticulos
+  xyzwh 39 292 2010 11 112
+end
+durationcanvas 132741 classinstance_ref 128133 // :ServiciosArticulos
+  xyzwh 291 431 2010 11 78
+end
+durationcanvas 133253 classinstance_ref 128261 // :VistaArticulos
+  xyzwh 39 376 2010 11 131
+end
+durationcanvas 134277 classinstance_ref 133893 // :Fachada
+  xyzwh 174 184 2010 11 78
+end
+durationcanvas 134917 classinstance_ref 128133 // :ServiciosArticulos
+  xyzwh 291 218 2010 11 82
+end
+durationcanvas 135301 classinstance_ref 130181 // :ServiciosPresupuestos
+  xyzwh 435 241 2010 11 84
 end
 msg 129413 synchronous
   from durationcanvas_ref 129157
   to durationcanvas_ref 129285
   yz 67 2020 unspecifiedmsg
   show_full_operations_definition default drawing_language default
-msg 129797 synchronous
-  from durationcanvas_ref 129541
-  to durationcanvas_ref 129669
-  yz 154 2015 unspecifiedmsg
-  show_full_operations_definition default drawing_language default
-msg 130437 synchronous
-  from durationcanvas_ref 129669
-  to durationcanvas_ref 130309
-  yz 180 2020 unspecifiedmsg
-  show_full_operations_definition default drawing_language default
-msg 130949 return
-  from durationcanvas_ref 130309
-  to durationcanvas_ref 129669
-  yz 197 2015 unspecifiedmsg
-  show_full_operations_definition default drawing_language default
 reflexivemsg 131205 asynchronous
   to durationcanvas_ref 131077
-  yz 228 2015 unspecifiedmsg
+  yz 309 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 131717 synchronous
+  from durationcanvas_ref 131077
+  to durationcanvas_ref 131589
+  yz 346 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 132101 return
+  from durationcanvas_ref 131589
+  to durationcanvas_ref 131973
+  yz 393 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 132613 return
+  from durationcanvas_ref 129285
+  to durationcanvas_ref 131589
+  yz 345 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 133381 synchronous
+  from durationcanvas_ref 132741
+  to durationcanvas_ref 133253
+  yz 488 2015 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 134149 synchronous
+  from durationcanvas_ref 129285
+  to durationcanvas_ref 134021
+  yz 100 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 134405 synchronous
+  from durationcanvas_ref 129541
+  to durationcanvas_ref 134277
+  yz 185 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 135045 synchronous
+  from durationcanvas_ref 134277
+  to durationcanvas_ref 134917
+  yz 220 2025 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 135429 synchronous
+  from durationcanvas_ref 134917
+  to durationcanvas_ref 135301
+  yz 242 2030 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 135557 return
+  from durationcanvas_ref 134917
+  to durationcanvas_ref 129541
+  yz 277 2020 unspecifiedmsg
+  show_full_operations_definition default drawing_language default
+msg 135941 synchronous
+  from durationcanvas_ref 132741
+  to durationcanvas_ref 135813
+  yz 457 2035 unspecifiedmsg
   show_full_operations_definition default drawing_language default
 end
