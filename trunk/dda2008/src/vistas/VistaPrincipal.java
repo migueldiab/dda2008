@@ -60,10 +60,15 @@ public class VistaPrincipal {
 	  private JMenu helpMenu = null;
 	  private JMenuItem aboutMenuItem = null;
 	  //private JMenuItem saveMenuItem = null;
-	  private JDialog aboutDialog = null;
+    
+    private JMenuItem finalizarMenuItem = null;
+    private JMenuItem copiarMenuItem = null;
+    private JMenuItem cambioDuenioMenuItem = null; 
+    
 	  private JPanel aboutContentPane = null;
 	  private JLabel aboutVersionLabel = null;
 
+    private JDialog aboutDialog = null;
     private JDialog dUsuario = null; 
     //private JDialog dGrupo = null; 
     private JDialog dArticulos = null; 
@@ -75,12 +80,7 @@ public class VistaPrincipal {
     private JDialog dCopiarPresupuesto = null;
     private JDialog dCambioDuenio = null;
     private JDialog dMonitorStock = null;
-    private JMenuItem finalizarMenuItem = null;
-
-	private JMenuItem copiarMenuItem = null;
-
-	private JMenuItem cambioDuenioMenuItem = null; 
-	ModeloPresupuesto modeloPresupuesto=new ModeloPresupuesto();  //  @jve:decl-index=0:
+    ModeloPresupuesto modeloPresupuesto=new ModeloPresupuesto();  //  @jve:decl-index=0:
 	
 	
 	  /**
@@ -611,6 +611,17 @@ public class VistaPrincipal {
 	    sistema.Inicio.principal.getJFrame().setVisible(true);
 	  }
     public void cerrar() {
+      if (aboutDialog!=null) aboutDialog.dispose();
+      if (dUsuario!=null) dUsuario.dispose(); 
+      if (dArticulos!=null) dArticulos.dispose(); 
+      if (dListados!=null) dListados.dispose(); 
+      if (dArticulosCompuestos!=null) dArticulosCompuestos.dispose(); 
+      if (dPresupuesto!=null) dPresupuesto.dispose(); 
+      if (dFinalizarPresupuesto!=null) dFinalizarPresupuesto.dispose();
+      if (dCopiarPresupuesto!=null) dCopiarPresupuesto.dispose();
+      if (dCambioDuenio!=null) dCambioDuenio.dispose();
+      if (dMonitorStock!=null) dMonitorStock.dispose();
+      
       sistema.Inicio.principal.jFrame.dispose();
       
     }
