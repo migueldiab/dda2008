@@ -36,30 +36,30 @@ public class VistaPresupuestos extends JFrame implements Observer {
 	private JLabel jLabel4 = null;
 	private JLabel jLabel5 = null;
 	private JLabel jLabel6 = null;
-	private JTextField jTextDescripcion = null;
-	private JTextField jTextFechaEjecucionDia = null;
-	private JTextField jTextId = null;
-	private JTextField jTextFechaModificacionDia = null;
-	private JTextField jTextDuenio = null;
+	private static JTextField jTextDescripcion = null;
+	private static JTextField jTextFechaEjecucionDia = null;
+	private static JTextField jTextId = null;
+	private static JTextField jTextFechaModificacionDia = null;
+	private static JTextField jTextDuenio = null;
 	private static JTextField jTextCosto = null;
-	private JTextField jTextEstado = null;
+	private static JTextField jTextEstado = null;
 	private JButton jButtonNuevo = null;
 	private JButton jButtonGuardar = null;
 	private JButton jButtonEliminar = null;
 	private JButton jButtonCancelar = null;
 	private JButton jButtonItems = null;
-	private JTextField jTextFechaModificacionMes = null;
-	private JTextField jTextFechaModificacionAnio = null;
-	private JTextField jTextFechaEjecucionMes = null;
-	private JTextField jTextFechaEjecucionAnio = null;
+	private static JTextField jTextFechaModificacionMes = null;
+	private static JTextField jTextFechaModificacionAnio = null;
+	private static JTextField jTextFechaEjecucionMes = null;
+	private static JTextField jTextFechaEjecucionAnio = null;
 	private JLabel jLabel14 = null;
 	private JLabel jLabel15 = null;
 	private JLabel jLabel16 = null;
-	private JLabel jLabelStatusPresupuesto = null;
-	private JList jListPresupuesto = null;
+	private static JLabel jLabelStatusPresupuesto = null;
+	private static JList jListPresupuesto = null;
 	private JScrollPane jScrollPanePresupuesto = null;
 	private static ArrayList colPresup = new ArrayList();  //  @jve:decl-index=0:
-	DefaultListModel modeloJList;
+	static DefaultListModel modeloJList;
 	public static Presupuesto presupuestoSeleccionado=null;
 	private JButton jButtonConfirmDeleteYes = null;
 	private JButton jButtonConfirmDeleteNo = null;
@@ -70,7 +70,7 @@ public class VistaPresupuestos extends JFrame implements Observer {
 		this.modeloPresupuesto=modeloPresupuesto;
 		modeloPresupuesto.addObserver(this);
 	}
-	private ModeloPresupuesto modeloPresupuesto;
+	private static ModeloPresupuesto modeloPresupuesto;
 	private void nuevoPresupuesto() {
 		this.jTextDescripcion.setEditable(true);
 		this.jTextFechaEjecucionDia.setEditable(true);
@@ -80,7 +80,7 @@ public class VistaPresupuestos extends JFrame implements Observer {
 		this.jLabelStatusPresupuesto.setText("");
 	}
 	
-	private void guardarPresupuesto(){
+	public static void guardarPresupuesto(){
 		Date fechaEjecucion=new Date();
 		try{
 			fechaEjecucion=Fecha.ValidarFecha(Integer.parseInt(jTextFechaEjecucionDia.getText()),Integer.parseInt(jTextFechaEjecucionMes.getText()),Integer.parseInt(jTextFechaEjecucionAnio.getText()));	
@@ -89,19 +89,19 @@ public class VistaPresupuestos extends JFrame implements Observer {
 			fechaEjecucion=null;
 		}
 
-		if (this.jTextId.getText().isEmpty()){ //si es nuevo y no se apreto en items
-			if(Fachada.validoPresupuesto(this.jTextDescripcion.getText(),Fachada.getUsuarioActual())&&!this.jTextDescripcion.getText().isEmpty()){
-				Presupuesto tmpPresupuesto=new Presupuesto(this.jTextDescripcion.getText(),fechaEjecucion);
+		if (jTextId.getText().isEmpty()){ //si es nuevo y no se apreto en items
+			if(Fachada.validoPresupuesto(jTextDescripcion.getText(),Fachada.getUsuarioActual())&&!jTextDescripcion.getText().isEmpty()){
+				Presupuesto tmpPresupuesto=new Presupuesto(jTextDescripcion.getText(),fechaEjecucion);
 				Fachada.agregarPresupuesto(tmpPresupuesto);
 				mostrarDatos(tmpPresupuesto);
 				//getModeloJList().addElement(tmpPresupuesto);
 				modeloPresupuesto.fueModificado();
 				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
 				
-				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
+				jLabelStatusPresupuesto.setText("Guardado Correctamente");
 			}
 			else{
-				this.jLabelStatusPresupuesto.setText("Error");
+				jLabelStatusPresupuesto.setText("Error");
 			}
 		}
 		else{			//si es una modificacion o tiene items
@@ -115,10 +115,10 @@ public class VistaPresupuestos extends JFrame implements Observer {
 				jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
 				modeloPresupuesto.fueModificado();
 				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
-				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
+				jLabelStatusPresupuesto.setText("Guardado Correctamente");
 			}
 			else{
-				if(Fachada.modificarPresupuesto((Presupuesto) jListPresupuesto.getSelectedValue(),this.jTextDescripcion.getText(),fechaEjecucion)){
+				if(Fachada.modificarPresupuesto((Presupuesto) jListPresupuesto.getSelectedValue(),jTextDescripcion.getText(),fechaEjecucion)){
 					ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
 					tmpPresupuesto= (Presupuesto)jListPresupuesto.getSelectedValue();
 					tmpPresupuesto.setItems(items);
@@ -126,10 +126,10 @@ public class VistaPresupuestos extends JFrame implements Observer {
 					tmpPresupuesto.setCosto(elCosto);
 					jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
 					modeloPresupuesto.fueModificado();
-					this.jLabelStatusPresupuesto.setText("Modificado Correctamente");
+					jLabelStatusPresupuesto.setText("Modificado Correctamente");
 				}
 				else{
-					this.jLabelStatusPresupuesto.setText("Error");
+					jLabelStatusPresupuesto.setText("Error");
 				}
 			}
 		}
@@ -138,47 +138,47 @@ public class VistaPresupuestos extends JFrame implements Observer {
 
 	
 
-	private void mostrarDatos(Object o) {
+	private static void mostrarDatos(Object o) {
 		if(o!=null){
-			this.jTextDescripcion.setEditable(true);
-			this.jTextFechaEjecucionDia.setEditable(true);
-			this.jTextFechaEjecucionMes.setEditable(true);
-			this.jTextFechaEjecucionAnio.setEditable(true);
+			jTextDescripcion.setEditable(true);
+			jTextFechaEjecucionDia.setEditable(true);
+			jTextFechaEjecucionMes.setEditable(true);
+			jTextFechaEjecucionAnio.setEditable(true);
 			Presupuesto i=(Presupuesto) o;
-			this.jTextDescripcion.setText(i.getDescripcion());
+			jTextDescripcion.setText(i.getDescripcion());
 			Calendar cal=new GregorianCalendar();
 			if(i.getFechaEjecucion()!=null){
 				cal.setTime(i.getFechaEjecucion());
-				this.jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-				this.jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-				this.jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
 			}
 			else{
-				this.jTextFechaEjecucionDia.setText(null);
-				this.jTextFechaEjecucionMes.setText(null);
-				this.jTextFechaEjecucionAnio.setText(null);
+				jTextFechaEjecucionDia.setText(null);
+				jTextFechaEjecucionMes.setText(null);
+				jTextFechaEjecucionAnio.setText(null);
 			}
-			this.jTextId.setText(Integer.toString(i.getId()));
+			jTextId.setText(Integer.toString(i.getId()));
 			if(i.getFechaModificacion()!=null){
 				cal.setTime(i.getFechaModificacion());
-				this.jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
-				this.jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
-				this.jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
-				this.jTextDuenio.setText(i.getDuenio().getNombre());
+				jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				jTextDuenio.setText(i.getDuenio().getNombre());
 				if(!Double.isNaN(i.getCosto())){
-					this.jTextCosto.setText(Double.toString(i.getCosto()));	
+					jTextCosto.setText(Double.toString(i.getCosto()));	
 				}
 
 			}
 			else{
-				this.jTextFechaModificacionDia.setText(null);
-				this.jTextFechaModificacionMes.setText(null);
-				this.jTextFechaModificacionAnio.setText(null);
-				this.jTextDuenio.setText(null);
-				this.jTextCosto.setText(null);
+				jTextFechaModificacionDia.setText(null);
+				jTextFechaModificacionMes.setText(null);
+				jTextFechaModificacionAnio.setText(null);
+				jTextDuenio.setText(null);
+				jTextCosto.setText(null);
 			}
-			this.jTextEstado.setText(i.getEstado());
-			this.jLabelStatusPresupuesto.setText("");
+			jTextEstado.setText(i.getEstado());
+			jLabelStatusPresupuesto.setText("");
 		}
 		else{
 			borrarCamposPresupuesto();
@@ -187,19 +187,19 @@ public class VistaPresupuestos extends JFrame implements Observer {
 
 	
 
-	private void borrarCamposPresupuesto(){
-		this.jTextDescripcion.setText("");
-		this.jTextFechaEjecucionDia.setText("");
-		this.jTextFechaEjecucionMes.setText("");
-		this.jTextFechaEjecucionAnio.setText("");
-		this.jTextId.setText("");
-		this.jTextFechaModificacionDia.setText("");
-		this.jTextFechaModificacionMes.setText("");
-		this.jTextFechaModificacionAnio.setText("");
-		this.jTextDuenio.setText("");
-		this.jTextEstado.setText("");
-		this.jTextCosto.setText("");
-		this.jLabelStatusPresupuesto.setText("");
+	private static void borrarCamposPresupuesto(){
+		jTextDescripcion.setText("");
+		jTextFechaEjecucionDia.setText("");
+		jTextFechaEjecucionMes.setText("");
+		jTextFechaEjecucionAnio.setText("");
+		jTextId.setText("");
+		jTextFechaModificacionDia.setText("");
+		jTextFechaModificacionMes.setText("");
+		jTextFechaModificacionAnio.setText("");
+		jTextDuenio.setText("");
+		jTextEstado.setText("");
+		jTextCosto.setText("");
+		jLabelStatusPresupuesto.setText("");
 	}
 
 	
@@ -684,11 +684,12 @@ public class VistaPresupuestos extends JFrame implements Observer {
 
 	public static void updateCosto() {
 		
+	if(presupuestoSeleccionado!=null){
 		jTextCosto.setText(Double.toString(Fachada.calcularCosto(presupuestoSeleccionado)));
-		
+	}
 	}
 
-	private DefaultListModel getModeloJList() {
+	private static DefaultListModel getModeloJList() {
 		if (modeloJList == null) {
 			modeloJList = new DefaultListModel();
 		}
