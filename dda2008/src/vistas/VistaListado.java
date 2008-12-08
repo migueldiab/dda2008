@@ -49,7 +49,7 @@ private DefaultListModel modeloJListItems = null;
   }
 
   private void mostrarListado() {
-	  //tListado.setText(Fachada.listadoPresupuestos());
+	  RenderListado renderListado=new RenderListado();
 	  ArrayList losPresupuestos=new ArrayList();
 	  getModeloJListPresupuestos().removeAllElements();
 	  if(Fachada.getUsuarioActual().getGrupo().toString().equals("Gestor"))    {
@@ -62,20 +62,27 @@ private DefaultListModel modeloJListItems = null;
 		  Presupuesto presupuesto=(Presupuesto)losPresupuestos.get(i);
 		  getModeloJListPresupuestos().addElement(presupuesto);
 	  }
+	  jListPresupuestos.setCellRenderer(renderListado);
   }
-
+  
+    
   private void mostrarItems(){
+	  
+	  
+	  
 	  ArrayList losItems=new ArrayList();
 	  getModeloJListItems().removeAllElements();
 	  if(jListPresupuestos.getSelectedValue()!=null){
+		 
 		  Presupuesto tmpPresupuesto=(Presupuesto)jListPresupuestos.getSelectedValue();
 		  losItems=tmpPresupuesto.getItems();
 		  for(int i=0;i<losItems.size();i++){
 			  Item unItem=(Item)losItems.get(i);
 			  getModeloJListItems().addElement(unItem);
+			
 		  }
 		  
-		  
+		
 	  }
 	  
   }
