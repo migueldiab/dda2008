@@ -39,7 +39,7 @@ public class Inicio {
     losArticulos.add(unArticulo);
     Item item1=new Item(unArticulo,7);
     
-    Articulo tabla = new ArticuloSimple("Tabla", new Medida("co", "Ciento"), 2, 224.88);
+    Articulo tabla = new ArticuloSimple("Tabla", new Medida("co", "Ciento"), 25, 224.88);
     Fachada.agregarArticulo(tabla);
     losArticulos.add(tabla);
     Item item2=new Item(tabla,3);
@@ -53,7 +53,7 @@ public class Inicio {
     losArticulos.add(unArticulo2);
     Item item3=new Item(unArticulo2,4);
     
-    Articulo bisagra = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 14, 84.33);
+    Articulo bisagra = new ArticuloSimple("Bisagra", new Medida("c1", "Ciento"), 80, 84.33);
     Fachada.agregarArticulo(bisagra);
     losArticulos.add(bisagra);
     Item item4=new Item(bisagra,8);
@@ -62,12 +62,12 @@ public class Inicio {
     items34.add(item3);
     items34.add(item4);
     
-    Articulo manija = new ArticuloSimple("Manija", new Medida("da", "Docena"), 6, 105.34);
+    Articulo manija = new ArticuloSimple("Manija", new Medida("da", "Docena"), 50, 105.34);
     Fachada.agregarArticulo(manija);
     losArticulos.add(manija);
     Item item5=new Item(manija,9);
     
-    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 20, 22.15);
+    Articulo tornillo = new ArticuloSimple("Tornillo", new Medida("ud", "Unidad"), 200, 22.15);
     Fachada.agregarArticulo(tornillo);
     losArticulos.add(tornillo);
     Item item6=new Item(tornillo,1);
