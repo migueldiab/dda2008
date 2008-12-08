@@ -199,6 +199,11 @@ public class VistaMonitorStock {
 		if (jTextDia == null) {
 			jTextDia = new JTextField();
 			jTextDia.setBounds(new Rectangle(183, 73, 28, 22));
+			jTextDia.addCaretListener(new javax.swing.event.CaretListener() {
+				public void caretUpdate(javax.swing.event.CaretEvent e) {
+					mostrarStockInsuficiente();
+				}
+			});
 		}
 		return jTextDia;
 	}
@@ -212,6 +217,11 @@ public class VistaMonitorStock {
 		if (jTextMes == null) {
 			jTextMes = new JTextField();
 			jTextMes.setBounds(new Rectangle(223, 73, 31, 21));
+			jTextMes.addCaretListener(new javax.swing.event.CaretListener() {
+				public void caretUpdate(javax.swing.event.CaretEvent e) {
+					mostrarStockInsuficiente();
+				}
+			});
 		}
 		return jTextMes;
 	}
@@ -225,6 +235,11 @@ public class VistaMonitorStock {
 		if (jTextAnio == null) {
 			jTextAnio = new JTextField();
 			jTextAnio.setBounds(new Rectangle(268, 73, 31, 21));
+			jTextAnio.addCaretListener(new javax.swing.event.CaretListener() {
+				public void caretUpdate(javax.swing.event.CaretEvent e) {
+					mostrarStockInsuficiente();
+				}
+			});
 		}
 		return jTextAnio;
 	}
@@ -250,25 +265,6 @@ public class VistaMonitorStock {
 		}
 		return fechaMonitoreo;
 	}
-/*	private Component getTreeComponentes() {
-	    if (treeComponentes == null) {
-	    	treeComponentes = new JTree();
-	    }
-	    return treeComponentes;
-	  }
-	
-	private void cargarArticulo(Articulo unArticulo) {
-	    if(!unArticulo.esHoja()){
-	    raiz = (ArticuloCompuesto)unArticulo;
-	    arbolComponentes=new ModeloArbol(raiz);
-	    treeComponentes.setModel(arbolComponentes);
-	    for(int i=0;i<raiz.contarComponentes();i++){
-	    	
-	    }
-	    }
-	    
-	    
-	}*/
 
 	private void mostrarStockInsuficiente(){
 		getModeloJList().removeAllElements();
