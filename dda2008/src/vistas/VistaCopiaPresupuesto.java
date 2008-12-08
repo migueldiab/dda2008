@@ -181,7 +181,7 @@ public class VistaCopiaPresupuesto implements Observer {
 	 * @return javax.swing.JList	
 	 */
 	private JList getJListPresupuesto() {
-		if (jListPresupuesto == null) {
+		//if (jListPresupuesto == null) {
 			ArrayList colPresup=new ArrayList();
 			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),0,0,1);
 			jListPresupuesto = new JList(getModeloJListPresupuestos());
@@ -196,7 +196,7 @@ public class VistaCopiaPresupuesto implements Observer {
 				Object unPresu=colPresup.get(i);
 				getModeloJListPresupuestos().addElement(unPresu);
 			}
-		}
+		//}
 		return jListPresupuesto;
 	}
 

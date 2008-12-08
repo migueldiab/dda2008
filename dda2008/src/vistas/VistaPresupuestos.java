@@ -95,7 +95,7 @@ public class VistaPresupuestos extends JFrame implements Observer {
 				Fachada.agregarPresupuesto(tmpPresupuesto);
 				mostrarDatos(tmpPresupuesto);
 				//getModeloJList().addElement(tmpPresupuesto);
-				modeloPresupuesto.fueModificado();
+				
 				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
 				
 				jLabelStatusPresupuesto.setText("Guardado Correctamente");
@@ -133,7 +133,7 @@ public class VistaPresupuestos extends JFrame implements Observer {
 				}
 			}
 		}
-
+    modeloPresupuesto.fueModificado();
 	}
 
 	
