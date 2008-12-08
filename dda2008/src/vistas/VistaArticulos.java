@@ -1,6 +1,5 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -23,13 +21,15 @@ import javax.swing.SwingConstants;
 import servicios.Fachada;
 import dominio.Articulo;
 import dominio.ArticuloSimple;
-import dominio.Grupo;
 import dominio.Medida;
 import dominio.Presupuesto;
-import dominio.Usuario;
 
 public class VistaArticulos extends JFrame {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private JDialog dAbmArticulos = null;  //  @jve:decl-index=0:visual-constraint="132,10"
   private JPanel pAbmArticulos = null;
   private JLabel lNombre = null;

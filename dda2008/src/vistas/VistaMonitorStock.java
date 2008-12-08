@@ -1,11 +1,7 @@
 package vistas;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -20,8 +16,6 @@ import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTree;
 import javax.swing.table.AbstractTableModel;
 
 import servicios.Fachada;
@@ -34,7 +28,6 @@ import dominio.Articulo;
 import dominio.ArticuloCompuesto;
 import dominio.Componente;
 import dominio.Item;
-import dominio.ModeloArbol;
 import dominio.Presupuesto;
 
 public class VistaMonitorStock implements Observer{
@@ -51,7 +44,6 @@ public class VistaMonitorStock implements Observer{
 	private JLabel jlblMes = null;
 	private JLabel jlblAnio = null;
 	private JList jList = null;
-	private JTree treeComponentes;
 	private ModeloPresupuesto modeloPresupuesto;
 
 	//private ModeloArbol arbolComponentes = null;
@@ -314,7 +306,6 @@ public class VistaMonitorStock implements Observer{
 		}
 	}
 
-	@Override
 	public void update(Observable arg0, Object arg1) {
 		mostrarStockInsuficiente();
 		

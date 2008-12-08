@@ -8,11 +8,14 @@ import dominio.Grupo;
 import dominio.Usuario;
 
 import servicios.Fachada;
-import servicios.ServiciosUsuarios;
 import java.awt.Rectangle;
 
 public class VistaUsuarios extends JFrame {
 
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
   private JDialog dAbmUsuarios = null;  //  @jve:decl-index=0:visual-constraint="132,10"
   private JPanel pAbmUsuarios = null;
   private JLabel lNombre = null;

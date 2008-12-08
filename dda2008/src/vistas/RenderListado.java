@@ -4,12 +4,16 @@ import javax.swing.JList;
 
 import dominio.Presupuesto;
 
-import java.util.Locale;
 import java.awt.Component;
 public class RenderListado extends DefaultListCellRenderer {
 
 
-	public RenderListado() {
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+
+  public RenderListado() {
 	}
 
 	public Component getListCellRendererComponent(JList list, 

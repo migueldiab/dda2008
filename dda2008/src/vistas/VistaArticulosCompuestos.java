@@ -3,21 +3,16 @@ package vistas;
 import java.awt.*;
 
 import javax.swing.*;
-import javax.swing.tree.*;
 
 import servicios.Fachada;
-import servicios.ServiciosArticulos;
 
 import dominio.ArticuloCompuesto;
 import dominio.Articulo;
-import dominio.ArticuloSimple;
 import dominio.Componente;
 import dominio.Medida;
 import dominio.ModeloArbol;
 
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 

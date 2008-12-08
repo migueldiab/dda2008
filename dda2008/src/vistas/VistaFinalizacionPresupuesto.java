@@ -2,7 +2,6 @@ package vistas;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;

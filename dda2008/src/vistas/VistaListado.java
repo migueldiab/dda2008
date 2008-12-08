@@ -1,23 +1,16 @@
 package vistas;
 
-import java.awt.BorderLayout;
 import java.awt.Rectangle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.Dimension;
 import java.util.ArrayList;
-
-import javax.swing.JTextPane;
 
 import dominio.Item;
 import dominio.Presupuesto;
 
 import servicios.Fachada;
-import utils.Consola;
-import utils.I18n;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 

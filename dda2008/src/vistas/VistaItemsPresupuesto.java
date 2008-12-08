@@ -1,13 +1,11 @@
 package vistas;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.KeyEvent;
@@ -23,7 +21,6 @@ import dominio.Articulo;
 import dominio.Item;
 import dominio.Presupuesto;
 
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

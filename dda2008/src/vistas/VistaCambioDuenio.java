@@ -2,7 +2,6 @@ package vistas;
 
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import java.awt.Rectangle;
@@ -39,9 +38,9 @@ public class VistaCambioDuenio implements Observer {
 	private DefaultListModel modeloJListPresupuestos = null;
 	private DefaultListModel modeloJListUsuarios = null;
 	private DefaultListModel modeloJListNuevoDuenio= null;
-	private ModeloPresupuesto modeloPresupuesto;
-	public VistaCambioDuenio(ModeloPresupuesto modeloPresupuesto) {
-		this.modeloPresupuesto=modeloPresupuesto;
+	private ModeloPresupuesto modeloPresupuesto=null;
+	public VistaCambioDuenio(ModeloPresupuesto unModeloPresupuesto) {
+		modeloPresupuesto=unModeloPresupuesto;
 		modeloPresupuesto.addObserver(this);
 	}
 

@@ -15,12 +15,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import javax.swing.JWindow;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
-import com.sun.org.apache.bcel.internal.util.JavaWrapper;
 
 import dominio.Grupo;
 
@@ -68,13 +65,12 @@ public class VistaPrincipal {
 	  private JLabel aboutVersionLabel = null;
 
     private JDialog dUsuario = null; 
-    private JDialog dGrupo = null; 
+    //private JDialog dGrupo = null; 
     private JDialog dArticulos = null; 
     private JDialog dListados = null; 
     private JDialog dArticulosCompuestos = null; 
-    private JDialog dMedidas = null; 
+    //private JDialog dMedidas = null; 
     public static JDialog dPresupuesto = null; 
-    private JDialog dMontitorStock = null;
     private JDialog dFinalizarPresupuesto = null;
     private JDialog dCopiarPresupuesto = null;
     private JDialog dCambioDuenio = null;
