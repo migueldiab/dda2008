@@ -167,4 +167,36 @@ public Articulo getPadre(Componente hijo) {
     }
   }
 
+  public boolean agregarComponenteCantidad(Componente unComponente) {
+    try {
+      // No puedo agregar un componente a si mismo
+      if (unComponente.getArticulo().equals(this)) {
+        return false;
+      }
+      if (unComponente.getArticulo().esCompuesto()) {
+        if (!Fachada.verificarRedundanciaArticulosCompuestos(this, unComponente))
+            return false;
+      }
+      int pos = getPosComponente(unComponente);
+      if (pos!=-1) {
+        if (unComponente.getCantidad()>0) {
+          setCantidad(unComponente.getCantidad());
+          recalcularStock();
+          recalcularCosto();
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        this.componentes.add(unComponente);  
+      }
+      return true;
+      
+    } catch (Exception e) {
+      return false;
+    }    
+    
+  }
+
 }
