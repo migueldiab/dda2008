@@ -8,19 +8,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.SwingConstants;
 import servicios.Fachada;
 import utils.Fecha;
-import dominio.Item;
 import dominio.Presupuesto;
 import javax.swing.JDialog;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -30,7 +25,7 @@ import javax.swing.JButton;
 	 
 public class VistaPresupuestos extends JFrame implements Observer {
 
-	private ArrayList observadores=new ArrayList();
+	private ArrayList observadores=new ArrayList();  //  @jve:decl-index=0:
 	private static final long serialVersionUID = 1L;
 	private JDialog jDialogPresupuestos = null;  //  @jve:decl-index=0:visual-constraint="7,7"
 	private JPanel jContentPanePresupuestos = null;
@@ -63,7 +58,6 @@ public class VistaPresupuestos extends JFrame implements Observer {
 	private JLabel jLabelStatusPresupuesto = null;
 	private JList jListPresupuesto = null;
 	private JScrollPane jScrollPanePresupuesto = null;
-	private JDialog dItemsPresupuesto = null;
 	private static ArrayList colPresup = new ArrayList();  //  @jve:decl-index=0:
 	DefaultListModel modeloJList;
 	public static Presupuesto presupuestoSeleccionado=null;

@@ -1,6 +1,5 @@
 package dominio;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -16,8 +15,6 @@ public class Presupuesto implements Comparable {
 
   public static final String EN_CONSTRUCCION = "En Construccion";
   public static final String FINALIZADO = "Finalizado";
-  private static SimpleDateFormat sdf = new SimpleDateFormat(I18n.FORMATO_FECHA);
-
   
   private int id;
   private String descripcion;
@@ -26,7 +23,7 @@ public class Presupuesto implements Comparable {
   private Date fechaModificacion;
   private Usuario duenio;
   private String estado;
-  private ArrayList items=new ArrayList();
+  private ArrayList<Item> items=new ArrayList<Item>();
   private static int ultimoId;
 
 /*
@@ -177,14 +174,14 @@ public class Presupuesto implements Comparable {
   {
     return items;
   }
-  public void setItems(ArrayList newItems)
+  public void setItems(ArrayList<Item> newItems)
   {
    this.items=newItems;
   }
   
   public boolean agregarItem(Object object){
 	  if(!items.contains(object)){
-	  return items.add(object);
+	    return items.add((Item) object);
 	  }
 	  return false;
   }

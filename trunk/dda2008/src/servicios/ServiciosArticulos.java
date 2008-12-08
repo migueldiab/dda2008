@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-import utils.I18n;
-
 import dominio.Articulo;
 import dominio.ArticuloCompuesto;
 import dominio.ArticuloSimple;
 import dominio.Componente;
 import dominio.Item;
-import dominio.Medida;
 import dominio.Presupuesto;
-import dominio.Usuario;
 
 /**
  * @author Marcos
@@ -21,7 +17,7 @@ import dominio.Usuario;
  */
 public class ServiciosArticulos 
 {
-  private static ArrayList articulos = new ArrayList();
+  private static ArrayList<Articulo> articulos = new ArrayList<Articulo>();
 
   public static boolean agregar(Object o)
   {
@@ -64,7 +60,7 @@ public class ServiciosArticulos
     }      
   }
 
-  public static ArrayList listado()
+  public static ArrayList<Articulo> listado()
   {
     if (cantidad() == 0)
       return null;
@@ -113,37 +109,35 @@ public class ServiciosArticulos
     }  
   }
 
-  public static ArrayList obtenerArticulosNotIn(Presupuesto unPresupuesto) {
-	ArrayList losArticulos=new ArrayList();
+  public static ArrayList<Articulo> obtenerArticulosNotIn(Presupuesto unPresupuesto) {
+	ArrayList<Articulo> losArticulos=new ArrayList<Articulo>();
 	boolean existe;
 	try {
 		for (int i = 0; i < articulos.size(); i++) {
 				existe=false;
-				Articulo a= (Articulo) articulos.get(i);
-			    ArrayList items=new ArrayList();
-			    items=unPresupuesto.getItems();
-			    if (items.isEmpty()){
-			    	losArticulos.add(a);
+			  Articulo a= (Articulo) articulos.get(i);
+		    ArrayList<Item> items=new ArrayList<Item>();
+		    items=unPresupuesto.getItems();
+		    if (items.isEmpty()){
+		    	losArticulos.add(a);
+		    }
+		    else{
+		    	for(int j = 0; j < items.size(); j++) {
+		    		Item itemPresupuesto=(Item)items.get(j);
+		    		if ((itemPresupuesto.getElArticulo().equals(a))){
+		    			existe=true;
+		    		}
+		    	}
+		    	if (existe==false){
+			    	losArticulos.add(a);	
 			    }
-			    else{
-			    	for(int j = 0; j < items.size(); j++) {
-			    		Item itemPresupuesto=(Item)items.get(j);
-			    		if ((itemPresupuesto.getElArticulo().equals(a))){
-			    			existe=true;
-			    		}
-			    	}
-			    	if (existe==false){
-				    	losArticulos.add(a);	
-				    }
-			    }
-			    
-			     
-		}
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	Collections.sort(losArticulos);
+		    }
+  		}
+  	} catch (Exception e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	}
+	  Collections.sort(losArticulos);
 		return losArticulos;
   }
 
@@ -244,7 +238,6 @@ public class ServiciosArticulos
   	 * @return
   	 */
   	private static ArrayList traerComponentesDeArticulosSimplesConCantidad(ArrayList losComponentes,int x,int y,ArrayList arrayLoop){
-  		boolean anteriorHoja=false;
   		for(int i=0;i<losComponentes.size();i++){
   			Componente componente=(Componente)losComponentes.get(i);
   			if(componente.getArticulo().esHoja()){
@@ -256,9 +249,7 @@ public class ServiciosArticulos
   				x=1;
   			}
   		}
-  		
   		return arrayLoop;
-  		
   	}
   
   	private static ArrayList addArticuloToArraylistCompuestosRetorno(Articulo unArticulo,int cantidad,ArrayList componentes){

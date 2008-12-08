@@ -1,7 +1,5 @@
 package dominio;
 
-import java.util.ArrayList;
-
 public class Componente {
 
   private Articulo articulo = null;
