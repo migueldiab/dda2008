@@ -703,7 +703,7 @@ public class VistaPrincipal {
 			cambioDuenioMenuItem.setText("Cambiar Dueño");
 			cambioDuenioMenuItem.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-          if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+          if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.CAMBIO_DUENIO_PRESUPUESTO)) {
             if (dCambioDuenio == null) {
               VistaCambioDuenio guiCambioDuenio = new VistaCambioDuenio(modeloPresupuesto);
               dCambioDuenio = guiCambioDuenio.getJDialog();
