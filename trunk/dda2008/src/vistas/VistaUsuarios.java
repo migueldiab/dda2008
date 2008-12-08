@@ -37,6 +37,7 @@ public class VistaUsuarios extends JFrame {
   private JLabel lId = null;
   private JTextField tId = null;
   private JLabel lInfo = null;
+  private Usuario shadowUsuario = null;
   public JDialog getDAbmUsuarios() {
     if (dAbmUsuarios == null) {
       dAbmUsuarios = new JDialog();
@@ -283,21 +284,21 @@ public class VistaUsuarios extends JFrame {
   
   private void cargarUsuario() {
     
-    Usuario u = (Usuario) lUsuarios.getSelectedValue();    
-    tId.setText(u.getId());
-    tNombre.setText(u.getNombre());
-    tApellido.setText(u.getApellido());
-    tClave1.setText(u.getClave());
-    tClave2.setText(u.getClave());
-    cGrupo.setSelectedItem(u.getGrupo());
+    shadowUsuario = (Usuario) lUsuarios.getSelectedValue();    
+    tId.setText(shadowUsuario.getId());
+    tNombre.setText(shadowUsuario.getNombre());
+    tApellido.setText(shadowUsuario.getApellido());
+    tClave1.setText(shadowUsuario.getClave());
+    tClave2.setText(shadowUsuario.getClave());
+    cGrupo.setSelectedItem(shadowUsuario.getGrupo());
   }
   private void buscarUsuario() {
     tNombre.setText("Test2");
   }
   private void guardarUsuario() {
     Usuario unUsuario = new Usuario(tId.getText());
-    unUsuario = Fachada.obtenerUsuario(unUsuario);    
-    if ((unUsuario==null) || (JOptionPane.showConfirmDialog(
+    if (shadowUsuario == null) shadowUsuario = Fachada.obtenerUsuario(unUsuario);    
+    if ((shadowUsuario==null) || (JOptionPane.showConfirmDialog(
         null,"Desea guardar los cambios al usuario "+tId.getText()+"?",
         "Confirma guardar?",
         JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
@@ -309,20 +310,33 @@ public class VistaUsuarios extends JFrame {
           cGrupo.getSelectedIndex()!=-1
         )    
       {      
-        if (unUsuario==null) unUsuario = new Usuario(tId.getText());
         unUsuario.setNombre(tNombre.getText());
         unUsuario.setApellido(tApellido.getText());
         unUsuario.setClave(tClave1.getText());
         unUsuario.setGrupo((Grupo) cGrupo.getSelectedItem());
-        if (Fachada.agregarUsuario(unUsuario)) {
-          lInfo.setForeground(new Color(65, 190, 79));
-          lInfo.setText("Usuario " + tId.getText() + " guardado");
-          cargarListas();
-          limpiarCampos();
+        if (shadowUsuario==null) {
+          if (Fachada.agregarUsuario(unUsuario)) {
+            lInfo.setForeground(new Color(65, 190, 79));
+            lInfo.setText("Usuario " + tId.getText() + " guardado");
+            cargarListas();
+            limpiarCampos();
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("No se pudo guardar el medio.");           
+          }          
         }
         else {
-          lInfo.setForeground(new Color(190, 65, 79));
-          lInfo.setText("No se pudo eliminar el medio.");           
+          if (Fachada.modificarUsuario(shadowUsuario, unUsuario)) {
+            lInfo.setForeground(new Color(65, 190, 79));
+            lInfo.setText("Usuario " + tId.getText() + " modificado");
+            cargarListas();
+            limpiarCampos();
+          }
+          else {
+            lInfo.setForeground(new Color(190, 65, 79));
+            lInfo.setText("No se pudo modificar el medio.");           
+          }          
         }
       }
       else {
@@ -400,6 +414,7 @@ public class VistaUsuarios extends JFrame {
     }
     cGrupo.setSelectedItem(null);
     tId.requestFocus();
+    shadowUsuario = null;
   }
   private void eliminarUsuario(Usuario u) {
     if (JOptionPane.showConfirmDialog(
