@@ -1,0 +1,335 @@
+class VistaCopiaPresupuesto
+!!!181765.java!!!	VistaCopiaPresupuesto(inout modeloPresupuesto : ModeloPresupuesto)
+
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+!!!181893.java!!!	getJDialog() : JDialog
+
+		if (jDialog == null) {
+			jDialog = new JDialog();
+			jDialog.setSize(new Dimension(615, 506));
+			jDialog.setContentPane(getJContentPane());
+			jDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+				public void windowClosing(java.awt.event.WindowEvent e) {
+					borrarCamposPresupuesto();
+				}
+			});
+		}
+		return jDialog;
+!!!182021.java!!!	getJContentPane() : JPanel
+
+		if (jContentPane == null) {
+			jLabelStatus = new JLabel();
+			jLabelStatus.setBounds(new Rectangle(12, 441, 559, 23));
+			jLabelStatus.setText("JLabel");
+			jLabel6 = new JLabel();
+			jLabel6.setBounds(new Rectangle(8, 194, 71, 22));
+			jLabel6.setText("Costo");
+			jLabel5 = new JLabel();
+			jLabel5.setBounds(new Rectangle(9, 173, 52, 16));
+			jLabel5.setText("Estado");
+			jLabel4 = new JLabel();
+			jLabel4.setBounds(new Rectangle(6, 149, 108, 17));
+			jLabel4.setText("Dueño");
+			jLabel3 = new JLabel();
+			jLabel3.setBounds(new Rectangle(4, 125, 113, 19));
+			jLabel3.setText("Fecha Modificacion");
+			jLabel1 = new JLabel();
+			jLabel1.setBounds(new Rectangle(4, 102, 95, 16));
+			jLabel1.setText("Fecha Ejecucion");
+			jLabel16 = new JLabel();
+			jLabel16.setBounds(new Rectangle(176, 72, 38, 21));
+			jLabel16.setText("Año");
+			jLabel15 = new JLabel();
+			jLabel15.setBounds(new Rectangle(146, 72, 27, 20));
+			jLabel15.setText("Mes");
+			jLabel14 = new JLabel();
+			jLabel14.setBounds(new Rectangle(116, 72, 26, 16));
+			jLabel14.setText("Dia");
+			jLabel2 = new JLabel();
+			jLabel2.setBounds(new Rectangle(5, 44, 75, 19));
+			jLabel2.setText("Id");
+			jLabel = new JLabel();
+			jLabel.setBounds(new Rectangle(4, 18, 76, 19));
+			jLabel.setText("Descripcion");
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			jContentPane.add(getJScrollPanePresupuestos(), null);
+			jContentPane.add(jLabel, null);
+			jContentPane.add(getJTextDescripcion(), null);
+			jContentPane.add(jLabel2, null);
+			jContentPane.add(getJTextId(), null);
+			jContentPane.add(jLabel14, null);
+			jContentPane.add(jLabel15, null);
+			jContentPane.add(jLabel16, null);
+			jContentPane.add(jLabel1, null);
+			jContentPane.add(getJTextFechaEjecucionDia(), null);
+			jContentPane.add(getJTextFechaEjecucionMes(), null);
+			jContentPane.add(getJTextFechaEjecucionAnio(), null);
+			jContentPane.add(jLabel3, null);
+			jContentPane.add(getJTextFechaModificacionDia(), null);
+			jContentPane.add(getJTextFechaModificacionMes(), null);
+			jContentPane.add(getJTextFechaModificacionAnio(), null);
+			jContentPane.add(jLabel4, null);
+			jContentPane.add(getJTextDuenio(), null);
+			jContentPane.add(jLabel5, null);
+			jContentPane.add(getJTextEstado(), null);
+			jContentPane.add(jLabel6, null);
+			jContentPane.add(getJTextCosto(), null);
+			jContentPane.add(getJScrollPaneItems(), null);
+			jContentPane.add(getJButtonCopiar(), null);
+			jContentPane.add(getJButtonCancelar(), null);
+			jContentPane.add(jLabelStatus, null);
+		}
+		return jContentPane;
+!!!182149.java!!!	getModeloJListPresupuestos() : DefaultListModel
+
+		if (modeloJListPresupuestos == null) {
+			modeloJListPresupuestos = new DefaultListModel();
+		}
+		return modeloJListPresupuestos;
+!!!182277.java!!!	getModeloJListItems() : DefaultListModel
+
+		if (modeloJListItems == null) {
+			modeloJListItems = new DefaultListModel();
+		}
+		return modeloJListItems;
+!!!182405.java!!!	getJListPresupuesto() : JList
+
+		if (jListPresupuesto == null) {
+			ArrayList colPresup=new ArrayList();
+			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),0,0,1);
+			jListPresupuesto = new JList(getModeloJListPresupuestos());
+			jListPresupuesto
+					.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+						public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+							mostrarDatos(jListPresupuesto.getSelectedValue());
+						}
+					});
+			getModeloJListPresupuestos().removeAllElements();
+			for (int i=0;i<colPresup.size();i++){
+				Object unPresu=colPresup.get(i);
+				getModeloJListPresupuestos().addElement(unPresu);
+			}
+		}
+		return jListPresupuesto;
+!!!182533.java!!!	getJScrollPanePresupuestos() : JScrollPane
+
+		if (jScrollPanePresupuestos == null) {
+			jScrollPanePresupuestos = new JScrollPane();
+			jScrollPanePresupuestos.setBounds(new Rectangle(244, 10, 353, 204));
+			jScrollPanePresupuestos.setViewportView(getJListPresupuesto());
+		}
+		return jScrollPanePresupuestos;
+!!!182661.java!!!	getJTextDescripcion() : JTextField
+
+		if (jTextDescripcion == null) {
+			jTextDescripcion = new JTextField();
+			jTextDescripcion.setBounds(new Rectangle(116, 22, 119, 19));
+			jTextDescripcion.setEditable(true);
+		}
+		return jTextDescripcion;
+!!!182789.java!!!	getJTextId() : JTextField
+
+		if (jTextId == null) {
+			jTextId = new JTextField();
+			jTextId.setBounds(new Rectangle(116, 44, 109, 20));
+			jTextId.setEditable(false);
+		}
+		return jTextId;
+!!!182917.java!!!	getJTextFechaEjecucionDia() : JTextField
+
+		if (jTextFechaEjecucionDia == null) {
+			jTextFechaEjecucionDia = new JTextField();
+			jTextFechaEjecucionDia.setBounds(new Rectangle(116, 102, 23, 18));
+			jTextFechaEjecucionDia.setEditable(false);
+		}
+		return jTextFechaEjecucionDia;
+!!!183045.java!!!	getJTextFechaEjecucionMes() : JTextField
+
+		if (jTextFechaEjecucionMes == null) {
+			jTextFechaEjecucionMes = new JTextField();
+			jTextFechaEjecucionMes.setBounds(new Rectangle(146, 102, 24, 22));
+			jTextFechaEjecucionMes.setEditable(false);
+		}
+		return jTextFechaEjecucionMes;
+!!!183173.java!!!	getJTextFechaEjecucionAnio() : JTextField
+
+		if (jTextFechaEjecucionAnio == null) {
+			jTextFechaEjecucionAnio = new JTextField();
+			jTextFechaEjecucionAnio.setBounds(new Rectangle(176, 102, 35, 22));
+			jTextFechaEjecucionAnio.setEditable(false);
+		}
+		return jTextFechaEjecucionAnio;
+!!!183301.java!!!	getJTextFechaModificacionDia() : JTextField
+
+		if (jTextFechaModificacionDia == null) {
+			jTextFechaModificacionDia = new JTextField();
+			jTextFechaModificacionDia.setBounds(new Rectangle(116, 127, 24, 17));
+			jTextFechaModificacionDia.setEditable(false);
+		}
+		return jTextFechaModificacionDia;
+!!!183429.java!!!	getJTextFechaModificacionMes() : JTextField
+
+		if (jTextFechaModificacionMes == null) {
+			jTextFechaModificacionMes = new JTextField();
+			jTextFechaModificacionMes.setBounds(new Rectangle(146, 127, 25, 20));
+			jTextFechaModificacionMes.setEditable(false);
+		}
+		return jTextFechaModificacionMes;
+!!!183557.java!!!	getJTextFechaModificacionAnio() : JTextField
+
+		if (jTextFechaModificacionAnio == null) {
+			jTextFechaModificacionAnio = new JTextField();
+			jTextFechaModificacionAnio.setBounds(new Rectangle(176, 127, 37, 20));
+			jTextFechaModificacionAnio.setEditable(false);
+		}
+		return jTextFechaModificacionAnio;
+!!!183685.java!!!	getJTextDuenio() : JTextField
+
+		if (jTextDuenio == null) {
+			jTextDuenio = new JTextField();
+			jTextDuenio.setBounds(new Rectangle(116, 149, 98, 19));
+			jTextDuenio.setEditable(false);
+		}
+		return jTextDuenio;
+!!!183813.java!!!	getJTextEstado() : JTextField
+
+		if (jTextEstado == null) {
+			jTextEstado = new JTextField();
+			jTextEstado.setBounds(new Rectangle(116, 175, 125, 15));
+			jTextEstado.setEditable(false);
+		}
+		return jTextEstado;
+!!!183941.java!!!	getJTextCosto() : JTextField
+
+		if (jTextCosto == null) {
+			jTextCosto = new JTextField();
+			jTextCosto.setBounds(new Rectangle(116, 195, 84, 17));
+			jTextCosto.setEditable(false);
+		}
+		return jTextCosto;
+!!!184069.java!!!	getJScrollPaneItems() : JScrollPane
+
+		if (jScrollPaneItems == null) {
+			jScrollPaneItems = new JScrollPane();
+			jScrollPaneItems.setBounds(new Rectangle(245, 217, 350, 222));
+			jScrollPaneItems.setViewportView(getJListItems());
+		}
+		return jScrollPaneItems;
+!!!184197.java!!!	getJListItems() : JList
+
+		if (jListItems == null) {
+			jListItems = new JList(getModeloJListItems());
+		}
+		return jListItems;
+!!!184325.java!!!	getJButtonCopiar() : JButton
+
+		if (jButtonCopiar == null) {
+			jButtonCopiar = new JButton();
+			jButtonCopiar.setBounds(new Rectangle(12, 296, 84, 29));
+			jButtonCopiar.setText("Copiar");
+			jButtonCopiar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					copiar();
+				}
+			});
+		}
+		return jButtonCopiar;
+!!!184453.java!!!	getJButtonCancelar() : JButton
+
+		if (jButtonCancelar == null) {
+			jButtonCancelar = new JButton();
+			jButtonCancelar.setBounds(new Rectangle(13, 336, 98, 28));
+			jButtonCancelar.setText("Cancelar");
+			jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					borrarCamposPresupuesto();
+					jDialog.setVisible(false);
+					
+				}
+			});
+		}
+		return jButtonCancelar;
+!!!184581.java!!!	mostrarDatos(inout o : Object) : void
+
+		if(o!=null){
+			Presupuesto i=(Presupuesto) o;
+			this.jTextDescripcion.setText(i.getDescripcion());
+			Calendar cal=new GregorianCalendar();
+			if(i.getFechaEjecucion()!=null){
+				cal.setTime(i.getFechaEjecucion());
+				this.jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+			}
+			else{
+				this.jTextFechaEjecucionDia.setText(null);
+				this.jTextFechaEjecucionMes.setText(null);
+				this.jTextFechaEjecucionAnio.setText(null);
+			}
+			this.jTextId.setText(Integer.toString(i.getId()));
+			if(i.getFechaModificacion()!=null){
+				cal.setTime(i.getFechaModificacion());
+				this.jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				this.jTextDuenio.setText(i.getDuenio().getNombre());
+				if(!Double.isNaN(i.getCosto())){
+					this.jTextCosto.setText(Double.toString(i.getCosto()));	
+				}
+
+			}
+			else{
+				this.jTextFechaModificacionDia.setText(null);
+				this.jTextFechaModificacionMes.setText(null);
+				this.jTextFechaModificacionAnio.setText(null);
+				this.jTextDuenio.setText(null);
+				this.jTextCosto.setText(null);
+			}
+			this.jTextEstado.setText(i.getEstado());
+			this.jLabelStatus.setText("");
+			mostrarDatosItems(i);
+		}
+		else{
+			borrarCamposPresupuesto();
+		}
+!!!184709.java!!!	borrarCamposPresupuesto() : void
+
+		this.jTextDescripcion.setText("");
+		this.jTextFechaEjecucionDia.setText("");
+		this.jTextFechaEjecucionMes.setText("");
+		this.jTextFechaEjecucionAnio.setText("");
+		this.jTextId.setText("");
+		this.jTextFechaModificacionDia.setText("");
+		this.jTextFechaModificacionMes.setText("");
+		this.jTextFechaModificacionAnio.setText("");
+		this.jTextDuenio.setText("");
+		this.jTextEstado.setText("");
+		this.jTextCosto.setText("");
+		this.jLabelStatus.setText("");
+!!!184837.java!!!	mostrarDatosItems(inout p : Presupuesto) : void
+
+		ArrayList colItemsAvailable=new ArrayList();
+		colItemsAvailable=Fachada.obtenerItems(p);
+		modeloJListItems.removeAllElements();
+		for (int i=0;i<colItemsAvailable.size();i++){
+			Object unItem=colItemsAvailable.get(i);
+			modeloJListItems.addElement(unItem);
+		}
+!!!184965.java!!!	copiar() : void
+
+		Presupuesto presupuestoSeleccionado=(Presupuesto)jListPresupuesto.getSelectedValue();
+		if(!jTextDescripcion.getText().equals(presupuestoSeleccionado.getDescripcion())){
+			Presupuesto nuevoPresupuesto=Fachada.copiarPresupuesto(presupuestoSeleccionado, jTextDescripcion.getText());
+			modeloJListPresupuestos.addElement(nuevoPresupuesto);
+			jListPresupuesto.setSelectedIndex(modeloJListPresupuestos.indexOf(nuevoPresupuesto));
+			jLabelStatus.setText("Copiado correctamente");
+		}
+		else{
+			jLabelStatus.setText("No pueden tener la misma descripcion");
+		}
+!!!185093.java!!!	update(inout o : Observable, inout arg : Object) : void
+
+		getJListPresupuesto();
+		

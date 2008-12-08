@@ -1,0 +1,493 @@
+class VistaPresupuestos
+!!!196869.java!!!	VistaPresupuestos(inout modeloPresupuesto : ModeloPresupuesto)
+
+		this.modeloPresupuesto=modeloPresupuesto;
+		modeloPresupuesto.addObserver(this);
+!!!196997.java!!!	nuevoPresupuesto() : void
+
+		this.jTextDescripcion.setEditable(true);
+		this.jTextFechaEjecucionDia.setEditable(true);
+		this.jTextFechaEjecucionMes.setEditable(true);
+		this.jTextFechaEjecucionAnio.setEditable(true);
+		this.borrarCamposPresupuesto();
+		this.jLabelStatusPresupuesto.setText("");
+!!!197125.java!!!	guardarPresupuesto() : void
+
+		Date fechaEjecucion=new Date();
+		try{
+			fechaEjecucion=Fecha.ValidarFecha(Integer.parseInt(jTextFechaEjecucionDia.getText()),Integer.parseInt(jTextFechaEjecucionMes.getText()),Integer.parseInt(jTextFechaEjecucionAnio.getText()));	
+		}
+		catch(Exception e){
+			fechaEjecucion=null;
+		}
+
+		if (this.jTextId.getText().isEmpty()){ //si es nuevo y no se apreto en items
+			if(Fachada.validoPresupuesto(this.jTextDescripcion.getText(),Fachada.getUsuarioActual())&&!this.jTextDescripcion.getText().isEmpty()){
+				Presupuesto tmpPresupuesto=new Presupuesto(this.jTextDescripcion.getText(),fechaEjecucion);
+				Fachada.agregarPresupuesto(tmpPresupuesto);
+				mostrarDatos(tmpPresupuesto);
+				//getModeloJList().addElement(tmpPresupuesto);
+				modeloPresupuesto.fueModificado();
+				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
+				
+				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
+			}
+			else{
+				this.jLabelStatusPresupuesto.setText("Error");
+			}
+		}
+		else{			//si es una modificacion o tiene items
+			Presupuesto tmpPresupuesto=presupuestoSeleccionado;
+			if(Fachada.agregarPresupuesto(tmpPresupuesto)){
+				getModeloJList().addElement(tmpPresupuesto);
+				ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
+				tmpPresupuesto.setItems(items);
+				Double elCosto = Fachada.calcularCosto(tmpPresupuesto);
+				tmpPresupuesto.setCosto(elCosto);
+				jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
+				modeloPresupuesto.fueModificado();
+				jListPresupuesto.setSelectedIndex(getModeloJList().indexOf(tmpPresupuesto));
+				this.jLabelStatusPresupuesto.setText("Guardado Correctamente");
+			}
+			else{
+				if(Fachada.modificarPresupuesto((Presupuesto) jListPresupuesto.getSelectedValue(),this.jTextDescripcion.getText(),fechaEjecucion)){
+					ArrayList items=VistaItemsPresupuesto.getInstancia().itemsModificados();
+					tmpPresupuesto= (Presupuesto)jListPresupuesto.getSelectedValue();
+					tmpPresupuesto.setItems(items);
+					Double elCosto = Fachada.calcularCosto(tmpPresupuesto);
+					tmpPresupuesto.setCosto(elCosto);
+					jTextCosto.setText(Double.toString(tmpPresupuesto.getCosto()));
+					modeloPresupuesto.fueModificado();
+					this.jLabelStatusPresupuesto.setText("Modificado Correctamente");
+				}
+				else{
+					this.jLabelStatusPresupuesto.setText("Error");
+				}
+			}
+		}
+
+!!!197253.java!!!	mostrarDatos(inout o : Object) : void
+
+		if(o!=null){
+			this.jTextDescripcion.setEditable(true);
+			this.jTextFechaEjecucionDia.setEditable(true);
+			this.jTextFechaEjecucionMes.setEditable(true);
+			this.jTextFechaEjecucionAnio.setEditable(true);
+			Presupuesto i=(Presupuesto) o;
+			this.jTextDescripcion.setText(i.getDescripcion());
+			Calendar cal=new GregorianCalendar();
+			if(i.getFechaEjecucion()!=null){
+				cal.setTime(i.getFechaEjecucion());
+				this.jTextFechaEjecucionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaEjecucionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaEjecucionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+			}
+			else{
+				this.jTextFechaEjecucionDia.setText(null);
+				this.jTextFechaEjecucionMes.setText(null);
+				this.jTextFechaEjecucionAnio.setText(null);
+			}
+			this.jTextId.setText(Integer.toString(i.getId()));
+			if(i.getFechaModificacion()!=null){
+				cal.setTime(i.getFechaModificacion());
+				this.jTextFechaModificacionDia.setText(Integer.toString(cal.get(cal.DAY_OF_MONTH)));
+				this.jTextFechaModificacionMes.setText(Integer.toString(cal.get(cal.MONTH)+1));
+				this.jTextFechaModificacionAnio.setText(Integer.toString(cal.get(cal.YEAR)));
+				this.jTextDuenio.setText(i.getDuenio().getNombre());
+				if(!Double.isNaN(i.getCosto())){
+					this.jTextCosto.setText(Double.toString(i.getCosto()));	
+				}
+
+			}
+			else{
+				this.jTextFechaModificacionDia.setText(null);
+				this.jTextFechaModificacionMes.setText(null);
+				this.jTextFechaModificacionAnio.setText(null);
+				this.jTextDuenio.setText(null);
+				this.jTextCosto.setText(null);
+			}
+			this.jTextEstado.setText(i.getEstado());
+			this.jLabelStatusPresupuesto.setText("");
+		}
+		else{
+			borrarCamposPresupuesto();
+		}
+!!!197381.java!!!	borrarCamposPresupuesto() : void
+
+		this.jTextDescripcion.setText("");
+		this.jTextFechaEjecucionDia.setText("");
+		this.jTextFechaEjecucionMes.setText("");
+		this.jTextFechaEjecucionAnio.setText("");
+		this.jTextId.setText("");
+		this.jTextFechaModificacionDia.setText("");
+		this.jTextFechaModificacionMes.setText("");
+		this.jTextFechaModificacionAnio.setText("");
+		this.jTextDuenio.setText("");
+		this.jTextEstado.setText("");
+		this.jTextCosto.setText("");
+		this.jLabelStatusPresupuesto.setText("");
+!!!197509.java!!!	getJDialogPresupuestos() : JDialog
+
+		if (jDialogPresupuestos == null) {
+			jDialogPresupuestos = new JDialog();
+			jDialogPresupuestos.setBounds(new Rectangle(0, 0, 714, 484));
+			jDialogPresupuestos.setSize(new Dimension(714, 480));
+			jDialogPresupuestos.setTitle("ABM Presupuestos");
+			jDialogPresupuestos.setContentPane(getJContentPanePresupuestos());
+		}
+		return jDialogPresupuestos;
+!!!197637.java!!!	getJContentPanePresupuestos() : JPanel
+
+		if (jContentPanePresupuestos == null) {
+			jLabelStatusPresupuesto = new JLabel();
+			jLabelStatusPresupuesto.setText("JLabel");
+			jLabelStatusPresupuesto.setBounds(new Rectangle(8, 352, 565, 30));
+			jLabel16 = new JLabel();
+			jLabel16.setText("Año");
+			jLabel16.setBounds(new Rectangle(196, 70, 29, 16));
+			jLabel15 = new JLabel();
+			jLabel15.setText("Mes");
+			jLabel15.setBounds(new Rectangle(157, 69, 32, 16));
+			jLabel14 = new JLabel();
+			jLabel14.setText("Dia");
+			jLabel14.setBounds(new Rectangle(129, 68, 25, 16));
+			jLabel6 = new JLabel();
+			jLabel6.setBounds(new Rectangle(9, 203, 88, 25));
+			jLabel6.setText("Costo");
+			jLabel5 = new JLabel();
+			jLabel5.setBounds(new Rectangle(9, 177, 100, 23));
+			jLabel5.setText("Estado");
+			jLabel4 = new JLabel();
+			jLabel4.setBounds(new Rectangle(9, 152, 99, 22));
+			jLabel4.setText("Dueño");
+			jLabel3 = new JLabel();
+			jLabel3.setBounds(new Rectangle(9, 121, 114, 20));
+			jLabel3.setText("Fecha Modificacion");
+			jLabel2 = new JLabel();
+			jLabel2.setBounds(new Rectangle(8, 35, 90, 22));
+			jLabel2.setText("Id");
+			jLabel1 = new JLabel();
+			jLabel1.setBounds(new Rectangle(8, 93, 102, 23));
+			jLabel1.setText("Fecha Ejecucion");
+			jLabel = new JLabel();
+			jLabel.setBounds(new Rectangle(8, 10, 91, 23));
+			jLabel.setText("Descripcion");
+			jContentPanePresupuestos = new JPanel();
+			jContentPanePresupuestos.setLayout(null);
+			jContentPanePresupuestos.add(jLabel, null);
+			jContentPanePresupuestos.add(jLabel1, null);
+			jContentPanePresupuestos.add(jLabel2, null);
+			jContentPanePresupuestos.add(jLabel3, null);
+			jContentPanePresupuestos.add(jLabel4, null);
+			jContentPanePresupuestos.add(jLabel5, null);
+			jContentPanePresupuestos.add(jLabel6, null);
+			jContentPanePresupuestos.add(jLabelStatusPresupuesto, null);
+			jContentPanePresupuestos.add(jLabel16, null);
+			jContentPanePresupuestos.add(jLabel15, null);
+			jContentPanePresupuestos.add(jLabel14, null);
+			jContentPanePresupuestos.add(getJTextFechaModificacionMes(), null);
+			jContentPanePresupuestos.add(getJTextFechaModificacionDia(), null);
+			jContentPanePresupuestos.add(getJTextFechaModificacionAnio(), null);
+			jContentPanePresupuestos.add(getJTextFechaEjecucionDia(), null);
+			jContentPanePresupuestos.add(getJTextFechaEjecucionMes(), null);
+			jContentPanePresupuestos.add(getJTextFechaEjecucionAnio(), null);
+			jContentPanePresupuestos.add(getJButtonEliminar(), null);
+			jContentPanePresupuestos.add(getJButtonCancelar(), null);
+			jContentPanePresupuestos.add(getJTextDescripcion(), null);
+			jContentPanePresupuestos.add(getJTextEstado(), null);
+			jContentPanePresupuestos.add(getJTextDuenio(), null);
+			jContentPanePresupuestos.add(getJButtonGuardar(), null);
+			jContentPanePresupuestos.add(getJTextCosto(), null);
+			jContentPanePresupuestos.add(getJButtonNuevo(), null);
+			jContentPanePresupuestos.add(getJButtonItems(), null);
+			jContentPanePresupuestos.add(getJTextId(), null);
+			jContentPanePresupuestos.add(getJScrollPanePresupuesto(), null);
+			jContentPanePresupuestos.add(getJButtonConfirmDeleteYes(), null);
+			jContentPanePresupuestos.add(getJButtonConfirmDeleteNo(), null);
+		}
+		return jContentPanePresupuestos;
+!!!197765.java!!!	getJTextDescripcion() : JTextField
+
+		if (jTextDescripcion == null) {
+			jTextDescripcion = new JTextField();
+			jTextDescripcion.setEditable(false);
+			jTextDescripcion.setBounds(new Rectangle(115, 12, 103, 20));
+		}
+		return jTextDescripcion;
+!!!197893.java!!!	getJTextFechaEjecucionDia() : JTextField
+
+		if (jTextFechaEjecucionDia == null) {
+			jTextFechaEjecucionDia = new JTextField();
+			jTextFechaEjecucionDia.setEditable(false);
+			jTextFechaEjecucionDia.setBounds(new Rectangle(129, 91, 22, 20));
+		}
+		return jTextFechaEjecucionDia;
+!!!198021.java!!!	getJTextId() : JTextField
+
+		if (jTextId == null) {
+			jTextId = new JTextField();
+			jTextId.setEditable(false);
+			jTextId.setBounds(new Rectangle(115, 35, 104, 20));
+		}
+		return jTextId;
+!!!198149.java!!!	getJTextFechaModificacionDia() : JTextField
+
+		if (jTextFechaModificacionDia == null) {
+			jTextFechaModificacionDia = new JTextField();
+			jTextFechaModificacionDia.setEditable(false);
+			jTextFechaModificacionDia.setBounds(new Rectangle(128, 122, 23, 20));
+		}
+		return jTextFechaModificacionDia;
+!!!198277.java!!!	getJTextDuenio() : JTextField
+
+		if (jTextDuenio == null) {
+			jTextDuenio = new JTextField();
+			jTextDuenio.setEditable(false);
+			jTextDuenio.setBounds(new Rectangle(115, 150, 102, 20));
+		}
+		return jTextDuenio;
+!!!198405.java!!!	getJTextCosto() : JTextField
+
+		if (jTextCosto == null) {
+			jTextCosto = new JTextField();
+			jTextCosto.setEditable(false);
+			jTextCosto.setBounds(new Rectangle(115, 206, 102, 20));
+		}
+		return jTextCosto;
+!!!198533.java!!!	getJTextEstado() : JTextField
+
+		if (jTextEstado == null) {
+			jTextEstado = new JTextField();
+			jTextEstado.setEditable(false);
+			jTextEstado.setBounds(new Rectangle(115, 178, 102, 20));
+		}
+		return jTextEstado;
+!!!198661.java!!!	getJButtonNuevo() : JButton
+
+		if (jButtonNuevo == null) {
+			jButtonNuevo = new JButton();
+			jButtonNuevo.setText("Nuevo");
+			jButtonNuevo.setBounds(new Rectangle(100, 242, 69, 26));
+			jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					nuevoPresupuesto();
+				}
+			});
+		}
+		return jButtonNuevo;
+!!!198789.java!!!	getJButtonGuardar() : JButton
+
+		if (jButtonGuardar == null) {
+			jButtonGuardar = new JButton();
+			jButtonGuardar.setText("Guardar");
+			jButtonGuardar.setBounds(new Rectangle(6, 241, 80, 26));
+			jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					guardarPresupuesto();
+				}
+			});
+		}
+		return jButtonGuardar;
+!!!198917.java!!!	getJButtonEliminar() : JButton
+
+		if (jButtonEliminar == null) {
+			jButtonEliminar = new JButton();
+			jButtonEliminar.setText("Eliminar");
+			jButtonEliminar.setBounds(new Rectangle(8, 275, 80, 26));
+			jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(jListPresupuesto.getSelectedValue()!=null){
+						jButtonConfirmDeleteYes.setVisible(true);
+						jButtonConfirmDeleteNo.setVisible(true);
+						jLabelStatusPresupuesto.setText("Aprete en \"Si\" si desea eliminar o en \"No\" para cancelar");
+					}	
+				}
+				
+			});
+		}
+		return jButtonEliminar;
+!!!199045.java!!!	getJButtonCancelar() : JButton
+
+		if (jButtonCancelar == null) {
+			jButtonCancelar = new JButton();
+			jButtonCancelar.setText("Cancelar");
+			jButtonCancelar.setBounds(new Rectangle(6, 313, 85, 26));
+			jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {   
+				public void actionPerformed(java.awt.event.ActionEvent e) {    
+					jDialogPresupuestos.dispose();
+				}
+			
+			});
+		}
+		return jButtonCancelar;
+!!!199173.java!!!	getJButtonItems() : JButton
+
+		if (jButtonItems == null) {
+			jButtonItems = new JButton();
+			jButtonItems.setText("Lista de Items");
+			jButtonItems.setBounds(new Rectangle(99, 277, 120, 26));
+			jButtonItems.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					mostrarItems();
+				}
+			});
+		}
+		return jButtonItems;
+!!!199301.java!!!	getJTextFechaModificacionMes() : JTextField
+
+		if (jTextFechaModificacionMes == null) {
+			jTextFechaModificacionMes = new JTextField();
+			jTextFechaModificacionMes.setEditable(false);
+			jTextFechaModificacionMes.setBounds(new Rectangle(158, 122, 22, 20));
+		}
+		return jTextFechaModificacionMes;
+!!!199429.java!!!	getJTextFechaModificacionAnio() : JTextField
+
+		if (jTextFechaModificacionAnio == null) {
+			jTextFechaModificacionAnio = new JTextField();
+			jTextFechaModificacionAnio.setEditable(false);
+			jTextFechaModificacionAnio.setBounds(new Rectangle(190, 122, 36, 20));
+		}
+		return jTextFechaModificacionAnio;
+!!!199557.java!!!	getJTextFechaEjecucionMes() : JTextField
+
+		if (jTextFechaEjecucionMes == null) {
+			jTextFechaEjecucionMes = new JTextField();
+			jTextFechaEjecucionMes.setEditable(false);
+			jTextFechaEjecucionMes.setBounds(new Rectangle(158, 92, 21, 20));
+		}
+		return jTextFechaEjecucionMes;
+!!!199685.java!!!	getJTextFechaEjecucionAnio() : JTextField
+
+		if (jTextFechaEjecucionAnio == null) {
+			jTextFechaEjecucionAnio = new JTextField();
+			jTextFechaEjecucionAnio.setEditable(false);
+			jTextFechaEjecucionAnio.setBounds(new Rectangle(192, 93, 35, 20));
+		}
+		return jTextFechaEjecucionAnio;
+!!!199813.java!!!	getJListPresupuesto() : JList
+
+		if (jListPresupuesto == null) {
+			colPresup=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+			
+			jListPresupuesto = new JList(getModeloJList());
+
+			for (int i=0;i<colPresup.size();i++){
+				Object unPresu=colPresup.get(i);
+				getModeloJList().addElement(unPresu);
+			}
+
+			jListPresupuesto
+			.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+				public void valueChanged(javax.swing.event.ListSelectionEvent e) {
+					mostrarDatos(jListPresupuesto.getSelectedValue());
+					presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+					VistaItemsPresupuesto.getInstancia().setPresupuestoItem(jListPresupuesto.getSelectedValue());
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
+				}
+			});
+		}
+		return jListPresupuesto;
+!!!199941.java!!!	getJScrollPanePresupuesto() : JScrollPane
+
+		if (jScrollPanePresupuesto == null) {
+			jScrollPanePresupuesto = new JScrollPane();
+			jScrollPanePresupuesto.setBounds(new Rectangle(238, 17, 342, 308));
+			jScrollPanePresupuesto.setViewportView(getJListPresupuesto());
+		}
+		return jScrollPanePresupuesto;
+!!!200069.java!!!	getJButtonConfirmDeleteYes() : JButton
+
+		if (jButtonConfirmDeleteYes == null) {
+			jButtonConfirmDeleteYes = new JButton();
+			jButtonConfirmDeleteYes.setBounds(new Rectangle(199, 389, 77, 30));
+			jButtonConfirmDeleteYes.setText("Yes");
+			jButtonConfirmDeleteYes.setVisible(false);
+			jButtonConfirmDeleteYes.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					if(Fachada.borrarPresupuesto((Presupuesto)jListPresupuesto.getSelectedValue())){
+						//getModeloJList().removeElement(jListPresupuesto.getSelectedValue());
+						modeloPresupuesto.fueModificado();
+						jLabelStatusPresupuesto.setText("Presupuesto Eliminado");
+					}
+					else{
+						jLabelStatusPresupuesto.setText("Presupuesto Nuevo Eliminado");
+					}
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
+				}
+			});
+		}
+		return jButtonConfirmDeleteYes;
+!!!200197.java!!!	getJButtonConfirmDeleteNo() : JButton
+
+		if (jButtonConfirmDeleteNo == null) {
+			jButtonConfirmDeleteNo = new JButton();
+			jButtonConfirmDeleteNo.setBounds(new Rectangle(309, 389, 77, 30));
+			jButtonConfirmDeleteNo.setText("No");
+			jButtonConfirmDeleteNo.setVisible(false);
+			jButtonConfirmDeleteNo.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+					jLabelStatusPresupuesto.setText("Operacion Cancelada");
+					jButtonConfirmDeleteYes.setVisible(false);
+					jButtonConfirmDeleteNo.setVisible(false);
+				}
+			});
+		}
+		return jButtonConfirmDeleteNo;
+!!!200325.java!!!	mostrarItems() : void
+
+		if(jTextDescripcion.isEditable()){
+			if(jTextId.getText().isEmpty()){
+				if(jTextDescripcion.getText().isEmpty()){
+					jLabelStatusPresupuesto.setText("Debe ingresar una descripcion");
+				}
+				else{
+					jLabelStatusPresupuesto.setText("");
+					Date fechaEjecucion=null;
+					try{
+						fechaEjecucion=Fecha.ValidarFecha(Integer.parseInt(jTextFechaEjecucionDia.getText()),Integer.parseInt(jTextFechaEjecucionMes.getText()),Integer.parseInt(jTextFechaEjecucionAnio.getText()));
+					}
+					catch( Exception z) {
+					}
+					Presupuesto tmpNuevoPresupuesto=new Presupuesto(jTextDescripcion.getText(),fechaEjecucion);
+					Date now=new Date();
+					tmpNuevoPresupuesto.setFechaModificacion(now);
+					mostrarDatos(tmpNuevoPresupuesto);
+					presupuestoSeleccionado=tmpNuevoPresupuesto;
+					VistaItemsPresupuesto.getInstancia().setPresupuestoItem(tmpNuevoPresupuesto);
+					
+					VistaItemsPresupuesto.getInstancia().getJDialogItems().setVisible(true);
+					jDialogPresupuestos.setVisible(false);	
+				}
+			}
+			else{
+				VistaItemsPresupuesto.getInstancia().getJDialogItems().setVisible(true);
+				jDialogPresupuestos.setVisible(false);
+				VistaItemsPresupuesto.getInstancia().setPresupuestoItem(jListPresupuesto.getSelectedValue());
+				presupuestoSeleccionado=(Presupuesto) jListPresupuesto.getSelectedValue();
+			}
+
+		}
+		
+!!!200453.java!!!	updateCosto() : void
+
+		
+		jTextCosto.setText(Double.toString(Fachada.calcularCosto(presupuestoSeleccionado)));
+		
+!!!200581.java!!!	getModeloJList() : DefaultListModel
+
+		if (modeloJList == null) {
+			modeloJList = new DefaultListModel();
+		}
+		return modeloJList;
+!!!200709.java!!!	update(inout arg0 : Observable, inout arg1 : Object) : void
+
+		ArrayList colPresupuestos=new ArrayList();
+		colPresupuestos=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(),1,0,0);
+		getModeloJList().removeAllElements();
+		for (int i=0;i<colPresupuestos.size();i++){
+			Object unPresu=colPresupuestos.get(i);
+			getModeloJList().addElement(unPresu);
+		}

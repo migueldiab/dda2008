@@ -1,0 +1,515 @@
+class VistaPrincipal
+!!!200837.java!!!	getJFrame() : JFrame
+
+	    if (jFrame == null) {
+	      jFrame = new JFrame();
+	      jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	      jFrame.setJMenuBar(getJJMenuBar());
+	      jFrame.setSize(800, 600);
+	      jFrame.setContentPane(getJContentPane());
+	      jFrame.setTitle("Sistema de Gestion de Presupuestos");
+	    }
+	    return jFrame;
+!!!200965.java!!!	getJContentPane() : JPanel
+
+	    if (jContentPane == null) {
+	      jContentPane = new JPanel();
+	      jContentPane.setLayout(new BorderLayout());
+	    }
+	    return jContentPane;
+!!!201093.java!!!	getJJMenuBar() : JMenuBar
+
+	    if (jJMenuBar == null) {
+	      jJMenuBar = new JMenuBar();
+	      jJMenuBar.add(getFileMenu());
+	      jJMenuBar.add(getEditMenu());
+	      jJMenuBar.add(getAdminMenu());
+	      jJMenuBar.add(getOperacionesMenu());
+	      jJMenuBar.add(getListadosMenu());
+	      jJMenuBar.add(getHelpMenu());
+	    }
+	    return jJMenuBar;
+!!!201221.java!!!	getFileMenu() : JMenu
+
+	    if (fileMenu == null) {
+	      fileMenu = new JMenu();
+	      fileMenu.setText("Archivo");
+	      fileMenu.add(getCambiarUsuarioMenuItem());
+	      fileMenu.add(getExitMenuItem());
+	    }
+	    return fileMenu;
+!!!201349.java!!!	getEditMenu() : JMenu
+
+	    if (editMenu == null) {
+	      editMenu = new JMenu();
+	      editMenu.setText("Edición");
+	      editMenu.add(getCutMenuItem());
+	      editMenu.add(getCopyMenuItem());
+	      editMenu.add(getPasteMenuItem());
+	    }
+	    return editMenu;
+!!!201477.java!!!	getAdminMenu() : JMenu
+
+	    if (adminMenu == null) {
+	      adminMenu = new JMenu();
+	      adminMenu.setText("Administrar");
+	      adminMenu.add(getUsuariosMenuItem());
+	      adminMenu.add(getGruposMenuItem());
+        adminMenu.add(getArticulosMenuItem());
+        adminMenu.add(getArticulosCompuestosMenuItem());
+        adminMenu.add(getMedidasMenuItem());
+        adminMenu.add(getMonitorStockMenuItem());        
+	    }
+	    return adminMenu;
+!!!201605.java!!!	getUsuariosMenuItem() : JMenuItem
+
+	    if (usuariosMenuItem == null) {
+	      usuariosMenuItem = new JMenuItem();
+	      usuariosMenuItem.setText("Usuarios");
+	      usuariosMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.USUARIOS)) {
+              if (dUsuario == null) {
+                VistaUsuarios guiUsuario = new VistaUsuarios();
+                dUsuario = guiUsuario.getDAbmUsuarios();
+                dUsuario.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dUsuario.setLocation(loc);
+                dUsuario.setBounds(10,10,500,290);
+                dUsuario.setVisible(true);            
+              }
+              else {
+                dUsuario.setVisible(true);
+              }
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }	          
+	          
+	        }
+	      });
+	    }
+	    return usuariosMenuItem;
+!!!201733.java!!!	getGruposMenuItem() : JMenuItem
+
+	    if (gruposMenuItem == null) {
+	      gruposMenuItem = new JMenuItem();
+	      gruposMenuItem.setText("Grupos");
+	      gruposMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	          
+	        }
+	      });
+	    }
+	    return gruposMenuItem;
+!!!201861.java!!!	getOperacionesMenu() : JMenu
+
+		  if (operacionesMenu == null) {
+			  operacionesMenu = new JMenu();
+			  operacionesMenu.setText("Presupuestos");
+			  operacionesMenu.setPreferredSize(new Dimension(85, 21));
+			  operacionesMenu.add(getPrespuestosMenuItem());  
+			  operacionesMenu.add(getFinalizarMenuItem());
+			  operacionesMenu.add(getCopiarMenuItem());
+			  operacionesMenu.add(getCambioDuenioMenuItem());
+		  }
+		  return operacionesMenu;
+!!!201989.java!!!	getArticulosMenuItem() : JMenuItem
+
+	    if (articulosMenuItem == null) {
+	      articulosMenuItem = new JMenuItem();
+	      articulosMenuItem.setText(I18n.ARTICULOS);
+	      articulosMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+            
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.ARTICULOS)) {
+
+              if (dArticulos == null) {
+              VistaArticulos guiArticulo = new VistaArticulos();
+                dArticulos = guiArticulo.getDAbmArticulos();
+                dArticulos.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dArticulos.setLocation(loc);
+                dArticulos.setBounds(10,10,500,290);
+                dArticulos.setVisible(true);            
+              }
+              else {
+                dArticulos.setVisible(true);
+              }
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
+	        }
+	      });
+	    }
+	    return articulosMenuItem;
+!!!202117.java!!!	getArticulosCompuestosMenuItem() : JMenuItem
+
+      if (articulosCompuestosMenuItem == null) {
+        articulosCompuestosMenuItem = new JMenuItem();
+        articulosCompuestosMenuItem.setText(I18n.ARTICULOS_COMPUESTOS);
+        articulosCompuestosMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.ARTICULOS)) {
+              if (dArticulosCompuestos == null) {
+                VistaArticulosCompuestos guiArticuloCompuesto = new VistaArticulosCompuestos();
+                dArticulosCompuestos = guiArticuloCompuesto.getDAbmArticulosCompuestos();
+                dArticulosCompuestos.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dArticulosCompuestos.setLocation(loc);
+                dArticulosCompuestos.setBounds(10,10,660,420);
+                dArticulosCompuestos.setVisible(true);            
+              }
+              else {
+                dArticulosCompuestos.setVisible(true);
+              }                    
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
+          }
+        });
+      }
+      return articulosCompuestosMenuItem;
+!!!202245.java!!!	getMedidasMenuItem() : JMenuItem
+
+	    if (medidasMenuItem == null) {
+	      medidasMenuItem = new JMenuItem();
+	      medidasMenuItem.setText(I18n.MEDIDAS);
+	      medidasMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.MEDIDAS)) {
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
+	          
+	        }
+	      });
+	    }
+	    return medidasMenuItem;
+!!!202373.java!!!	getPrespuestosMenuItem() : JMenuItem
+
+	    if (presupuestosMenuItem == null) {
+	      presupuestosMenuItem = new JMenuItem();
+	      presupuestosMenuItem.setText(I18n.PRESUPUESTOS);
+	      presupuestosMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+              if (dPresupuesto == null) {
+                VistaPresupuestos guiPresupuestos = new VistaPresupuestos(modeloPresupuesto);
+                dPresupuesto = guiPresupuestos.getJDialogPresupuestos();
+                dPresupuesto.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dPresupuesto.setLocation(loc);
+                dPresupuesto.setBounds(10,10,704,474);
+                dPresupuesto.setVisible(true);            
+              }
+              else {
+                dPresupuesto.setVisible(true);
+              }                    
+
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }
+	        }
+	      });
+	    }
+	    return presupuestosMenuItem;
+!!!202501.java!!!	getMonitorStockMenuItem() : JMenuItem
+
+		  if (monitorStockMenuItem == null) {
+			  monitorStockMenuItem = new JMenuItem();
+			  monitorStockMenuItem.setText(I18n.MONITOR_STOCK);
+			  monitorStockMenuItem.addActionListener(new ActionListener() {   
+				  public void actionPerformed(java.awt.event.ActionEvent e) {    
+					  if (dMonitorStock == null) { 
+						  VistaMonitorStock guiMonitorStock = new VistaMonitorStock();
+						  dMonitorStock = guiMonitorStock.getJDialog();
+						  dMonitorStock.pack();
+						  Point loc = getJFrame().getLocation();
+						  loc.translate(20, 20);
+						  dMonitorStock.setLocation(loc);
+						  dMonitorStock.setBounds(10,10,704,474);
+						  dMonitorStock.setVisible(true);            
+					  }
+					  else {
+						  dMonitorStock.setVisible(true);
+					  }                  
+				  }
+
+			  });
+		  }
+		  return monitorStockMenuItem;
+!!!202629.java!!!	getListadosMenu() : JMenu
+
+	    if (listadosMenu == null) {
+	      listadosMenu = new JMenu();
+	      listadosMenu.setText("Listados");
+	      listadosMenu.add(getListadoPresupuestosMenuItem());
+	      //listadosMenu.add(getListado2MenuItem());
+	      //listadosMenu.add(getListado3MenuItem());
+	    }
+	    return listadosMenu;
+!!!202757.java!!!	getListadoPresupuestosMenuItem() : JMenuItem
+
+	    if (listadoPresupuestosMenuItem == null) {
+        listadoPresupuestosMenuItem = new JMenuItem();
+        listadoPresupuestosMenuItem.setText(I18n.PRESUPUESTOS);
+        listadoPresupuestosMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+            if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.CONSULTAS)) {
+              if (dListados == null) {
+                VistaListado guiListado = new VistaListado();
+                dListados = guiListado.getDListados();
+                dListados.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dListados.setLocation(loc);
+                dListados.setBounds(10,10,500,290);
+                dListados.setVisible(true);            
+              }
+              else {
+                dListados.setVisible(true);
+              }
+            }
+            else {
+              JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+            }                
+	        }
+	      });
+	    }
+	    return listadoPresupuestosMenuItem;
+!!!202885.java!!!	getListado2MenuItem() : JMenuItem
+
+	    if (listado2MenuItem == null) {
+	      listado2MenuItem = new JMenuItem();
+	      listado2MenuItem.setText("L2");
+	      listado2MenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	          
+	        }
+	      });
+	    }
+	    return listado2MenuItem;
+!!!203013.java!!!	getListado3MenuItem() : JMenuItem
+
+	    if (listado3MenuItem == null) {
+	      listado3MenuItem = new JMenuItem();
+	      listado3MenuItem.setText("L3");
+	      listado3MenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	          
+	        }
+	      });
+	    }
+	    return listado3MenuItem;
+!!!203141.java!!!	getHelpMenu() : JMenu
+
+	    if (helpMenu == null) {
+	      helpMenu = new JMenu();
+	      helpMenu.setText("Ayuda");
+	      helpMenu.add(getAboutMenuItem());
+	    }
+	    return helpMenu;
+!!!203269.java!!!	getCambiarUsuarioMenuItem() : JMenuItem
+
+      if (cambiarUsuarioMenuItem == null) {
+        cambiarUsuarioMenuItem = new JMenuItem();
+        cambiarUsuarioMenuItem.setText("Cambiar Usuario");
+        cambiarUsuarioMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            Inicio.login.cargar();  
+            //vistas.VistaPrincipal.cerrar();
+            Inicio.principal.cerrar();
+          }
+        });
+      }
+      return cambiarUsuarioMenuItem;
+!!!203397.java!!!	getExitMenuItem() : JMenuItem
+
+      if (exitMenuItem == null) {
+        exitMenuItem = new JMenuItem();
+        exitMenuItem.setText("Salir");
+        exitMenuItem.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            System.exit(0);       
+          }
+        });
+      }
+      return exitMenuItem;
+!!!203525.java!!!	getAboutMenuItem() : JMenuItem
+
+	    if (aboutMenuItem == null) {
+	      aboutMenuItem = new JMenuItem();
+	      aboutMenuItem.setText("Acerca de");
+	      aboutMenuItem.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e) {
+	          JDialog aboutDialog = getAboutDialog();
+	          aboutDialog.pack();
+	          Point loc = getJFrame().getLocation();
+	          loc.translate(20, 20);
+	          aboutDialog.setLocation(loc);
+	          aboutDialog.setVisible(true);
+	        }
+	      });
+	    }
+	    return aboutMenuItem;
+!!!203653.java!!!	getAboutDialog() : JDialog
+
+	    if (aboutDialog == null) {
+	      aboutDialog = new JDialog(getJFrame(), true);
+	      aboutDialog.setTitle("Acerca de");
+	      aboutDialog.setContentPane(getAboutContentPane());
+	    }
+	    return aboutDialog;
+!!!203781.java!!!	getAboutContentPane() : JPanel
+
+	    if (aboutContentPane == null) {
+	      aboutContentPane = new JPanel();
+	      aboutContentPane.setLayout(new BorderLayout());
+	      aboutContentPane.add(getAboutVersionLabel(), BorderLayout.CENTER);
+	    }
+	    return aboutContentPane;
+!!!203909.java!!!	getAboutVersionLabel() : JLabel
+
+	    if (aboutVersionLabel == null) {
+	      aboutVersionLabel = new JLabel();
+	      aboutVersionLabel.setText("Versión 1.0");
+	      aboutVersionLabel.setHorizontalAlignment(SwingConstants.CENTER);
+	    }
+	    return aboutVersionLabel;
+!!!204037.java!!!	getCutMenuItem() : JMenuItem
+
+	    if (cutMenuItem == null) {
+	      cutMenuItem = new JMenuItem();
+	      cutMenuItem.setText("Cortar");
+	      cutMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X,
+	          Event.CTRL_MASK, true));
+	    }
+	    return cutMenuItem;
+!!!204165.java!!!	getCopyMenuItem() : JMenuItem
+
+	    if (copyMenuItem == null) {
+	      copyMenuItem = new JMenuItem();
+	      copyMenuItem.setText("Copiar");
+	      copyMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C,
+	          Event.CTRL_MASK, true));
+	    }
+	    return copyMenuItem;
+!!!204293.java!!!	getPasteMenuItem() : JMenuItem
+
+	    if (pasteMenuItem == null) {
+	      pasteMenuItem = new JMenuItem();
+	      pasteMenuItem.setText("Pegar");
+	      pasteMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V,
+	          Event.CTRL_MASK, true));
+	    }
+	    return pasteMenuItem;
+!!!204421.java!!!	cargar() : void
+
+	    sistema.Inicio.principal.getJFrame().setVisible(true);
+!!!204549.java!!!	cerrar() : void
+
+      sistema.Inicio.principal.jFrame.dispose();
+      
+!!!204677.java!!!	getFinalizarMenuItem() : JMenuItem
+
+		if (finalizarMenuItem == null) {
+			finalizarMenuItem = new JMenuItem();
+			finalizarMenuItem.setText("Finalizar Presupuesto");
+			finalizarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+          if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+
+            if (dFinalizarPresupuesto == null) {
+              VistaFinalizacionPresupuesto guiFinalizarPresupuesto = new VistaFinalizacionPresupuesto(modeloPresupuesto);
+              dFinalizarPresupuesto = guiFinalizarPresupuesto.getJDialog();
+              dFinalizarPresupuesto.pack();
+              Point loc = getJFrame().getLocation();
+              loc.translate(20, 20);
+              dFinalizarPresupuesto.setLocation(loc);
+              dFinalizarPresupuesto.setBounds(10,10,625,516);
+              dFinalizarPresupuesto.setVisible(true);            
+            }
+            else {
+              dFinalizarPresupuesto.setVisible(true);
+            } 
+          }
+          else {
+            JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+          }
+
+				}
+			});
+		}
+		return finalizarMenuItem;
+!!!204805.java!!!	getCopiarMenuItem() : JMenuItem
+
+		if (copiarMenuItem == null) {
+			copiarMenuItem = new JMenuItem();
+			copiarMenuItem.setText("Copiar Presupuesto");
+			copiarMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+          if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+            if (dCopiarPresupuesto == null) {
+              VistaCopiaPresupuesto guiCopiaPresupuesto = new VistaCopiaPresupuesto(modeloPresupuesto);
+              dCopiarPresupuesto = guiCopiaPresupuesto.getJDialog();
+              dCopiarPresupuesto.pack();
+              Point loc = getJFrame().getLocation();
+              loc.translate(20, 20);
+              dCopiarPresupuesto.setLocation(loc);
+              dCopiarPresupuesto.setBounds(10,10,625,516);
+              dCopiarPresupuesto.setVisible(true);            
+            }
+            else {
+              dCopiarPresupuesto.setVisible(true);
+            } 
+
+          }
+          else {
+            JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+          }
+				}
+			});
+		}
+		return copiarMenuItem;
+!!!204933.java!!!	getCambioDuenioMenuItem() : JMenuItem
+
+		if (cambioDuenioMenuItem == null) {
+			cambioDuenioMenuItem = new JMenuItem();
+			cambioDuenioMenuItem.setText("Cambiar Dueño");
+			cambioDuenioMenuItem.addActionListener(new java.awt.event.ActionListener() {
+				public void actionPerformed(java.awt.event.ActionEvent e) {
+          if(Fachada.getUsuarioActual().getGrupo().tienePermiso(Grupo.PRESUPUESTOS)) {
+            if (dCambioDuenio == null) {
+              VistaCambioDuenio guiCambioDuenio = new VistaCambioDuenio(modeloPresupuesto);
+              dCambioDuenio = guiCambioDuenio.getJDialog();
+              dCambioDuenio.pack();
+                Point loc = getJFrame().getLocation();
+                loc.translate(20, 20);
+                dCambioDuenio.setLocation(loc);
+                dCambioDuenio.setBounds(10,10,625,516);
+                dCambioDuenio.setVisible(true);            
+              }
+              else {
+                dCambioDuenio.setVisible(true);
+              } 
+          }
+          else {
+            JOptionPane.showInternalMessageDialog(Inicio.principal.jContentPane, "No tiene permisos para acceder a esta área");
+          }
+
+				}
+			});
+		}
+		return cambioDuenioMenuItem;

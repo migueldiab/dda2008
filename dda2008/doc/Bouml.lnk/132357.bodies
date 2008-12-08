@@ -1,0 +1,97 @@
+class VistaLogin
+!!!193541.java!!!	getJFrame() : JFrame
+
+    if (jFrame == null) {
+      jFrame = new JFrame();
+      jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      jFrame.setSize(300, 200);
+      jFrame.setContentPane(getJContentPane());
+      jFrame.setTitle("Sistema de Gestion de Presupuestos");
+    }
+    return jFrame;
+!!!193669.java!!!	VistaLogin()
+
+		super();
+		initialize();
+		//VistaPrincipal.cargar();
+    //Inicio.principal.getJFrame();
+!!!193797.java!!!	initialize() : void
+
+//		this.setSize(250, 180);
+//		this.setContentPane(getJContentPane());
+//		this.setTitle("Acceso a Sistema de Presupuestos");
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+!!!193925.java!!!	getJContentPane() : JPanel
+
+    if (jContentPane == null) {
+      lError = new JLabel();
+      lError.setBounds(new Rectangle(25, 4, 194, 41));
+      
+      lError.setForeground(new Color(200,10,10));
+      lError.setUI(new MultiLineLabelUI());
+
+      lPassword = new JLabel();      
+      lPassword.setBounds(new Rectangle(25, 72, 60, 20));
+      lPassword.setText("Clave");
+      jLabel = new JLabel();
+      jLabel.setBounds(new Rectangle(25, 42, 60, 20));
+      jLabel.setText("Usuario");
+      jContentPane = new JPanel();
+      jContentPane.setLayout(null);
+      jContentPane.add(getTUsuario(), null);
+      jContentPane.add(getTClave(), null);
+      jContentPane.add(getBLogin(), null);
+      jContentPane.add(jLabel, null);
+      jContentPane.add(lPassword, null);
+      jContentPane.add(lError, null);
+    }
+    return jContentPane;
+!!!194053.java!!!	getTUsuario() : JTextField
+
+    if (tUsuario == null) {
+      tUsuario = new JTextField();
+      tUsuario.setBounds(new Rectangle(90, 42, 110, 20));
+      tUsuario.setText("admin");
+    }
+    return tUsuario;
+!!!194181.java!!!	getTClave() : JPasswordField
+
+    if (tClave == null) {
+      tClave = new JPasswordField();
+      tClave.setBounds(new Rectangle(90, 72, 110, 20));
+      tClave.setText("admin");
+    }
+    return tClave;
+!!!194309.java!!!	getBLogin() : JButton
+
+    if (bLogin == null) {
+      bLogin = new JButton();
+      bLogin.setBounds(new Rectangle(90, 102, 110, 30));
+      bLogin.setText("Login");
+      bLogin.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent e) {
+          int intentos = ServiciosUsuarios.MAX_LOGIN;
+          if (!Fachada.vistaLogin(tUsuario.getText(), tClave.getPassword())) {
+            lError.setText(I18n.NUMERO_INTENTOS + intentos);
+            intentos--;
+          } 
+          else {
+            VistaPrincipal.cargar();            
+            lError.setText("");
+            Inicio.login.cerrar();
+          }
+          
+            
+        }
+      });
+    }
+    
+    
+    return bLogin;
+!!!194437.java!!!	cerrar() : void
+
+    this.jFrame.dispose();
+    
+!!!194565.java!!!	cargar() : void
+
+    sistema.Inicio.login.getJFrame().setVisible(true);

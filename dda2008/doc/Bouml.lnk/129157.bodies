@@ -1,0 +1,87 @@
+class Articulo
+!!!130181.java!!!	Articulo(in nombre : String, inout unaMedida : Medida)
+
+    try {
+      if (nombre == "") 
+        throw new Exception("Nombre de articulo no puede ser vacío");
+      if (nombre.length()<4) 
+        throw new Exception("Nombre de articulo no puede tener menos de 4 caracteres");
+      if (nombre == null)
+        throw new Exception("Articulo debe recibir nombre como parametro");
+      if (unaMedida == null) 
+        throw new Exception("Articulo debe recibir Medida como parametro");
+      
+      this.setNombre(nombre);
+      this.setMedida(unaMedida);
+    }
+    catch (Exception e){
+      System.out.println(e);
+    }
+!!!130309.java!!!	Articulo(in nombre : String, inout unaMedida : Medida, in cantidad : int, in costo : double)
+
+    this(nombre, unaMedida);
+    this.setCantidad(cantidad);
+    this.setCosto(costo);    
+!!!130437.java!!!	equals(inout arg0 : Object) : boolean
+
+    try
+    {
+      Articulo articulo = (Articulo)arg0;
+      if (articulo.nombre.equals(this.nombre)) {
+        if (articulo.medida.equals(this.medida)) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return false;
+!!!130565.java!!!	toString() : String
+
+    // TODO Auto-generated method stub
+    return this.getNombre()+" ("+this.getMedida()+")";
+!!!130693.java!!!	getCantidad() : int
+
+    return cantidad;
+!!!130821.java!!!	setCantidad(in cantidad : int) : void
+
+    this.cantidad = cantidad;
+!!!130949.java!!!	getCosto() : double
+
+    return costo;
+!!!131077.java!!!	setCosto(in costo : double) : void
+
+    this.costo = costo;
+!!!131205.java!!!	getMedida() : Medida
+
+    return medida;
+!!!131333.java!!!	setMedida(inout medida : Medida) : void
+
+    this.medida = medida;
+!!!131461.java!!!	getNombre() : String
+
+    return nombre;
+!!!131589.java!!!	setNombre(in nombre : String) : void
+
+    this.nombre = nombre;
+!!!131717.java!!!	compareTo(inout o : Object) : int
+
+  	{
+  	    try
+  	    {
+  	      Articulo articulo = (Articulo)o;
+  	      int retorno= articulo.getNombre().toUpperCase().compareTo(this.getNombre().toUpperCase())*-1;
+  	      if (retorno==0){
+  	    	  retorno=articulo.getMedida().getDescripcion().toUpperCase().compareTo(this.getMedida().getDescripcion().toUpperCase())*-1;
+  	      }
+  	      return retorno;
+  	    }
+  	    catch (RuntimeException e)
+  	    {
+  	      //e.printStackTrace();
+  	    }
+  	    return 0;
+  	  }

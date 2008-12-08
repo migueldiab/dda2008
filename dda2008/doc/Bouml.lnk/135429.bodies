@@ -1,0 +1,45 @@
+class VistaListado
+!!!193029.java!!!	getJContentPane() : JPanel
+
+    if (jContentPane == null) {
+      jContentPane = new JPanel();
+      jContentPane.setLayout(new BorderLayout());
+      jContentPane.add(getTListado(), BorderLayout.CENTER);
+    }
+    return jContentPane;
+!!!193157.java!!!	getTListado() : JTextPane
+
+    if (tListado == null) {
+      tListado = new JTextPane();
+      tListado.setEnabled(false);
+      mostrarListado();
+    }
+    return tListado;
+!!!193285.java!!!	mostrarListado() : void
+
+    //tListado.setText(Fachada.listadoPresupuestos());
+    ArrayList losPresupuestos=new ArrayList();
+    if(Fachada.getUsuarioActual().getGrupo().toString().equals("Gestor"))    {
+      losPresupuestos=Fachada.obtenerPresupuestos(Fachada.getUsuarioActual(), 1, 1, 1);
+    }
+    else {
+      losPresupuestos = Fachada.obtenerPresupuestos(null, 1, 1, 1);
+    }
+    for (Object o : losPresupuestos) {
+      Presupuesto unPresupuesto = (Presupuesto) o;
+      
+      tListado.setText(tListado.getText()+"\n"+unPresupuesto.toString());
+      for (Object i : unPresupuesto.getItems()) {
+        tListado.setText(tListado.getText()+"\n"+i.toString());
+      }
+          
+    }
+!!!193413.java!!!	getDListados() : JDialog
+
+    if (dListados == null) {
+      dListados = new JDialog();
+      dListados.setBounds(new Rectangle(0, 0, 500, 290));
+      dListados.setContentPane(getJContentPane());
+      dListados.setTitle("Listado");
+    }
+    return dListados;

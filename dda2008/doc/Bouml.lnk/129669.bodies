@@ -1,0 +1,52 @@
+class Componente
+!!!135173.java!!!	Componente(inout unArticulo : Articulo, in cantidad : int)
+
+    setArticulo(unArticulo);
+    setCantidad(cantidad);
+!!!135301.java!!!	Componente(inout unArticulo : Articulo)
+
+    setArticulo(unArticulo);
+    setCantidad(1);
+!!!135429.java!!!	esHoja() : boolean
+
+    return articulo.esHoja();
+!!!135557.java!!!	getHijo(in posicion : int) : Componente
+ return null;
+!!!135685.java!!!	getCantidadDeHijos() : int
+ return 0;
+!!!135813.java!!!	getIndiceHijo(inout unComponente : Componente) : int
+ return -1;
+!!!135941.java!!!	getPadre(inout unComponente : Componente) : Componente
+ return null;
+!!!136069.java!!!	equals(inout arg0 : Object) : boolean
+
+    try
+    {
+      Articulo articulo = (Articulo) ((Componente) arg0).getArticulo();
+      if (articulo.getNombre().equals(this.articulo.getNombre())) {
+        if (articulo.getMedida().equals(this.articulo.getMedida())) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+
+    }
+    return false;
+!!!136197.java!!!	toString() : String
+
+    return cantidad + " - " + articulo.toString();
+!!!136325.java!!!	getCantidad() : int
+
+    return cantidad;
+!!!136453.java!!!	setCantidad(in cantidad : int) : void
+
+    if (cantidad>0)
+      this.cantidad = cantidad;
+!!!136581.java!!!	getArticulo() : Articulo
+
+    return articulo;
+!!!136709.java!!!	setArticulo(inout componente : Articulo) : void
+
+    this.articulo = componente;

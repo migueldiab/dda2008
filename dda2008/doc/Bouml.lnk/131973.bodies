@@ -1,20 +1,6 @@
-package servicios;
+class ServiciosPresupuestos
+!!!157189.java!!!	agregar(inout unPresupuesto : Presupuesto) : boolean
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
-
-import utils.I18n;
-
-import dominio.*;
-
-
-public class ServiciosPresupuestos
-{
-	private static ArrayList presupuestos = new ArrayList();
-  
-  public static boolean agregar(Presupuesto unPresupuesto){
     
   	if (presupuestos.indexOf(unPresupuesto)==-1){
     	presupuestos.add(unPresupuesto);
@@ -25,8 +11,8 @@ public class ServiciosPresupuestos
   	{
   	  return false;
   	}
-  }
-  public static boolean borrar(Presupuesto o){
+!!!157317.java!!!	borrar(inout o : Presupuesto) : boolean
+
   	 if(presupuestos.indexOf(o)!=-1){
   		 presupuestos.remove(o);
   		 return true;
@@ -34,9 +20,8 @@ public class ServiciosPresupuestos
   	 else{
   		 return false;
   	 }
-  }
-  
-  public static Double calcularCosto(Presupuesto unPresupuesto){
+!!!157445.java!!!	calcularCosto(inout unPresupuesto : Presupuesto) : Double
+
   int x = 0;
   double costo=0;
   	 for(x=0;x<unPresupuesto.getItems().size();x++){
@@ -49,17 +34,16 @@ public class ServiciosPresupuestos
   		 }
   	 }
   	 return costo;
-  }
-  public static ArrayList listado(){
+!!!157573.java!!!	listado() : ArrayList
+
   	 if(presupuestos.size()==0){
   		 return null;
   	 }
   	 else{
   	   return presupuestos;
   	 }
-  }
-  
-  public static boolean agregarItem(Presupuesto unPresupuesto,Object unArticulo, int cant){
+!!!157701.java!!!	agregarItem(inout unPresupuesto : Presupuesto, inout unArticulo : Object, in cant : int) : boolean
+
   		Item unItem=new Item((Articulo)unArticulo,cant);
   		if(unPresupuesto.getItems().contains(unItem)){
   			 return false;
@@ -69,9 +53,8 @@ public class ServiciosPresupuestos
   			return true;
   		 }
   	 
-  }
-  
-  public static boolean borrarItem(Presupuesto unPresupuesto,Item unItem){
+!!!157829.java!!!	borrarItem(inout unPresupuesto : Presupuesto, inout unItem : Item) : boolean
+
   	 int indice=presupuestos.indexOf(unPresupuesto);
   	 if (indice==-1){
   		 return false;
@@ -85,10 +68,8 @@ public class ServiciosPresupuestos
   			return true;
   		 }
   	 }
-  }
-  
-  public static boolean modificarPresupuesto(Presupuesto unPresupuesto,
-			String descripcion, Date fechaEjecucion) {
+!!!157957.java!!!	modificarPresupuesto(inout unPresupuesto : Presupuesto, in descripcion : String, inout fechaEjecucion : Date) : boolean
+
 	  int indice=presupuestos.indexOf(unPresupuesto);
 		 if (indice==-1){
 	  		 return false;
@@ -100,9 +81,8 @@ public class ServiciosPresupuestos
 			 	 unPresupuesto.setFechaEjecucion(fechaEjecucion);
 			 return true;
 		 }
-  }
-  
-  public static boolean modificarItemPresupuesto(Presupuesto unPresupuesto,Item item,int cantItem){
+!!!158085.java!!!	modificarItemPresupuesto(inout unPresupuesto : Presupuesto, inout item : Item, in cantItem : int) : boolean
+
 	  int indice=presupuestos.indexOf(unPresupuesto);
 	  	 if (indice==-1){
 	  		 return false;
@@ -119,10 +99,8 @@ public class ServiciosPresupuestos
 	  			 return true;
 	  		 }
 	  	 }
-  }
-  
-  public static ArrayList obtenerPresupuestoPorArticulo(Articulo unArticulo)
-  {
+!!!158213.java!!!	obtenerPresupuestoPorArticulo(inout unArticulo : Articulo) : ArrayList
+
    ArrayList losPresupuestos = new ArrayList();
    	for (int i = 0; i < presupuestos.size(); i++) {
 	   Presupuesto unPresupuesto = (Presupuesto) presupuestos.get(i);
@@ -136,9 +114,8 @@ public class ServiciosPresupuestos
 	   	}
    	}
    return losPresupuestos;
-  }
-  public static ArrayList obtenerPresupuestoPorUsuario(Usuario unUsuario)
-  {
+!!!158341.java!!!	obtenerPresupuestoPorUsuario(inout unUsuario : Usuario) : ArrayList
+
       ArrayList losPresupuestos = new ArrayList();
      
     for (int i = 0; i < presupuestos.size(); i++) {
@@ -148,10 +125,8 @@ public class ServiciosPresupuestos
       }
     }
     return losPresupuestos;
-  }
-  
-  public static ArrayList obtenerPresupuestoPorArticuloEstadoConFecha(Articulo unArticulo, String unEstado)
-  {
+!!!158469.java!!!	obtenerPresupuestoPorArticuloEstadoConFecha(inout unArticulo : Articulo, in unEstado : String) : ArrayList
+
     ArrayList losPresupuestos = new ArrayList();
    
     for (int i = 0; i < presupuestos.size(); i++) {
@@ -168,9 +143,8 @@ public class ServiciosPresupuestos
       }
     }
     return losPresupuestos;
-  }
- 
-  public static ArrayList obtenerPresupuestos(Usuario unUsuario,int Criterio0Asc1Desc,int Criterio0XFechaMod1XFechaEje,int Criterio0EnConstr1Todos){
+!!!158597.java!!!	obtenerPresupuestos(inout unUsuario : Usuario, in Criterio0Asc1Desc : int, in Criterio0XFechaMod1XFechaEje : int, in Criterio0EnConstr1Todos : int) : ArrayList
+
 	ArrayList losPresupuestos=new ArrayList();
 	 
 	if (unUsuario==null){
@@ -204,13 +178,11 @@ public class ServiciosPresupuestos
 		Collections.sort(losPresupuestos,new CriterioComparacionPorFechaEjecucionYModificacionDesc());
 	}
 	  return losPresupuestos;
-  }
+!!!158725.java!!!	obtenerItems(inout unPresupuesto : Presupuesto) : ArrayList
 
-  public static ArrayList obtenerItems(Presupuesto unPresupuesto){
 	  return unPresupuesto.getItems();
-  }
-  
-  public static boolean finalizarPresupuestos(Presupuesto unPresupuesto) {
+!!!158853.java!!!	finalizarPresupuestos(inout unPresupuesto : Presupuesto) : boolean
+
 	unPresupuesto.setEstado(I18n.FINALIZADO);
 	  ArrayList items=unPresupuesto.getItems();
 	for(int i=0;i<items.size();i++){
@@ -219,21 +191,15 @@ public class ServiciosPresupuestos
 		ArrayList articulos=ServiciosArticulos.listado();
 		for (int j=0;j<articulos.size();j++){
 			articulo=(Articulo)articulos.get(j);
-			if (articulo.equals(item.getElArticulo())) {
-        if (articulo.esCompuesto()) {
-          ServiciosArticulos.actualizarStock(articulo, item.getCantidadItem());
-        }
-        else {
-          articulo.setCantidad(articulo.getCantidad()-item.getCantidadItem());
-        }
+			if (articulo.equals(item.getElArticulo())){
+				articulo.setCantidad(articulo.getCantidad()-item.getCantidadItem());
 				item.setCostoFinalizado(articulo.getCosto());
 			}
 		}
 	}
 	return true;
-}
+!!!158981.java!!!	validoCantidadesFinalizacion(inout unPresupuesto : Presupuesto) : boolean
 
-  public static boolean validoCantidadesFinalizacion(Presupuesto unPresupuesto) {
 	ArrayList items=unPresupuesto.getItems();
 	int count=0;
 	int j=0;
@@ -259,9 +225,8 @@ public class ServiciosPresupuestos
 		return false;
 	}
 	return true;
-}
+!!!159109.java!!!	copiarPresupuesto(inout unPresupuesto : Presupuesto, in descripcion : String) : Presupuesto
 
-  public static Presupuesto copiarPresupuesto(Presupuesto unPresupuesto,String descripcion) {
 	Presupuesto nuevoPresupuesto=new Presupuesto(descripcion,unPresupuesto.getFechaEjecucion());
 	
 	;// pppp//mal
@@ -283,9 +248,8 @@ public class ServiciosPresupuestos
 	presupuestos.add(nuevoPresupuesto);
 	return nuevoPresupuesto;
 		
-}
+!!!159237.java!!!	cambiarDuenio(inout unPresupuesto : Presupuesto, inout nuevoDuenio : Usuario) : boolean
 
-  public static boolean cambiarDuenio(Presupuesto unPresupuesto,Usuario nuevoDuenio) {
 	  int indice=presupuestos.indexOf(unPresupuesto);
 	  if (indice==-1){
 		  return false;
@@ -295,9 +259,8 @@ public class ServiciosPresupuestos
 		  return true;
 	  }
 
-  }
+!!!159365.java!!!	validoPresupuesto(in descripcion : String, inout usuarioActual : Usuario) : boolean
 
-  public static boolean validoPresupuesto(String descripcion,Usuario usuarioActual) {
 	  for(int i=0;i<presupuestos.size();i++){
 		  Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
 		  if (unPresupuesto.getDescripcion().equals(descripcion)){
@@ -309,8 +272,8 @@ public class ServiciosPresupuestos
 	  }
 	  return true;
 
-  }
-  public static boolean validoFechaEjecucion(Presupuesto unPresupuesto) {
+!!!159493.java!!!	validoFechaEjecucion(inout unPresupuesto : Presupuesto) : boolean
+
 	  Date now=new Date();
 	  if(unPresupuesto.getFechaEjecucion()==null){
 		  return false;
@@ -318,13 +281,12 @@ public class ServiciosPresupuestos
 		  return false;
 	  }
 	  return true;
-  }
-  public static ArrayList obtenerPresupuestoPorArticuloCompuesto(ArticuloCompuesto original) {
+!!!159621.java!!!	obtenerPresupuestoPorArticuloCompuesto(inout original : ArticuloCompuesto) : ArrayList
+
 	  // TODO Hacer el metodo
 	  return null;
-  }
+!!!159749.java!!!	obtenerPresupuestosEnConstruccionFechaMenorQue(inout cal : Calendar) : ArrayList
 
-  public static ArrayList obtenerPresupuestosEnConstruccionFechaMenorQue(Calendar cal){
 	  ArrayList losPresupuestos=new ArrayList();
 	  for(int i=0;i<presupuestos.size();i++){
 		  Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
@@ -335,8 +297,8 @@ public class ServiciosPresupuestos
 		  }
 	  }
 	  return losPresupuestos;
-  }
-public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
+!!!159877.java!!!	obtenerPresupuestosAntesDe(inout fecha : Date) : ArrayList
+
 	ArrayList retorno=new ArrayList();
 	for(int i=0;i<presupuestos.size();i++){
 		Presupuesto unPresupuesto=(Presupuesto) presupuestos.get(i);
@@ -351,8 +313,8 @@ public static ArrayList obtenerPresupuestosAntesDe(Date fecha) {
 		}
 	}
 	return retorno;
-}
-public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
+!!!160005.java!!!	getArticulosSimplesDePresupuestosAntesDe(inout fecha : Date) : ArrayList
+
 	ArrayList retorno=new ArrayList();
 	ArrayList losPresupuestos=obtenerPresupuestosAntesDe(fecha);
 	for(int i=0;i<losPresupuestos.size();i++){
@@ -370,7 +332,3 @@ public static ArrayList getArticulosSimplesDePresupuestosAntesDe(Date fecha) {
 		
 	}
 	return retorno;
-}
-
-
-}

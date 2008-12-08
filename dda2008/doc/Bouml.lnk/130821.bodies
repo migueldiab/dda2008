@@ -1,0 +1,39 @@
+class Item
+!!!138629.java!!!	Item(inout unArticulo : Articulo, in cantidadItem : int)
+
+	this.setElArticulo(unArticulo);
+	this.setCantidadItem(cantidadItem);
+!!!138757.java!!!	getElArticulo() : Articulo
+
+	return elArticulo;
+!!!138885.java!!!	setElArticulo(inout elArticulo : Articulo) : void
+
+	this.elArticulo = elArticulo;
+!!!139013.java!!!	getCantidadItem() : int
+
+	return cantidadItem;
+!!!139141.java!!!	setCantidadItem(in cantidadItem : int) : void
+
+	this.cantidadItem = cantidadItem;
+!!!139269.java!!!	setCostoFinalizado(in costoFinalizado : double) : void
+
+	this.costoFinalizado = costoFinalizado;
+!!!139397.java!!!	getCostoFinalizado() : double
+
+	return costoFinalizado;
+!!!139525.java!!!	toString() : String
+
+	if(this.getCostoFinalizado()>0){
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida();
+	}else{
+		return "Item: "+this.getElArticulo().getNombre()+" - Medida: "+this.getElArticulo().getMedida();	
+	}
+	
+!!!139653.java!!!	clone() : Object
+
+
+    Item clone=(Item)super.clone();
+
+  
+    return clone;
+

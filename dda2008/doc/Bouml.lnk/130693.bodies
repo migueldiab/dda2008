@@ -1,0 +1,54 @@
+class Grupo
+!!!137349.java!!!	equals(inout arg0 : Object) : boolean
+
+    try
+    {
+      Grupo grupo = (Grupo)arg0;
+      if (grupo.getNombre().equals(this.getNombre())) {
+        return true;
+      }
+    }
+    catch (RuntimeException e)
+    {
+      // Probablemente es nulo
+    }
+    return false;
+
+!!!137477.java!!!	toString() : String
+
+    // TODO Auto-generated method stub
+    return this.getNombre();
+!!!137605.java!!!	Grupo(in nombre : String)
+
+    // TODO Auto-generated constructor stub
+    this.setNombre(nombre);
+!!!137733.java!!!	Grupo(in nombre : String, inout permisos : ArrayList)
+
+    // TODO Auto-generated constructor stub
+    this.setNombre(nombre);
+    this.setPermisos(permisos);
+!!!137861.java!!!	getNombre() : String
+
+    return nombre;
+!!!137989.java!!!	setNombre(in nombre : String) : void
+
+    this.nombre = nombre;
+!!!138117.java!!!	getPermisos() : ArrayList
+
+    return permisos;
+!!!138245.java!!!	setPermisos(inout permisos : ArrayList) : void
+
+    this.permisos = permisos;
+!!!138373.java!!!	agregarPermiso(in permiso : String) : boolean
+
+    permisos.add(permiso);
+    return true;
+!!!138501.java!!!	tienePermiso(in permiso : String) : boolean
+
+    // TODO Auto-generated method stub
+    // if (permisos != null)
+      return permisos.contains(permiso);
+    /*
+      else
+      return false;
+    */

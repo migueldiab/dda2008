@@ -1,0 +1,122 @@
+class Presupuesto
+!!!141957.java!!!	Presupuesto(in descripcion : String, inout fechaEjecucion : Date)
+
+	  Date now=new Date();
+	  this.descripcion=descripcion;
+	  this.fechaEjecucion=fechaEjecucion;
+	  this.id=nuevoId();
+	  this.estado=EN_CONSTRUCCION; 
+	  this.setFechaModificacion(now);
+	  this.setDuenio(ServiciosUsuarios.getUsuarioActual());
+!!!142085.java!!!	Presupuesto(in descripcion : String, inout fechaEjecucion : Date, inout duenio : Usuario, in estado : String, inout items : ArrayList)
+
+	  this(descripcion, fechaEjecucion);
+	  this.setDuenio(duenio);
+	  this.setEstado(estado);
+	  if(items!=null){
+		  for (int i=0; i<items.size(); i++) {
+			  this.agregarItem(items.get(i));
+		  }  
+	  }
+	  
+!!!142213.java!!!	getCosto() : double
+
+    return costo;
+!!!142341.java!!!	setCosto(in costo2 : double) : void
+
+    this.costo = costo2;
+!!!142469.java!!!	getDescripcion() : String
+
+    return descripcion;
+!!!142597.java!!!	setDescripcion(in descripcion : String) : void
+
+    this.descripcion = descripcion;
+!!!142725.java!!!	getDuenio() : Usuario
+
+    return duenio;
+!!!142853.java!!!	setDuenio(inout duenio : Usuario) : void
+
+    this.duenio = duenio;
+!!!142981.java!!!	getEstado() : String
+
+    return estado;
+!!!143109.java!!!	setEstado(in estado : String) : void
+
+    this.estado = estado;
+!!!143237.java!!!	getFechaEjecucion() : Date
+
+    return fechaEjecucion;
+!!!143365.java!!!	getFechaEjecucionString() : String
+
+	  try{
+		  return I18n.sdf.format(this.getFechaEjecucion());
+	  }
+      catch (RuntimeException e){
+    	  return "empty";
+      }
+!!!143493.java!!!	setFechaEjecucion(inout fechaEjecucion : Date) : void
+
+    this.fechaEjecucion = fechaEjecucion;
+!!!143621.java!!!	getFechaModificacion() : Date
+
+    return fechaModificacion;
+!!!143749.java!!!	getFechaModificacionString() : String
+
+    return I18n.sdf.format(this.getFechaModificacion());
+!!!143877.java!!!	setFechaModificacion(inout fechaModificacion : Date) : void
+
+    this.fechaModificacion = fechaModificacion;
+!!!144005.java!!!	getId() : int
+
+    return id;
+!!!144133.java!!!	nuevoId() : int
+
+	  return ++ultimoId;
+	  	  
+!!!144261.java!!!	getItems() : ArrayList
+
+    return items;
+!!!144389.java!!!	setItems(inout newItems : ArrayList) : void
+
+   this.items=newItems;
+!!!144517.java!!!	agregarItem(inout object : Object) : boolean
+
+	  if(!items.contains(object)){
+	  return items.add(object);
+	  }
+	  return false;
+!!!144645.java!!!	borrarItem(inout item : Item) : boolean
+
+  	return items.remove(item);
+!!!144773.java!!!	toString() : String
+
+    String retorno="Id: "+this.getId()+ " " + this.getDescripcion() +" - Fecha de modificacion: "+this.getFechaModificacionString();
+  return retorno;
+!!!144901.java!!!	equals(inout arg0 : Object) : boolean
+
+    try
+    {
+      Presupuesto presupuesto = (Presupuesto)arg0;
+      if (presupuesto.getDescripcion().equals(this.getDescripcion())) {
+        if (presupuesto.getDuenio().equals(this.getDuenio())) {
+          return true;
+        }
+      }
+    }
+    catch (RuntimeException e)
+    {
+      e.printStackTrace();
+    }
+    return false;
+!!!145029.java!!!	compareTo(inout arg0 : Object) : int
+
+    try
+    {
+      Presupuesto presupuesto = (Presupuesto)arg0;
+      return presupuesto.getFechaModificacion().compareTo(this.getFechaModificacion());      
+    }
+    catch (RuntimeException e)
+    {
+      e.printStackTrace();
+    }
+    return 0;

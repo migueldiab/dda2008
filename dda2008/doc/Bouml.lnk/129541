@@ -1,0 +1,1887 @@
+format 62
+"servicios" // src::servicios
+  revision 1
+  modified_by 5 "Administrator"
+  // class settings
+  //class diagram settings
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+  //use case diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default class_drawing_mode default shadow default show_stereotype_properties default
+  //sequence diagram settings
+  show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+  //collaboration diagram settings
+  show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+  //object diagram settings
+   write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+  //component diagram settings
+  package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //deployment diagram settings
+  package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+  draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+  //state diagram settings
+  package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+  show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+  //activity diagram settings
+  package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+  show_infonote default drawing_language default show_stereotype_properties default
+  
+  java_dir "servicios"
+  java_package "servicios"
+  classview 129413 "servicios"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default show_attribute_modifiers default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_relation_modifiers default show_infonote default shadow default show_stereotype_properties default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default show_stereotype_properties default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default show_stereotype_properties default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default show_stereotype_properties default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default show_stereotype_properties default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default show_stereotype_properties default
+    class 131461 "Fachada"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      operation 147333 "getUsuarioActual"
+	class_operation public return_type class_ref 131333 // Usuario
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147461 "agregarArticulo"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147589 "borrarArticulo"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147717 "modificarArticulo"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" type class_ref 129157 // Articulo
+	  param inout name "nuevo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147845 "listadoArticulos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 147973 "calcularCosto"
+	class_operation public explicit_return_type "Double"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148101 "agregarPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148229 "agregarItemPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "unArticulo" explicit_type "Object"
+	  param in name "cant" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148357 "borrarItemPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "unItem" type class_ref 130821 // Item
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148485 "borrarPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148613 "modificarPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "fechaEjecucion" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148741 "modificarItemPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "item" type class_ref 130821 // Item
+	  param in name "cantItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148869 "listadoPresupuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 148997 "agregarUsuario"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149125 "borrarUsuario"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "usuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149253 "modificarUsuario"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" type class_ref 131333 // Usuario
+	  param inout name "usuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149381 "listadoUsuarios"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149509 "cerrarSesion"
+	class_operation public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149637 "listaMedidas"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149765 "agregarMedida"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "medida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 149893 "listaGrupos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150021 "agregarGrupo"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "grupo" type class_ref 130693 // Grupo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150149 "login"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "id" explicit_type "String"
+	  param in name "clave" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150277 "obtenerPresupuestoPorArticuloEstadoConFecha"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 2
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	  param in name "unEstado" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150405 "obtenerPresupuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 4
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	  param in name "Criterio0Asc1Desc" explicit_type "int"
+	  param in name "Criterio0XFechaMod1XFechaEje" explicit_type "int"
+	  param in name "Criterio0EnConstr1Todos" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150533 "obtenerItems"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150661 "finalizarPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150789 "validoCantidadesFinalizacion"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 150917 "copiarPresupuesto"
+	class_operation public return_type class_ref 131205 // Presupuesto
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param in name "descripcion" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151045 "listadoGestores"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151173 "listadoGestoresPorApellido"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151301 "listadoGestoresPorNombreUsuario"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151429 "cambiarDuenio"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "nuevoDuenio" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151557 "obtenerArticulosNotIn"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151685 "validoPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "usuarioActual" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151813 "validoFechaEjecucion"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 151941 "vistaLogin"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "id" explicit_type "String"
+	  param in name "password" explicit_type "char"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152069 "obtenerUsuario"
+	class_operation public return_type class_ref 131333 // Usuario
+	nparams 1
+	  param inout name "u" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152197 "obtenerArticulo"
+	class_operation public return_type class_ref 129157 // Articulo
+	nparams 1
+	  param inout name "a" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152325 "listadoArticulosCompuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152453 "listadoArticulosSimples"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152581 "obtenerArticuloCompuesto"
+	class_operation public return_type class_ref 129797 // ArticuloCompuesto
+	nparams 1
+	  param inout name "unArticuloCompuesto" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152709 "agregarArticuloCompuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unArticuloCompuesto" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152837 "borrarArticuloCompuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "u" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 152965 "getArticulosStockInsuficiente"
+	class_operation public explicit_return_type "ArrayList<Object[]>"
+	nparams 1
+	  param inout name "cal" explicit_type "Calendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153093 "obtenerPresupuestosAntesDe"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "fecha" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "public static void guardarItemsPresupuesto(ArrayList obtenerItems,
+	ArrayList items,Presupuesto presupuesto) {
+ServiciosPresupuestos.guardarItemsPresupuesto(obtenerItems,items,presupuesto);"
+      end
+
+      operation 153221 "getArticulosSimplesDePresupuestosAntesDe"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "fecha" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153349 "verificarRedundanciaArticulosCompuestos"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "elArticuloCompuesto" type class_ref 129797 // ArticuloCompuesto
+	  param inout name "unComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153477 "StockSimplesPresupuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 2
+	  param inout name "item" type class_ref 130821 // Item
+	  param inout name "articulosSimplesUnPresupuesto" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 137605 // <dependency>
+	relation 137477 -_->
+	  a default
+	    classrelation_ref 137605 // <dependency>
+	  b parent class_ref 131973 // ServiciosPresupuestos
+      end
+
+      classrelation 137861 // <dependency>
+	relation 137733 -_->
+	  a default
+	    classrelation_ref 137861 // <dependency>
+	  b parent class_ref 131589 // ServiciosArticulos
+      end
+
+      classrelation 137989 // <dependency>
+	relation 137861 -_->
+	  a default
+	    classrelation_ref 137989 // <dependency>
+	  b parent class_ref 131845 // ServiciosMedidas
+      end
+
+      classrelation 138117 // <dependency>
+	relation 137989 -_->
+	  a default
+	    classrelation_ref 138117 // <dependency>
+	  b parent class_ref 132101 // ServiciosUsuarios
+      end
+
+      classrelation 138245 // <dependency>
+	relation 138117 -_->
+	  a default
+	    classrelation_ref 138245 // <dependency>
+	  b parent class_ref 131717 // ServiciosGrupos
+      end
+    end
+
+    class 131589 "ServiciosArticulos"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133381 "articulos"
+	class_attribute private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 153605 "agregar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153733 "borrar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153861 "listado"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 153989 "modificar"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" type class_ref 129157 // Articulo
+	  param inout name "nuevo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154117 "cantidad"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154245 "obtener"
+	class_operation public explicit_return_type "Object"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154373 "obtenerArticulosNotIn"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154501 "getArticulosStockInsuficiente"
+	class_operation public explicit_return_type "ArrayList<Object[]>"
+	nparams 1
+	  param inout name "cal" explicit_type "Calendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154629 "listadoCompuestos"
+	class_operation public return_type class_ref 129797 // ArticuloCompuesto
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}ArrayList<${type}> ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154757 "listadoSimples"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 154885 "agregarCompuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unArticuloCompuesto" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155013 "verificarRedundancia"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "elArticuloCompuesto" type class_ref 129797 // ArticuloCompuesto
+	  param inout name "elComponente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155141 "articuloTieneComponente"
+	class_operation private explicit_return_type "boolean"
+	nparams 2
+	  param inout name "compuesto" type class_ref 129797 // ArticuloCompuesto
+	  param inout name "componente" type class_ref 129669 // Componente
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155269 "StockSimplesPresupuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 2
+	  param inout name "itemRoot" type class_ref 130821 // Item
+	  param inout name "articulosSimplesUnPresupuesto" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155397 "traerComponentesDeArticulosSimplesConCantidad"
+	class_operation private explicit_return_type "ArrayList"
+	nparams 3
+	  param inout name "losComponentes" explicit_type "ArrayList"
+	  param in name "x" explicit_type "int"
+	  param inout name "arrayLoop" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155525 "addArticuloToArraylistCompuestosRetorno"
+	class_operation private explicit_return_type "ArrayList"
+	nparams 3
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	  param in name "cantidad" explicit_type "int"
+	  param inout name "componentes" explicit_type "ArrayList"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 138373 // <composition>
+	relation 138245 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138373 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138501 // <composition>
+      end
+    end
+
+    class 131717 "ServiciosGrupos"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133509 "grupos"
+	class_attribute private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 155653 "agregar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155781 "borrar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 155909 "listado"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156037 "modificar"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" explicit_type "Object"
+	  param inout name "nuevo" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156165 "cantidad"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156293 "obtener"
+	class_operation public explicit_return_type "Object"
+	nparams 1
+	  param inout name "o" explicit_type "Object"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 139397 // <composition>
+	relation 138757 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139397 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139525 // <composition>
+      end
+    end
+
+    class 131845 "ServiciosMedidas"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133637 "medidas"
+	class_attribute private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 156421 "agregar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156549 "borrar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156677 "modificar"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" type class_ref 129541 // Medida
+	  param inout name "nuevo" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156805 "cantidad"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 156933 "obtener"
+	class_operation public explicit_return_type "Object"
+	nparams 1
+	  param inout name "unMedida" type class_ref 129541 // Medida
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157061 "listado"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 138885 // <composition>
+	relation 138501 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138885 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139013 // <composition>
+      end
+    end
+
+    class 131973 "ServiciosPresupuestos"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133765 "presupuestos"
+	class_attribute private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      operation 157189 "agregar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157317 "borrar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "o" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157445 "calcularCosto"
+	class_operation public explicit_return_type "Double"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157573 "listado"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157701 "agregarItem"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "unArticulo" explicit_type "Object"
+	  param in name "cant" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157829 "borrarItem"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "unItem" type class_ref 130821 // Item
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 157957 "modificarPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "fechaEjecucion" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158085 "modificarItemPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 3
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "item" type class_ref 130821 // Item
+	  param in name "cantItem" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158213 "obtenerPresupuestoPorArticulo"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158341 "obtenerPresupuestoPorUsuario"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158469 "obtenerPresupuestoPorArticuloEstadoConFecha"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 2
+	  param inout name "unArticulo" type class_ref 129157 // Articulo
+	  param in name "unEstado" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158597 "obtenerPresupuestos"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 4
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	  param in name "Criterio0Asc1Desc" explicit_type "int"
+	  param in name "Criterio0XFechaMod1XFechaEje" explicit_type "int"
+	  param in name "Criterio0EnConstr1Todos" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}, ${t2} ${p2}, ${t3} ${p3}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158725 "obtenerItems"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158853 "finalizarPresupuestos"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 158981 "validoCantidadesFinalizacion"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159109 "copiarPresupuesto"
+	class_operation public return_type class_ref 131205 // Presupuesto
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param in name "descripcion" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159237 "cambiarDuenio"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	  param inout name "nuevoDuenio" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159365 "validoPresupuesto"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "descripcion" explicit_type "String"
+	  param inout name "usuarioActual" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159493 "validoFechaEjecucion"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unPresupuesto" type class_ref 131205 // Presupuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159621 "obtenerPresupuestoPorArticuloCompuesto"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "original" type class_ref 129797 // ArticuloCompuesto
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159749 "obtenerPresupuestosEnConstruccionFechaMenorQue"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "cal" explicit_type "Calendar"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 159877 "obtenerPresupuestosAntesDe"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "fecha" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160005 "getArticulosSimplesDePresupuestosAntesDe"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 1
+	  param inout name "fecha" explicit_type "Date"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 138629 // <composition>
+	relation 138373 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138629 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138757 // <composition>
+      end
+    end
+
+    class 132101 "ServiciosUsuarios"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      attribute 133893 "MAX_LOGIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "=  3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      attribute 134021 "usuarios"
+	class_attribute private explicit_type "ArrayList"
+	init_value "=  new ArrayList()"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+      end
+
+      classrelation 131845 // usuarioActual (<unidirectional association>)
+	relation 131845 --->
+	  a role_name "usuarioActual" init_value "=  null" class_relation private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 131845 // usuarioActual (<unidirectional association>)
+	  b parent class_ref 131333 // Usuario
+      end
+
+      operation 160133 "login"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "usuario" explicit_type "String"
+	  param in name "clave" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160261 "getUsuarioActual"
+	class_operation public return_type class_ref 131333 // Usuario
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160389 "logout"
+	class_operation public explicit_return_type "boolean"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160517 "agregar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160645 "borrar"
+	class_operation public explicit_return_type "boolean"
+	nparams 1
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160773 "modificar"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param inout name "original" type class_ref 131333 // Usuario
+	  param inout name "nuevo" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 160901 "cantidad"
+	class_operation public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161029 "obtener"
+	class_operation public explicit_return_type "Object"
+	nparams 1
+	  param inout name "unUsuario" type class_ref 131333 // Usuario
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161157 "listadoGestores"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161285 "listado"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161413 "listadoGestoresPorNombreUsuario"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161541 "listadoGestoresPorApellido"
+	class_operation public explicit_return_type "ArrayList"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 161669 "vistaLogin"
+	class_operation public explicit_return_type "boolean"
+	nparams 2
+	  param in name "id" explicit_type "String"
+	  param in name "password" explicit_type "char"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1}[] ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      classrelation 139141 // <composition>
+	relation 138629 *---
+	  a role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139141 // <composition>
+	  b role_name "" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139269 // <composition>
+      end
+    end
+  end
+
+  deploymentview 129285 "servicios"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default show_stereotype_properties default
+    artifact 130949 "Fachada"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import dominio.*;
+${definition}"
+      associated_classes
+	class_ref 131461 // Fachada
+      end
+    end
+
+    artifact 131077 "ServiciosArticulos"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import utils.I18n;
+import dominio.Articulo;
+import dominio.ArticuloCompuesto;
+import dominio.ArticuloSimple;
+import dominio.Componente;
+import dominio.Item;
+import dominio.Medida;
+import dominio.Presupuesto;
+import dominio.Usuario;
+${definition}"
+      associated_classes
+	class_ref 131589 // ServiciosArticulos
+      end
+    end
+
+    artifact 131205 "ServiciosGrupos"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import dominio.Grupo;
+${definition}"
+      associated_classes
+	class_ref 131717 // ServiciosGrupos
+      end
+    end
+
+    artifact 131333 "ServiciosMedidas"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import dominio.Medida;
+${definition}"
+      associated_classes
+	class_ref 131845 // ServiciosMedidas
+      end
+    end
+
+    artifact 131461 "ServiciosPresupuestos"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import utils.I18n;
+import dominio.*;
+${definition}"
+      associated_classes
+	class_ref 131973 // ServiciosPresupuestos
+      end
+    end
+
+    artifact 131589 "ServiciosUsuarios"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import java.util.ArrayList;
+import java.util.Collections;
+import dominio.CriterioComparacionPorNombreUsuarioAsc;
+import dominio.Usuario;
+${definition}"
+      associated_classes
+	class_ref 132101 // ServiciosUsuarios
+      end
+    end
+  end
+
+  simplerelation 129541
+    -_->
+      on 
+      package_ref 129285 // dominio
+  end
+end

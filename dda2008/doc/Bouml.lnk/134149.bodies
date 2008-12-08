@@ -1,0 +1,5 @@
+class ModeloPresupuesto
+!!!172933.java!!!	fueModificado() : void
+
+		setChanged();
+		notifyObservers();

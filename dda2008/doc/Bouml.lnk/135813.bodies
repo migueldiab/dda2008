@@ -1,0 +1,15 @@
+class MiModelo
+!!!194821.java!!!	getColumnCount() : int
+
+			return columnNames.length;
+			
+!!!194949.java!!!	getRowCount() : int
+
+			return data.size();
+!!!195077.java!!!	getColumnName(in col : int) : String
+
+			return columnNames[col];
+!!!195205.java!!!	getValueAt(in row : int, in col : int) : Object
+
+			return data.get(row)[col];
+			
