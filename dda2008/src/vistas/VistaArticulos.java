@@ -48,6 +48,7 @@ public class VistaArticulos extends JFrame {
   private JLabel lInfo = null;
   private JLabel lCosto = null;
   private JTextField tCosto = null;
+  private Articulo shadowArticulo = null;
   public JDialog getDAbmArticulos() {
     if (dAbmArticulos == null) {
       dAbmArticulos = new JDialog();
@@ -258,11 +259,11 @@ public class VistaArticulos extends JFrame {
   
   private void cargarArticulo() {
     
-    Articulo u = (Articulo) lArticulos.getSelectedValue();    
-    tNombre.setText(u.getNombre());
-    tCantidad.setText(Integer.toString(u.getCantidad()));
-    tCosto.setText(Double.toString(u.getCosto()));
-    cMedida.setSelectedItem(u.getMedida());
+    shadowArticulo = (Articulo) lArticulos.getSelectedValue();    
+    tNombre.setText(shadowArticulo.getNombre());
+    tCantidad.setText(Integer.toString(shadowArticulo.getCantidad()));
+    tCosto.setText(Double.toString(shadowArticulo.getCosto()));
+    cMedida.setSelectedItem(shadowArticulo.getMedida());
   }
   private void buscarArticulo() {
     tNombre.setText("Test2");
@@ -270,8 +271,8 @@ public class VistaArticulos extends JFrame {
   private void guardarArticulo() {
     try {
       Articulo unArticulo = new ArticuloSimple(tNombre.getText(),(Medida) cMedida.getSelectedItem(), Integer.parseInt(tCantidad.getText()), Double.parseDouble(tCosto.getText()));
-      Articulo tempArticulo = Fachada.obtenerArticulo(unArticulo);
-      if ((tempArticulo==null) || (JOptionPane.showConfirmDialog(
+      if (shadowArticulo==null) shadowArticulo = Fachada.obtenerArticulo(unArticulo);
+      if ((shadowArticulo==null) || (JOptionPane.showConfirmDialog(
           null,"Desea guardar los cambios al articulo "+tNombre.getText()+"?",
           "Confirma guardar?",
           JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
@@ -281,7 +282,7 @@ public class VistaArticulos extends JFrame {
             cMedida.getSelectedIndex()!=-1
           )    
         {      
-          if (tempArticulo==null) {
+          if (shadowArticulo==null) {
             if (Fachada.agregarArticulo(unArticulo)) {
               lInfo.setForeground(new Color(65, 190, 79));
               lInfo.setText("Articulo " + tNombre.getText() + " guardado");
@@ -294,7 +295,7 @@ public class VistaArticulos extends JFrame {
             }
           }
           else {
-            if (Fachada.modificarArticulo(tempArticulo, unArticulo)) {
+            if (Fachada.modificarArticulo(shadowArticulo, unArticulo)) {
               lInfo.setForeground(new Color(65, 190, 79));
               lInfo.setText("Articulo " + tNombre.getText() + " modificado");
               cargarListas();

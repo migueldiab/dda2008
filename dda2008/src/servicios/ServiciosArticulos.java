@@ -74,14 +74,21 @@ public class ServiciosArticulos
     if (original == null)  return false;
     int posOriginal = articulos.indexOf(original);
     if (posOriginal == -1) return false;
+    if (!original.equals(nuevo)) {
+      int posNuevo = articulos.indexOf(nuevo);
+      if (posNuevo != -1) return false;
+    }
+    
    
     // Medida : No se puede modificar si el articulo esta involucrado en algun presupuesto
     ArrayList presupuestos = ServiciosPresupuestos.obtenerPresupuestoPorArticulo(original);
-    if (presupuestos.size() > 0) {
+    if (presupuestos.size() > 0 && (!original.getMedida().equals(nuevo.getMedida()))) {
       return false;
     }
     original.setCantidad(nuevo.getCantidad());
     original.setCosto(nuevo.getCosto());
+    original.setMedida(nuevo.getMedida());    
+    original.setNombre(nuevo.getNombre());    
     original.remplazarComponentes(nuevo.listarComponentes());
     return true;
   }
