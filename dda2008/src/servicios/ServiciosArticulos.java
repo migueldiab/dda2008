@@ -269,6 +269,13 @@ public class ServiciosArticulos
   		
   		
   	}
+    public static boolean actualizarDatosComponentes() {
+      for (ArticuloCompuesto unArticulo : listadoCompuestos()) {
+        unArticulo.recalcularStock();
+        unArticulo.recalcularCosto();
+      }
+      return true;
+    }
 
     public static boolean actualizarStock(Articulo articulo, int cantidadItem) {
       ArticuloCompuesto artCompuesto = (ArticuloCompuesto) articulo;
